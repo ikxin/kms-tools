@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>KMS WebUI</title>
-    <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
     <style>
         .row {
             margin-bottom: 0;
@@ -62,9 +62,9 @@
                     <p>3、使用KMS激活系统后，有效期为180天。</p>
                     <p>4、系统每7天会连接一次KMS服务器，获取最新的授权，然后激活有效期会重置为180天。</p>
                     <p>5、只要KMS激活服务器不挂，激活状态会一直自动续命，无需人工再次干预。</p>
-                    <p>6、如果激活失败可先尝试清除后激活，<a href="https://kms.ikxin.com/kms.php?clean=1">点击下载清除脚本</a>。</p>
+                    <p>6、如果激活失败可先尝试清除后激活，<a href="kms.php?clean=1">点击下载清除脚本</a>。</p>
                 </div>
-                <form class="layui-form" action="https://kms.ikxin.com/kms.php" method="post">
+                <form class="layui-form" action="kms.php" method="post">
                     <div class="layui-tab layui-tab-card">
                         <ul class="layui-tab-title">
                             <li class="layui-this">Windows 10</li>
@@ -165,7 +165,7 @@
             </div>
         </div>
     </div>
-    <script src="https://www.layuicdn.com/layui/layui.all.js"></script>
+    <script src="layui/layui.all.js"></script>
     <script>
         //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
         ;!function(){

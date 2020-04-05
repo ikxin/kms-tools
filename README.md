@@ -1,15 +1,26 @@
 ## KMS-WebUI
 
-KMS激活服务器及在线生成一键激活脚本
+KMS激活Windows在线生成一键激活脚本
 
 ![image.png](https://qmc.me/2020/04/04/6194e784eef2c.png)
 
-## 安装
+## 演示站
 
-1、打开`kms.php`修改KMS服务器地址
+[kms.ikxin.com](https://kms.ikxin.com "kms.ikxin.com")（阿里云学生机，别打我）
 
-2、将`index.html`、`kms.php`上传到网页目录
+## 单页
 
-## 原项目地址
+ - 将`index.html`上传到网站根目录即可
 
-https://github.com/lichenzero/KMS-Server-WebUI
+layui资源由[layuicdn](https://www.layuicdn.com/ "layuicdn")提供，KMS服务器由[iKxin小站](https://www.ikxin.com "iKxin小站")提供
+
+## 自建
+
+ - 将整个项目下解压到网站根目录
+ - 修改`kms.php`文件中第七行的kms服务器
+
+## 参考项目
+
+[https://github.com/lichenzero/KMS-Server-WebUI](https://github.com/lichenzero/KMS-Server-WebUI "KMS-Server-WebUI")
+[https://github.com/sentsin/layui](https://github.com/sentsin/layui "LayUI")
+[https://github.com/Wind4/vlmcsd](https://github.com/Wind4/vlmcsd "Vlmcsd")
