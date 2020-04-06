@@ -1,59 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>KMS WebUI</title>
-    <link rel="stylesheet" href="layui/css/layui.css">
-    <style>
-        .row {
-            margin-bottom: 0;
-            max-width: 720px;
-            margin: auto;
-            margin-top: 60px;
-        }
-        .well {
-            min-height: 20px;
-            max-width: 720px;
-            padding: 18px;
-            margin-bottom: 0;
-            margin: 0 10px;
-            background-color: #f5f5f5;
-            border: 1px solid #e3e3e3;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-        }
-        .wells {
-            background: #ffffff;
-            line-height: 1;
-            padding: 10px;
-            border-left: 3px solid #4b9688;
-            margin-bottom: 10px;
-        }
-        p {
-            line-height: 2;
-        }
-        a {
-            color: #4b9688;
-        }
-        .radio {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-        .layui-form-radio {
-            margin: 3px 0 3px 0;
-        }
-        .layui-form-radio>i {
-            margin-right: 0px;
-        }
-    </style>
-</head>
-<body>
-    <div class="layui-row">
-        <div class="row">
-            <div class="well">
+<?php
+@header('Content-Type: text/html; charset=UTF-8');
+include("./header.php");
+?>
                 <div class="wells">
                     <h2 style="text-align: center;padding-top: 10px;">KMS激活Windows一键脚本</h2>
                     <hr>
@@ -154,25 +102,4 @@
                     </div>
                     <button type="submit" class="layui-btn layui-btn-fluid">下载脚本</button>
                 </form>
-                <br>
-                <div class="wells" style="text-align: center;">
-                    <p>
-                        Powered by <a target="_blank" href="https://github.com/ikxin/KMS-WebUI">KMS-WebUI</a> | 
-                        Theme by <a target="_blank" href="https://www.layui.com">LayUI</a> | 
-                        Author by <a target="_blank" href="https://www.ikxin.com">iKxin</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="layui/layui.all.js"></script>
-    <script>
-        //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
-        ;!function(){
-        var layer = layui.layer
-        ,form = layui.form;
-            //layer.msg('Hello World');
-        }();
-    </script> 
-</body>
-</html>
+<?php include("./footer.php"); ?>
