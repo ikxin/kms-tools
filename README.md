@@ -2,11 +2,7 @@
 
 KMS激活Windows在线生成一键激活脚本
 
-![image.png](https://qmc.me/2020/04/04/6194e784eef2c.png)
-
-## 演示站
-
-[kms.ikxin.com](https://kms.ikxin.com "kms.ikxin.com")（阿里云学生机，别打我）
+![image.png](https://img.8b5.cn/2020/04/04/6194e784eef2c.png)
 
 ## 单页
 
