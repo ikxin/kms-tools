@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ant-design-vue": "^3.2.3",
     "vue": "^3.2.25"
   },
   "devDependencies": {
