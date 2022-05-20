@@ -4,10 +4,9 @@
       <div class="logo">
         <img src="../assets/images/logo.svg">
       </div>
-      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="horizontal"
-        :style="{ lineHeight: '64px', float: 'right' }">
-        <a-menu-item key="1">Blog</a-menu-item>
-        <a-menu-item key="2">Github</a-menu-item>
+      <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px', float: 'right' }">
+        <a-menu-item key="1" @click="openBlog">Blog</a-menu-item>
+        <a-menu-item key="2" @click="openGithub">Github</a-menu-item>
       </a-menu>
     </div>
 
@@ -18,8 +17,15 @@
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   setup() {
+    function openBlog() {
+      window.open('https://www.ikxin.com')
+    }
+    function openGithub() {
+      window.open('https://github.com/ikxin/kms-tools')
+    }
     return {
-      selectedKeys: ref(['2']),
+      openBlog,
+      openGithub
     };
   },
 });
