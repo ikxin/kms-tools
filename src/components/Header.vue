@@ -1,7 +1,7 @@
 <template>
   <a-layout-header>
     <div class="logo">
-      <img src="../assets/logo.svg">
+      <img src="../assets/images/logo.svg">
     </div>
     <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
       <a-menu-item key="1">nav 1</a-menu-item>
