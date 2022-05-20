@@ -9,13 +9,11 @@
         <a-menu-item key="2" @click="openGithub">Github</a-menu-item>
       </a-menu>
     </div>
-
   </a-layout-header>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
-export default defineComponent({
+export default ({
   setup() {
     function openBlog() {
       window.open('https://www.ikxin.com')
