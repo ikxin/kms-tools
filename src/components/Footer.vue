@@ -1,6 +1,7 @@
 <template>
   <a-layout-footer style="text-align: center">
-    Ant Design ©2018 Created by Ant UED
+    Powered by <a target="_blank" href="https://github.com/ikxin/kms-tools">KMS Tools</a> |
+    Author by <a target="_blank" href="https://www.ikxin.com">一纸忘忧</a>
   </a-layout-footer>
 </template>
 
