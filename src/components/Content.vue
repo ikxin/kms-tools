@@ -12,23 +12,31 @@
       </a-card>
 
       <a-card>
-        <a-form layout="inline">
-          <a-form-item label="系统类型" name="selectSystemType">
-            <a-select v-model:value="formState.selectSystemType" :allowClear="true" :dropdownMatchSelectWidth="380"
+        <a-form>
+          <a-form-item label="系统类型" name="select">
+            <a-select v-model:value="formState.select" :allowClear="true" :dropdownMatchSelectWidth="380"
               placeholder="请选择系统类型">
               <a-select-option v-for="(item, index) in windowsData" :key="index" :value="index">
                 {{ item.version }}
               </a-select-option>
             </a-select>
           </a-form-item>
-          <a-form-item label="KMS服务器" name="kmsServer">
-            <a-input v-model:value="formState.kmsServer" />
+          <a-form-item label="激活密钥" name="key">
+            <a-input v-model:value="formState.key" disabled />
+          </a-form-item>
+          <a-form-item label="KMS服务器" name="server">
+            <a-input v-model:value="formState.server" />
+          </a-form-item>
+          <a-form-item>
+            <a-button :style="{ marginRight: '20px' }">生成脚本</a-button>
+            <a-button type="primary">下载脚本</a-button>
           </a-form-item>
         </a-form>
       </a-card>
 
       <a-card>
-        <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection"/>
+        <a-table :dataSource="listState.dataSource" :columns="listState.columns"
+          :rowSelection="listState.rowSelection" />
       </a-card>
     </div>
   </a-layout-content>
@@ -42,8 +50,9 @@ export default {
     const windowsData = reactive(window.Data.windows)
 
     const formState = reactive({
-      selectSystemType: undefined,
-      kmsServer: ''
+      select: undefined,
+      key: '',
+      server: 'kms.v0v.bid'
     })
 
     const listState = reactive({
@@ -58,16 +67,19 @@ export default {
           dataIndex: 'key',
         }
       ],
-      rowSelection:{
+      rowSelection: {
         type: 'radio',
+        onChange: (selectedRowKeys) => {
+          formState.key = selectedRowKeys
+        }
       }
     })
 
-    watch(() => formState.selectSystemType, () => {
-      if (formState.selectSystemType === undefined) {
+    watch(() => formState.select, () => {
+      if (formState.select === undefined) {
         listState.dataSource = []
       } else {
-        listState.dataSource = windowsData[formState.selectSystemType].item
+        listState.dataSource = windowsData[formState.select].item
       }
     }, {
       immediate: true
