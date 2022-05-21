@@ -28,30 +28,54 @@
       </a-card>
 
       <a-card>
-        <a-table />
+        <a-table :dataSource="listState.dataSource" :columns="listState.columns" />
       </a-card>
     </div>
   </a-layout-content>
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import { reactive, watch } from 'vue'
 
 export default {
   setup() {
-    // 源数据
-    const sourceData = window.Data
-    // Windows数据
-    const windowsData = reactive(sourceData.windows)
-    // 表单数据
+    const windowsData = reactive(window.Data.windows)
+
     const formState = reactive({
-      selectSystemType: 0,
+      selectSystemType: undefined,
       kmsServer: ''
+    })
+
+    const listState = reactive({
+      columns: [
+        {
+          title: '系统版本',
+          dataIndex: 'release',
+          key: 'release',
+        },
+        {
+          title: '密钥',
+          dataIndex: 'key',
+          key: 'release',
+        }
+      ],
+      dataSource: []
+    })
+
+    watch(() => formState.selectSystemType, () => {
+      if (formState.selectSystemType === undefined) {
+        listState.dataSource = []
+      } else {
+        listState.dataSource = windowsData[formState.selectSystemType].item
+      }
+    }, {
+      immediate: true
     })
 
     return {
       windowsData,
-      formState
+      formState,
+      listState
     }
   }
 }
