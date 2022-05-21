@@ -28,7 +28,7 @@
       </a-card>
 
       <a-card>
-        <a-table :dataSource="listState.dataSource" :columns="listState.columns" />
+        <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection"/>
       </a-card>
     </div>
   </a-layout-content>
@@ -47,19 +47,20 @@ export default {
     })
 
     const listState = reactive({
+      dataSource: [],
       columns: [
         {
           title: '系统版本',
           dataIndex: 'release',
-          key: 'release',
         },
         {
           title: '密钥',
           dataIndex: 'key',
-          key: 'release',
         }
       ],
-      dataSource: []
+      rowSelection:{
+        type: 'radio',
+      }
     })
 
     watch(() => formState.selectSystemType, () => {
@@ -95,6 +96,6 @@ export default {
   max-width: 100%;
   min-height: calc(100vh - 134px);
   margin: 0 auto;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 </style>
