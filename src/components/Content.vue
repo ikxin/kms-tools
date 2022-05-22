@@ -8,7 +8,7 @@
         <p>3、使用KMS激活系统后，有效期为180天。</p>
         <p>4、系统每7天会连接一次KMS服务器，获取最新的授权，然后激活有效期会重置为180天。</p>
         <p>5、只要KMS激活服务器不挂，激活状态会一直自动续命，无需人工再次干预。</p>
-        <p>6、如果激活失败可先尝试清除后激活，<a href="https://kms.ikxin.com/kms.php?clean=1">点击下载清除脚本</a>。</p>
+        <p>6、如果激活失败可先尝试清除后激活，<a @click="downloadCleanScript">点击下载清除脚本</a>。</p>
       </a-card>
 
       <a-card>
@@ -113,6 +113,12 @@ export default {
       }
     }
 
+    function downloadCleanScript() {
+      const cleanScript = `@echo off\r\nslmgr /upk\r\nslmgr /ckms\r\nslmgr /rearm`
+      const file = new File([cleanScript], 'clean.bat', { type: 'application/txt' })
+      downloadFile(file)
+    }
+
     function copyScript() {
       if (formState.key && formState.server) {
         navigator.clipboard.writeText(formState.script).then(() => {
@@ -142,6 +148,7 @@ export default {
       listState,
       generateScript,
       downloadScript,
+      downloadCleanScript,
       copyScript
     }
   }
