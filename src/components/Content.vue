@@ -28,8 +28,13 @@
             <a-input v-model:value="formState.server" />
           </a-form-item>
           <a-form-item>
-            <a-button :style="{ marginRight: '20px' }">生成脚本</a-button>
-            <a-button type="primary">下载脚本</a-button>
+            <a-space size="middle">
+              <a-button @click="generateScript">生成脚本</a-button>
+              <a-button type="primary">下载脚本</a-button>
+            </a-space>
+          </a-form-item>
+          <a-form-item v-show="formState.visible">
+            <a-textarea v-model:value="formState.script" :rows="5" />
           </a-form-item>
         </a-form>
       </a-card>
@@ -52,7 +57,9 @@ export default {
     const formState = reactive({
       select: undefined,
       key: '',
-      server: 'kms.v0v.bid'
+      server: 'kms.v0v.bid',
+      script: '',
+      visible: false
     })
 
     const listState = reactive({
@@ -85,10 +92,16 @@ export default {
       immediate: true
     })
 
+    function generateScript() {
+      formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
+      formState.visible = true
+    }
+
     return {
       windowsData,
       formState,
-      listState
+      listState,
+      generateScript
     }
   }
 }
