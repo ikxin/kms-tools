@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { message } from 'ant-design-vue'
 import { reactive, watch } from 'vue'
 
 export default {
@@ -93,8 +94,12 @@ export default {
     })
 
     function generateScript() {
-      formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
-      formState.visible = true
+      if (formState.key && formState.server) {
+        formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
+        formState.visible = true
+      } else {
+        message.error('未选择系统版本')
+      }
     }
 
     return {
