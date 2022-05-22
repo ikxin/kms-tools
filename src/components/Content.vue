@@ -30,7 +30,7 @@
           <a-form-item>
             <a-space size="middle">
               <a-button @click="generateScript">生成脚本</a-button>
-              <a-button type="primary">下载脚本</a-button>
+              <a-button @click="downloadScript" type="primary">下载脚本</a-button>
               <a-button v-show="formState.visible" @click="copyScript" type="primary">复制脚本</a-button>
             </a-space>
           </a-form-item>
@@ -103,6 +103,16 @@ export default {
       }
     }
 
+    function downloadScript() {
+      if (formState.key && formState.server) {
+        formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
+        const file = new File([formState.script], 'kms.bat', { type: 'application/txt' })
+        downloadFile(file)
+      } else {
+        message.error('未选择系统版本')
+      }
+    }
+
     function copyScript() {
       if (formState.key && formState.server) {
         navigator.clipboard.writeText(formState.script).then(() => {
@@ -115,11 +125,23 @@ export default {
       }
     }
 
+    function downloadFile(file) {
+      const url = URL.createObjectURL(file);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = file.name;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
     return {
       windowsData,
       formState,
       listState,
       generateScript,
+      downloadScript,
       copyScript
     }
   }
