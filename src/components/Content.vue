@@ -31,6 +31,7 @@
             <a-space size="middle">
               <a-button @click="generateScript">生成脚本</a-button>
               <a-button type="primary">下载脚本</a-button>
+              <a-button v-show="formState.visible" @click="copyScript" type="primary">复制脚本</a-button>
             </a-space>
           </a-form-item>
           <a-form-item v-show="formState.visible">
@@ -102,11 +103,24 @@ export default {
       }
     }
 
+    function copyScript() {
+      if (formState.key && formState.server) {
+        navigator.clipboard.writeText(formState.script).then(() => {
+          message.success('复制成功')
+        }).catch((error) => {
+          message.error(error)
+        })
+      } else {
+        message.error('未选择系统版本')
+      }
+    }
+
     return {
       windowsData,
       formState,
       listState,
-      generateScript
+      generateScript,
+      copyScript
     }
   }
 }
