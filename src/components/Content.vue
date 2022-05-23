@@ -41,8 +41,8 @@
       </a-card>
 
       <a-card>
-        <a-table :dataSource="listState.dataSource" :columns="listState.columns"
-          :rowSelection="listState.rowSelection" />
+        <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection"
+          rowKey="id" />
       </a-card>
     </div>
   </a-layout-content>
@@ -70,16 +70,18 @@ export default {
         {
           title: '系统版本',
           dataIndex: 'release',
+          key: 'id'
         },
         {
           title: '密钥',
           dataIndex: 'key',
+          key: 'id'
         }
       ],
       rowSelection: {
         type: 'radio',
-        onChange: (selectedRowKeys) => {
-          formState.key = selectedRowKeys
+        onChange: (_, selectedRows) => {
+          formState.key = selectedRows[0].key
         }
       }
     })
