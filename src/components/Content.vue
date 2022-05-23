@@ -16,7 +16,7 @@
           <a-form-item label="系统类型" name="select">
             <a-select v-model:value="formState.select" :allowClear="true" :dropdownMatchSelectWidth="380"
               placeholder="请选择系统类型">
-              <a-select-option v-for="(item, index) in windowsData" :key="index" :value="index">
+              <a-select-option v-for="item in windowsData" :key="item.id" :value="item.id">
                 {{ item.version }}
               </a-select-option>
             </a-select>
