@@ -42,7 +42,7 @@
 
       <a-card>
         <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection"
-          rowKey="id" />
+          rowKey="id" size="middle" />
       </a-card>
     </div>
   </a-layout-content>
