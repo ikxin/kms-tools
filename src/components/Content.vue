@@ -1,16 +1,16 @@
 <template>
   <a-layout-content>
     <div class="content">
-      <a-card title="KMS激活Windows一键脚本">
+      <!-- 使用说明 -->
+      <a-card title="使用说明">
         <template #extra><a href="#">more</a></template>
-        <p>1、激活步骤：根据自身系统下载激活脚本，再右键使用管理员运行该脚本即可。</p>
-        <p>2、不知道系统版本的，使用Win+R，输入cmd并运行，然后在命令窗口输入slmgr/dlv查看版本。</p>
-        <p>3、使用KMS激活系统后，有效期为180天。</p>
-        <p>4、系统每7天会连接一次KMS服务器，获取最新的授权，然后激活有效期会重置为180天。</p>
-        <p>5、只要KMS激活服务器不挂，激活状态会一直自动续命，无需人工再次干预。</p>
-        <p>6、如果激活失败可先尝试清除后激活，<a @click="downloadCleanScript">点击下载清除脚本</a>。</p>
+        <p>1. 在桌面右键选择此电脑点击属性，查看当前电脑的系统版本</p>
+        <p>2. 在下方表单中选择对应的系统版本，复制或下载激活脚本，使用管理员权限运行该脚本。</p>
+        <p>3. 使用KMS服务器激活系统后，有效期为180天。</p>
+        <p>4. 系统每7天会连接一次KMS服务器，获取最新的授权，然后激活有效期会重置为180天。</p>
+        <p>5. 如果激活失败可先尝试清除后激活，点击下载<a @click="downloadCleanScript">清除脚本</a>。</p>
       </a-card>
-
+      <!-- 选择系统 -->
       <a-card>
         <a-form>
           <a-form-item label="系统类型" name="select">
@@ -39,7 +39,7 @@
           </a-form-item>
         </a-form>
       </a-card>
-
+      <!-- 系统版本数据 -->
       <a-card>
         <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection"
           rowKey="id" size="middle" />
