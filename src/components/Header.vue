@@ -5,25 +5,27 @@
         <img src="../assets/images/logo.svg">
       </div>
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px', float: 'right' }">
-        <a-menu-item key="1" @click="openBlog">Blog</a-menu-item>
-        <a-menu-item key="2" @click="openGithub">Github</a-menu-item>
+        <a-menu-item v-for="link in config.links" :key="link.id" @click="openLink(link.url)">
+          {{ link.name }}
+        </a-menu-item>
       </a-menu>
     </div>
   </a-layout-header>
 </template>
 
 <script>
+import { reactive } from 'vue'
 export default ({
   setup() {
-    function openBlog() {
-      window.open('https://www.ikxin.com')
+    const config = reactive(window.Config)
+
+    function openLink(url) {
+      window.open(url)
     }
-    function openGithub() {
-      window.open('https://github.com/ikxin/kms-tools')
-    }
+
     return {
-      openBlog,
-      openGithub
+      config,
+      openLink
     };
   },
 });
