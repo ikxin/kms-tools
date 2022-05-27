@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="./resource/logo.svg">
+</p>
+
 ## KMS-WebUI
 
 KMS激活Windows在线生成一键激活脚本
