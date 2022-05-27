@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./resource/logo.svg">
+    <img width="400" src="./resource/logo.svg">
 </p>
 
 ## KMS-WebUI
@@ -26,3 +26,13 @@ layui资源由[layuicdn](https://www.layuicdn.com/ "layuicdn")提供，KMS服务
 [https://github.com/sentsin/layui](https://github.com/sentsin/layui "LayUI")
 
 [https://github.com/Wind4/vlmcsd](https://github.com/Wind4/vlmcsd "Vlmcsd")
+
+## 🧑‍💻 作者
+
+Code with ❤️ by [一纸忘忧](https://www.ikxin.com "一纸忘忧")
+
+## 📑 开源协议
+
+[MIT License](./LICENSE "MIT License")
+
+Copyright (c) 2022~Present
