@@ -59,7 +59,7 @@ export default {
     const formState = reactive({
       select: undefined,
       key: '',
-      server: 'kms.v0v.bid',
+      server: 'kms.moeclub.org',
       script: '',
       visible: false
     })
