@@ -9,3 +9,14 @@ import Footer from './components/Footer.vue'
   <Content />
   <Footer />
 </template>
+
+<style lang="less">
+#app {
+  font-family: 'moonbridge';
+}
+
+@font-face {
+  font-family: 'moonbridge';
+  src: url(./assets/fonts/moonbridge.woff);
+}
+</style>
