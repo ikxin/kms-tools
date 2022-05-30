@@ -4,22 +4,28 @@
 
 <div align="center">
 
-[![GitHub issues](https://img.shields.io/github/issues/ikxin/kms-tools?style=for-the-badge)](https://github.com/ikxin/kms-tools/issues)
-[![GitHub forks](https://img.shields.io/github/forks/ikxin/kms-tools?style=for-the-badge)](https://github.com/ikxin/kms-tools/network)
-[![GitHub stars](https://img.shields.io/github/stars/ikxin/kms-tools?style=for-the-badge)](https://github.com/ikxin/kms-tools/stargazers)
-[![GitHub license](https://img.shields.io/github/license/ikxin/kms-tools?style=for-the-badge)](https://github.com/ikxin/kms-tools/blob/master/LICENSE)
+[![](https://flat.badgen.net/github/release/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/releases)
+[![](https://flat.badgen.net/github/stars/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/stargazers)
+[![](https://flat.badgen.net/github/forks/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/network/members)
+[![](https://flat.badgen.net/github/commits/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/commits)
+[![](https://flat.badgen.net/github/issues/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/issues)
+[![](https://flat.badgen.net/github/watchers/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/watchers)
+[![](https://flat.badgen.net/github/license/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/blob/master/LICENSE)
 
 </div>
 
 ## 📸 预览
 
+- Vercel：[https://kmstools.vercel.app](https://kmstools.vercel.app)
+- Cloudflare Pages：[https://kmstools.pages.dev](https://kmstools.pages.dev)
+
 ![](./resource/preview.png)
 
 ## ✨ 技术栈
 
-- Vue3
-- Vite
-- Ant Design Vue
+- 🌈 [Vue3](https://github.com/vuejs/core)
+- 📦 [Vite](https://github.com/vitejs/vite)
+- 🎨 [Ant Design Vue](https://github.com/vueComponent/ant-design-vue)
 
 ## 🚀 使用
 
@@ -41,7 +47,7 @@ slmgr /rearm
 
 ## 📦 安装
 
-1. 从 Releases 下载打包好的程序
+1. 从 [Releases](https://github.com/ikxin/kms-tools/releases) 下载打包好的程序
 2. 上传到自有服务器或 Github Pages、Cloudflare Pages、Vercel 等平台
 
 ## ⚙️ 构建
