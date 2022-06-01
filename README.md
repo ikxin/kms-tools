@@ -16,6 +16,7 @@
 
 ## 📸 预览
 
+- Server：[https://other.ikxin.com/kms](https://other.ikxin.com/kms)
 - Vercel：[https://kmstools.vercel.app](https://kmstools.vercel.app)
 - Cloudflare Pages：[https://kmstools.pages.dev](https://kmstools.pages.dev)
 
