@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Content from '../views/activate/windows'
-
 const routes = [
     {
         path: '/',
@@ -10,7 +8,15 @@ const routes = [
     {
         name: 'activate',
         path: '/activate',
-        component: () => import('../views/activate/windows')
+        component: () => import('../views/activate'),
+        redirect: 'windows',
+        children: [
+            {
+                name: 'windows',
+                path: 'windows',
+                component: () => import('../views/activate/windows')
+            }
+        ]
     }
 ]
 
