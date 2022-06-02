@@ -14,6 +14,7 @@ import Footer from './components/Footer.vue'
 <style lang="less">
 #app {
   font-family: 'moonbridge';
+  background-color: #f0f2f5;
 }
 
 @font-face {
@@ -22,6 +23,10 @@ import Footer from './components/Footer.vue'
 }
 
 .ant-layout-content {
-  background-color: #f0f2f5;
+  width: 1080px;
+  max-width: 100%;
+  min-height: calc(100vh - 134px) !important;
+  margin: 0 auto;
+  overflow: hidden;
 }
 </style>
