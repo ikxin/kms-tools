@@ -4,9 +4,13 @@ import Content from '../views/activate/windows'
 
 const routes = [
     {
-        name: 'home',
         path: '/',
-        component: Content
+        redirect: '/activate'
+    },
+    {
+        name: 'activate',
+        path: '/activate',
+        component: () => import('../views/activate/windows')
     }
 ]
 

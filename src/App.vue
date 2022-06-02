@@ -5,7 +5,9 @@ import Footer from './components/Footer.vue'
 
 <template>
   <Header />
-  <router-view />
+  <a-layout-content>
+    <router-view />
+  </a-layout-content>
   <Footer />
 </template>
 
@@ -17,5 +19,9 @@ import Footer from './components/Footer.vue'
 @font-face {
   font-family: 'moonbridge';
   src: url(./assets/fonts/moonbridge.woff);
+}
+
+.ant-layout-content {
+  background-color: #f0f2f5;
 }
 </style>
