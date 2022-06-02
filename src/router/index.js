@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Content from '../components/Content.vue'
+import Content from '../views/activate/windows'
 
 const routes = [
     {
