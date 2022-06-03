@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@icon-park/vue-next": "^1.4.0",
     "ant-design-vue": "^3.2.3",
     "vue": "^3.2.25",
     "vue-router": "^4.0.15"
