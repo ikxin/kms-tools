@@ -4,3 +4,17 @@
     <router-view />
   </a-layout>
 </template>
+
+<script setup>
+
+</script>
+
+<style lang="less" scoped>
+.ant-layout.ant-layout-has-sider {
+  margin-top: 20px;
+}
+
+.ant-layout-sider {
+  margin-right: 20px;
+}
+</style>

@@ -159,4 +159,8 @@ export default {
 .ant-card {
   margin-bottom: 20px;
 }
+
+.ant-card:last-child {
+  margin-bottom: 0;
+}
 </style>
