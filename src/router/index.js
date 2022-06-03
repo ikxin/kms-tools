@@ -3,13 +3,12 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
     {
         path: '/',
-        redirect: '/activate'
+        redirect: '/activate/windows'
     },
     {
         name: 'activate',
         path: '/activate',
         component: () => import('../views/activate'),
-        redirect: 'windows',
         children: [
             {
                 name: 'windows',
