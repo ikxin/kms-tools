@@ -22,6 +22,12 @@ import Footer from './components/Footer.vue'
   src: url(./assets/fonts/moonbridge.woff);
 }
 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .ant-layout-content {
   width: 1080px;
   max-width: 100%;
