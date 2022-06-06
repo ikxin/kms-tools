@@ -2,7 +2,13 @@
   <a-layout>
     <!-- 使用说明 -->
     <a-card title="使用说明">
-      <template #extra><a href="#">more</a></template>
+      <template #extra>
+        <a @click="() => setVisible(true)">more</a>
+        <a-image :style="{ display: 'none' }" :preview="{
+          visible,
+          onVisibleChange: setVisible,
+        }" src="/src/assets/images/windows-activation-tutorial.gif" />
+      </template>
       <p>1. 在桌面右键选择此电脑点击属性，查看当前电脑的系统版本</p>
       <p>2. 在下方表单中选择对应的系统版本，复制或下载激活脚本，使用管理员权限运行该脚本。</p>
       <p>3. 使用KMS服务器激活系统后，有效期为180天。</p>
@@ -48,7 +54,7 @@
 
 <script>
 import { message } from 'ant-design-vue'
-import { reactive, watch } from 'vue'
+import { ref, reactive, watch } from 'vue'
 
 export default {
   setup() {
@@ -142,7 +148,14 @@ export default {
       URL.revokeObjectURL(url);
     }
 
+    const visible = ref(false);
+    const setVisible = value => {
+      visible.value = value;
+    };
+
     return {
+      visible,
+      setVisible,
       windowsData,
       formState,
       listState,
