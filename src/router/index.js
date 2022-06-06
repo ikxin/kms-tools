@@ -1,27 +1,44 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
-    {
-        path: '/',
-        redirect: '/activate/windows'
+  {
+    path: '/',
+    redirect: '/activate/windows'
+  },
+  {
+    name: 'activate',
+    path: '/activate',
+    component: () => import('../views/activate'),
+    meta: {
+      title: '系统类型',
+      icon: 'system'
     },
-    {
-        name: 'activate',
-        path: '/activate',
-        component: () => import('../views/activate'),
-        children: [
-            {
-                name: 'windows',
-                path: 'windows',
-                component: () => import('../views/activate/windows')
-            }
-        ]
-    }
+    children: [
+      {
+        name: 'windows',
+        path: 'windows',
+        component: () => import('../views/activate/windows'),
+        meta: {
+          title: 'Windows',
+          icon: 'windows'
+        }
+      },
+      {
+        name: 'office',
+        path: 'office',
+        component: () => import('../views/activate/office'),
+        meta: {
+          title: 'Office',
+          icon: 'word'
+        }
+      }
+    ]
+  }
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes
+  history: createWebHistory(),
+  routes
 })
 
-export default router
+export { router, routes }

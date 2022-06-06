@@ -1,19 +1,15 @@
 <template>
   <a-layout>
     <a-layout-sider width="200" style="background: #fff">
-      <a-menu openKeys="sub1" mode="inline" style="height: 100%">
-        <a-sub-menu key="sub1">
+      <a-menu v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys" mode="inline" style="height: 100%">
+        <a-sub-menu :key="routes[1].name">
           <template #title>
-            <icon-park type="system" theme="outline" />
-            <span>系统类型</span>
+            <icon-park :type="routes[1].meta.icon" theme="outline" />
+            <span>{{ routes[1].meta.title }}</span>
           </template>
-          <a-menu-item key="1">
-            <icon-park type="windows" theme="outline" />
-            <span>Windows</span>
-          </a-menu-item>
-          <a-menu-item key="2">
-            <icon-park type="word" theme="outline" />
-            <span>Office</span>
+          <a-menu-item v-for="(item, index) in routes[1].children" :key="index" @click="changeMenu(item.path)">
+            <icon-park :type="item.meta.icon" theme="outline" />
+            <span>{{ item.meta.title }}</span>
           </a-menu-item>
         </a-sub-menu>
       </a-menu>
@@ -24,6 +20,17 @@
 
 <script setup>
 import { IconPark } from '@icon-park/vue-next/es/all'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { routes } from '../../router'
+
+const selectedKeys = ref([0])
+const openKeys = ref([routes[1].name])
+
+const router = useRouter()
+function changeMenu(path) {
+  router.push({ path })
+}
 </script>
 
 <style lang="less" scoped>
