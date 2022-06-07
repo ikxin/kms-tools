@@ -4,10 +4,14 @@
     <a-card title="使用说明">
       <template #extra>
         <a @click="() => setVisible(true)">more</a>
-        <a-image :style="{ display: 'none' }" :preview="{
-          visible,
-          onVisibleChange: setVisible,
-        }" src="/src/assets/images/windows-activation-tutorial.gif" />
+        <a-image
+          :style="{ display: 'none' }"
+          :preview="{
+            visible,
+            onVisibleChange: setVisible
+          }"
+          src="/src/assets/images/windows-activation-tutorial.gif"
+        />
       </template>
       <p>1. 在桌面右键选择此电脑点击属性，查看当前电脑的系统版本</p>
       <p>2. 在下方表单中选择对应的系统版本，复制或下载激活脚本，使用管理员权限运行该脚本。</p>
@@ -19,8 +23,7 @@
     <a-card>
       <a-form>
         <a-form-item label="系统类型" name="select">
-          <a-select v-model:value="formState.select" :allowClear="true" :dropdownMatchSelectWidth="380"
-            placeholder="请选择系统类型">
+          <a-select v-model:value="formState.select" :allowClear="true" :dropdownMatchSelectWidth="380" placeholder="请选择系统类型">
             <a-select-option v-for="item in windowsData" :key="item.id" :value="item.id">
               {{ item.version }}
             </a-select-option>
@@ -46,8 +49,7 @@
     </a-card>
     <!-- 系统版本数据 -->
     <a-card>
-      <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection"
-        rowKey="id" size="middle" />
+      <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection" rowKey="id" size="middle" />
     </a-card>
   </a-layout>
 </template>
@@ -88,15 +90,19 @@ const listState = reactive({
   }
 })
 
-watch(() => formState.select, () => {
-  if (formState.select === undefined) {
-    listState.dataSource = []
-  } else {
-    listState.dataSource = windowsData[formState.select].item
+watch(
+  () => formState.select,
+  () => {
+    if (formState.select === undefined) {
+      listState.dataSource = []
+    } else {
+      listState.dataSource = windowsData[formState.select].item
+    }
+  },
+  {
+    immediate: true
   }
-}, {
-  immediate: true
-})
+)
 
 function generateScript() {
   if (formState.key && formState.server) {
@@ -125,31 +131,34 @@ function downloadCleanScript() {
 
 function copyScript() {
   if (formState.key && formState.server) {
-    navigator.clipboard.writeText(formState.script).then(() => {
-      message.success('复制成功')
-    }).catch((error) => {
-      message.error(error)
-    })
+    navigator.clipboard
+      .writeText(formState.script)
+      .then(() => {
+        message.success('复制成功')
+      })
+      .catch((error) => {
+        message.error(error)
+      })
   } else {
     message.error('未选择系统版本')
   }
 }
 
 function downloadFile(file) {
-  const url = URL.createObjectURL(file);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = file.name;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+  const url = URL.createObjectURL(file)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = file.name
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url)
 }
 
-const visible = ref(false);
-const setVisible = value => {
-  visible.value = value;
-};
+const visible = ref(false)
+const setVisible = (value) => {
+  visible.value = value
+}
 </script>
 
 <style lang="less" scoped>

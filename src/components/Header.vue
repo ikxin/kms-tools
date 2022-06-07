@@ -2,7 +2,7 @@
   <a-layout-header>
     <div class="wrapper">
       <div class="logo">
-        <img src="../assets/images/logo.svg">
+        <img src="../assets/images/logo.svg" />
       </div>
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px', float: 'right' }">
         <a-menu-item v-for="link in config.links" :key="link.id" @click="openLink(link.url)">
@@ -15,7 +15,7 @@
 
 <script>
 import { reactive } from 'vue'
-export default ({
+export default {
   setup() {
     const config = reactive(window.Config)
 
@@ -26,9 +26,9 @@ export default ({
     return {
       config,
       openLink
-    };
-  },
-});
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>

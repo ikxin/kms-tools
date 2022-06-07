@@ -32,8 +32,8 @@
 
 1. 在桌面右键选择此电脑点击属性，查看当前电脑的系统版本
 2. 在下方表单中选择对应的系统版本，复制或下载激活脚本，使用管理员权限运行该脚本。
-3. 使用KMS服务器激活系统后，有效期为180天。
-4. 系统每7天会连接一次KMS服务器，获取最新的授权，然后激活有效期会重置为180天。
+3. 使用 KMS 服务器激活系统后，有效期为 180 天。
+4. 系统每 7 天会连接一次 KMS 服务器，获取最新的授权，然后激活有效期会重置为 180 天。
 5. 如果激活失败可先尝试清除后激活，查看下方清除脚本。
 
 <details>
@@ -84,10 +84,10 @@ npm run preview
 
 ## 🧑‍💻 作者
 
-Code with ❤️ by [一纸忘忧](https://www.ikxin.com "一纸忘忧")
+Code with ❤️ by [一纸忘忧](https://www.ikxin.com '一纸忘忧')
 
 ## 📜 开源协议
 
-[MIT License](./LICENSE "MIT License")
+[MIT License](./LICENSE 'MIT License')
 
 Copyright (c) 2022~Present

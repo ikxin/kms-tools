@@ -1,5 +1,3 @@
 <template>
-    <div>
-        office
-    </div>
+  <div>office</div>
 </template>

@@ -10,19 +10,19 @@
 
 有助于为我们的社区创造积极环境的行为例子包括但不限于：
 
-* 表现出对他人的同情和善意
-* 尊重不同的主张、观点和感受
-* 提出和大方接受建设性意见
-* 承担责任并向受我们错误影响的人道歉
-* 注重社区共同诉求，而非个人得失
+- 表现出对他人的同情和善意
+- 尊重不同的主张、观点和感受
+- 提出和大方接受建设性意见
+- 承担责任并向受我们错误影响的人道歉
+- 注重社区共同诉求，而非个人得失
 
 不当行为例子包括：
 
-* 使用情色化的语言或图像，及性引诱或挑逗
-* 嘲弄、侮辱或诋毁性评论，以及人身或政治攻击
-* 公开或私下的骚扰行为
-* 未经他人明确许可，公布他人的私人信息，如物理或电子邮件地址
-* 其他有理由认定为违反职业操守的不当行为
+- 使用情色化的语言或图像，及性引诱或挑逗
+- 嘲弄、侮辱或诋毁性评论，以及人身或政治攻击
+- 公开或私下的骚扰行为
+- 未经他人明确许可，公布他人的私人信息，如物理或电子邮件地址
+- 其他有理由认定为违反职业操守的不当行为
 
 ## 责任和权力
 
@@ -75,13 +75,13 @@
 
 本行为准则改编自 [Contributor Covenant][homepage] 2.1 版, 参见 [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1]。
 
-社区处理方针灵感来源于 [Mozilla's code of conduct enforcement ladder][Mozilla CoC]。
+社区处理方针灵感来源于 [Mozilla's code of conduct enforcement ladder][mozilla coc]。
 
-有关本行为准则的常见问题的答案，参见 [https://www.contributor-covenant.org/faq][FAQ]。
+有关本行为准则的常见问题的答案，参见 [https://www.contributor-covenant.org/faq][faq]。
 其他语言翻译参见 [https://www.contributor-covenant.org/translations][translations]。
 
 [homepage]: https://www.contributor-covenant.org
 [v2.1]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
-[Mozilla CoC]: https://github.com/mozilla/diversity
-[FAQ]: https://www.contributor-covenant.org/faq
+[mozilla coc]: https://github.com/mozilla/diversity
+[faq]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations

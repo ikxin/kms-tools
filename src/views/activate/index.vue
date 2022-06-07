@@ -20,8 +20,8 @@
 
 <script setup>
 import { IconPark } from '@icon-park/vue-next/es/all'
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { routes } from '../../router'
 
 const selectedKeys = ref([0])
