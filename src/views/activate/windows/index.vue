@@ -52,120 +52,104 @@
   </a-layout>
 </template>
 
-<script>
+<script setup>
 import { message } from 'ant-design-vue'
 import { ref, reactive, watch } from 'vue'
 
-export default {
-  setup() {
-    const windowsData = reactive(window.Data.windows)
+const windowsData = reactive(window.Data.windows)
 
-    const formState = reactive({
-      select: undefined,
-      key: '',
-      server: 'kms.moeclub.org',
-      script: '',
-      visible: false
-    })
+const formState = reactive({
+  select: undefined,
+  key: '',
+  server: 'kms.moeclub.org',
+  script: '',
+  visible: false
+})
 
-    const listState = reactive({
-      dataSource: [],
-      columns: [
-        {
-          title: '系统版本',
-          dataIndex: 'release',
-          key: 'id'
-        },
-        {
-          title: '密钥',
-          dataIndex: 'key',
-          key: 'id'
-        }
-      ],
-      rowSelection: {
-        type: 'radio',
-        onChange: (_, selectedRows) => {
-          formState.key = selectedRows[0].key
-        }
-      }
-    })
-
-    watch(() => formState.select, () => {
-      if (formState.select === undefined) {
-        listState.dataSource = []
-      } else {
-        listState.dataSource = windowsData[formState.select].item
-      }
-    }, {
-      immediate: true
-    })
-
-    function generateScript() {
-      if (formState.key && formState.server) {
-        formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
-        formState.visible = true
-      } else {
-        message.error('未选择系统版本')
-      }
+const listState = reactive({
+  dataSource: [],
+  columns: [
+    {
+      title: '系统版本',
+      dataIndex: 'release',
+      key: 'id'
+    },
+    {
+      title: '密钥',
+      dataIndex: 'key',
+      key: 'id'
     }
-
-    function downloadScript() {
-      if (formState.key && formState.server) {
-        formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
-        const file = new File([formState.script], 'kms.bat', { type: 'application/txt' })
-        downloadFile(file)
-      } else {
-        message.error('未选择系统版本')
-      }
-    }
-
-    function downloadCleanScript() {
-      const cleanScript = `@echo off\r\nslmgr /upk\r\nslmgr /ckms\r\nslmgr /rearm`
-      const file = new File([cleanScript], 'clean.bat', { type: 'application/txt' })
-      downloadFile(file)
-    }
-
-    function copyScript() {
-      if (formState.key && formState.server) {
-        navigator.clipboard.writeText(formState.script).then(() => {
-          message.success('复制成功')
-        }).catch((error) => {
-          message.error(error)
-        })
-      } else {
-        message.error('未选择系统版本')
-      }
-    }
-
-    function downloadFile(file) {
-      const url = URL.createObjectURL(file);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = file.name;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    }
-
-    const visible = ref(false);
-    const setVisible = value => {
-      visible.value = value;
-    };
-
-    return {
-      visible,
-      setVisible,
-      windowsData,
-      formState,
-      listState,
-      generateScript,
-      downloadScript,
-      downloadCleanScript,
-      copyScript
+  ],
+  rowSelection: {
+    type: 'radio',
+    onChange: (_, selectedRows) => {
+      formState.key = selectedRows[0].key
     }
   }
+})
+
+watch(() => formState.select, () => {
+  if (formState.select === undefined) {
+    listState.dataSource = []
+  } else {
+    listState.dataSource = windowsData[formState.select].item
+  }
+}, {
+  immediate: true
+})
+
+function generateScript() {
+  if (formState.key && formState.server) {
+    formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
+    formState.visible = true
+  } else {
+    message.error('未选择系统版本')
+  }
 }
+
+function downloadScript() {
+  if (formState.key && formState.server) {
+    formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
+    const file = new File([formState.script], 'kms.bat', { type: 'application/txt' })
+    downloadFile(file)
+  } else {
+    message.error('未选择系统版本')
+  }
+}
+
+function downloadCleanScript() {
+  const cleanScript = `@echo off\r\nslmgr /upk\r\nslmgr /ckms\r\nslmgr /rearm`
+  const file = new File([cleanScript], 'clean.bat', { type: 'application/txt' })
+  downloadFile(file)
+}
+
+function copyScript() {
+  if (formState.key && formState.server) {
+    navigator.clipboard.writeText(formState.script).then(() => {
+      message.success('复制成功')
+    }).catch((error) => {
+      message.error(error)
+    })
+  } else {
+    message.error('未选择系统版本')
+  }
+}
+
+function downloadFile(file) {
+  const url = URL.createObjectURL(file);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = file.name;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+const visible = ref(false);
+const setVisible = value => {
+  visible.value = value;
+};
 </script>
 
 <style lang="less" scoped>
