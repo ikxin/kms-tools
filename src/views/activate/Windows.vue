@@ -55,10 +55,11 @@
 </template>
 
 <script setup>
+import Data from '../../data/windows.json'
 import { message } from 'ant-design-vue'
 import { ref, reactive, watch } from 'vue'
 
-const windowsData = reactive(window.Data.windows)
+const windowsData = reactive(Data)
 
 const formState = reactive({
   select: undefined,
