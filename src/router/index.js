@@ -17,7 +17,7 @@ const routes = [
       {
         name: 'windows',
         path: 'windows',
-        component: () => import('../views/activate/windows'),
+        component: () => import('../views/activate/Windows'),
         meta: {
           title: 'Windows',
           icon: 'windows'
@@ -26,7 +26,7 @@ const routes = [
       {
         name: 'office',
         path: 'office',
-        component: () => import('../views/activate/office'),
+        component: () => import('../views/activate/Office'),
         meta: {
           title: 'Office',
           icon: 'word'
