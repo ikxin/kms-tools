@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.vue src",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.4.0",
