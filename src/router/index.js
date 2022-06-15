@@ -3,12 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    redirect: '/activate/windows'
+    redirect: '/activation/windows'
   },
   {
-    name: 'activate',
-    path: '/activate',
-    component: () => import('../views/activate'),
+    name: 'activation',
+    path: '/activation',
+    component: () => import('../views/activation'),
     meta: {
       title: '系统类型',
       icon: 'system'
@@ -17,7 +17,7 @@ const routes = [
       {
         name: 'windows',
         path: 'windows',
-        component: () => import('../views/activate/Windows'),
+        component: () => import('../views/activation/windows'),
         meta: {
           title: 'Windows',
           icon: 'windows'
@@ -26,7 +26,7 @@ const routes = [
       {
         name: 'office',
         path: 'office',
-        component: () => import('../views/activate/Office'),
+        component: () => import('../views/activation/office'),
         meta: {
           title: 'Office',
           icon: 'word'
