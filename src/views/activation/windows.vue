@@ -1,29 +1,21 @@
 <template>
   <a-layout>
     <!-- 使用说明 -->
-    <a-card title="使用说明">
-      <template #extra>
-        <a @click="() => setVisible(true)">more</a>
-        <a-image
-          :style="{ display: 'none' }"
-          :preview="{
-            visible,
-            onVisibleChange: setVisible
-          }"
-          src="/src/assets/images/windows-activation-tutorial.gif"
-        />
+    <readmeVue>
+      <template #explain>
+        <p>1. 在桌面右键选择此电脑点击属性，查看当前电脑的系统版本</p>
+        <p>2. 在下方表单中选择对应的系统版本，复制或下载激活脚本，使用管理员权限运行该脚本。</p>
+        <p>3. 使用KMS服务器激活系统后，有效期为180天。</p>
+        <p>4. 系统每7天会连接一次KMS服务器，获取最新的授权，然后激活有效期会重置为180天。</p>
+        <p>5. 如果激活失败可先尝试清除后激活，点击下载<a @click="downloadCleanScript">清除脚本</a>。</p>
       </template>
-      <p>1. 在桌面右键选择此电脑点击属性，查看当前电脑的系统版本</p>
-      <p>2. 在下方表单中选择对应的系统版本，复制或下载激活脚本，使用管理员权限运行该脚本。</p>
-      <p>3. 使用KMS服务器激活系统后，有效期为180天。</p>
-      <p>4. 系统每7天会连接一次KMS服务器，获取最新的授权，然后激活有效期会重置为180天。</p>
-      <p>5. 如果激活失败可先尝试清除后激活，点击下载<a @click="downloadCleanScript">清除脚本</a>。</p>
-    </a-card>
+    </readmeVue>
+
     <!-- 选择系统 -->
     <a-card>
       <a-form>
         <a-form-item label="系统类型" name="select">
-          <a-select v-model:value="formState.select" :allowClear="true" :dropdownMatchSelectWidth="380" placeholder="请选择系统类型">
+          <a-select v-model:value="formState.select" :allowClear="true" placeholder="请选择系统类型">
             <a-select-option v-for="item in windowsData" :key="item.id" :value="item.id">
               {{ item.version }}
             </a-select-option>
@@ -47,6 +39,7 @@
         </a-form-item>
       </a-form>
     </a-card>
+
     <!-- 系统版本数据 -->
     <a-card>
       <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection" rowKey="id" size="middle" />
@@ -55,11 +48,12 @@
 </template>
 
 <script setup>
-import Data from '../../data/windows.json'
-import { message } from 'ant-design-vue'
-import { ref, reactive, watch } from 'vue'
+import readmeVue from './components/readme'
+import windowsData from '../../data/windows.json'
 
-const windowsData = reactive(Data)
+import { message } from 'ant-design-vue'
+import { reactive, watch } from 'vue'
+import { useScriptDownload, useScriptCopy } from '../../hooks/script'
 
 const formState = reactive({
   select: undefined,
@@ -117,8 +111,7 @@ function generateScript() {
 function downloadScript() {
   if (formState.key && formState.server) {
     formState.script = `@echo off\r\nslmgr /skms ${formState.server}\r\nslmgr /ipk ${formState.key}\r\nslmgr /ato\r\nslmgr /xpr`
-    const file = new File([formState.script], 'kms.bat', { type: 'application/txt' })
-    downloadFile(file)
+    useScriptDownload(formState.script, 'kms.bat')
   } else {
     message.error('未选择系统版本')
   }
@@ -126,39 +119,15 @@ function downloadScript() {
 
 function downloadCleanScript() {
   const cleanScript = `@echo off\r\nslmgr /upk\r\nslmgr /ckms\r\nslmgr /rearm`
-  const file = new File([cleanScript], 'clean.bat', { type: 'application/txt' })
-  downloadFile(file)
+  useScriptDownload(cleanScript, 'clean.bat')
 }
 
 function copyScript() {
   if (formState.key && formState.server) {
-    navigator.clipboard
-      .writeText(formState.script)
-      .then(() => {
-        message.success('复制成功')
-      })
-      .catch((error) => {
-        message.error(error)
-      })
+    useScriptCopy(formState.script)
   } else {
     message.error('未选择系统版本')
   }
-}
-
-function downloadFile(file) {
-  const url = URL.createObjectURL(file)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = file.name
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
-  URL.revokeObjectURL(url)
-}
-
-const visible = ref(false)
-const setVisible = (value) => {
-  visible.value = value
 }
 </script>
 
