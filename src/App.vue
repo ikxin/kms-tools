@@ -13,14 +13,14 @@ import Footer from './components/Footer.vue'
 
 <style lang="less">
 #app {
-  font-family: 'moonbridge';
+  // font-family: 'moonbridge';
   background-color: #f0f2f5;
 }
 
-@font-face {
-  font-family: 'moonbridge';
-  src: url(./assets/fonts/moonbridge.woff);
-}
+// @font-face {
+//   font-family: 'moonbridge';
+//   src: url(./assets/fonts/moonbridge.woff);
+// }
 
 ::-webkit-scrollbar {
   width: 0;
