@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="400" src="./resource/logo.svg">
+    <img width="400" src="./src/resource/logo.svg">
 </p>
 
 <div align="center">
@@ -20,7 +20,7 @@
 - Vercel：[https://kmstools.vercel.app](https://kmstools.vercel.app)
 - Cloudflare Pages：[https://kmstools.pages.dev](https://kmstools.pages.dev)
 
-![](./resource/preview.png)
+![](./src/resource/preview.png)
 
 ## ✨ 技术栈
 
