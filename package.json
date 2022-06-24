@@ -8,8 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint --ext .js,.vue src",
-    "format": "prettier --write ."
+    "lint": "eslint --ext src",
+    "format": "prettier --write src"
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.4.0",
