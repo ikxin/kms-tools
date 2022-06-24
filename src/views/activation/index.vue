@@ -1,6 +1,6 @@
 <template>
   <a-layout>
-    <a-layout-sider width="200" style="background: #fff">
+    <a-layout-sider style="background: #fff" breakpoint="lg" :collapsed-width="0">
       <a-menu v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys" mode="inline" style="height: 100%">
         <a-sub-menu :key="routes[1].name">
           <template #title>
@@ -52,6 +52,13 @@ function changeMenu(path) {
 
   span:first-child {
     margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  :deep(.ant-card) {
+    min-width: calc(100vw - 40px);
+    margin-right: 20px;
   }
 }
 </style>
