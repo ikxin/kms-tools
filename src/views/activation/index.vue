@@ -20,17 +20,27 @@
 
 <script setup>
 import { IconPark } from '@icon-park/vue-next/es/all'
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { onMounted, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { routes } from '../../router'
 
 const selectedKeys = ref([0])
 const openKeys = ref([routes[1].name])
 
+const route = useRoute()
 const router = useRouter()
+
 function changeMenu(path) {
   router.push({ path })
 }
+
+onMounted(() => {
+  routes[1].children.forEach((item, index) => {
+    if (route.name === item.name) {
+      selectedKeys.value[0] = index
+    }
+  })
+})
 </script>
 
 <style lang="less" scoped>
