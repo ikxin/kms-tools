@@ -78,16 +78,8 @@ params.activationScript.content = computed(() => {
 const listState = reactive({
   dataSource: [],
   columns: [
-    {
-      title: '系统版本',
-      dataIndex: 'release',
-      key: 'id'
-    },
-    {
-      title: '密钥',
-      dataIndex: 'key',
-      key: 'id'
-    }
+    { title: '系统版本', dataIndex: 'release' },
+    { title: '密钥', dataIndex: 'key' }
   ],
   rowSelection: {
     type: 'radio',
@@ -142,9 +134,9 @@ function copyScript() {
 <style lang="less" scoped>
 .ant-card {
   margin-bottom: 20px;
-}
 
-.ant-card:last-child {
-  margin-bottom: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>
