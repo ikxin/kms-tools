@@ -50,6 +50,7 @@ onMounted(() => {
 
 .ant-layout-sider {
   margin-right: 20px;
+  min-height: calc(100vh - 154px);
 }
 
 :deep(.ant-menu-title-content) {
