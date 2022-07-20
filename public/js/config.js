@@ -10,5 +10,6 @@ window.Config = {
       name: 'Github',
       url: 'https://github.com/ikxin/kms-tools'
     }
-  ]
+  ],
+  beian: '粤ICP备2021024472号'
 }

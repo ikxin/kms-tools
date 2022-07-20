@@ -1,10 +1,19 @@
 <template>
   <a-layout>
+    <!-- 使用说明 -->
+    <readmeVue>
+      <template #explain>
+        <p>1. 打开Word、Excel等软件查看当前Office套件的版本。</p>
+        <p>2. 在下方表单中选择对应的软件版本，复制或下载激活脚本，使用管理员权限运行该脚本。</p>
+        <p>3. 如果不确定自己的Office是32位还是64位，两种版本都试一下，不报错的就是对的。</p>
+      </template>
+    </readmeVue>
+
     <!-- 选择版本 -->
     <a-card>
       <a-form :labelCol="{ span: 3 }">
         <a-form-item label="Office版本" name="officeVersion">
-          <a-select v-model:value="params.officeVersion" :allowClear="true" placeholder="请选择系统类型">
+          <a-select v-model:value="params.officeVersion" :allowClear="true" placeholder="请选择Office版本">
             <a-select-option v-for="item in officeData" :key="item.id" :value="item.id">
               {{ item.version }}
             </a-select-option>
@@ -43,6 +52,7 @@
 </template>
 
 <script setup>
+import readmeVue from './components/readme'
 import officeData from '../../data/office.json'
 
 import { message } from 'ant-design-vue'
@@ -109,16 +119,8 @@ function copyScript() {
 const list = reactive({
   dataSource: [],
   columns: [
-    {
-      title: '系统版本',
-      dataIndex: 'release',
-      key: 'id'
-    },
-    {
-      title: '密钥',
-      dataIndex: 'key',
-      key: 'id'
-    }
+    { title: '系统版本', dataIndex: 'release' },
+    { title: '密钥', dataIndex: 'key' }
   ],
   rowSelection: {
     type: 'radio',
@@ -137,18 +139,16 @@ watch(
       list.dataSource = officeData[params.officeVersion].item
     }
   },
-  {
-    immediate: true
-  }
+  { immediate: true }
 )
 </script>
 
 <style lang="less" scoped>
 .ant-card {
   margin-bottom: 20px;
-}
 
-.ant-card:last-child {
-  margin-bottom: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>
