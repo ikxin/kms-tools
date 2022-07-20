@@ -1,7 +1,7 @@
 {
   "name": "kms-tools",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "一个用于生成kms激活脚本的小工具",
   "author": "一纸忘忧 <i@ikxin.com>",
   "scripts": {
