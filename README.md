@@ -20,7 +20,7 @@
 - Vercel：[https://kmstools.vercel.app](https://kmstools.vercel.app)
 - Cloudflare Pages：[https://kmstools.pages.dev](https://kmstools.pages.dev)
 
-![](https://img.8b5.cn/2022/07/20/62d75a134ba57.png)
+![](http://img.8b5.cn/2022/07/20/62d75a134ba57.png)
 
 ## ✨ 技术栈
 
@@ -31,6 +31,11 @@
 - ⚙️ [pnpm](https://github.com/pnpm/pnpm)
 
 ## 📦 部署
+
+视频教程：[哔哩哔哩](https://www.bilibili.com/video/BV1SF411K7bq) |
+[YouTube](https://youtu.be/-Qu5A5Y5New) |
+[知乎](https://www.zhihu.com/zvideo/1533447796237168640) |
+[西瓜视频](https://www.ixigua.com/7122706847584223751)
 
 - 从 [Releases](https://github.com/ikxin/kms-tools/releases) 下载打包好的程序
 - 上传到自有服务器或 Github Pages、Cloudflare Pages、Vercel 等平台
