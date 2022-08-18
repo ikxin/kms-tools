@@ -22,7 +22,7 @@
 import { IconPark } from '@icon-park/vue-next/es/all'
 import { onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { routes } from '../../router'
+import { routes } from '../../router/index.ts'
 
 const selectedKeys = ref([0])
 const openKeys = ref([routes[1].name])
