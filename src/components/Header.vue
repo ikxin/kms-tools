@@ -1,8 +1,8 @@
 <template>
-  <a-layout-header>
-    <div class="wrapper">
-      <div class="logo">
-        <img src="../assets/images/logo.png" />
+  <a-layout-header class="p-0">
+    <div class="w-[1080px] max-w-full my-0 mx-auto">
+      <div class="w-32 float-left text-center">
+        <img class="h-9 inline-block" src="../assets/images/logo.png" />
       </div>
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px', float: 'right' }">
         <a-menu-item v-for="link in config.links" :key="link.id" @click="openLink(link.url)">
@@ -30,25 +30,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-.ant-layout-header {
-  padding: 0;
-}
-
-.wrapper {
-  width: 1080px;
-  max-width: 100%;
-  margin: 0 auto;
-
-  .logo {
-    float: left;
-    width: 120px;
-    text-align: center;
-
-    img {
-      height: 36px;
-    }
-  }
-}
-</style>
