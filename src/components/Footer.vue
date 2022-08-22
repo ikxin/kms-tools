@@ -13,9 +13,3 @@
 import { ref } from 'vue'
 const beian = ref(window.Config.beian)
 </script>
-
-<style lang="less" scoped>
-a {
-  color: #242425;
-}
-</style>

@@ -5,17 +5,16 @@ import Footer from './components/Footer.vue'
 
 <template>
   <Header />
-  <a-layout-content>
+  <a-layout-content class="w-[1080px] !h-[calc(100vh-134px)] max-w-full overflow-hidden my-0 mx-auto">
     <router-view />
   </a-layout-content>
   <Footer />
 </template>
 
 <style lang="less">
-#app {
-  // font-family: 'moonbridge';
-  background-color: #f0f2f5;
-}
+// #app {
+//   font-family: 'moonbridge';
+// }
 
 // @font-face {
 //   font-family: 'moonbridge';
@@ -26,13 +25,5 @@ import Footer from './components/Footer.vue'
   width: 0;
   height: 0;
   color: transparent;
-}
-
-.ant-layout-content {
-  width: 1080px;
-  max-width: 100%;
-  min-height: calc(100vh - 134px) !important;
-  margin: 0 auto;
-  overflow: hidden;
 }
 </style>
