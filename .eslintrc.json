@@ -3,13 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "plugin:vue/vue3-essential",
-    "standard",
-    // eslint-config-prettier
-    "some-other-config-you-use",
-    "prettier"
-  ],
+  "extends": ["plugin:vue/vue3-essential", "standard", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "parser": "@typescript-eslint/parser",

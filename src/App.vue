@@ -5,7 +5,7 @@ import Footer from './components/Footer.vue'
 
 <template>
   <Header />
-  <a-layout-content class="w-[1080px] !h-[calc(100vh-134px)] max-w-full overflow-hidden my-0 mx-auto">
+  <a-layout-content class="my-0 mx-auto !h-[calc(100vh-134px)] w-[1080px] max-w-full overflow-hidden">
     <router-view />
   </a-layout-content>
   <Footer />

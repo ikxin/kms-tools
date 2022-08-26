@@ -1,8 +1,8 @@
 <template>
   <a-layout-header class="p-0">
-    <div class="w-[1080px] max-w-full my-0 mx-auto">
-      <div class="w-32 float-left text-center">
-        <img class="h-9 inline-block" src="../assets/images/logo.png" />
+    <div class="my-0 mx-auto w-[1080px] max-w-full">
+      <div class="float-left w-32 text-center">
+        <img class="inline-block h-9" src="../assets/images/logo.png" />
       </div>
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px', float: 'right' }">
         <a-menu-item v-for="link in config.links" :key="link.id" @click="openLink(link.url)">
