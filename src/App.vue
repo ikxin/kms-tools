@@ -5,21 +5,21 @@ import Footer from './components/Footer.vue'
 
 <template>
   <Header />
-  <a-layout-content class="my-0 mx-auto !h-[calc(100vh-134px)] w-[1080px] max-w-full overflow-hidden">
+  <a-layout-content class="my-0 mx-auto !min-h-[calc(100vh-134px)] w-[1080px] max-w-full overflow-hidden">
     <router-view />
   </a-layout-content>
   <Footer />
 </template>
 
 <style lang="less">
-// #app {
-//   font-family: 'moonbridge';
-// }
+#app {
+  font-family: 'moonbridge';
+}
 
-// @font-face {
-//   font-family: 'moonbridge';
-//   src: url(./assets/fonts/moonbridge.woff);
-// }
+@font-face {
+  font-family: 'moonbridge';
+  src: url(./assets/fonts/moonbridge.woff);
+}
 
 ::-webkit-scrollbar {
   width: 0;

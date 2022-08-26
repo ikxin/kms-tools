@@ -34,8 +34,8 @@
         <a-form-item>
           <a-space size="middle">
             <a-button @click="generateScript">生成脚本</a-button>
-            <a-button @click="downloadScript" type="primary">下载脚本</a-button>
-            <a-button v-show="params.activationScript.visible" @click="copyScript" type="primary">复制脚本</a-button>
+            <a-button @click="downloadScript" class="bg-[#1890ff]" type="primary">下载脚本</a-button>
+            <a-button v-show="params.activationScript.visible" @click="copyScript" class="bg-[#1890ff]" type="primary">复制脚本</a-button>
           </a-space>
         </a-form-item>
         <a-form-item v-show="params.activationScript.visible">
