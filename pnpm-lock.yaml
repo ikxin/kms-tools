@@ -15,6 +15,7 @@ specifiers:
   pnpm: ^7.17.1
   postcss: ^8.4.19
   prettier: ^2.8.0
+  prettier-plugin-tailwindcss: ^0.2.0
   tailwindcss: ^3.2.4
   typescript: ^4.9.3
   vite: ^3.2.4
@@ -37,6 +38,7 @@ devDependencies:
   pnpm: 7.17.1
   postcss: 8.4.19
   prettier: 2.8.0
+  prettier-plugin-tailwindcss: 0.2.0_prettier@2.8.0
   tailwindcss: 3.2.4_postcss@8.4.19
   typescript: 4.9.3
   vite: 3.2.4_mp5lu76ee5qtwstsyca37sdhqi
@@ -1824,6 +1826,15 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier-plugin-tailwindcss/0.2.0_prettier@2.8.0:
+    resolution: {integrity: sha512-Ruqig/mdWCSpqdq9WK44nrmqM4BFWTzBPhPGwC5NK3coV9eZntEQPB84MGZbjAg0XQU02jVRHXNRPREBzxvM+A==}
+    engines: {node: '>=12.17.0'}
+    peerDependencies:
+      prettier: '>=2.2.0'
+    dependencies:
+      prettier: 2.8.0
     dev: true
 
   /prettier/2.8.0:
