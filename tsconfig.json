@@ -16,7 +16,6 @@
     "allowJs": true,
     "composite": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["vite/client"],
     "paths": {
       "~/*": ["src/*"]
     }

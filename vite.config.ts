@@ -10,5 +10,13 @@ export default defineConfig({
   build: {
     // chunk 大小警告的限制（以 kbs 为单位）
     chunkSizeWarningLimit: 5000
+  },
+  css: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ]
+    }
   }
 })
