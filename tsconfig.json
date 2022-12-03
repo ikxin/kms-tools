@@ -3,5 +3,6 @@
     "baseUrl": ".",
     "allowJs": true,
     "paths": { "@/*": ["src/*"] }
-  }
+  },
+  "include": ["src/**/*"]
 }
