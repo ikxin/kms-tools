@@ -1,24 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "ESNext",
-    "target": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "useDefineForClassFields": true,
-    "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "allowJs": true,
-    "composite": true,
-    "allowSyntheticDefaultImports": true,
-    "paths": {
-      "~/*": ["src/*"]
-    }
-  },
-  "include": ["vite.config.ts"]
+    "paths": { "@/*": ["src/*"] }
+  }
 }

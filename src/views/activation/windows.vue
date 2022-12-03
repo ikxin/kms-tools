@@ -31,7 +31,9 @@
           <a-space size="middle">
             <a-button @click="generateScript">生成脚本</a-button>
             <a-button @click="downloadScript" class="bg-[#1890ff]" type="primary">下载脚本</a-button>
-            <a-button v-show="params.activationScript.visible" @click="copyScript" class="bg-[#1890ff]" type="primary">复制脚本</a-button>
+            <a-button v-show="params.activationScript.visible" @click="copyScript" class="bg-[#1890ff]" type="primary"
+              >复制脚本</a-button
+            >
           </a-space>
         </a-form-item>
         <a-form-item v-show="params.activationScript.visible">
@@ -42,13 +44,19 @@
 
     <!-- 版本数据 -->
     <a-card>
-      <a-table :dataSource="listState.dataSource" :columns="listState.columns" :rowSelection="listState.rowSelection" rowKey="id" size="middle" />
+      <a-table
+        :dataSource="listState.dataSource"
+        :columns="listState.columns"
+        :rowSelection="listState.rowSelection"
+        rowKey="id"
+        size="middle"
+      />
     </a-card>
   </a-layout>
 </template>
 
 <script setup>
-import readmeVue from './components/readme'
+import readmeVue from './components/readme.vue'
 import windowsData from '../../data/windows.json'
 
 import { message } from 'ant-design-vue'
@@ -61,13 +69,13 @@ const params = reactive({
   systemVersion: {
     id: null,
     name: null,
-    key: null
+    key: null,
   },
   kmsServer: 'kms.moeclub.org',
   activationScript: {
     visible: false,
-    content: null
-  }
+    content: null,
+  },
 })
 
 // 计算激活脚本的内容
@@ -79,14 +87,14 @@ const listState = reactive({
   dataSource: [],
   columns: [
     { title: '系统版本', dataIndex: 'release' },
-    { title: '密钥', dataIndex: 'key' }
+    { title: '密钥', dataIndex: 'key' },
   ],
   rowSelection: {
     type: 'radio',
     onChange: (_, selectedRows) => {
       params.systemVersion.key = selectedRows[0].key
-    }
-  }
+    },
+  },
 })
 
 watch(

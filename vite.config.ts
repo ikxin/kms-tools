@@ -1,23 +1,19 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import tailwindcss from "tailwindcss";
+import tailwindcss from 'tailwindcss'
+import path from 'path'
 
 export default defineConfig({
   base: './',
   plugins: [vue()],
   resolve: {
-    extensions: ['.vue', '.js']
-  },
-  build: {
-    // chunk 大小警告的限制（以 kbs 为单位）
-    chunkSizeWarningLimit: 5000
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   css: {
     postcss: {
-      plugins: [
-        tailwindcss('./tailwind.config.ts'),
-        require('autoprefixer'),
-      ]
-    }
-  }
+      plugins: [tailwindcss('./tailwind.config.ts'), require('autoprefixer')],
+    },
+  },
 })
