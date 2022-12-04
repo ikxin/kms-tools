@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@arco-design/web-vue": "^2.39.2",
     "@types/node": "^18.11.10",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "@vitejs/plugin-vue": "^3.2.0",
-    "ant-design-vue": "^3.2.15",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",
