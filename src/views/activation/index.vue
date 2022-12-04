@@ -4,11 +4,9 @@
       <a-menu v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys" mode="inline" style="height: 100%">
         <a-sub-menu :key="routes[1].name">
           <template #title>
-            <icon-park :type="routes[1].meta.icon" theme="outline" />
             <span>{{ routes[1].meta.title }}</span>
           </template>
           <a-menu-item v-for="(item, index) in routes[1].children" :key="index" @click="changeMenu(item.path)">
-            <icon-park :type="item.meta.icon" theme="outline" />
             <span>{{ item.meta.title }}</span>
           </a-menu-item>
         </a-sub-menu>
@@ -19,7 +17,6 @@
 </template>
 
 <script setup>
-import { IconPark } from '@icon-park/vue-next/es/all'
 import { onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { routes } from '../../router/index.ts'
