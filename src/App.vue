@@ -1,18 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeaderLayout from '@/layouts/HeaderLayout.vue'
+</script>
 
 <template>
   <div class="flex h-screen flex-col bg-[#f0f2f5]">
-    <a-layout-header class="bg-white">
-      <div class="mx-auto flex max-w-[1080px] justify-between">
-        <div class="h-[30px] w-[180px]"></div>
-        <a-menu class="text-end" mode="horizontal" :default-selected-keys="['1']">
-          <a-menu-item key="1"><icon-home class="!mr-1" />首页</a-menu-item>
-          <a-menu-item key="2"><icon-apps class="!mr-1" />软件激活</a-menu-item>
-          <a-menu-item key="3"><icon-download class="!mr-1" />软件下载</a-menu-item>
-          <a-menu-item key="4"><icon-bar-chart class="!mr-1" />服务监控</a-menu-item>
-          <a-menu-item key="5"><icon-bookmark class="!mr-1" />帮助中心</a-menu-item>
-        </a-menu>
-      </div>
-    </a-layout-header>
+    <header-layout></header-layout>
   </div>
 </template>
