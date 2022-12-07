@@ -1,29 +1,18 @@
-<script setup lang="ts">
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <Header />
-  <a-layout-content class="my-0 mx-auto !min-h-[calc(100vh-134px)] w-[1080px] max-w-full overflow-hidden">
-    <router-view />
-  </a-layout-content>
-  <Footer />
+  <div class="flex h-screen flex-col bg-[#f0f2f5]">
+    <a-layout-header class="bg-white">
+      <div class="mx-auto flex max-w-[1080px] justify-between">
+        <div class="h-[30px] w-[180px]"></div>
+        <a-menu class="text-end" mode="horizontal" :default-selected-keys="['1']">
+          <a-menu-item key="1"><icon-home class="!mr-1" />首页</a-menu-item>
+          <a-menu-item key="2"><icon-apps class="!mr-1" />软件激活</a-menu-item>
+          <a-menu-item key="3"><icon-download class="!mr-1" />软件下载</a-menu-item>
+          <a-menu-item key="4"><icon-bar-chart class="!mr-1" />服务监控</a-menu-item>
+          <a-menu-item key="5"><icon-bookmark class="!mr-1" />帮助中心</a-menu-item>
+        </a-menu>
+      </div>
+    </a-layout-header>
+  </div>
 </template>
-
-<style lang="less">
-#app {
-  font-family: 'moonbridge';
-}
-
-@font-face {
-  font-family: 'moonbridge';
-  src: url(./assets/fonts/moonbridge.woff);
-}
-
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
-</style>
