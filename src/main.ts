@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import ArcoVue from '@arco-design/web-vue'
-import ArcoVueIcon from '@arco-design/web-vue/es/icon';
-import '@arco-design/web-vue/dist/arco.css'
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 import 'tailwindcss/utilities.css'
+import '@icon-park/vue-next/styles/index.css';
 
 const app = createApp(App)
 
-app.use(ArcoVue).use(ArcoVueIcon)
+app.use(Antd)
 app.mount('#app')
