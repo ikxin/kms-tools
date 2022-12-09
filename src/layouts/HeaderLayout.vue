@@ -15,7 +15,7 @@ const menuData = [
   <a-layout-header class="bg-white p-0">
     <div class="mx-auto flex w-container max-w-full items-center justify-between">
       <img class="h-14" :src="logoHead" alt="KMS Tools" />
-      <a-menu class="grow justify-end" mode="horizontal" theme="light">
+      <a-menu class="grow justify-end xs:max-md:w-36" mode="horizontal" theme="light">
         <a-menu-item v-for="menu in menuData" :key="menu.id">
           {{ menu.title }}
           <template #icon>
