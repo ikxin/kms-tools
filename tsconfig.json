@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "allowJs": true,
+    "lib": ["ESNext"],
     "paths": { "@/*": ["src/*"] }
   },
   "include": ["src/**/*"]
