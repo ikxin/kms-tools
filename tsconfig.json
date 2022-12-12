@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "allowJs": true,
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "paths": { "@/*": ["src/*"] }
   },
   "include": ["src/**/*"]

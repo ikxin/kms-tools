@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import logoHead from '@/assets/icons/logo-head.svg'
 import { Home, ApplicationOne, DownloadWeb, DataServer, DocSearchTwo, SunOne, Translate } from '@icon-park/vue-next'
+import { type Component } from 'vue'
 
-const menuData = [
+interface Menu {
+  id: number
+  title: string
+  icon: Component
+}
+
+const menuData: Array<Menu> = [
   { id: 1, title: '首页', icon: Home },
   { id: 2, title: '软件激活', icon: ApplicationOne },
   { id: 3, title: '软件下载', icon: DownloadWeb },
@@ -24,7 +31,9 @@ const menuData = [
         </a-menu-item>
       </a-menu>
       <a-space>
-        <a-button size="small" type="text"><SunOne /></a-button>
+        <a-button size="small" type="text">
+          <component :is="SunOne"></component>
+        </a-button>
         <a-button size="small" type="text"><Translate /></a-button>
       </a-space>
     </div>
