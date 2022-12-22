@@ -28,7 +28,7 @@ const menuData: Array<Menu> = [
 </script>
 
 <template>
-  <a-layout-header class="bg-white p-0">
+  <a-layout-header class="select-none bg-white p-0">
     <div class="mx-auto flex w-container max-w-full items-center justify-between">
       <img class="h-12" :src="logoHead" alt="KMS Tools" />
       <a-menu class="grow whitespace-nowrap xs:max-md:w-36" mode="horizontal" theme="light">
