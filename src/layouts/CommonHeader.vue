@@ -10,30 +10,72 @@ import {
   Translate,
   GithubOne,
 } from '@icon-park/vue-next'
-import { type Component } from 'vue'
+import { ref, watch, type Component } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 interface Menu {
-  id: number
+  name: string
   title: string
   icon: Component
 }
 
 const menuData: Array<Menu> = [
-  { id: 1, title: '首页', icon: Home },
-  { id: 2, title: '软件激活', icon: ApplicationOne },
-  { id: 3, title: '软件下载', icon: DownloadWeb },
-  { id: 4, title: '服务监控', icon: DataServer },
-  { id: 5, title: '帮助中心', icon: DocSearchTwo },
+  {
+    name: 'home',
+    title: '首页',
+    icon: Home,
+  },
+  {
+    name: 'activation',
+    title: '软件激活',
+    icon: ApplicationOne,
+  },
+  {
+    name: 'download',
+    title: '软件下载',
+    icon: DownloadWeb,
+  },
+  {
+    name: 'service',
+    title: '服务监控',
+    icon: DataServer,
+  },
+  {
+    name: 'help',
+    title: '帮助中心',
+    icon: DocSearchTwo,
+  },
 ]
+
+const router = useRouter()
+const route = useRoute()
+
+function redirectPage(name: string) {
+  router.push({ name })
+}
+
+const selectedKeys = ref([])
+
+watch(
+  () => route.name,
+  () => {
+    selectedKeys.value = [route.name]
+  }
+)
 </script>
 
 <template>
   <a-layout-header class="select-none bg-white p-0">
     <div class="mx-auto flex w-container max-w-full items-center justify-between">
       <img class="h-12" :src="logoHead" alt="KMS Tools" />
-      <a-menu class="grow whitespace-nowrap xs:max-md:w-36" mode="horizontal" theme="light">
-        <template v-for="menu in menuData" :key="menu.id">
-          <a-menu-item>
+      <a-menu
+        :selected-keys="selectedKeys"
+        class="grow whitespace-nowrap xs:max-md:w-36"
+        theme="light"
+        mode="horizontal"
+      >
+        <template v-for="menu in menuData" :key="menu.name">
+          <a-menu-item @click="redirectPage(menu.name)">
             {{ menu.title }}
             <template #icon><component :is="menu.icon"></component></template>
           </a-menu-item>
