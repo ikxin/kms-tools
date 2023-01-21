@@ -9,7 +9,7 @@ import '@icon-park/vue-next/styles/index.css'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/activation',
   },
   {
     name: 'home',
