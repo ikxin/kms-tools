@@ -1,44 +1,38 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/activation/windows'
+    redirect: '/activation',
+  },
+  {
+    name: 'home',
+    path: '/home',
+    component: () => import('@/pages/HomePage.vue'),
   },
   {
     name: 'activation',
     path: '/activation',
-    component: () => import('../views/activation/index.vue'),
-    meta: {
-      title: '系统类型',
-      icon: 'system'
-    },
-    children: [
-      {
-        name: 'windows',
-        path: 'windows',
-        component: () => import('../views/activation/windows.vue'),
-        meta: {
-          title: 'Windows',
-          icon: 'windows'
-        }
-      },
-      {
-        name: 'office',
-        path: 'office',
-        component: () => import('../views/activation/office.vue'),
-        meta: {
-          title: 'Office',
-          icon: 'word'
-        }
-      }
-    ]
-  }
+    component: () => import('@/pages/SoftwareActivation.vue'),
+  },
+  {
+    name: 'download',
+    path: '/download',
+    component: () => import('@/pages/SoftwareDownload.vue'),
+  },
+  {
+    name: 'help',
+    path: '/help',
+    component: () => import('@/pages/HelpCenter.vue'),
+  },
+  {
+    name: 'service',
+    path: '/service',
+    component: () => import('@/pages/ServiceMonitor.vue'),
+  },
 ]
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+export const router = createRouter({
+  history: createWebHistory(),
+  routes,
 })
-
-export { router, routes }
