@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'activation',
     path: '/activation',
-    component: () => import('@/pages/SoftwareActivation.vue'),
+    component: () => import('@/pages/SoftwareActivation/Index.vue'),
   },
   {
     name: 'download',
