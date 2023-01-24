@@ -33,6 +33,6 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/kms-tools/'),
   routes,
 })
