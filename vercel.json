@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/kms-tools/:path*", "destination": "/kms-tools/index.html" }]
+}
