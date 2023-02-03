@@ -1,4 +1,4 @@
-import { message } from 'ant-design-vue'
+import { Message } from '@arco-design/web-vue'
 
 export function useScriptDownload(script, fileName) {
   const file = new File([script], fileName, { type: 'application/txt' })
@@ -16,9 +16,9 @@ export function useScriptCopy(script) {
   navigator.clipboard
     .writeText(script)
     .then(() => {
-      message.success('复制成功')
+      Message.success('复制成功')
     })
     .catch((error) => {
-      message.error(error)
+      Message.error(error)
     })
 }
