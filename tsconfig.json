@@ -2,6 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "allowJs": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "paths": { "@/*": ["src/*"] }
   },
