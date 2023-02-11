@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import windowsData from '@/data/windows.json'
-import { Message, TableColumnData, TableRowSelection } from '@arco-design/web-vue'
-import { computed, reactive, ref, watch } from 'vue'
-import { useScriptDownload, useScriptCopy } from '@/hooks/script'
+import { FieldRule, TableColumnData, TableRowSelection } from '@arco-design/web-vue'
+import { computed, reactive, Ref, ref, watch } from 'vue'
+// import { useScriptDownload, useScriptCopy } from '@/hooks/script'
 
 // 生成脚本参数
 const params = reactive({
@@ -50,40 +50,67 @@ watch(
   { immediate: true }
 )
 
-function generateScript() {
-  if (params.systemVersion.key && params.kmsServer) {
-    params.activationScript.visible = true
-  } else {
-    Message.error('请填写完整内容')
-  }
-}
+// function generateScript() {
+//   if (params.systemVersion.key && params.kmsServer) {
+//     params.activationScript.visible = true
+//   } else {
+//     Message.error('请填写完整内容')
+//   }
+// }
 
-function downloadScript() {
-  if (params.systemVersion.key && params.kmsServer) {
-    useScriptDownload(params.activationScript.content, 'kms.bat')
-  } else {
-    Message.error('请填写完整内容')
-  }
-}
+// function downloadScript() {
+//   if (params.systemVersion.key && params.kmsServer) {
+//     useScriptDownload(params.activationScript.content, 'kms.bat')
+//   } else {
+//     Message.error('请填写完整内容')
+//   }
+// }
 
-function downloadCleanScript() {
-  const cleanScript = `@echo off\r\nslmgr /upk\r\nslmgr /ckms\r\nslmgr /rearm`
-  useScriptDownload(cleanScript, 'clean.bat')
-}
+// function downloadCleanScript() {
+//   const cleanScript = `@echo off\r\nslmgr /upk\r\nslmgr /ckms\r\nslmgr /rearm`
+//   useScriptDownload(cleanScript, 'clean.bat')
+// }
 
-function copyScript() {
-  if (params.systemVersion.key && params.kmsServer) {
-    useScriptCopy(params.activationScript.content)
-  } else {
-    Message.error('请填写完整内容')
-  }
-}
+// function copyScript() {
+//   if (params.systemVersion.key && params.kmsServer) {
+//     useScriptCopy(params.activationScript.content)
+//   } else {
+//     Message.error('请填写完整内容')
+//   }
+// }
 
 const formData = reactive({
-  systemType: '',
-  activationkey: '',
-  kmsServer: 'kms.moeclub.org',
+  checkedType: '',
+  kmsUrl: 'kms.moeclub.org',
+  secretKey: '',
 })
+
+const formRules: Record<string, FieldRule | FieldRule[]> = {
+  checkedType: {
+    required: true,
+    message: '请选择对应的系统类型',
+  },
+  kmsUrl: {
+    required: true,
+    message: '请选择 KMS 服务器',
+  },
+  secretKey: {
+    required: true,
+    message: '请在下方选择系统版本',
+  },
+}
+
+const activationScript = computed(() => {
+  return `@echo off\r\nslmgr /skms ${formData.kmsUrl}\r\nslmgr /ipk ${formData.secretKey}\r\nslmgr /ato\r\nslmgr /xpr`
+})
+
+const activationScriptVisible: Ref<boolean> = ref(false)
+
+const handleSubmit = (data) => {
+  if (data.errors === undefined) {
+    activationScriptVisible.value = true
+  }
+}
 
 const tableData = ref([])
 
@@ -101,52 +128,46 @@ const tableRowSelection: TableRowSelection = {
 const tableSelectionChange = (val) => {
   tableData.value.forEach((item) => {
     if (val[0] === item.release) {
-      formData.activationkey = item.key
+      formData.secretKey = item.key
     }
   })
 }
 
 watch(
-  () => formData.systemType,
+  () => formData.checkedType,
   () => {
     windowsData.forEach((item) => {
-      if (formData.systemType === item.version) {
+      if (formData.checkedType === item.version) {
         tableData.value = item.item
       }
     })
   }
 )
-
-const activationScript = computed(() => {
-  return `@echo off\r\nslmgr /skms ${formData.kmsServer}\r\nslmgr /ipk ${formData.activationkey}\r\nslmgr /ato\r\nslmgr /xpr`
-})
 </script>
 
 <template>
   <div class="flex flex-col gap-4">
     <a-card>
-      <a-form :model="formData">
-        <a-form-item label="系统类型" field="systemType">
-          <a-select v-model:model-value="formData.systemType" placeholder="请选择系统类型">
+      <a-form :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
+        <a-form-item label="系统类型" field="checkedType">
+          <a-select v-model:model-value="formData.checkedType" placeholder="请选择系统类型">
             <template v-for="item in windowsData" :key="item.version">
               <a-option>{{ item.version }}</a-option>
             </template>
           </a-select>
         </a-form-item>
-        <a-form-item label="激活密钥" field="softwareVersionKey">
-          <a-input v-model:model-value="formData.activationkey" disabled />
+        <a-form-item label="KMS服务器" field="kmsUrl">
+          <a-input v-model:model-value="formData.kmsUrl" />
         </a-form-item>
-        <a-form-item label="KMS服务器" field="kmsServer">
-          <a-input v-model:model-value="formData.kmsServer" />
+        <a-form-item label="激活密钥" field="secretKey">
+          <a-input v-model:model-value="formData.secretKey" disabled />
         </a-form-item>
         <a-form-item>
           <a-space size="small">
-            <a-button @click="generateScript">生成脚本</a-button>
-            <a-button @click="downloadScript" type="primary">下载脚本</a-button>
-            <a-button @click="copyScript" type="primary">复制脚本</a-button>
+            <a-button html-type="submit" type="primary">生成脚本</a-button>
           </a-space>
         </a-form-item>
-        <a-form-item>
+        <a-form-item v-show="activationScriptVisible">
           <a-textarea v-model:model-value="activationScript" :auto-size="true" />
         </a-form-item>
       </a-form>
