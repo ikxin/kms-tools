@@ -2,7 +2,7 @@
 import windowsData from '@/data/windows.json'
 import { FieldRule, TableColumnData, TableRowSelection } from '@arco-design/web-vue'
 import { computed, reactive, Ref, ref, watch } from 'vue'
-// import { useScriptDownload, useScriptCopy } from '@/hooks/script'
+import { useScript } from '@/hooks/useScript'
 
 // 生成脚本参数
 const params = reactive({
@@ -50,33 +50,9 @@ watch(
   { immediate: true }
 )
 
-// function generateScript() {
-//   if (params.systemVersion.key && params.kmsServer) {
-//     params.activationScript.visible = true
-//   } else {
-//     Message.error('请填写完整内容')
-//   }
-// }
-
-// function downloadScript() {
-//   if (params.systemVersion.key && params.kmsServer) {
-//     useScriptDownload(params.activationScript.content, 'kms.bat')
-//   } else {
-//     Message.error('请填写完整内容')
-//   }
-// }
-
 // function downloadCleanScript() {
 //   const cleanScript = `@echo off\r\nslmgr /upk\r\nslmgr /ckms\r\nslmgr /rearm`
 //   useScriptDownload(cleanScript, 'clean.bat')
-// }
-
-// function copyScript() {
-//   if (params.systemVersion.key && params.kmsServer) {
-//     useScriptCopy(params.activationScript.content)
-//   } else {
-//     Message.error('请填写完整内容')
-//   }
 // }
 
 const formData = reactive({
@@ -110,6 +86,16 @@ const handleSubmit = (data) => {
   if (data.errors === undefined) {
     activationScriptVisible.value = true
   }
+}
+
+const { useScriptDownload, useScriptCopy } = useScript()
+
+const downloadScript = () => {
+  useScriptDownload(activationScript.value, 'kms.bat')
+}
+
+const copyScript = () => {
+  useScriptCopy(activationScript.value)
 }
 
 const tableData = ref([])
@@ -165,6 +151,10 @@ watch(
         <a-form-item>
           <a-space size="small">
             <a-button html-type="submit" type="primary">生成脚本</a-button>
+            <template v-if="activationScriptVisible">
+              <a-button @click="downloadScript">下载脚本</a-button>
+              <a-button @click="copyScript">复制脚本</a-button>
+            </template>
           </a-space>
         </a-form-item>
         <a-form-item v-show="activationScriptVisible">
