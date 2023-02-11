@@ -4,57 +4,6 @@ import { FieldRule, TableColumnData, TableRowSelection } from '@arco-design/web-
 import { computed, reactive, Ref, ref, watch } from 'vue'
 import { useScript } from '@/hooks/useScript'
 
-// 生成脚本参数
-const params = reactive({
-  systemType: undefined,
-  systemVersion: {
-    id: null,
-    name: null,
-    key: null,
-  },
-  kmsServer: 'kms.moeclub.org',
-  activationScript: {
-    visible: false,
-    content: null,
-  },
-})
-
-// 计算激活脚本的内容
-params.activationScript.content = computed(() => {
-  return `@echo off\r\nslmgr /skms ${params.kmsServer}\r\nslmgr /ipk ${params.systemVersion.key}\r\nslmgr /ato\r\nslmgr /xpr`
-})
-
-const listState = reactive({
-  dataSource: [],
-  columns: [
-    { title: '系统版本', dataIndex: 'release' },
-    { title: '密钥', dataIndex: 'key' },
-  ],
-  rowSelection: {
-    type: 'radio',
-    onChange: (_, selectedRows) => {
-      params.systemVersion.key = selectedRows[0].key
-    },
-  },
-})
-
-watch(
-  () => params.systemType,
-  () => {
-    if (params.systemType === undefined) {
-      listState.dataSource = []
-    } else {
-      listState.dataSource = windowsData[params.systemType].item
-    }
-  },
-  { immediate: true }
-)
-
-// function downloadCleanScript() {
-//   const cleanScript = `@echo off\r\nslmgr /upk\r\nslmgr /ckms\r\nslmgr /rearm`
-//   useScriptDownload(cleanScript, 'clean.bat')
-// }
-
 const formData = reactive({
   checkedType: '',
   kmsUrl: 'kms.moeclub.org',
