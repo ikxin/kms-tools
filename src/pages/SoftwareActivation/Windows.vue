@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import windowsData from '@/data/windows.json'
-
-import { Message } from '@arco-design/web-vue'
-import { computed, reactive, watch } from 'vue'
+import { Message, TableColumnData, TableRowSelection } from '@arco-design/web-vue'
+import { computed, reactive, ref, watch } from 'vue'
 import { useScriptDownload, useScriptCopy } from '@/hooks/script'
 
 // 生成脚本参数
@@ -79,60 +78,87 @@ function copyScript() {
     Message.error('请填写完整内容')
   }
 }
+
+const formData = reactive({
+  systemType: '',
+  activationkey: '',
+  kmsServer: 'kms.moeclub.org',
+})
+
+const tableData = ref([])
+
+const tableColumns: Array<TableColumnData> = [
+  { title: '系统版本', dataIndex: 'release' },
+  { title: '密钥', dataIndex: 'key' },
+]
+
+const tableRowKey = 'release'
+
+const tableRowSelection: TableRowSelection = {
+  type: 'radio',
+}
+
+const tableSelectionChange = (val) => {
+  tableData.value.forEach((item) => {
+    if (val[0] === item.release) {
+      formData.activationkey = item.key
+    }
+  })
+}
+
+watch(
+  () => formData.systemType,
+  () => {
+    windowsData.forEach((item) => {
+      if (formData.systemType === item.version) {
+        tableData.value = item.item
+      }
+    })
+  }
+)
+
+const activationScript = computed(() => {
+  return `@echo off\r\nslmgr /skms ${formData.kmsServer}\r\nslmgr /ipk ${formData.activationkey}\r\nslmgr /ato\r\nslmgr /xpr`
+})
 </script>
 
 <template>
-  <a-layout>
-    <!-- 选择版本 -->
+  <div class="flex flex-col gap-4">
     <a-card>
-      <a-form :label-col-props="{ span: 3 }">
-        <a-form-item label="系统类型" name="systemType">
-          <a-select v-model:value="params.systemType" :allowClear="true" placeholder="请选择系统类型">
-            <a-option v-for="item in windowsData" :key="item.id" :value="item.id">
-              {{ item.version }}
-            </a-option>
+      <a-form :model="formData">
+        <a-form-item label="系统类型" field="systemType">
+          <a-select v-model:model-value="formData.systemType" placeholder="请选择系统类型">
+            <template v-for="item in windowsData" :key="item.version">
+              <a-option>{{ item.version }}</a-option>
+            </template>
           </a-select>
         </a-form-item>
-        <a-form-item label="激活密钥" name="softwareVersionKey">
-          <a-input v-model:value="params.systemVersion.key" disabled />
+        <a-form-item label="激活密钥" field="softwareVersionKey">
+          <a-input v-model:model-value="formData.activationkey" disabled />
         </a-form-item>
-        <a-form-item label="KMS服务器" name="kmsServer">
-          <a-input v-model:value="params.kmsServer" />
+        <a-form-item label="KMS服务器" field="kmsServer">
+          <a-input v-model:model-value="formData.kmsServer" />
         </a-form-item>
         <a-form-item>
-          <a-space size="middle">
+          <a-space size="small">
             <a-button @click="generateScript">生成脚本</a-button>
-            <a-button @click="downloadScript" class="bg-[#1890ff]" type="primary">下载脚本</a-button>
-            <a-button v-show="params.activationScript.visible" @click="copyScript" class="bg-[#1890ff]" type="primary"
-              >复制脚本</a-button
-            >
+            <a-button @click="downloadScript" type="primary">下载脚本</a-button>
+            <a-button @click="copyScript" type="primary">复制脚本</a-button>
           </a-space>
         </a-form-item>
-        <a-form-item v-show="params.activationScript.visible">
-          <a-textarea v-model:value="params.activationScript.content" :rows="5" />
+        <a-form-item>
+          <a-textarea v-model:model-value="activationScript" :auto-size="true" />
         </a-form-item>
       </a-form>
     </a-card>
-
-    <!-- 版本数据 -->
     <a-card>
       <a-table
-        :dataSource="listState.dataSource"
-        :columns="listState.columns"
-        :rowSelection="listState.rowSelection"
-        rowKey="id"
-        size="middle"
+        :data="tableData"
+        :columns="tableColumns"
+        :row-key="tableRowKey"
+        :row-selection="tableRowSelection"
+        @selection-change="tableSelectionChange"
       />
     </a-card>
-  </a-layout>
+  </div>
 </template>
-
-<style lang="less" scoped>
-.arco-card {
-  margin-bottom: 20px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-</style>
