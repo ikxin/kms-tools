@@ -13,7 +13,7 @@ const formData = reactive({
 const formRules: Record<string, FieldRule | FieldRule[]> = {
   checkedType: {
     required: true,
-    message: '请选择对应的系统类型',
+    message: '请选择系统类型',
   },
   kmsUrl: {
     required: true,
@@ -85,21 +85,21 @@ watch(
     <a-card>
       <a-form :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
         <a-form-item label="系统类型" field="checkedType">
-          <a-select v-model:model-value="formData.checkedType" placeholder="请选择系统类型">
+          <a-select v-model="formData.checkedType" placeholder="请选择系统类型">
             <template v-for="item in windowsData" :key="item.version">
               <a-option>{{ item.version }}</a-option>
             </template>
           </a-select>
         </a-form-item>
-        <a-form-item label="KMS服务器" field="kmsUrl">
-          <a-input v-model:model-value="formData.kmsUrl" />
+        <a-form-item label="KMS 服务器" field="kmsUrl">
+          <a-input v-model="formData.kmsUrl" />
         </a-form-item>
         <a-form-item label="激活密钥" field="secretKey">
-          <a-input v-model:model-value="formData.secretKey" disabled />
+          <a-input v-model="formData.secretKey" disabled />
         </a-form-item>
         <a-form-item>
           <a-space size="small">
-            <a-button html-type="submit" type="primary">生成脚本</a-button>
+            <a-button html-type="submit" type="primary">创建脚本</a-button>
             <template v-if="activationScriptVisible">
               <a-button @click="downloadScript">下载脚本</a-button>
               <a-button @click="copyScript">复制脚本</a-button>
@@ -107,7 +107,7 @@ watch(
           </a-space>
         </a-form-item>
         <a-form-item v-show="activationScriptVisible">
-          <a-textarea v-model:model-value="activationScript" :auto-size="true" />
+          <a-textarea v-model="activationScript" :auto-size="true" />
         </a-form-item>
       </a-form>
     </a-card>
