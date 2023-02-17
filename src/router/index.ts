@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'home',
     path: '/home',
-    component: () => import('@/pages/HomePage.vue'),
+    component: () => import('@/pages/HomePage/Index.vue'),
   },
   {
     name: 'activation',
