@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="400" src="https://img.8b5.cn/2022/07/20/62d76ceca3969.png">
+    <img width="400" src="./src/assets/icons/logo-readme.svg">
 </p>
 
 <div align="center">
@@ -20,7 +20,7 @@
 - Vercel：[https://kmstools.vercel.app](https://kmstools.vercel.app)
 - Cloudflare Pages：[https://kmstools.pages.dev](https://kmstools.pages.dev)
 
-![](http://img.8b5.cn/2022/07/20/62d75a134ba57.png)
+![](./src/assets/images/preview.png)
 
 ## ✨ 技术栈
 
@@ -69,7 +69,7 @@ pnpm run preview
 
 ## ⭐ 星星
 
-[![Stargazers over time](https://starchart.cc/ikxin/kms-tools.svg)](https://starchart.cc/ikxin/kms-tools)
+![](https://starchart.cc/ikxin/kms-tools.svg)
 
 ## 🧑‍💻 作者
 
