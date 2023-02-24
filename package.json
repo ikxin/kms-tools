@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@arco-design/web-vue": "^2.43.0",
+    "@arco-design/web-vue": "^2.43.1",
     "@icon-park/vue-next": "^1.4.2",
-    "@types/node": "^18.13.0",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
+    "@types/node": "^18.14.1",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.34.0",
@@ -24,14 +24,14 @@
     "markdown-it-shiki": "^0.7.2",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
-    "prettier-plugin-tailwindcss": "^0.2.2",
-    "tailwindcss": "^3.2.6",
+    "prettier-plugin-tailwindcss": "^0.2.3",
+    "tailwindcss": "^3.2.7",
     "typescript": "^4.9.5",
-    "vite": "^4.1.1",
+    "vite": "^4.1.4",
     "vite-plugin-vue-markdown": "^0.22.4",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
-    "vue-tsc": "^1.0.24"
+    "vue-tsc": "^1.1.7"
   },
   "prettier": {
     "printWidth": 120,
