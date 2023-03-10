@@ -7,11 +7,13 @@ import {
   DataServer,
   DocSearchTwo,
   SunOne,
+  Moon,
   Translate,
   GithubOne,
 } from '@icon-park/vue-next'
-import { ref, watch, type Component } from 'vue'
+import { ref, shallowRef, watch, type Component } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { usePreferredDark } from '@vueuse/core'
 
 interface Menu {
   name: string
@@ -62,6 +64,18 @@ watch(
     selectedKeys.value = [route.name]
   }
 )
+
+const prefersDark = usePreferredDark()
+
+const darkModeIcon = shallowRef()
+
+watch(
+  prefersDark,
+  (val) => {
+    darkModeIcon.value = val ? Moon : SunOne
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
@@ -84,7 +98,7 @@ watch(
       <a-space class="mr-4">
         <a-button size="small" type="secondary">
           <template #icon>
-            <component :is="SunOne"></component>
+            <component :is="darkModeIcon"></component>
           </template>
         </a-button>
         <a-button size="small" type="secondary">
