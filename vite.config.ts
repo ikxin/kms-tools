@@ -7,6 +7,9 @@ import path from 'path'
 
 export default defineConfig({
   base: './',
+  build: {
+    chunkSizeWarningLimit: 2048,
+  },
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/],
