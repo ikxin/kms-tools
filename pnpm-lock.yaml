@@ -4,6 +4,7 @@ specifiers:
   '@arco-design/web-vue': ^2.43.2
   '@icon-park/vue-next': ^1.4.2
   '@types/node': ^18.14.5
+  '@types/web-bluetooth': ^0.0.16
   '@typescript-eslint/eslint-plugin': ^5.54.0
   '@typescript-eslint/parser': ^5.54.0
   '@vitejs/plugin-vue': ^4.0.0
@@ -29,6 +30,7 @@ devDependencies:
   '@arco-design/web-vue': 2.43.2_vue@3.2.47
   '@icon-park/vue-next': 1.4.2_vue@3.2.47
   '@types/node': 18.14.5
+  '@types/web-bluetooth': 0.0.16
   '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
   '@typescript-eslint/parser': 5.54.0_ycpbpc6yetojsgtrx3mwntkhsu
   '@vitejs/plugin-vue': 4.0.0_vite@4.1.4+vue@3.2.47
