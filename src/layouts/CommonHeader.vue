@@ -6,10 +6,11 @@ import {
   DownloadWeb,
   DataServer,
   DocSearchTwo,
-  SunOne,
-  Moon,
+  Brightness,
+  DarkMode,
   Translate,
   GithubOne,
+  SettingTwo,
 } from '@icon-park/vue-next'
 import { ref, shallowRef, watch, type Component } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -72,7 +73,7 @@ const darkModeIcon = shallowRef()
 watch(
   prefersDark,
   (val) => {
-    darkModeIcon.value = val ? Moon : SunOne
+    darkModeIcon.value = val ? DarkMode : Brightness
   },
   { immediate: true }
 )
@@ -96,11 +97,27 @@ watch(
         </template>
       </a-menu>
       <a-space class="mr-4">
-        <a-button size="small" type="secondary">
-          <template #icon>
-            <component :is="darkModeIcon"></component>
+        <ADropdown>
+          <AButton size="small" type="secondary">
+            <template #icon>
+              <component :is="darkModeIcon"></component>
+            </template>
+          </AButton>
+          <template #content>
+            <ADoption>
+              <template #icon><Brightness /></template>
+              <template #default>亮色模式</template>
+            </ADoption>
+            <ADoption>
+              <template #icon><DarkMode /></template>
+              <template #default>暗色模式</template>
+            </ADoption>
+            <ADoption>
+              <template #icon><SettingTwo /></template>
+              <template #default>跟随系统</template>
+            </ADoption>
           </template>
-        </a-button>
+        </ADropdown>
         <a-button size="small" type="secondary">
           <template #icon>
             <Translate />
