@@ -1,64 +1,26 @@
 <script setup lang="ts">
 import logoHead from '@/assets/icons/logo-head.svg'
-import {
-  Home,
-  ApplicationOne,
-  DownloadWeb,
-  DataServer,
-  DocSearchTwo,
-  Brightness,
-  DarkMode,
-  Translate,
-  GithubOne,
-  SettingTwo,
-} from '@icon-park/vue-next'
-import { ref, watch, computed, type Component } from 'vue'
+import { Brightness, DarkMode, Translate, GithubOne, SettingTwo } from '@icon-park/vue-next'
+import { ref, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { BasicColorSchema, useColorMode, usePreferredDark } from '@vueuse/core'
-
-interface Menu {
-  name: string
-  title: string
-  icon: Component
-}
-
-const menuData: Array<Menu> = [
-  {
-    name: 'home',
-    title: '首页',
-    icon: Home,
-  },
-  {
-    name: 'activation',
-    title: '软件激活',
-    icon: ApplicationOne,
-  },
-  {
-    name: 'download',
-    title: '软件下载',
-    icon: DownloadWeb,
-  },
-  {
-    name: 'service',
-    title: '服务监控',
-    icon: DataServer,
-  },
-  {
-    name: 'help',
-    title: '帮助中心',
-    icon: DocSearchTwo,
-  },
-]
+import { menuOption, colorModeOption } from './modules/helper'
 
 const router = useRouter()
 const route = useRoute()
 
+/**
+ * 跳转页面
+ * @param name 菜单名
+ */
 function redirectPage(name: string) {
   router.push({ name })
 }
 
+/** 当前选中菜单 */
 const selectedKeys = ref([])
 
+/** 路由监听器 */
 watch(
   () => route.name,
   () => {
@@ -111,7 +73,7 @@ function changeColorMode(color: BasicColorSchema) {
         theme="light"
         mode="horizontal"
       >
-        <template v-for="menu in menuData" :key="menu.name">
+        <template v-for="menu in menuOption" :key="menu.name">
           <a-menu-item @click="redirectPage(menu.name)">
             {{ menu.title }}
             <template #icon><component :is="menu.icon"></component></template>
@@ -126,17 +88,9 @@ function changeColorMode(color: BasicColorSchema) {
             </template>
           </AButton>
           <template #content>
-            <ADoption @click="changeColorMode('light')">
-              <template #icon><Brightness /></template>
-              <template #default>浅色模式</template>
-            </ADoption>
-            <ADoption @click="changeColorMode('dark')">
-              <template #icon><DarkMode /></template>
-              <template #default>深色模式</template>
-            </ADoption>
-            <ADoption @click="changeColorMode('auto')">
-              <template #icon><SettingTwo /></template>
-              <template #default>跟随系统</template>
+            <ADoption v-for="item in colorModeOption" :key="item.value" @click="changeColorMode(item.value)">
+              <template #icon><component :is="item.icon" /></template>
+              <template #default>{{ item.lable }}</template>
             </ADoption>
           </template>
         </ADropdown>
