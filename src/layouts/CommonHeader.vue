@@ -12,9 +12,9 @@ import {
   GithubOne,
   SettingTwo,
 } from '@icon-park/vue-next'
-import { ref, shallowRef, watch, type Component } from 'vue'
+import { ref, watch, computed, type Component } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { usePreferredDark } from '@vueuse/core'
+import { BasicColorSchema, useColorMode, usePreferredDark } from '@vueuse/core'
 
 interface Menu {
   name: string
@@ -66,21 +66,43 @@ watch(
   }
 )
 
-const prefersDark = usePreferredDark()
+/** 颜色模式 */
+const colorMode = useColorMode({
+  emitAuto: true,
+})
 
-const darkModeIcon = shallowRef()
+/** 是否深色模式 */
+const isDark = usePreferredDark()
 
-watch(
-  prefersDark,
-  (val) => {
-    darkModeIcon.value = val ? DarkMode : Brightness
-  },
-  { immediate: true }
-)
+/** 颜色模式按钮图标 */
+const colorModeIcon = computed(() => {
+  if (colorMode.value === 'dark') {
+    document.body.setAttribute('arco-theme', 'dark')
+    return DarkMode
+  } else if (colorMode.value === 'light') {
+    document.body.removeAttribute('arco-theme')
+    return Brightness
+  } else {
+    if (isDark.value) {
+      document.body.setAttribute('arco-theme', 'dark')
+    } else {
+      document.body.removeAttribute('arco-theme')
+    }
+    return SettingTwo
+  }
+})
+
+/**
+ * 更改颜色模式
+ * @param mode 颜色模式
+ */
+function changeColorMode(color: BasicColorSchema) {
+  colorMode.value = color
+}
 </script>
 
 <template>
-  <a-layout-header class="select-none bg-white p-0">
+  <a-layout-header class="select-none bg-white p-0 dark:bg-[#232324]">
     <div class="mx-auto flex w-container max-w-full items-center justify-between">
       <img class="h-12" :src="logoHead" alt="KMS Tools" />
       <a-menu
@@ -100,19 +122,19 @@ watch(
         <ADropdown>
           <AButton size="small" type="secondary">
             <template #icon>
-              <component :is="darkModeIcon"></component>
+              <component :is="colorModeIcon"></component>
             </template>
           </AButton>
           <template #content>
-            <ADoption>
+            <ADoption @click="changeColorMode('light')">
               <template #icon><Brightness /></template>
-              <template #default>亮色模式</template>
+              <template #default>浅色模式</template>
             </ADoption>
-            <ADoption>
+            <ADoption @click="changeColorMode('dark')">
               <template #icon><DarkMode /></template>
-              <template #default>暗色模式</template>
+              <template #default>深色模式</template>
             </ADoption>
-            <ADoption>
+            <ADoption @click="changeColorMode('auto')">
               <template #icon><SettingTwo /></template>
               <template #default>跟随系统</template>
             </ADoption>

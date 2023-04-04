@@ -17,5 +17,5 @@ module.exports = {
       '3xl': '2000px',
     },
   },
-  plugins: [],
+  darkMode: 'class',
 }
