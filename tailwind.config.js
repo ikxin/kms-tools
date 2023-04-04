@@ -17,5 +17,5 @@ module.exports = {
       '3xl': '2000px',
     },
   },
-  darkMode: 'class',
+  darkMode: ['class', '[arco-theme="dark"]'],
 }

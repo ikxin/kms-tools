@@ -3,7 +3,7 @@ import logoHead from '@/assets/icons/logo-head.svg'
 import { Brightness, DarkMode, Translate, GithubOne, SettingTwo } from '@icon-park/vue-next'
 import { ref, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { BasicColorSchema, useColorMode, usePreferredDark } from '@vueuse/core'
+import { BasicColorSchema, useColorMode } from '@vueuse/core'
 import { menuOption, colorModeOption } from './modules/helper'
 
 const router = useRouter()
@@ -30,11 +30,10 @@ watch(
 
 /** 颜色模式 */
 const colorMode = useColorMode({
+  selector: 'body',
+  attribute: 'arco-theme',
   emitAuto: true,
 })
-
-/** 是否深色模式 */
-const isDark = usePreferredDark()
 
 /** 颜色模式按钮图标 */
 const colorModeIcon = computed(() => {
@@ -45,11 +44,6 @@ const colorModeIcon = computed(() => {
     document.body.removeAttribute('arco-theme')
     return Brightness
   } else {
-    if (isDark.value) {
-      document.body.setAttribute('arco-theme', 'dark')
-    } else {
-      document.body.removeAttribute('arco-theme')
-    }
     return SettingTwo
   }
 })

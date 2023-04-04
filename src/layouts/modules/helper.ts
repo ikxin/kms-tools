@@ -65,7 +65,7 @@ export const colorModeOption: Array<ColorModeItem> = [
     icon: DarkMode,
   },
   {
-    lable: '浅色模式',
+    lable: '跟随系统',
     value: 'auto',
     icon: SettingTwo,
   },
