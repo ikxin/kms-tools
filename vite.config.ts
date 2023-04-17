@@ -29,7 +29,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [tailwindcss('./tailwind.config.js'), require('autoprefixer')],
+      plugins: [tailwindcss('./tailwind.config.ts'), require('autoprefixer')],
     },
   },
 })
