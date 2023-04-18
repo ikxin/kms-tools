@@ -5,6 +5,7 @@ import { router } from '@/router/index'
 import '@arco-design/web-vue/dist/arco.css'
 import 'tailwindcss/utilities.css'
 import '@icon-park/vue-next/styles/index.css'
+import 'virtual:uno.css'
 
 const app = createApp(App)
 

@@ -29,6 +29,7 @@
     "prettier-plugin-tailwindcss": "^0.2.7",
     "tailwindcss": "^3.3.1",
     "typescript": "^5.0.4",
+    "unocss": "^0.51.4",
     "vite": "^4.2.1",
     "vite-plugin-vue-markdown": "^0.22.5",
     "vue": "^3.2.47",

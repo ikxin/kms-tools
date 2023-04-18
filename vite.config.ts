@@ -4,6 +4,7 @@ import markdown from 'vite-plugin-vue-markdown'
 import shiki from 'markdown-it-shiki'
 import tailwindcss from 'tailwindcss'
 import path from 'path'
+import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   base: './',
@@ -21,6 +22,7 @@ export default defineConfig({
         })
       },
     }),
+    UnoCSS(),
   ],
   resolve: {
     alias: {
