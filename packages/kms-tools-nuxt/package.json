@@ -10,6 +10,8 @@
   },
   "devDependencies": {
     "@types/node": "^18",
-    "nuxt": "^3.5.2"
+    "@unocss/nuxt": "^0.52.4",
+    "nuxt": "^3.5.2",
+    "unocss": "^0.52.1"
   }
 }
