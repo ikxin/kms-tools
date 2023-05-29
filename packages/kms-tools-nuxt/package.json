@@ -8,6 +8,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "dependencies": {
+    "ant-design-vue": "4.0.0-rc.5"
+  },
   "devDependencies": {
     "@types/node": "^18",
     "@unocss/nuxt": "^0.52.4",
