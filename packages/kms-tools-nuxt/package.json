@@ -16,6 +16,7 @@
     "@unocss/nuxt": "^0.52.4",
     "@unocss/transformer-directives": "^0.52.4",
     "nuxt": "^3.5.2",
+    "sass": "^1.62.1",
     "unocss": "^0.52.1"
   }
 }
