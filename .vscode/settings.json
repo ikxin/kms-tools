@@ -1,0 +1,4 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "unocss.root": "packages/kms-tools-nuxt"
+}
