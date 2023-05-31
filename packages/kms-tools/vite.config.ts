@@ -4,9 +4,9 @@ import markdown from 'vite-plugin-vue-markdown'
 import shiki from 'markdown-it-shiki'
 import path from 'path'
 import UnoCSS from 'unocss/vite'
+import ssr from 'vite-plugin-ssr/plugin'
 
 export default defineConfig({
-  base: './',
   build: {
     chunkSizeWarningLimit: 2048,
   },
@@ -14,6 +14,7 @@ export default defineConfig({
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
+    ssr(),
     markdown({
       markdownItSetup(md) {
         md.use(shiki, {

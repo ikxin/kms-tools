@@ -20,6 +20,7 @@
     "typescript": "^5.0.4",
     "unocss": "^0.52.5",
     "vite": "^4.3.9",
+    "vite-plugin-ssr": "^0.4.131",
     "vite-plugin-vue-markdown": "^0.22.6",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2",

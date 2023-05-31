@@ -59,6 +59,9 @@ importers:
       vite:
         specifier: ^4.3.9
         version: 4.3.9(@types/node@20.2.5)(less@4.1.3)
+      vite-plugin-ssr:
+        specifier: ^0.4.131
+        version: 0.4.131(vite@4.3.9)
       vite-plugin-vue-markdown:
         specifier: ^0.22.6
         version: 0.22.6(vite@4.3.9)
@@ -140,6 +143,24 @@ packages:
       '@babel/helper-string-parser': 7.21.5
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: true
+
+  /@brillout/import@0.2.3:
+    resolution: {integrity: sha512-1T8WlD75eeFSMrptGy8jiLHmfHgMmSjWvLOIUvHmSVZt+6k0eQqYUoK4KbmE4T9pVLIfxvZSOm2D68VEqKRHRw==}
+    dev: true
+
+  /@brillout/json-serializer@0.5.3:
+    resolution: {integrity: sha512-IxlOMD5gOM0WfFGdeR98jHKiC82Ad1tUnSjvLS5jnRkfMEKBI+YzHA32Umw8W3Ccp5N4fNEX229BW6RaRpxRWQ==}
+    dev: true
+
+  /@brillout/picocolors@1.0.4:
+    resolution: {integrity: sha512-rhZBVyrRCb53T9xIGoEjZQ6O4Um3XQWcQ1z2VL2eBQBtJYCsABUUNE/isqbnts3XD1sAkisDF2L3OjJeIgrznQ==}
+    dev: true
+
+  /@brillout/vite-plugin-import-build@0.2.16:
+    resolution: {integrity: sha512-3rbNIgOUIPf8JrV3lozG3lpIe+xnujUANpMaf9aPVGnZV5SVKOSrvLk83+2Y8/nhHgLYTBplNZTW3DTD6J29ag==}
+    dependencies:
+      '@brillout/import': 0.2.3
     dev: true
 
   /@esbuild/android-arm64@0.17.19:
@@ -1387,6 +1408,10 @@ packages:
       prr: 1.0.1
     dev: true
     optional: true
+
+  /es-module-lexer@0.10.5:
+    resolution: {integrity: sha512-+7IwY/kiGAacQfY+YBhKMvEmyAJnw5grTUgjG85Pe7vcUI/6b7pZjZG8nQ7+48YhzEAEqrEgD2dCz/JIK+AYvw==}
+    dev: true
 
   /esbuild@0.17.19:
     resolution: {integrity: sha512-XQ0jAPFkK/u3LcVRcvVHQcTIqD6E2H1fvZMA5dQPSOWb3suUbWbfbRf94pjc0bNzRYLfIrDRQXr7X+LHIm5oHw==}
@@ -2662,6 +2687,30 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+    dev: true
+
+  /vite-plugin-ssr@0.4.131(vite@4.3.9):
+    resolution: {integrity: sha512-M8ay5UuQUEMBHhg87BVhXGjPV+/xO3PZWzZ63S8J8rX4Xv+sQbnDswGYm/TJ+Ga/9NTgrFDAKqUfEb3pEpd+Aw==}
+    engines: {node: '>=12.19.0'}
+    hasBin: true
+    peerDependencies:
+      react-streaming: '>=0.3.5'
+      vite: '>=3.1.0'
+    peerDependenciesMeta:
+      react-streaming:
+        optional: true
+    dependencies:
+      '@brillout/import': 0.2.3
+      '@brillout/json-serializer': 0.5.3
+      '@brillout/picocolors': 1.0.4
+      '@brillout/vite-plugin-import-build': 0.2.16
+      acorn: 8.8.2
+      cac: 6.7.14
+      es-module-lexer: 0.10.5
+      esbuild: 0.17.19
+      fast-glob: 3.2.12
+      sirv: 2.0.3
+      vite: 4.3.9(@types/node@20.2.5)(less@4.1.3)
     dev: true
 
   /vite-plugin-vue-markdown@0.22.6(vite@4.3.9):
