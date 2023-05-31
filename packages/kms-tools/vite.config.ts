@@ -5,6 +5,9 @@ import shiki from 'markdown-it-shiki'
 import path from 'path'
 import UnoCSS from 'unocss/vite'
 import ssr from 'vite-plugin-ssr/plugin'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   build: {
@@ -23,6 +26,18 @@ export default defineConfig({
       },
     }),
     UnoCSS(),
+    AutoImport({
+      dts: './types/auto-imports.d.ts',
+      eslintrc: {
+        enabled: true,
+        filepath: './types/auto-imports.eslintrc.json',
+      },
+      resolvers: [ArcoResolver()],
+    }),
+    Components({
+      dts: './types/components.d.ts',
+      resolvers: [ArcoResolver()],
+    }),
   ],
   resolve: {
     alias: {
