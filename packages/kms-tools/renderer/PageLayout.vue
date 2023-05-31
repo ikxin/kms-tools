@@ -1,9 +1,8 @@
+<script setup lang="ts">
+import CustomHeader from '../components/custom-header.vue'
+</script>
+
 <template>
-  <div class="layout">
-    <div class="navigation">
-      <a class="navitem" href="/">Home</a>
-      <a class="navitem" href="/about">About</a>
-    </div>
-    <div class="content"><slot /></div>
-  </div>
+  <CustomHeader></CustomHeader>
+  <slot />
 </template>

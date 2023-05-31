@@ -1,5 +1,5 @@
 {
-  "scss.lint.unknownAtRules": "ignore",
   "css.lint.unknownAtRules": "ignore",
-  "unocss.root": "packages/kms-tools-nuxt"
+  "scss.lint.unknownAtRules": "ignore",
+  "unocss.root": "packages/kms-tools"
 }

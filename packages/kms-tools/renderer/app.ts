@@ -1,5 +1,7 @@
 import { createSSRApp, h } from 'vue'
 import PageLayout from './PageLayout.vue'
+import '@arco-design/web-vue/dist/arco.css'
+import 'virtual:uno.css'
 
 export { createApp }
 

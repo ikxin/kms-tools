@@ -36,7 +36,11 @@ export default defineConfig({
     }),
     Components({
       dts: './types/components.d.ts',
-      resolvers: [ArcoResolver()],
+      resolvers: [
+        ArcoResolver({
+          sideEffect: false,
+        }),
+      ],
     }),
   ],
   resolve: {
