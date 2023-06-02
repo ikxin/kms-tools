@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { navigate } from 'vite-plugin-ssr/client/router'
+
 const menuItems = [
   {
     key: 'index',
@@ -27,8 +29,8 @@ const menuItems = [
   },
 ]
 
-function redirectPage(url: string) {
-  window.location.href = url === 'index' ? '/' : url
+async function redirectPage(url: string) {
+  await navigate(url === 'index' ? '/' : '/' + url)
 }
 </script>
 
