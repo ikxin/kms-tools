@@ -28,12 +28,7 @@ export default defineConfig({
     UnoCSS(),
     AutoImport({
       dts: './types/auto-imports.d.ts',
-      eslintrc: {
-        enabled: true,
-        filepath: './types/auto-imports.eslintrc.json',
-      },
       resolvers: [ArcoResolver()],
-      imports: ['vue'],
     }),
     Components({
       dts: './types/components.d.ts',
