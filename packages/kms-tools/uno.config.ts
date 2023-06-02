@@ -1,14 +1,8 @@
 // uno.config.ts
-import { defineConfig, presetAttributify, presetUno } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
-  presets: [
-    presetAttributify({
-      /* preset options */
-    }),
-    presetUno(),
-    // ...custom presets
-  ],
+  presets: [presetAttributify(), presetUno(), presetIcons()],
   theme: {
     width: {
       container: '1080px',

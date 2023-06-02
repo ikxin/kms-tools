@@ -3,22 +3,27 @@ const menuItems = [
   {
     key: 'index',
     label: '首页',
+    icon: 'i-mdi:home',
   },
   {
     key: 'activation',
     label: '软件激活',
+    icon: 'i-mdi:microsoft-windows',
   },
   {
     key: 'software',
     label: '软件下载',
+    icon: 'i-mdi:folder-download',
   },
   {
     key: 'monitor',
     label: '服务监控',
+    icon: 'i-mdi:server',
   },
   {
     key: 'guide',
     label: '帮助中心',
+    icon: 'i-mdi:document',
   },
 ]
 
@@ -35,9 +40,11 @@ function redirectPage(url: string) {
         <AMenuItem
           v-for="item in menuItems"
           :key="item.key"
+          class="!inline-flex items-center gap-1"
           @click="redirectPage(item.key)"
         >
-          {{ item.label }}
+          <i :class="item.icon" />
+          <span>{{ item.label }}</span>
         </AMenuItem>
       </AMenu>
     </div>

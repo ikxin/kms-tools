@@ -33,6 +33,7 @@ export default defineConfig({
         filepath: './types/auto-imports.eslintrc.json',
       },
       resolvers: [ArcoResolver()],
+      imports: ['vue'],
     }),
     Components({
       dts: './types/components.d.ts',
