@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { navigate } from 'vite-plugin-ssr/client/router'
+import { useColorMode } from '@vueuse/core'
 
 const menuItems = [
   {
@@ -40,6 +41,27 @@ onMounted(function () {
   const pathName = location.pathname.replace(/\//g, '')
   selectedKeys.value = [pathName === '' ? 'index' : pathName]
 })
+
+const colorMode = useColorMode({
+  selector: 'body',
+  attribute: 'arco-theme',
+  emitAuto: true,
+})
+
+const colorModeIcon = ref('')
+
+const colorModeItem = [
+  { lable: '浅色模式', value: 'light', icon: 'i-ic:round-light-mode' },
+  { lable: '深色模式', value: 'dark', icon: 'i-ic:round-dark-mode' },
+  { lable: '跟随系统', value: 'auto', icon: 'i-ic:round-brightness-auto' },
+]
+
+function changeColorMode(val) {
+  colorMode.value = val
+  colorModeIcon.value = colorModeItem.find((item) => item.value === val)?.icon
+}
+
+onMounted(() => changeColorMode(localStorage.getItem('vueuse-color-scheme')))
 </script>
 
 <template>
@@ -61,6 +83,35 @@ onMounted(function () {
           <span>{{ item.label }}</span>
         </AMenuItem>
       </AMenu>
+      <ASpace>
+        <ADropdown>
+          <AButton size="small" type="secondary">
+            <template #icon><i :class="colorModeIcon" /></template>
+          </AButton>
+          <template #content>
+            <ADoption
+              v-for="item in colorModeItem"
+              :key="item.value"
+              @click="changeColorMode(item.value)"
+            >
+              <template #icon><i :class="item.icon" /></template>
+              <template #default>{{ item.lable }}</template>
+            </ADoption>
+          </template>
+        </ADropdown>
+        <AButton size="small" type="secondary">
+          <template #icon><i class="i-mdi:google-translate" /></template>
+        </AButton>
+        <AButton size="small" type="secondary">
+          <template #icon><i class="i-mdi:github-box" /></template>
+        </AButton>
+      </ASpace>
     </div>
   </ALayoutHeader>
 </template>
+
+<style scoped>
+span > i {
+  font-size: 1rem;
+}
+</style>
