@@ -8,6 +8,7 @@ import ssr from 'vite-plugin-ssr/plugin'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ArcoResolver } from 'unplugin-vue-components/resolvers'
+import Markdown from 'vite-plugin-md'
 
 export default defineConfig({
   build: {
@@ -18,6 +19,7 @@ export default defineConfig({
       include: [/\.vue$/, /\.md$/],
     }),
     ssr(),
+    Markdown(),
     markdown({
       markdownItSetup(md) {
         md.use(shiki, {
