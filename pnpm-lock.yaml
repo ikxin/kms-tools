@@ -32,6 +32,9 @@ importers:
       '@arco-design/web-vue':
         specifier: ^2.47.0
         version: 2.47.0(vue@3.3.4)
+      '@arco-themes/vue-ant-design':
+        specifier: ^0.0.1
+        version: registry.npmjs.org/@arco-themes/vue-ant-design@0.0.1(@arco-design/web-vue@2.47.0)
       '@icon-park/vue-next':
         specifier: ^1.4.2
         version: 1.4.2(vue@3.3.4)
@@ -2927,3 +2930,14 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  registry.npmjs.org/@arco-themes/vue-ant-design@0.0.1(@arco-design/web-vue@2.47.0):
+    resolution: {integrity: sha512-iLZYYnV7K7EbhIT19qugVY/DPQwj+4s/tr0IizyXc4kaaqBeOGQmL7qnCCTpHZRV2pjEa3XnMPPcR9HYnjLuKQ==, registry: https://registry.npmmirror.com/, tarball: https://registry.npmjs.org/@arco-themes/vue-ant-design/-/vue-ant-design-0.0.1.tgz}
+    id: registry.npmjs.org/@arco-themes/vue-ant-design/0.0.1
+    name: '@arco-themes/vue-ant-design'
+    version: 0.0.1
+    peerDependencies:
+      '@arco-design/web-vue': ^2.47.0
+    dependencies:
+      '@arco-design/web-vue': 2.47.0(vue@3.3.4)
+    dev: false

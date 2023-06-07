@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.47.0",
+    "@arco-themes/vue-ant-design": "^0.0.1",
     "@icon-park/vue-next": "^1.4.2",
     "@iconify-json/ic": "^1.1.13",
     "@iconify-json/mdi": "^1.1.52",

@@ -1,6 +1,6 @@
 import { createSSRApp, defineComponent, h, markRaw, reactive } from 'vue'
 import PageLayout from './PageLayout.vue'
-import '@arco-design/web-vue/dist/arco.css'
+import '@arco-themes/vue-ant-design/css/arco.css'
 import 'virtual:uno.css'
 
 export { createApp }
