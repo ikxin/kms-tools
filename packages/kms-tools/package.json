@@ -17,6 +17,7 @@
     "@iconify-json/ic": "^1.1.13",
     "@iconify-json/mdi": "^1.1.52",
     "@vueuse/core": "^10.1.2",
+    "dayjs": "^1.11.8",
     "less": "^4.1.3",
     "markdown-it-shiki": "^0.9.0",
     "unocss": "^0.53.0",
