@@ -1,10 +1,8 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import markdown from 'vite-plugin-vue-markdown'
-import shiki from 'markdown-it-shiki'
-import path from 'path'
+import Vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
-import ssr from 'vite-plugin-ssr/plugin'
+import SSR from 'vite-plugin-ssr/plugin'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ArcoResolver } from 'unplugin-vue-components/resolvers'
@@ -15,18 +13,11 @@ export default defineConfig({
     chunkSizeWarningLimit: 2048,
   },
   plugins: [
-    vue({
+    Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    ssr(),
+    SSR(),
     Markdown(),
-    markdown({
-      markdownItSetup(md) {
-        md.use(shiki, {
-          theme: 'nord',
-        })
-      },
-    }),
     UnoCSS(),
     AutoImport({
       dts: './types/auto-imports.d.ts',
@@ -43,7 +34,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': resolve(__dirname, './src'),
     },
   },
 })

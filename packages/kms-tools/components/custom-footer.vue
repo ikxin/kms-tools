@@ -11,7 +11,7 @@ const currentYear = ref(dayjs().year())
       class="mx-auto flex h-14 w-256 max-w-full whitespace-nowrap"
       flex="~ items-center justify-center"
     >
-      <ASpace>
+      <ASpace class="text-[--color-text-2]">
         <div>
           Copyright &copy; {{ currentYear }}
           <ALink target="_blank" href="https://github.com/ikxin/kms-tools">

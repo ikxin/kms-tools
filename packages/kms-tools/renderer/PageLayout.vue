@@ -5,7 +5,7 @@ import CustomHeader from '../components/custom-header.vue'
 
 <template>
   <CustomHeader></CustomHeader>
-  <ALayout class="grow">
+  <ALayout class="grow mx-auto w-256 max-w-full">
     <slot />
   </ALayout>
   <CustomFooter></CustomFooter>
@@ -13,6 +13,6 @@ import CustomHeader from '../components/custom-header.vue'
 
 <style>
 #app {
-  @apply flex flex-col gap-4 h-screen max-h-screen overflow-hidden bg-[--color-neutral-2];
+  @apply flex flex-col gap-4 min-h-screen bg-[--color-neutral-2];
 }
 </style>
