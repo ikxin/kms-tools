@@ -8,9 +8,6 @@ import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import Markdown from 'vite-plugin-md'
 
 export default defineConfig({
-  build: {
-    chunkSizeWarningLimit: 2048,
-  },
   plugins: [
     Vue({
       include: [/\.vue$/, /\.md$/],
@@ -19,16 +16,12 @@ export default defineConfig({
     UnoCSS(),
     AutoImport({
       dts: './src/types/auto-imports.d.ts',
-      imports: ['vue'],
+      imports: ['vue', 'vue-router', '@vueuse/core'],
       resolvers: [ArcoResolver()],
     }),
     Components({
       dts: './src/types/components.d.ts',
-      resolvers: [
-        ArcoResolver({
-          sideEffect: false,
-        }),
-      ],
+      resolvers: [ArcoResolver()],
     }),
   ],
   resolve: {

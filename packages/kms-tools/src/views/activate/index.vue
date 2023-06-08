@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { navigate } from 'vite-plugin-ssr/client/router'
-import { ref, onMounted } from 'vue'
+const router = useRouter()
 
-const selectedKeys = ref([''])
+const selectedKeys = ref([])
 
 onMounted(function () {
   const pathName = location.pathname.match(/\/(\w+)\/?$/)
@@ -24,7 +23,7 @@ onMounted(function () {
         </template>
         <template #icon><i class="i-mdi:server" /></template>
         <template #title>系统</template>
-        <AMenuItem key="windows" @click="navigate('/activate/windows')">
+        <AMenuItem key="windows" @click="router.push({ name: 'windows' })">
           <template #icon><i class="i-mdi:microsoft-windows" /></template>
           <span>Windows</span>
         </AMenuItem>
@@ -35,7 +34,7 @@ onMounted(function () {
         </template>
         <template #icon><i class="i-mdi:application-brackets" /></template>
         <template #title>软件</template>
-        <AMenuItem key="office" @click="navigate('/activate/office')">
+        <AMenuItem key="office" @click="router.push({ name: 'office' })">
           <template #icon><i class="i-mdi:microsoft-office" /></template>
           <span>Office</span>
         </AMenuItem>

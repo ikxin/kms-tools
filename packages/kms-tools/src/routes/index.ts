@@ -9,6 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     name: 'activate',
     path: '/activate',
+    redirect: '/activate/windows',
     component: () => import('@/views/activate/index.vue'),
     children: [
       {

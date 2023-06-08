@@ -1,7 +1,8 @@
-import App from './App.vue'
+import App from '@/App.vue'
 import { router } from '@/routes/index'
-import '@arco-design/web-vue/dist/arco.css'
+import '@arco-themes/vue-ant-design/css/arco.css'
 import 'virtual:uno.css'
+import '@/styles/style.css'
 
 const app = createApp(App)
 

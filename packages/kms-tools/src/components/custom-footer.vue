@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import dayjs from 'dayjs'
+import * as dayjs from 'dayjs'
 
 const currentYear = ref(dayjs().year())
 </script>
@@ -11,7 +10,7 @@ const currentYear = ref(dayjs().year())
       class="mx-auto flex h-14 w-256 max-w-full whitespace-nowrap"
       flex="~ items-center justify-center"
     >
-      <ASpace class="text-[--color-text-2]">
+      <ASpace>
         <div>
           Copyright &copy; {{ currentYear }}
           <ALink target="_blank" href="https://github.com/ikxin/kms-tools">

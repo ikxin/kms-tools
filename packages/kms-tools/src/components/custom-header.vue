@@ -1,45 +1,46 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { navigate } from 'vite-plugin-ssr/client/router'
-import { useColorMode } from '@vueuse/core'
-
 const menuItems = [
   {
-    key: 'index',
+    key: 'home',
     label: '首页',
     icon: 'i-mdi:home',
   },
   {
     key: 'activate',
-    label: '软件激活',
+    label: '激活',
     icon: 'i-mdi:microsoft-windows',
   },
   {
-    key: 'software',
-    label: '软件下载',
+    key: 'check',
+    label: '检测',
+    icon: 'i-mdi:check-network',
+  },
+  {
+    key: 'download',
+    label: '下载',
     icon: 'i-mdi:folder-download',
   },
   {
-    key: 'monitor',
-    label: '服务监控',
-    icon: 'i-mdi:server',
+    key: 'guide',
+    label: '指南',
+    icon: 'i-mdi:document',
   },
   {
-    key: 'guide',
-    label: '帮助中心',
-    icon: 'i-mdi:document',
+    key: 'monitor',
+    label: '监控',
+    icon: 'i-mdi:monitor-dashboard',
   },
 ]
 
-async function redirectPage(url: string) {
-  await navigate(url === 'index' ? '/' : '/' + url)
-}
+const router = useRouter()
+
+const redirectPage = (name: string) => router.push({ name })
 
 const selectedKeys = ref([''])
 
 onMounted(function () {
   const pathName = location.pathname.match(/\b\w+\b/g)
-  selectedKeys.value = [!pathName?.[0] ? 'index' : pathName?.[0]]
+  selectedKeys.value = [!pathName?.[0] ? 'home' : pathName?.[0]]
 })
 
 const colorMode = useColorMode({
@@ -112,9 +113,3 @@ onMounted(() => changeColorMode(localStorage.getItem('vueuse-color-scheme')))
     </div>
   </ALayoutHeader>
 </template>
-
-<style scoped>
-span > i {
-  font-size: 1rem;
-}
-</style>
