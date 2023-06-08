@@ -10,7 +10,7 @@ const menuItems = [
     icon: 'i-mdi:home',
   },
   {
-    key: 'activation',
+    key: 'activate',
     label: '软件激活',
     icon: 'i-mdi:microsoft-windows',
   },
@@ -38,8 +38,8 @@ async function redirectPage(url: string) {
 const selectedKeys = ref([''])
 
 onMounted(function () {
-  const pathName = location.pathname.replace(/\//g, '')
-  selectedKeys.value = [pathName === '' ? 'index' : pathName]
+  const pathName = location.pathname.match(/\b\w+\b/g)
+  selectedKeys.value = [!pathName?.[0] ? 'index' : pathName?.[0]]
 })
 
 const colorMode = useColorMode({

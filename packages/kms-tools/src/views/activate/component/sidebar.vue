@@ -11,12 +11,12 @@ onMounted(function () {
 </script>
 
 <template>
-  <ALayoutSider>
+  <ALayoutSider class="[&>.arco-layout-sider-children]:rounded rounded">
     <AMenu
       v-model:selected-keys="selectedKeys"
       :default-open-keys="['system', 'software']"
       :default-selected-keys="['windows']"
-      class="[&_.arco-menu-icon>i]:inline-block select-none h-full"
+      class="[&_.arco-menu-icon>i]:inline-block select-none h-full [&>.arco-menu-inner]:p-2"
     >
       <ASubMenu key="system">
         <template #icon><i class="i-mdi:server" /></template>
