@@ -19,6 +19,9 @@ onMounted(function () {
       class="[&_.arco-menu-icon>i]:inline-block select-none h-full [&>.arco-menu-inner]:p-2"
     >
       <ASubMenu key="system">
+        <template #expand-icon-down>
+          <i class="i-mdi:chevron-down inline-block" />
+        </template>
         <template #icon><i class="i-mdi:server" /></template>
         <template #title>系统</template>
         <AMenuItem key="windows" @click="navigate('/activate/windows')">
@@ -27,6 +30,9 @@ onMounted(function () {
         </AMenuItem>
       </ASubMenu>
       <ASubMenu key="software">
+        <template #expand-icon-down>
+          <i class="i-mdi:chevron-down inline-block" />
+        </template>
         <template #icon><i class="i-mdi:application-brackets" /></template>
         <template #title>软件</template>
         <AMenuItem key="office" @click="navigate('/activate/office')">

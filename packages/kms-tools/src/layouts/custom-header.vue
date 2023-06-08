@@ -67,12 +67,15 @@ onMounted(() => changeColorMode(localStorage.getItem('vueuse-color-scheme')))
 <template>
   <ALayoutHeader class="select-none bg-[--color-bg-2] px-2 shadow-md">
     <div class="mx-auto flex w-256 max-w-full items-center justify-between">
-      <img h-12 src="/images/logo.svg" alt="KMS Tools" />
+      <img h-12 src="/images/logo.svg" />
       <AMenu
         v-model:selected-keys="selectedKeys"
         mode="horizontal"
         class="grow [&_.arco-menu-overflow-wrap]:text-end [&_.arco-menu-selected-label]:left-4"
       >
+        <template #expand-icon-down>
+          <i class="i-mdi:chevron-down inline-block" />
+        </template>
         <AMenuItem
           v-for="item in menuItems"
           :key="item.key"

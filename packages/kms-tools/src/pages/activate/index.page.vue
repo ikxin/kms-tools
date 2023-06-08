@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { navigate } from 'vite-plugin-ssr/client/router'
+import { onMounted } from 'vue'
 
-navigate('/activate/windows')
+onMounted(() => navigate('/activate/windows'))
 </script>
 
 <template>

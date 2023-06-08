@@ -16,7 +16,7 @@ export default defineConfig({
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    SSR(),
+    SSR({ prerender: true }),
     Markdown(),
     UnoCSS(),
     AutoImport({
