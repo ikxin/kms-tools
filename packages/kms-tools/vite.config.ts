@@ -20,11 +20,15 @@ export default defineConfig({
     Markdown(),
     UnoCSS(),
     AutoImport({
-      dts: './types/auto-imports.d.ts',
+      dts: './src/types/auto-imports.d.ts',
+      eslintrc: {
+        enabled: true,
+        filepath: './src/types/auto-imports.eslintrc.json',
+      },
       resolvers: [ArcoResolver()],
     }),
     Components({
-      dts: './types/components.d.ts',
+      dts: './src/types/components.d.ts',
       resolvers: [
         ArcoResolver({
           sideEffect: false,
