@@ -1,14 +1,9 @@
-<script setup lang="ts">
-import CustomFooter from '@/layouts/custom-footer.vue'
-import CustomHeader from '@/layouts/custom-header.vue'
-</script>
-
 <template>
-  <CustomHeader></CustomHeader>
+  <CustomHeader />
   <ALayout class="grow mx-auto w-256 max-w-full gap-4">
-    <slot />
+    <RouterView />
   </ALayout>
-  <CustomFooter></CustomFooter>
+  <CustomFooter />
 </template>
 
 <style>

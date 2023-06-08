@@ -43,6 +43,6 @@ onMounted(function () {
     </AMenu>
   </ALayoutSider>
   <ALayoutContent>
-    <slot />
+    <RouterView />
   </ALayoutContent>
 </template>

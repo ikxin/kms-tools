@@ -1,3 +1,3 @@
 <template>
-  <div></div>
+  <div>guide</div>
 </template>

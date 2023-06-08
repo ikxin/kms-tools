@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Sidebar from './component/sidebar.vue'
 import windowsData from './data/windows'
 import {
   FieldRule,
@@ -91,54 +90,49 @@ watch(
 </script>
 
 <template>
-  <Sidebar>
-    <div class="flex flex-col gap-4">
-      <ACard>
-        <AForm
-          :model="formData"
-          :rules="formRules"
-          @submit="handleSubmit"
-          auto-label-width
-        >
-          <AFormItem label="系统类型" field="checkedType">
-            <ASelect
-              v-model="formData.checkedType"
-              placeholder="请选择系统类型"
-            >
-              <template v-for="item in windowsData" :key="item.version">
-                <AOption>{{ item.version }}</AOption>
-              </template>
-            </ASelect>
-          </AFormItem>
-          <AFormItem label="KMS 服务器" field="kmsUrl">
-            <AInput v-model="formData.kmsUrl" />
-          </AFormItem>
-          <AFormItem label="激活密钥" field="secretKey">
-            <AInput v-model="formData.secretKey" disabled />
-          </AFormItem>
-          <AFormItem>
-            <ASpace size="small">
-              <AButton html-type="submit" type="primary">创建脚本</AButton>
-              <template v-if="activationScriptVisible">
-                <AButton @click="downloadScript">下载脚本</AButton>
-                <AButton @click="copyScript">复制脚本</AButton>
-              </template>
-            </ASpace>
-          </AFormItem>
-          <AFormItem v-show="activationScriptVisible">
-            <ATextarea v-model="activationScript" :auto-size="true" />
-          </AFormItem>
-        </AForm>
-      </ACard>
-      <ACard>
-        <ATable
-          :data="tableData"
-          :columns="tableColumns"
-          :row-key="tableRowKey"
-          :row-selection="tableRowSelection"
-          @selection-change="tableSelectionChange"
-        />
-      </ACard>
-    </div>
-  </Sidebar>
+  <div class="flex flex-col gap-4">
+    <ACard>
+      <AForm
+        :model="formData"
+        :rules="formRules"
+        @submit="handleSubmit"
+        auto-label-width
+      >
+        <AFormItem label="系统类型" field="checkedType">
+          <ASelect v-model="formData.checkedType" placeholder="请选择系统类型">
+            <template v-for="item in windowsData" :key="item.version">
+              <AOption>{{ item.version }}</AOption>
+            </template>
+          </ASelect>
+        </AFormItem>
+        <AFormItem label="KMS 服务器" field="kmsUrl">
+          <AInput v-model="formData.kmsUrl" />
+        </AFormItem>
+        <AFormItem label="激活密钥" field="secretKey">
+          <AInput v-model="formData.secretKey" disabled />
+        </AFormItem>
+        <AFormItem>
+          <ASpace size="small">
+            <AButton html-type="submit" type="primary">创建脚本</AButton>
+            <template v-if="activationScriptVisible">
+              <AButton @click="downloadScript">下载脚本</AButton>
+              <AButton @click="copyScript">复制脚本</AButton>
+            </template>
+          </ASpace>
+        </AFormItem>
+        <AFormItem v-show="activationScriptVisible">
+          <ATextarea v-model="activationScript" :auto-size="true" />
+        </AFormItem>
+      </AForm>
+    </ACard>
+    <ACard>
+      <ATable
+        :data="tableData"
+        :columns="tableColumns"
+        :row-key="tableRowKey"
+        :row-selection="tableRowSelection"
+        @selection-change="tableSelectionChange"
+      />
+    </ACard>
+  </div>
 </template>

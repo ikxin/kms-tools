@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import README from '../../README.md'
+import README from '../../../README.md'
 </script>
 
 <template>

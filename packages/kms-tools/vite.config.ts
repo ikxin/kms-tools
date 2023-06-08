@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import UnoCSS from 'unocss/vite'
-import SSR from 'vite-plugin-ssr/plugin'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ArcoResolver } from 'unplugin-vue-components/resolvers'
@@ -16,15 +15,11 @@ export default defineConfig({
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    SSR({ prerender: true }),
     Markdown(),
     UnoCSS(),
     AutoImport({
       dts: './src/types/auto-imports.d.ts',
-      eslintrc: {
-        enabled: true,
-        filepath: './src/types/auto-imports.eslintrc.json',
-      },
+      imports: ['vue'],
       resolvers: [ArcoResolver()],
     }),
     Components({
