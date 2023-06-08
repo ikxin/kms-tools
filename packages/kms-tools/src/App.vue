@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import CommonHeader from '@/layouts/CommonHeader.vue'
-import CommonFooter from '@/layouts/CommonFooter.vue'
+import CustomFooter from '@/layouts/custom-footer.vue'
+import CustomHeader from '@/layouts/custom-header.vue'
 </script>
 
 <template>
-  <div class="flex h-full min-h-screen flex-col gap-4 bg-[#f0f2f5]">
-    <CommonHeader></CommonHeader>
-    <a-layout-content class="mx-auto w-container max-w-full grow">
-      <RouterView></RouterView>
-    </a-layout-content>
-    <CommonFooter></CommonFooter>
-  </div>
+  <CustomHeader></CustomHeader>
+  <ALayout class="grow mx-auto w-256 max-w-full">
+    <slot />
+  </ALayout>
+  <CustomFooter></CustomFooter>
 </template>
+
+<style>
+#app {
+  @apply flex flex-col gap-4 min-h-screen bg-[--color-neutral-2];
+}
+</style>

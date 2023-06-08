@@ -1,6 +1,6 @@
 export { render }
 
-import { createApp } from './app'
+import { createApp } from '@/main'
 
 export const clientRouting = true
 export const prefetchStaticAssets = 'viewport'
