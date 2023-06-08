@@ -5,7 +5,7 @@ import CustomHeader from '@/layouts/custom-header.vue'
 
 <template>
   <CustomHeader></CustomHeader>
-  <ALayout class="grow mx-auto w-256 max-w-full">
+  <ALayout class="grow mx-auto w-256 max-w-full gap-4">
     <slot />
   </ALayout>
   <CustomFooter></CustomFooter>
