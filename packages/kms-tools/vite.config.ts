@@ -7,6 +7,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import Markdown from 'vite-plugin-vue-markdown'
 import Shiki from 'markdown-it-shiki'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig({
   plugins: [
@@ -21,7 +22,7 @@ export default defineConfig({
     UnoCSS(),
     AutoImport({
       dts: './src/typings/auto-imports.d.ts',
-      imports: ['vue', 'vue-router', '@vueuse/core'],
+      imports: ['vue', 'vue-router', '@vueuse/core', 'vue-i18n'],
       resolvers: [ArcoResolver()],
     }),
     Components({
@@ -31,6 +32,9 @@ export default defineConfig({
           sideEffect: false,
         }),
       ],
+    }),
+    VueI18nPlugin({
+      include: [resolve(__dirname, './src/locales/**')],
     }),
   ],
   resolve: {

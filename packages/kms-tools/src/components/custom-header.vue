@@ -1,33 +1,35 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const menuItems = [
   {
     key: 'home',
-    label: '首页',
+    label: t('main.nav.home'),
     icon: 'i-mdi:home',
   },
   {
     key: 'activate',
-    label: '激活',
+    label: t('main.nav.activate'),
     icon: 'i-mdi:microsoft-windows',
   },
   {
     key: 'check',
-    label: '检测',
+    label: t('main.nav.check'),
     icon: 'i-mdi:check-network',
   },
   {
     key: 'download',
-    label: '下载',
+    label: t('main.nav.download'),
     icon: 'i-mdi:folder-download',
   },
   {
     key: 'guide',
-    label: '指南',
+    label: t('main.nav.guide'),
     icon: 'i-mdi:document',
   },
   {
     key: 'monitor',
-    label: '监控',
+    label: t('main.nav.monitor'),
     icon: 'i-mdi:monitor-dashboard',
   },
 ]
@@ -52,9 +54,21 @@ const colorMode = useColorMode({
 const colorModeIcon = ref('')
 
 const colorModeItem = [
-  { lable: '浅色模式', value: 'light', icon: 'i-ic:round-light-mode' },
-  { lable: '深色模式', value: 'dark', icon: 'i-ic:round-dark-mode' },
-  { lable: '跟随系统', value: 'auto', icon: 'i-ic:round-brightness-auto' },
+  {
+    lable: t('main.colorMode.auto'),
+    value: 'auto',
+    icon: 'i-ic:round-brightness-auto',
+  },
+  {
+    lable: t('main.colorMode.dark'),
+    value: 'dark',
+    icon: 'i-ic:round-dark-mode',
+  },
+  {
+    lable: t('main.colorMode.light'),
+    value: 'light',
+    icon: 'i-ic:round-light-mode',
+  },
 ]
 
 function changeColorMode(val) {

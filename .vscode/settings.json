@@ -1,5 +1,8 @@
 {
   "css.lint.unknownAtRules": "ignore",
+  "i18n-ally.enabledFrameworks": ["vue"],
+  "i18n-ally.localesPaths": ["packages/kms-tools/src/locales"],
   "scss.lint.unknownAtRules": "ignore",
-  "unocss.root": "packages/kms-tools"
+  "unocss.root": "packages/kms-tools",
+  "i18n-ally.keystyle": "nested"
 }

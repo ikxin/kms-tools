@@ -2,6 +2,8 @@
 import * as dayjs from 'dayjs'
 
 const currentYear = ref(dayjs().year())
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -19,7 +21,9 @@ const currentYear = ref(dayjs().year())
         </div>
         <div>
           Code with by
-          <ALink target="_blank" href="https://www.ikxin.com"> 一纸忘忧 </ALink>
+          <ALink target="_blank" href="https://www.ikxin.com">
+            {{ t('main.author.name') }}
+          </ALink>
         </div>
       </ASpace>
     </div>

@@ -1,0 +1,14 @@
+main:
+  author:
+    name: 'ikxin'
+  nav:
+    activate: Activate
+    check: Check
+    download: Download
+    guide: Guide
+    home: Home
+    monitor: Monitor
+  colorMode:
+    auto: Auto Mode
+    dark: Dark Mode
+    light: Light Mode
