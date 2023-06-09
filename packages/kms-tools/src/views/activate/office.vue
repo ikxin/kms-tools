@@ -6,7 +6,7 @@ import {
   TableRowSelection,
 } from '@arco-design/web-vue'
 import { computed, onMounted, reactive, Ref, ref, watch } from 'vue'
-import { useScript } from '@/hooks/useScript'
+import { useScript } from '@/composables/useScript'
 
 const formData = reactive({
   officeVersion: '',
