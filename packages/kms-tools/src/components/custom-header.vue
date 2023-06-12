@@ -83,10 +83,10 @@ const themeIcon = computed(() => {
 const themeChange = val => (theme.value = val)
 
 /** 语言选项 */
-const languagesItems = [
-  { lable: t('app.languages.en-us'), value: 'en-us' },
-  { lable: t('app.languages.zh-cn'), value: 'zh-cn' }
-]
+const languagesItems = computed(() => [
+  { lable: t('app.languages.zh-cn'), value: 'zh-cn' },
+  { lable: t('app.languages.en-us'), value: 'en-us' }
+])
 
 /** 切换语言 */
 const languagesChange = val => (locale.value = val)

@@ -9,9 +9,6 @@ import '@/styles/style.css'
 
 const app = createApp(App)
 
-const i18n = createI18n({
-  locale: 'en-us',
-  messages
-})
+const i18n = createI18n({ locale: 'zh-cn', messages })
 
 app.use(router).use(i18n).mount('#app')
