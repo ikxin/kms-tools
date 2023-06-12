@@ -1,82 +1,95 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
-const menuItems = [
+/** 导航选项 */
+const navItems = computed(() => [
   {
-    key: 'home',
-    label: t('main.nav.home'),
+    name: 'home',
+    label: t('app.nav.home'),
     icon: 'i-mdi:home'
   },
   {
-    key: 'activate',
-    label: t('main.nav.activate'),
+    name: 'activate',
+    label: t('app.nav.activate'),
     icon: 'i-mdi:microsoft-windows'
   },
   {
-    key: 'check',
-    label: t('main.nav.check'),
+    name: 'check',
+    label: t('app.nav.check'),
     icon: 'i-mdi:check-network'
   },
   {
-    key: 'download',
-    label: t('main.nav.download'),
+    name: 'download',
+    label: t('app.nav.download'),
     icon: 'i-mdi:folder-download'
   },
   {
-    key: 'guide',
-    label: t('main.nav.guide'),
+    name: 'guide',
+    label: t('app.nav.guide'),
     icon: 'i-mdi:document'
   },
   {
-    key: 'monitor',
-    label: t('main.nav.monitor'),
+    name: 'monitor',
+    label: t('app.nav.monitor'),
     icon: 'i-mdi:monitor-dashboard'
   }
-]
+])
 
+/** 路由 */
 const router = useRouter()
 
+/** 跳转页面 */
 const redirectPage = (name: string) => router.push({ name })
 
-const selectedKeys = ref([''])
+/** 路径解析 */
+const pathName = location.pathname.match(/\b\w+\b/g)
 
-onMounted(function () {
-  const pathName = location.pathname.match(/\b\w+\b/g)
-  selectedKeys.value = [!pathName?.[0] ? 'home' : pathName?.[0]]
-})
+/** 导航选中项 */
+const navSelected = ref([!pathName?.[0] ? 'home' : pathName?.[0]])
 
-const colorMode = useColorMode({
-  selector: 'body',
+/** 主题 */
+const theme = useColorMode({
   attribute: 'arco-theme',
-  emitAuto: true
+  emitAuto: true,
+  selector: 'body',
+  storageKey: 'arco-theme'
 })
 
-const colorModeIcon = ref('')
-
-const colorModeItem = [
+/** 主题选项 */
+const themeItems = computed(() => [
   {
-    lable: t('main.colorMode.auto'),
+    lable: t('app.theme.auto'),
     value: 'auto',
     icon: 'i-ic:round-brightness-auto'
   },
   {
-    lable: t('main.colorMode.dark'),
+    lable: t('app.theme.dark'),
     value: 'dark',
     icon: 'i-ic:round-dark-mode'
   },
   {
-    lable: t('main.colorMode.light'),
+    lable: t('app.theme.light'),
     value: 'light',
     icon: 'i-ic:round-light-mode'
   }
+])
+
+/** 主题图标 */
+const themeIcon = computed(() => {
+  return themeItems.value.find(item => item.value === theme.value)?.icon
+})
+
+/** 切换主题 */
+const themeChange = val => (theme.value = val)
+
+/** 语言选项 */
+const languagesItems = [
+  { lable: t('app.languages.en-us'), value: 'en-us' },
+  { lable: t('app.languages.zh-cn'), value: 'zh-cn' }
 ]
 
-function changeColorMode(val) {
-  colorMode.value = val
-  colorModeIcon.value = colorModeItem.find(item => item.value === val)?.icon
-}
-
-onMounted(() => changeColorMode(localStorage.getItem('vueuse-color-scheme')))
+/** 切换语言 */
+const languagesChange = val => (locale.value = val)
 </script>
 
 <template>
@@ -84,7 +97,7 @@ onMounted(() => changeColorMode(localStorage.getItem('vueuse-color-scheme')))
     <div class="mx-auto flex w-256 max-w-full items-center justify-between">
       <img h-12 src="/images/logo.svg" />
       <AMenu
-        v-model:selected-keys="selectedKeys"
+        v-model:selected-keys="navSelected"
         mode="horizontal"
         class="grow [&_.arco-menu-overflow-wrap]:text-end [&_.arco-menu-selected-label]:left-4"
       >
@@ -92,10 +105,10 @@ onMounted(() => changeColorMode(localStorage.getItem('vueuse-color-scheme')))
           <i class="i-mdi:chevron-down inline-block" />
         </template>
         <AMenuItem
-          v-for="item in menuItems"
-          :key="item.key"
+          v-for="item in navItems"
+          :key="item.name"
           class="!inline-flex items-center gap-1"
-          @click="redirectPage(item.key)"
+          @click="redirectPage(item.name)"
         >
           <i :class="item.icon" />
           <span>{{ item.label }}</span>
@@ -104,22 +117,33 @@ onMounted(() => changeColorMode(localStorage.getItem('vueuse-color-scheme')))
       <ASpace>
         <ADropdown>
           <AButton size="small" type="secondary">
-            <template #icon><i :class="colorModeIcon" /></template>
+            <template #icon><i :class="themeIcon" /></template>
           </AButton>
           <template #content>
             <ADoption
-              v-for="item in colorModeItem"
+              v-for="item in themeItems"
               :key="item.value"
-              @click="changeColorMode(item.value)"
+              @click="themeChange(item.value)"
             >
               <template #icon><i :class="item.icon" /></template>
               <template #default>{{ item.lable }}</template>
             </ADoption>
           </template>
         </ADropdown>
-        <AButton size="small" type="secondary">
-          <template #icon><i class="i-mdi:google-translate" /></template>
-        </AButton>
+        <ADropdown>
+          <AButton size="small" type="secondary">
+            <template #icon><i class="i-mdi:google-translate" /></template>
+          </AButton>
+          <template #content>
+            <ADoption
+              v-for="item in languagesItems"
+              :key="item.value"
+              @click="languagesChange(item.value)"
+            >
+              <template #default>{{ item.lable }}</template>
+            </ADoption>
+          </template>
+        </ADropdown>
         <AButton size="small" type="secondary">
           <template #icon><i class="i-mdi:github-box" /></template>
         </AButton>

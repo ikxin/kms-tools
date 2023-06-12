@@ -1,0 +1,24 @@
+{
+  "app": {
+    "author": {
+      "name": "一纸忘忧"
+    },
+    "nav": {
+      "activate": "激活",
+      "check": "检测",
+      "download": "下载",
+      "guide": "指南",
+      "home": "首页",
+      "monitor": "监控"
+    },
+    "theme": {
+      "auto": "自动模式",
+      "dark": "深色模式",
+      "light": "浅色模式"
+    },
+    "languages": {
+      "en-us": "英语",
+      "zh-cn": "简体中文"
+    }
+  }
+}
