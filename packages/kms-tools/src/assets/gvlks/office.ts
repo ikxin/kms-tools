@@ -13,8 +13,8 @@ const office2021ltsc = {
     ['TY7XF-NFRBR-KJ44C-G83KF-GX27K', 'PowerPoint LTSC 2021'],
     ['2MW9D-N4BXM-9VBPG-Q7W6M-KFBGQ', 'Publisher LTSC 2021'],
     ['HWCXN-K3WBT-WJBKY-R8BD9-XK29P', 'Skype for Business LTSC 2021'],
-    ['TN8H9-M34D3-Y64V9-TR72V-X79KV', 'Word LTSC 2021'],
-  ],
+    ['TN8H9-M34D3-Y64V9-TR72V-X79KV', 'Word LTSC 2021']
+  ]
 }
 
 const office2019 = {
@@ -32,8 +32,8 @@ const office2019 = {
     ['RRNCX-C64HY-W2MM7-MCH9G-TJHMQ', 'PowerPoint 2019'],
     ['G2KWX-3NW6P-PY93R-JXK2T-C9Y9V', 'Publisher 2019'],
     ['NCJ33-JHBBY-HTK98-MYCV8-HMKHJ', 'Skype for Business 2019'],
-    ['PBX3G-NWMT6-Q7XBW-PYJGG-WXD33', 'Word 2019'],
-  ],
+    ['PBX3G-NWMT6-Q7XBW-PYJGG-WXD33', 'Word 2019']
+  ]
 }
 
 const office2016 = {
@@ -52,12 +52,12 @@ const office2016 = {
     ['J7MQP-HNJ4Y-WJ7YM-PFYGF-BY6C6', 'PowerPoint 2016'],
     ['F47MM-N3XJP-TQXJ9-BP99D-8K837', 'Publisher 2016'],
     ['869NQ-FJ69K-466HW-QYCP2-DDBV6', 'Skype for Business 2016'],
-    ['WXY84-JN2Q9-RBCCQ-3Q3J3-3PFJ6', 'Word 2016'],
-  ],
+    ['WXY84-JN2Q9-RBCCQ-3Q3J3-3PFJ6', 'Word 2016']
+  ]
 }
 
 export default {
   office2021ltsc,
   office2019,
-  office2016,
+  office2016
 }

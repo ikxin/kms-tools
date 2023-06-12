@@ -19,13 +19,13 @@ export function useScript() {
       .then(() => {
         Message.success('复制成功')
       })
-      .catch((error) => {
+      .catch(error => {
         Message.error(error)
       })
   }
 
   return {
     useScriptDownload,
-    useScriptCopy,
+    useScriptCopy
   }
 }

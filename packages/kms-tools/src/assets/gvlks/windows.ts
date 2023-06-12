@@ -12,8 +12,8 @@ const windows11 = {
     ['NPPR9-FWDCX-D2C8J-H872K-2YT43', 'Windows 11 Enterprise'],
     ['DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4', 'Windows 11 Enterprise N'],
     ['YYVX9-NTFWV-6MDM3-9PT4T-4M68B', 'Windows 11 Enterprise G'],
-    ['44RPN-FTY23-9VTTB-MP9BX-T84FV', 'Windows 11 Enterprise G N'],
-  ],
+    ['44RPN-FTY23-9VTTB-MP9BX-T84FV', 'Windows 11 Enterprise G N']
+  ]
 }
 
 const windows10 = {
@@ -30,40 +30,40 @@ const windows10 = {
     ['NPPR9-FWDCX-D2C8J-H872K-2YT43', 'Windows 10 Enterprise'],
     ['DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4', 'Windows 10 Enterprise N'],
     ['YYVX9-NTFWV-6MDM3-9PT4T-4M68B', 'Windows 10 Enterprise G'],
-    ['44RPN-FTY23-9VTTB-MP9BX-T84FV', 'Windows 10 Enterprise G N'],
-  ],
+    ['44RPN-FTY23-9VTTB-MP9BX-T84FV', 'Windows 10 Enterprise G N']
+  ]
 }
 
 const windows10ltsc2021 = {
   version: 'Windows 10 LTSC 2021',
   edition: [
     ['M7XTQ-FN8P6-TTKYV-9D4CC-J462D', 'Windows 10 Enterprise LTSC 2021'],
-    ['92NFX-8DJQP-P6BBQ-THF9C-7CG2H', 'Windows 10 Enterprise N LTSC 2021'],
-  ],
+    ['92NFX-8DJQP-P6BBQ-THF9C-7CG2H', 'Windows 10 Enterprise N LTSC 2021']
+  ]
 }
 
 const windows10ltsc2019 = {
   version: 'Windows 10 LTSC 2019',
   edition: [
     ['M7XTQ-FN8P6-TTKYV-9D4CC-J462D', 'Windows 10 Enterprise LTSC 2019'],
-    ['92NFX-8DJQP-P6BBQ-THF9C-7CG2H', 'Windows 10 Enterprise N LTSC 2019'],
-  ],
+    ['92NFX-8DJQP-P6BBQ-THF9C-7CG2H', 'Windows 10 Enterprise N LTSC 2019']
+  ]
 }
 
 const windows10ltsb2016 = {
   version: 'Windows 10 LTSB 2016',
   edition: [
     ['DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ', 'Windows 10 Enterprise LTSB 2016'],
-    ['QFFDN-GRT3P-VKWWX-X7T3R-8B639', 'Windows 10 Enterprise N LTSB 2016'],
-  ],
+    ['QFFDN-GRT3P-VKWWX-X7T3R-8B639', 'Windows 10 Enterprise N LTSB 2016']
+  ]
 }
 
 const windows10ltsb2015 = {
   version: 'Windows 10 LTSB 2015',
   edition: [
     ['WNMTR-4C88C-JK8YV-HQ7T2-76DF9', 'Windows 10 Enterprise 2015 LTSB'],
-    ['2F77B-TNFGY-69QQF-B8YKP-D69TJ', 'Windows 10 Enterprise 2015 LTSB N'],
-  ],
+    ['2F77B-TNFGY-69QQF-B8YKP-D69TJ', 'Windows 10 Enterprise 2015 LTSB N']
+  ]
 }
 
 const windows81 = {
@@ -72,8 +72,8 @@ const windows81 = {
     ['GCRJD-8NW9H-F2CDX-CCM8D-9D6T9', 'Windows 8.1 Pro'],
     ['HMCNV-VVBFX-7HMBH-CTY9B-B4FXY', 'Windows 8.1 Pro N'],
     ['MHF9N-XY6XB-WVXMC-BTDCT-MKKG7', 'Windows 8.1 Enterprise'],
-    ['TT4HM-HN7YT-62K67-RGRQJ-JFFXW', 'Windows 8.1 Enterprise N'],
-  ],
+    ['TT4HM-HN7YT-62K67-RGRQJ-JFFXW', 'Windows 8.1 Enterprise N']
+  ]
 }
 
 const windows8 = {
@@ -82,8 +82,8 @@ const windows8 = {
     ['NG4HW-VH26C-733KW-K6F98-J8CK4', 'Windows 8 Pro'],
     ['XCVCF-2NXM9-723PB-MHCB7-2RYQQ', 'Windows 8 Pro N'],
     ['32JNW-9KQ84-P47T8-D8GGY-CWCK7', 'Windows 8 Enterprise'],
-    ['JMNMF-RHW7P-DMY6X-RF3DR-X2BQT', 'Windows 8 Enterprise N'],
-  ],
+    ['JMNMF-RHW7P-DMY6X-RF3DR-X2BQT', 'Windows 8 Enterprise N']
+  ]
 }
 
 const windows7 = {
@@ -94,8 +94,8 @@ const windows7 = {
     ['W82YF-2Q76Y-63HXB-FGJG9-GF7QX', 'Windows 7 Professional E'],
     ['33PXH-7Y6KF-2VJC9-XBBR8-HVTHH', 'Windows 7 Enterprise'],
     ['YDRBP-3D83W-TY26F-D46B2-XCKRJ', 'Windows 7 Enterprise N'],
-    ['C29WB-22CC8-VJ326-GHFJW-H9DH4', 'Windows 7 Enterprise E'],
-  ],
+    ['C29WB-22CC8-VJ326-GHFJW-H9DH4', 'Windows 7 Enterprise E']
+  ]
 }
 
 const windowsVista = {
@@ -104,8 +104,8 @@ const windowsVista = {
     ['YFKBB-PQJJV-G996G-VWGXY-2V3X8', 'Windows Vista Business'],
     ['HMBQG-8H2RH-C77VX-27R82-VMQBT', 'Windows Vista Business N'],
     ['VKK3X-68KWM-X2YGT-QR4M6-4BWMV', 'Windows Vista Enterprise'],
-    ['VTC42-BM838-43QHV-84HX6-XJXKV', 'Windows Vista Enterprise N'],
-  ],
+    ['VTC42-BM838-43QHV-84HX6-XJXKV', 'Windows Vista Enterprise N']
+  ]
 }
 
 export default {
@@ -118,5 +118,5 @@ export default {
   windows81,
   windows8,
   windows7,
-  windowsVista,
+  windowsVista
 }

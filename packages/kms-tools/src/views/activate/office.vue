@@ -3,7 +3,7 @@ import officeData from './data/office'
 import {
   FieldRule,
   TableColumnData,
-  TableRowSelection,
+  TableRowSelection
 } from '@arco-design/web-vue'
 import { computed, onMounted, reactive, Ref, ref, watch } from 'vue'
 import { useScript } from '@/composables/useScript'
@@ -12,7 +12,7 @@ const formData = reactive({
   officeVersion: '',
   systemVersion: '',
   kmsUrl: 'kms.moeclub.org',
-  secretKey: '',
+  secretKey: ''
 })
 
 const systemVersionOptions = ['64位', '32位']
@@ -20,20 +20,20 @@ const systemVersionOptions = ['64位', '32位']
 const formRules: Record<string, FieldRule | FieldRule[]> = {
   officeVersion: {
     required: true,
-    message: '请选择 Office 版本',
+    message: '请选择 Office 版本'
   },
   systemVersion: {
     required: true,
-    message: '请选择系统版本',
+    message: '请选择系统版本'
   },
   kmsUrl: {
     required: true,
-    message: '请选择 KMS 服务器',
+    message: '请选择 KMS 服务器'
   },
   secretKey: {
     required: true,
-    message: '请在下方选择 Office 版本',
-  },
+    message: '请在下方选择 Office 版本'
+  }
 }
 
 let activationScript = ref('')
@@ -54,7 +54,7 @@ onMounted(() => {
 
 const activationScriptVisible: Ref<boolean> = ref(false)
 
-const handleSubmit = (data) => {
+const handleSubmit = data => {
   if (data.errors === undefined) {
     activationScriptVisible.value = true
   }
@@ -74,17 +74,17 @@ const tableData = ref([])
 
 const tableColumns: Array<TableColumnData> = [
   { title: 'Office 版本', dataIndex: 'release' },
-  { title: '密钥', dataIndex: 'key' },
+  { title: '密钥', dataIndex: 'key' }
 ]
 
 const tableRowKey = 'release'
 
 const tableRowSelection: TableRowSelection = {
-  type: 'radio',
+  type: 'radio'
 }
 
-const tableSelectionChange = (val) => {
-  tableData.value.forEach((item) => {
+const tableSelectionChange = val => {
+  tableData.value.forEach(item => {
     if (val[0] === item.release) {
       formData.secretKey = item.key
     }
@@ -94,7 +94,7 @@ const tableSelectionChange = (val) => {
 watch(
   () => formData.officeVersion,
   () => {
-    officeData.forEach((item) => {
+    officeData.forEach(item => {
       if (formData.officeVersion === item.version) {
         tableData.value = item.item
       }

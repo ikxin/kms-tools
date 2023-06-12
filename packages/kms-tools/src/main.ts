@@ -11,7 +11,7 @@ const app = createApp(App)
 
 const i18n = createI18n({
   locale: 'en',
-  messages,
+  messages
 })
 
 app.use(router)

@@ -5,33 +5,33 @@ const menuItems = [
   {
     key: 'home',
     label: t('main.nav.home'),
-    icon: 'i-mdi:home',
+    icon: 'i-mdi:home'
   },
   {
     key: 'activate',
     label: t('main.nav.activate'),
-    icon: 'i-mdi:microsoft-windows',
+    icon: 'i-mdi:microsoft-windows'
   },
   {
     key: 'check',
     label: t('main.nav.check'),
-    icon: 'i-mdi:check-network',
+    icon: 'i-mdi:check-network'
   },
   {
     key: 'download',
     label: t('main.nav.download'),
-    icon: 'i-mdi:folder-download',
+    icon: 'i-mdi:folder-download'
   },
   {
     key: 'guide',
     label: t('main.nav.guide'),
-    icon: 'i-mdi:document',
+    icon: 'i-mdi:document'
   },
   {
     key: 'monitor',
     label: t('main.nav.monitor'),
-    icon: 'i-mdi:monitor-dashboard',
-  },
+    icon: 'i-mdi:monitor-dashboard'
+  }
 ]
 
 const router = useRouter()
@@ -48,7 +48,7 @@ onMounted(function () {
 const colorMode = useColorMode({
   selector: 'body',
   attribute: 'arco-theme',
-  emitAuto: true,
+  emitAuto: true
 })
 
 const colorModeIcon = ref('')
@@ -57,23 +57,23 @@ const colorModeItem = [
   {
     lable: t('main.colorMode.auto'),
     value: 'auto',
-    icon: 'i-ic:round-brightness-auto',
+    icon: 'i-ic:round-brightness-auto'
   },
   {
     lable: t('main.colorMode.dark'),
     value: 'dark',
-    icon: 'i-ic:round-dark-mode',
+    icon: 'i-ic:round-dark-mode'
   },
   {
     lable: t('main.colorMode.light'),
     value: 'light',
-    icon: 'i-ic:round-light-mode',
-  },
+    icon: 'i-ic:round-light-mode'
+  }
 ]
 
 function changeColorMode(val) {
   colorMode.value = val
-  colorModeIcon.value = colorModeItem.find((item) => item.value === val)?.icon
+  colorModeIcon.value = colorModeItem.find(item => item.value === val)?.icon
 }
 
 onMounted(() => changeColorMode(localStorage.getItem('vueuse-color-scheme')))

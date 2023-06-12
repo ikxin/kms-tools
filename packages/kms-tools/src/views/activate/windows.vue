@@ -3,7 +3,7 @@ import windowsData from './data/windows'
 import {
   FieldRule,
   TableColumnData,
-  TableRowSelection,
+  TableRowSelection
 } from '@arco-design/web-vue'
 import { computed, reactive, Ref, ref, watch } from 'vue'
 import { useScript } from '@/composables/useScript'
@@ -12,22 +12,22 @@ import { onMounted } from 'vue'
 const formData = reactive({
   checkedType: '',
   kmsUrl: 'kms.moeclub.org',
-  secretKey: '',
+  secretKey: ''
 })
 
 const formRules: Record<string, FieldRule | FieldRule[]> = {
   checkedType: {
     required: true,
-    message: '请选择系统类型',
+    message: '请选择系统类型'
   },
   kmsUrl: {
     required: true,
-    message: '请选择 KMS 服务器',
+    message: '请选择 KMS 服务器'
   },
   secretKey: {
     required: true,
-    message: '请在下方选择系统版本',
-  },
+    message: '请在下方选择系统版本'
+  }
 }
 
 let activationScript = ref('')
@@ -40,7 +40,7 @@ onMounted(() => {
 
 const activationScriptVisible: Ref<boolean> = ref(false)
 
-const handleSubmit = (data) => {
+const handleSubmit = data => {
   if (data.errors === undefined) {
     activationScriptVisible.value = true
   }
@@ -60,17 +60,17 @@ const tableData = ref([])
 
 const tableColumns: Array<TableColumnData> = [
   { title: '系统版本', dataIndex: 'release' },
-  { title: '密钥', dataIndex: 'key' },
+  { title: '密钥', dataIndex: 'key' }
 ]
 
 const tableRowKey = 'release'
 
 const tableRowSelection: TableRowSelection = {
-  type: 'radio',
+  type: 'radio'
 }
 
-const tableSelectionChange = (val) => {
-  tableData.value.forEach((item) => {
+const tableSelectionChange = val => {
+  tableData.value.forEach(item => {
     if (val[0] === item.release) {
       formData.secretKey = item.key
     }
@@ -80,7 +80,7 @@ const tableSelectionChange = (val) => {
 watch(
   () => formData.checkedType,
   () => {
-    windowsData.forEach((item) => {
+    windowsData.forEach(item => {
       if (formData.checkedType === item.version) {
         tableData.value = item.item
       }
