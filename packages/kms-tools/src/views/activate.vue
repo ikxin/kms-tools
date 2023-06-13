@@ -23,7 +23,10 @@ onMounted(function () {
         </template>
         <template #icon><i class="i-mdi:server" /></template>
         <template #title>系统</template>
-        <AMenuItem key="windows" @click="router.push({ name: 'windows' })">
+        <AMenuItem
+          key="windows"
+          @click="router.push({ path: '/activate/windows' })"
+        >
           <template #icon><i class="i-mdi:microsoft-windows" /></template>
           <span>Windows</span>
         </AMenuItem>
@@ -34,7 +37,10 @@ onMounted(function () {
         </template>
         <template #icon><i class="i-mdi:application-brackets" /></template>
         <template #title>软件</template>
-        <AMenuItem key="office" @click="router.push({ name: 'office' })">
+        <AMenuItem
+          key="office"
+          @click="router.push({ path: '/activate/office' })"
+        >
           <template #icon><i class="i-mdi:microsoft-office" /></template>
           <span>Office</span>
         </AMenuItem>

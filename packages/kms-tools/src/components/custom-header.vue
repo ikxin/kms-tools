@@ -43,7 +43,9 @@ const navItems = computed(() => [
 const router = useRouter()
 
 /** 跳转页面 */
-const redirectPage = (name: string) => router.push({ name })
+const redirectPage = (name: string) => {
+  router.push({ path: name === 'home' ? '/' : '/' + name })
+}
 
 /** 路径解析 */
 const pathName = location.pathname.match(/\b\w+\b/g)
