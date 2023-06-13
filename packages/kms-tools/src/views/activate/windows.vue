@@ -1,138 +1,116 @@
 <script setup lang="ts">
-import windowsData from './data/windows'
-import {
-  FieldRule,
-  TableColumnData,
-  TableRowSelection
-} from '@arco-design/web-vue'
-import { computed, reactive, Ref, ref, watch } from 'vue'
+import gvlks from '@/assets/gvlks/windows'
+import { FieldRule, TableColumnData } from '@arco-design/web-vue'
 import { useScript } from '@/composables/useScript'
-import { onMounted } from 'vue'
 
+const { t } = useI18n()
+
+/** 表单数据 */
 const formData = reactive({
-  checkedType: '',
-  kmsUrl: 'kms.moeclub.org',
-  secretKey: ''
+  version: '',
+  edition: '',
+  service: 'kms.moeclub.org',
+  license: ''
 })
 
-const formRules: Record<string, FieldRule | FieldRule[]> = {
-  checkedType: {
-    required: true,
-    message: '请选择系统类型'
-  },
-  kmsUrl: {
-    required: true,
-    message: '请选择 KMS 服务器'
-  },
-  secretKey: {
-    required: true,
-    message: '请在下方选择系统版本'
+watchEffect(() => (formData.license = formData.edition))
+
+/** 表单校验规则 */
+const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
+  return {
+    version: {
+      required: true,
+      message: t('activate.windows.form-item.version.placeholder')
+    },
+    edition: {
+      required: true,
+      message: t('activate.windows.form-item.edition.placeholder')
+    },
+    service: {
+      required: true,
+      message: t('activate.windows.form-item.service.placeholder')
+    }
+  }
+})
+
+/** 激活脚本 */
+const activateScript = computed(() => {
+  return `@echo off\r\nslmgr /skms ${formData.service}\r\nslmgr /ipk ${formData.license}\r\nslmgr /ato\r\nslmgr /xpr`
+})
+
+/** 激活脚本显示 */
+const activateScriptVisible = ref<boolean>(false)
+
+/** 表单提交 */
+const handleSubmit = data => {
+  if (data.errors === undefined) {
+    activateScriptVisible.value = true
   }
 }
 
-let activationScript = ref('')
-
-onMounted(() => {
-  activationScript = computed(() => {
-    return `@echo off\r\nslmgr /skms ${formData.kmsUrl}\r\nslmgr /ipk ${formData.secretKey}\r\nslmgr /ato\r\nslmgr /xpr`
+/** 表格数据 */
+const tableData = computed(() => {
+  if (!gvlks[formData.version]) return []
+  return gvlks[formData.version]?.edition.map(item => {
+    return { license: item[0], edition: item[1] }
   })
 })
 
-const activationScriptVisible: Ref<boolean> = ref(false)
-
-const handleSubmit = data => {
-  if (data.errors === undefined) {
-    activationScriptVisible.value = true
-  }
-}
+const tableColumns = computed(
+  (): Array<TableColumnData> => [
+    { title: t('activate.windows.table.columns.edition'), dataIndex: 'edition' },
+    { title: t('activate.windows.table.columns.license'), dataIndex: 'license' }
+  ]
+)
 
 const { useScriptDownload, useScriptCopy } = useScript()
 
-const downloadScript = () => {
-  useScriptDownload(activationScript.value, 'kms.bat')
-}
+const downloadScript = () => useScriptDownload(activateScript.value, 'kms.bat')
 
-const copyScript = () => {
-  useScriptCopy(activationScript.value)
-}
-
-const tableData = ref([])
-
-const tableColumns: Array<TableColumnData> = [
-  { title: '系统版本', dataIndex: 'release' },
-  { title: '密钥', dataIndex: 'key' }
-]
-
-const tableRowKey = 'release'
-
-const tableRowSelection: TableRowSelection = {
-  type: 'radio'
-}
-
-const tableSelectionChange = val => {
-  tableData.value.forEach(item => {
-    if (val[0] === item.release) {
-      formData.secretKey = item.key
-    }
-  })
-}
-
-watch(
-  () => formData.checkedType,
-  () => {
-    windowsData.forEach(item => {
-      if (formData.checkedType === item.version) {
-        tableData.value = item.item
-      }
-    })
-  }
-)
+const copyScript = () => useScriptCopy(activateScript.value)
 </script>
 
 <template>
   <div class="flex flex-col gap-4">
     <ACard>
-      <AForm
-        :model="formData"
-        :rules="formRules"
-        @submit="handleSubmit"
-        auto-label-width
-      >
-        <AFormItem label="系统类型" field="checkedType">
-          <ASelect v-model="formData.checkedType" placeholder="请选择系统类型">
-            <template v-for="item in windowsData" :key="item.version">
-              <AOption>{{ item.version }}</AOption>
-            </template>
+      <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
+        <AFormItem :label="t('activate.windows.form-item.version.label')" field="version">
+          <ASelect v-model="formData.version" :placeholder="t('activate.windows.form-item.version.placeholder')">
+            <AOption v-for="(item, key) in gvlks" :key="key" :label="item.version" :value="key" />
           </ASelect>
         </AFormItem>
-        <AFormItem label="KMS 服务器" field="kmsUrl">
-          <AInput v-model="formData.kmsUrl" />
+        <AFormItem :label="t('activate.windows.form-item.edition.label')" field="edition">
+          <ASelect v-model="formData.edition" :placeholder="t('activate.windows.form-item.edition.placeholder')">
+            <AOption
+              v-for="(item, index) in gvlks[formData.version]?.edition"
+              :key="index"
+              :value="item[0]"
+              :label="item[1]"
+            />
+          </ASelect>
         </AFormItem>
-        <AFormItem label="激活密钥" field="secretKey">
-          <AInput v-model="formData.secretKey" disabled />
+        <AFormItem :label="t('activate.windows.form-item.service.label')" field="service">
+          <AInput v-model="formData.service" />
+        </AFormItem>
+        <AFormItem :label="t('activate.windows.form-item.license.label')" field="license">
+          <AInput v-model="formData.license" disabled />
         </AFormItem>
         <AFormItem>
           <ASpace size="small">
             <AButton html-type="submit" type="primary">创建脚本</AButton>
-            <template v-if="activationScriptVisible">
+            <template v-show="activateScriptVisible">
               <AButton @click="downloadScript">下载脚本</AButton>
               <AButton @click="copyScript">复制脚本</AButton>
             </template>
           </ASpace>
         </AFormItem>
-        <AFormItem v-show="activationScriptVisible">
-          <ATextarea v-model="activationScript" :auto-size="true" />
+        <AFormItem v-show="activateScriptVisible">
+          <ATextarea v-model="activateScript" :auto-size="true" />
         </AFormItem>
       </AForm>
     </ACard>
     <ACard>
-      <ATable
-        :data="tableData"
-        :columns="tableColumns"
-        :row-key="tableRowKey"
-        :row-selection="tableRowSelection"
-        @selection-change="tableSelectionChange"
-      />
+      <ATable :data="tableData" :columns="tableColumns" />
     </ACard>
   </div>
 </template>

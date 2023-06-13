@@ -20,5 +20,32 @@
       "en-us": "英语",
       "zh-cn": "简体中文"
     }
+  },
+  "activate": {
+    "windows": {
+      "form-item": {
+        "version": {
+          "placeholder": "请选择系统版本",
+          "label": "系统版本"
+        },
+        "edition": {
+          "label": "发行版本",
+          "placeholder": "请选择发行版本"
+        },
+        "service": {
+          "label": "KMS 服务器",
+          "placeholder": "请选择 KMS 服务器"
+        },
+        "license": {
+          "label": "许可证密钥"
+        }
+      },
+      "table": {
+        "columns": {
+          "edition": "发行版本",
+          "license": "许可证密钥"
+        }
+      }
+    }
   }
 }

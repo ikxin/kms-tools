@@ -20,5 +20,32 @@
       "en-us": "English",
       "zh-cn": "Simplified Chinese"
     }
+  },
+  "activate": {
+    "windows": {
+      "form-item": {
+        "edition": {
+          "label": "Edition",
+          "placeholder": "Please select edition"
+        },
+        "license": {
+          "label": "License Key"
+        },
+        "service": {
+          "label": "KMS Server",
+          "placeholder": "Please select KMS server"
+        },
+        "version": {
+          "label": "System Version",
+          "placeholder": "Please select system version"
+        }
+      },
+      "table": {
+        "columns": {
+          "edition": "Edition",
+          "license": "License Key"
+        }
+      }
+    }
   }
 }
