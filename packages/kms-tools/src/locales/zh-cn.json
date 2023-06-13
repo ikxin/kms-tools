@@ -46,6 +46,15 @@
           "license": "许可证密钥"
         }
       }
+    },
+    "button": {
+      "create-script": "创建脚本",
+      "download-script": "下载脚本",
+      "copy-script": "复制脚本"
+    },
+    "message": {
+      "success": "复制成功",
+      "error": "复制失败"
     }
   }
 }

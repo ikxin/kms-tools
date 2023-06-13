@@ -46,6 +46,15 @@
           "license": "License Key"
         }
       }
+    },
+    "button": {
+      "create-script": "Create Script",
+      "download-script": "Download Script",
+      "copy-script": "Copy Script"
+    },
+    "message": {
+      "error": "Copy Failed",
+      "success": "Copy Success"
     }
   }
 }

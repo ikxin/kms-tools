@@ -97,10 +97,10 @@ const copyScript = () => useScriptCopy(activateScript.value)
         </AFormItem>
         <AFormItem>
           <ASpace size="small">
-            <AButton html-type="submit" type="primary">创建脚本</AButton>
-            <template v-show="activateScriptVisible">
-              <AButton @click="downloadScript">下载脚本</AButton>
-              <AButton @click="copyScript">复制脚本</AButton>
+            <AButton html-type="submit" type="primary">{{ t('activate.button.create-script') }}</AButton>
+            <template v-if="activateScriptVisible">
+              <AButton @click="downloadScript">{{ t('activate.button.download-script') }}</AButton>
+              <AButton @click="copyScript">{{ t('activate.button.copy-script') }}</AButton>
             </template>
           </ASpace>
         </AFormItem>
