@@ -1,16 +1,15 @@
 <script setup lang="ts">
 const router = useRouter()
 
-const selectedKeys = ref([])
+const { t } = useI18n()
 
-onMounted(function () {
-  const pathName = location.pathname.match(/\/(\w+)\/?$/)
-  selectedKeys.value = [pathName[1]]
-})
+const pathName = location.pathname.slice(1).split('/')
+
+const selectedKeys = ref(pathName)
 </script>
 
 <template>
-  <ALayoutSider class="[&>.arco-layout-sider-children]:rounded rounded">
+  <ALayoutSider :width="240" class="[&>.arco-layout-sider-children]:rounded rounded">
     <AMenu
       v-model:selected-keys="selectedKeys"
       :default-open-keys="['system', 'software']"
@@ -22,13 +21,14 @@ onMounted(function () {
           <i class="i-mdi:chevron-down inline-block" />
         </template>
         <template #icon><i class="i-mdi:server" /></template>
-        <template #title>系统</template>
-        <AMenuItem
-          key="windows"
-          @click="router.push({ path: '/activate/windows' })"
-        >
+        <template #title>{{ t('activate.sidebar.system') }}</template>
+        <AMenuItem key="windows" @click="router.push({ path: '/activate/windows' })">
           <template #icon><i class="i-mdi:microsoft-windows" /></template>
           <span>Windows</span>
+        </AMenuItem>
+        <AMenuItem key="windows-server" @click="router.push({ path: '/activate/windows-server' })">
+          <template #icon><i class="i-mdi:microsoft-windows" /></template>
+          <span>Windows Server</span>
         </AMenuItem>
       </ASubMenu>
       <ASubMenu key="software">
@@ -36,11 +36,8 @@ onMounted(function () {
           <i class="i-mdi:chevron-down inline-block" />
         </template>
         <template #icon><i class="i-mdi:application-brackets" /></template>
-        <template #title>软件</template>
-        <AMenuItem
-          key="office"
-          @click="router.push({ path: '/activate/office' })"
-        >
+        <template #title>{{ t('activate.sidebar.software') }}</template>
+        <AMenuItem key="office" @click="router.push({ path: '/activate/office' })">
           <template #icon><i class="i-mdi:microsoft-office" /></template>
           <span>Office</span>
         </AMenuItem>

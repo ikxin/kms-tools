@@ -43,6 +43,7 @@ declare module 'vue-router/auto/routes' {
     '/activate': RouteRecordInfo<'/activate', '/activate', Record<never, never>, Record<never, never>>,
     '/activate/office': RouteRecordInfo<'/activate/office', '/activate/office', Record<never, never>, Record<never, never>>,
     '/activate/windows': RouteRecordInfo<'/activate/windows', '/activate/windows', Record<never, never>, Record<never, never>>,
+    '/activate/windows-server': RouteRecordInfo<'/activate/windows-server', '/activate/windows-server', Record<never, never>, Record<never, never>>,
     '/check/': RouteRecordInfo<'/check/', '/check', Record<never, never>, Record<never, never>>,
     '/download/': RouteRecordInfo<'/download/', '/download', Record<never, never>, Record<never, never>>,
     '/guide/': RouteRecordInfo<'/guide/', '/guide', Record<never, never>, Record<never, never>>,

@@ -55,6 +55,10 @@
     "message": {
       "error": "Copy Failed",
       "success": "Copy Success"
+    },
+    "sidebar": {
+      "system": "System",
+      "software": "Software"
     }
   }
 }

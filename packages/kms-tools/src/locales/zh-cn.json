@@ -55,6 +55,10 @@
     "message": {
       "success": "复制成功",
       "error": "复制失败"
+    },
+    "sidebar": {
+      "system": "系统",
+      "software": "软件"
     }
   }
 }
