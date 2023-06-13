@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const { t, locale } = useI18n()
+import { useAppStore } from '@/store/app'
+
+const { t } = useI18n()
+
+const appStore = useAppStore()
 
 /** 导航选项 */
 const navItems = computed(() => [
@@ -47,14 +51,6 @@ const pathName = location.pathname.match(/\b\w+\b/g)
 /** 导航选中项 */
 const navSelected = ref([!pathName?.[0] ? 'home' : pathName?.[0]])
 
-/** 主题 */
-const theme = useColorMode({
-  attribute: 'arco-theme',
-  emitAuto: true,
-  selector: 'body',
-  storageKey: 'arco-theme'
-})
-
 /** 主题选项 */
 const themeItems = computed(() => [
   {
@@ -76,11 +72,11 @@ const themeItems = computed(() => [
 
 /** 主题图标 */
 const themeIcon = computed(() => {
-  return themeItems.value.find(item => item.value === theme.value)?.icon
+  return themeItems.value.find(item => item.value === appStore.theme)?.icon
 })
 
 /** 切换主题 */
-const themeChange = val => (theme.value = val)
+const themeChange = val => (appStore.theme = val)
 
 /** 语言选项 */
 const languagesItems = computed(() => [
@@ -89,7 +85,7 @@ const languagesItems = computed(() => [
 ])
 
 /** 切换语言 */
-const languagesChange = val => (locale.value = val)
+const languagesChange = val => (appStore.languages = val)
 </script>
 
 <template>

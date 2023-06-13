@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 #app {
   @apply flex flex-col gap-4 min-h-screen bg-[--color-neutral-2] text-[--color-text-2];
 }
@@ -9,3 +13,4 @@
 .arco-dropdown{
   @apply select-none;
 }
+

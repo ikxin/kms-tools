@@ -12,34 +12,34 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 export default defineConfig({
   plugins: [
     Vue({
-      include: [/\.vue$/, /\.md$/],
+      include: [/\.vue$/, /\.md$/]
     }),
     Markdown({
       markdownItSetup(md) {
         md.use(Shiki)
-      },
+      }
     }),
     UnoCSS(),
     AutoImport({
       dts: './src/typings/auto-imports.d.ts',
-      imports: ['vue', 'vue-router', '@vueuse/core', 'vue-i18n'],
-      resolvers: [ArcoResolver()],
+      imports: ['vue', 'pinia', 'vue-router', '@vueuse/core', 'vue-i18n'],
+      resolvers: [ArcoResolver()]
     }),
     Components({
       dts: './src/typings/components.d.ts',
       resolvers: [
         ArcoResolver({
-          sideEffect: false,
-        }),
-      ],
+          sideEffect: false
+        })
+      ]
     }),
     VueI18nPlugin({
-      include: [resolve(__dirname, './src/locales/**')],
-    }),
+      include: [resolve(__dirname, './src/locales/**')]
+    })
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
-    },
-  },
+      '@': resolve(__dirname, './src')
+    }
+  }
 })
