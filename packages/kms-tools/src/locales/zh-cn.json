@@ -1,0 +1,64 @@
+{
+  "app": {
+    "author": {
+      "name": "一纸忘忧"
+    },
+    "nav": {
+      "activate": "激活",
+      "check": "检测",
+      "download": "下载",
+      "guide": "指南",
+      "home": "首页",
+      "monitor": "监控"
+    },
+    "theme": {
+      "auto": "自动模式",
+      "dark": "深色模式",
+      "light": "浅色模式"
+    },
+    "languages": {
+      "en-us": "英语",
+      "zh-cn": "简体中文"
+    }
+  },
+  "activate": {
+    "windows": {
+      "form-item": {
+        "version": {
+          "placeholder": "请选择系统版本",
+          "label": "系统版本"
+        },
+        "edition": {
+          "label": "发行版本",
+          "placeholder": "请选择发行版本"
+        },
+        "service": {
+          "label": "KMS 服务器",
+          "placeholder": "请选择 KMS 服务器"
+        },
+        "license": {
+          "label": "许可证密钥"
+        }
+      },
+      "table": {
+        "columns": {
+          "edition": "发行版本",
+          "license": "许可证密钥"
+        }
+      }
+    },
+    "button": {
+      "create-script": "创建脚本",
+      "download-script": "下载脚本",
+      "copy-script": "复制脚本"
+    },
+    "message": {
+      "success": "复制成功",
+      "error": "复制失败"
+    },
+    "sidebar": {
+      "system": "系统",
+      "software": "软件"
+    }
+  }
+}

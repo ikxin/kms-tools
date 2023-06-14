@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "paths": { "@/*": ["src/*"] }
+  },
+  "include": ["**/*.vue", "**/*.ts", "**/*.d.ts"]
+}
