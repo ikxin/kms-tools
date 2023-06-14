@@ -1,26 +1,22 @@
+<p align="center"><img width="400" src="./packages/kms-tools/src/assets/images/readme-logo.svg" /></p>
+
 <p align="center">
-    <img width="400" src="./src/assets/icons/logo-readme.svg">
+<a href="https://github.com/ikxin/kms-tools/releases"><img src="https://badgen.net/github/release/ikxin/kms-tools" /></a>
+<a href="https://github.com/ikxin/kms-tools/stargazers"><img src="https://badgen.net/github/stars/ikxin/kms-tools" /></a>
+<a href="https://github.com/ikxin/kms-tools/network/members"><img src="https://badgen.net/github/forks/ikxin/kms-tools" /></a>
+<a href="https://github.com/ikxin/kms-tools/commits"><img src="https://badgen.net/github/commits/ikxin/kms-tools" /></a>
+<a href="https://github.com/ikxin/kms-tools/issues"><img src="https://badgen.net/github/issues/ikxin/kms-tools" /></a>
+<a href="https://github.com/ikxin/kms-tools/watchers"><img src="https://badgen.net/github/watchers/ikxin/kms-tools" /></a>
+<a href="https://github.com/ikxin/kms-tools/blob/master/LICENSE"><img src="https://badgen.net/github/license/ikxin/kms-tools" /></a>
 </p>
 
-<div align="center">
+## 📦 使用
 
-[![](https://flat.badgen.net/github/release/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/releases)
-[![](https://flat.badgen.net/github/stars/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/stargazers)
-[![](https://flat.badgen.net/github/forks/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/network/members)
-[![](https://flat.badgen.net/github/commits/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/commits)
-[![](https://flat.badgen.net/github/issues/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/issues)
-[![](https://flat.badgen.net/github/watchers/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/watchers)
-[![](https://flat.badgen.net/github/license/ikxin/kms-tools)](https://github.com/ikxin/kms-tools/blob/master/LICENSE)
+- Server: [https://kmstools.ikxin.com](https://kmstools.ikxin.com)
+- Cloudflare: [https://kmstools.pages.dev](https://kmstools.pages.dev)
+- Vercel: [https://kmstools.vercel.app](https://kmstools.vercel.app)
 
-</div>
-
-## 📸 预览
-
-- Server：[https://studio.ikxin.com/kms-tools](https://studio.ikxin.com/kms-tools)
-- Vercel：[https://kmstools.vercel.app](https://kmstools.vercel.app)
-- Cloudflare Pages：[https://kmstools.pages.dev](https://kmstools.pages.dev)
-
-![](./src/assets/images/preview.png)
+![](./packages/kms-tools/src/assets/images/preview.png)
 
 ## ✨ 技术栈
 
@@ -29,16 +25,6 @@
 - 🚀 [Vite](https://github.com/vitejs/vite)
 - 🎨 [Ant Design Vue](https://github.com/vueComponent/ant-design-vue)
 - ⚙️ [pnpm](https://github.com/pnpm/pnpm)
-
-## 📦 部署
-
-视频教程：[哔哩哔哩](https://www.bilibili.com/video/BV1SF411K7bq) |
-[YouTube](https://youtu.be/-Qu5A5Y5New) |
-[知乎](https://www.zhihu.com/zvideo/1533447796237168640) |
-[西瓜视频](https://www.ixigua.com/7122706847584223751)
-
-- 从 [Releases](https://github.com/ikxin/kms-tools/releases) 下载打包好的程序
-- 上传到自有服务器或 Github Pages、Cloudflare Pages、Vercel 等平台
 
 ## ⚙️ 构建
 
@@ -69,7 +55,7 @@ pnpm run preview
 
 ## ⭐ 星星
 
-![](https://starchart.cc/ikxin/kms-tools.svg)
+<img src="https://starchart.cc/ikxin/kms-tools.svg" />
 
 ## 🧑‍💻 作者
 
