@@ -93,7 +93,7 @@ const languagesChange = val => (appStore.languages = val)
 <template>
   <ALayoutHeader class="select-none bg-[--color-bg-2] px-2 shadow-md">
     <div class="mx-auto flex w-256 max-w-full items-center justify-between">
-      <img h-12 src="/images/logo.svg" />
+      <img h-12 src="../assets/icons/logo.svg" />
       <AMenu
         v-model:selected-keys="navSelected"
         mode="horizontal"
