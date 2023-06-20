@@ -82,8 +82,16 @@ const themeChange = val => (appStore.theme = val)
 
 /** 语言选项 */
 const languagesItems = computed(() => [
-  { lable: t('app.languages.zh-cn'), value: 'zh-cn' },
-  { lable: t('app.languages.en-us'), value: 'en-us' }
+  {
+    lable: t('app.languages.zh-cn'),
+    value: 'zh-cn',
+    icon: 'i-flag:cn-4x3'
+  },
+  {
+    lable: t('app.languages.en-us'),
+    value: 'en-us',
+    icon: 'i-flag:us-4x3'
+  }
 ])
 
 /** 切换语言 */
@@ -118,11 +126,7 @@ const languagesChange = val => (appStore.languages = val)
             <template #icon><i :class="themeIcon" /></template>
           </AButton>
           <template #content>
-            <ADoption
-              v-for="item in themeItems"
-              :key="item.value"
-              @click="themeChange(item.value)"
-            >
+            <ADoption v-for="item in themeItems" :key="item.value" @click="themeChange(item.value)">
               <template #icon><i :class="item.icon" /></template>
               <template #default>{{ item.lable }}</template>
             </ADoption>
@@ -133,11 +137,8 @@ const languagesChange = val => (appStore.languages = val)
             <template #icon><i class="i-mdi:google-translate" /></template>
           </AButton>
           <template #content>
-            <ADoption
-              v-for="item in languagesItems"
-              :key="item.value"
-              @click="languagesChange(item.value)"
-            >
+            <ADoption v-for="item in languagesItems" :key="item.value" @click="languagesChange(item.value)">
+              <template #icon><i :class="item.icon" /></template>
               <template #default>{{ item.lable }}</template>
             </ADoption>
           </template>

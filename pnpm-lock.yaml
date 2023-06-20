@@ -35,6 +35,9 @@ importers:
       '@arco-themes/vue-ant-design':
         specifier: ^0.0.1
         version: 0.0.1(@arco-design/web-vue@2.47.1)
+      '@iconify-json/flag':
+        specifier: ^1.1.32
+        version: 1.1.32
       '@iconify-json/ic':
         specifier: ^1.1.13
         version: 1.1.13
@@ -405,6 +408,12 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@iconify-json/flag@1.1.32:
+    resolution: {integrity: sha512-VvR2+7ThbHQZUkLFM7v3CPd9KzAvOVoFJEVG/6gSi3buB5XEH0Ca4ItBpDzEXvQ0zZ0DJgB0e6NX363CQM3n/g==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
 
   /@iconify-json/ic@1.1.13:
     resolution: {integrity: sha512-5i5zal/VRwTrs99iMTnG1Zu97bgX9Mkiu9TzR1U1rHBylUnBW+HkOweoQVEPgQITGG024/lNbZxU+3Aa2xuDww==}
