@@ -59,6 +59,38 @@
     "sidebar": {
       "system": "系统",
       "software": "软件"
+    },
+    "office": {
+      "form-item": {
+        "version": {
+          "placeholder": "请选择 Office 版本",
+          "label": "Office 版本"
+        },
+        "product": {
+          "placeholder": "请选择软件版本",
+          "label": "软件版本"
+        },
+        "service": {
+          "placeholder": "请选择 KMS 服务器",
+          "label": "KMS 服务器"
+        },
+        "is64bus": {
+          "label": "CPU 架构",
+          "radio": {
+            "x86": "32 位",
+            "x64": "64 位"
+          }
+        },
+        "license": {
+          "label": "许可证密钥"
+        }
+      },
+      "table": {
+        "columns": {
+          "product": "软件版本",
+          "license": "许可证密钥"
+        }
+      }
     }
   }
 }

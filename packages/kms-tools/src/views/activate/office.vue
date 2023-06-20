@@ -1,161 +1,128 @@
 <script setup lang="ts">
-import officeData from './data/office'
-import {
-  FieldRule,
-  TableColumnData,
-  TableRowSelection
-} from '@arco-design/web-vue'
-import { computed, onMounted, reactive, Ref, ref, watch } from 'vue'
+import gvlks from '@/assets/gvlks/office'
+import { FieldRule, TableColumnData } from '@arco-design/web-vue'
 import { useScript } from '@/composables/useScript'
 
+const { t } = useI18n()
+
+/** 表单数据 */
 const formData = reactive({
-  officeVersion: '',
-  systemVersion: '',
-  kmsUrl: 'kms.moeclub.org',
-  secretKey: ''
+  version: '',
+  product: '',
+  is64bus: false,
+  service: 'kms.moeclub.org',
+  license: ''
 })
 
-const systemVersionOptions = ['64位', '32位']
+watchEffect(() => (formData.license = formData.product))
 
-const formRules: Record<string, FieldRule | FieldRule[]> = {
-  officeVersion: {
-    required: true,
-    message: '请选择 Office 版本'
-  },
-  systemVersion: {
-    required: true,
-    message: '请选择系统版本'
-  },
-  kmsUrl: {
-    required: true,
-    message: '请选择 KMS 服务器'
-  },
-  secretKey: {
-    required: true,
-    message: '请在下方选择 Office 版本'
+/** 表单校验规则 */
+const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
+  return {
+    version: {
+      required: true,
+      message: t('activate.office.form-item.version.placeholder')
+    },
+    product: {
+      required: true,
+      message: t('activate.office.form-item.product.placeholder')
+    },
+    service: {
+      required: true,
+      message: t('activate.office.form-item.service.placeholder')
+    }
+  }
+})
+
+/** 激活脚本 */
+const activateScript = computed(() => {
+  const path = formData.is64bus
+    ? 'cd C:\\Program Files\\Microsoft Office\\Office16'
+    : 'cd C:\\Program Files (x86)\\Microsoft Office\\Office16'
+  const fix = `cscript ospp.vbs /inpkey:${formData.license}`
+  const activate = `cscript ospp.vbs /sethst:${formData.service}\r\ncscript ospp.vbs /act`
+  return `${path}\r\n${fix}\r\n${activate}`
+})
+
+/** 激活脚本显示 */
+const activateScriptVisible = ref<boolean>(false)
+
+/** 表单提交 */
+const handleSubmit = data => {
+  if (data.errors === undefined) {
+    activateScriptVisible.value = true
   }
 }
 
-let activationScript = ref('')
-
-onMounted(() => {
-  activationScript = computed(() => {
-    let path
-    if (formData.systemVersion === '64位') {
-      path = 'cd C:\\Program Files\\Microsoft Office\\Office16'
-    } else {
-      path = 'cd C:\\Program Files (x86)\\Microsoft Office\\Office16'
-    }
-    const fix = `cscript ospp.vbs /inpkey:${formData.secretKey}`
-    const activation = `cscript ospp.vbs /sethst:${formData.kmsUrl}\r\ncscript ospp.vbs /act`
-    return `${path}\r\n${fix}\r\n${activation}`
+/** 表格数据 */
+const tableData = computed(() => {
+  if (!gvlks[formData.version]) return []
+  return gvlks[formData.version]?.product.map(item => {
+    return { license: item[0], product: item[1] }
   })
 })
 
-const activationScriptVisible: Ref<boolean> = ref(false)
-
-const handleSubmit = data => {
-  if (data.errors === undefined) {
-    activationScriptVisible.value = true
-  }
-}
+const tableColumns = computed(
+  (): Array<TableColumnData> => [
+    { title: t('activate.office.table.columns.product'), dataIndex: 'product' },
+    { title: t('activate.office.table.columns.license'), dataIndex: 'license' }
+  ]
+)
 
 const { useScriptDownload, useScriptCopy } = useScript()
 
-const downloadScript = () => {
-  useScriptDownload(activationScript.value, 'kms.bat')
-}
+const downloadScript = () => useScriptDownload(activateScript.value, 'kms.bat')
 
-const copyScript = () => {
-  useScriptCopy(activationScript.value)
-}
-
-const tableData = ref([])
-
-const tableColumns: Array<TableColumnData> = [
-  { title: 'Office 版本', dataIndex: 'release' },
-  { title: '密钥', dataIndex: 'key' }
-]
-
-const tableRowKey = 'release'
-
-const tableRowSelection: TableRowSelection = {
-  type: 'radio'
-}
-
-const tableSelectionChange = val => {
-  tableData.value.forEach(item => {
-    if (val[0] === item.release) {
-      formData.secretKey = item.key
-    }
-  })
-}
-
-watch(
-  () => formData.officeVersion,
-  () => {
-    officeData.forEach(item => {
-      if (formData.officeVersion === item.version) {
-        tableData.value = item.item
-      }
-    })
-  }
-)
+const copyScript = () => useScriptCopy(activateScript.value)
 </script>
 
 <template>
   <div class="flex flex-col gap-4">
     <ACard>
-      <AForm
-        :model="formData"
-        :rules="formRules"
-        @submit="handleSubmit"
-        auto-label-width
-      >
-        <AFormItem label="Office 版本" field="officeVersion">
-          <ASelect
-            v-model="formData.officeVersion"
-            placeholder="请选择系统类型"
-          >
-            <template v-for="item in officeData" :key="item.version">
-              <AOption>{{ item.version }}</AOption>
-            </template>
+      <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
+        <AFormItem :label="t('activate.office.form-item.version.label')" field="version">
+          <ASelect v-model="formData.version" :placeholder="t('activate.office.form-item.version.placeholder')">
+            <AOption v-for="(item, key) in gvlks" :key="key" :label="item.version" :value="key" />
           </ASelect>
         </AFormItem>
-        <AFormItem label="系统版本" field="systemVersion">
-          <ARadioGroup
-            v-model="formData.systemVersion"
-            :options="systemVersionOptions"
-          />
+        <AFormItem :label="t('activate.office.form-item.product.label')" field="product">
+          <ASelect v-model="formData.product" :placeholder="t('activate.office.form-item.product.placeholder')">
+            <AOption
+              v-for="(item, index) in gvlks[formData.version]?.product"
+              :key="index"
+              :value="item[0]"
+              :label="item[1]"
+            />
+          </ASelect>
         </AFormItem>
-        <AFormItem label="KMS 服务器" field="kmsUrl">
-          <AInput v-model="formData.kmsUrl" />
+        <AFormItem :label="t('activate.office.form-item.is64bus.label')" field="is64bus">
+          <ARadioGroup v-model="formData.is64bus" type="button">
+            <ARadio :value="false">{{ t('activate.office.form-item.is64bus.radio.x86') }}</ARadio>
+            <ARadio :value="true">{{ t('activate.office.form-item.is64bus.radio.x64') }}</ARadio>
+          </ARadioGroup>
         </AFormItem>
-        <AFormItem label="激活密钥" field="secretKey">
-          <AInput v-model="formData.secretKey" disabled />
+        <AFormItem :label="t('activate.office.form-item.service.label')" field="service">
+          <AInput v-model="formData.service" />
+        </AFormItem>
+        <AFormItem :label="t('activate.office.form-item.license.label')" field="license">
+          <AInput v-model="formData.license" disabled />
         </AFormItem>
         <AFormItem>
           <ASpace size="small">
-            <AButton html-type="submit" type="primary">生成脚本</AButton>
-            <template v-if="activationScriptVisible">
-              <AButton @click="downloadScript">下载脚本</AButton>
-              <AButton @click="copyScript">复制脚本</AButton>
+            <AButton html-type="submit" type="primary">{{ t('activate.button.create-script') }}</AButton>
+            <template v-if="activateScriptVisible">
+              <AButton @click="downloadScript">{{ t('activate.button.download-script') }}</AButton>
+              <AButton @click="copyScript">{{ t('activate.button.copy-script') }}</AButton>
             </template>
           </ASpace>
         </AFormItem>
-        <AFormItem v-show="activationScriptVisible">
-          <ATextarea v-model="activationScript" :auto-size="true" />
+        <AFormItem v-show="activateScriptVisible">
+          <ATextarea v-model="activateScript" :auto-size="true" />
         </AFormItem>
       </AForm>
     </ACard>
     <ACard>
-      <ATable
-        :data="tableData"
-        :columns="tableColumns"
-        :row-key="tableRowKey"
-        :row-selection="tableRowSelection"
-        @selection-change="tableSelectionChange"
-      />
+      <ATable :data="tableData" :columns="tableColumns" />
     </ACard>
   </div>
 </template>

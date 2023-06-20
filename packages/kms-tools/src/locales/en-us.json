@@ -59,6 +59,38 @@
     "sidebar": {
       "system": "System",
       "software": "Software"
+    },
+    "office": {
+      "form-item": {
+        "is64bus": {
+          "label": "CPU Architecture",
+          "radio": {
+            "x64": "x64",
+            "x86": "x86"
+          }
+        },
+        "license": {
+          "label": "License Key"
+        },
+        "product": {
+          "label": "Software Version",
+          "placeholder": "Please select software version"
+        },
+        "service": {
+          "label": "KMS Server",
+          "placeholder": "Please select KMS server"
+        },
+        "version": {
+          "label": "Office Version",
+          "placeholder": "Please select office version"
+        }
+      },
+      "table": {
+        "columns": {
+          "license": "License Key",
+          "product": "Software Version"
+        }
+      }
     }
   }
 }
