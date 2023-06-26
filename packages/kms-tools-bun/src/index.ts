@@ -1,20 +1,49 @@
 import { Elysia } from 'elysia'
+import { platform } from 'os'
+import { execFile } from 'child_process'
 
-import { arch, platform } from 'os'
+const server = new Elysia()
 
-import { execFileSync } from 'child_process'
+server.get('/*', () => 'KMS Tools')
 
-const app = new Elysia()
+type Body = {
+  port: string
+  host: string
+  domain: string
+  app: string
+  protocol: '4' | '5' | '6'
+}
 
-app.get('/', () => 'KMS Tools')
+server.post('/api/check-kms', async context => {
+  if (platform() !== 'linux' && platform() !== 'darwin') return
 
-app.post('/api/check-kms', ({ body }) => {
-  console.log(arch(), platform())
-  const result = execFileSync('./src/files/vlmcs-darwin', [body.host])
+  let { host, port, domain, app, protocol } = context.body as Body
 
-  return result.toString()
+  const getResult = () => {
+    return new Promise(resolve => {
+      execFile(
+        `./src/vlmcs/vlmcs-${platform()}`,
+        [
+          `-${['4', '5', '6'].includes(protocol) ? protocol : '6'}`,
+          `${domain || host}:${port}`,
+          `${app === '' ? '' : '-l ' + app}`
+        ],
+        {
+          timeout: 5000
+        },
+        (err, std) => {
+          if (err) {
+            resolve({ msg: 'error', result: std.toString() })
+          }
+          if (std) {
+            resolve({ msg: 'success', result: std.toString() })
+          }
+        }
+      )
+    })
+  }
+
+  return await getResult()
 })
 
-app.listen(8080)
-
-console.log(`🦊 Elysia is running at ${app.server.hostname}:${app.server.port}`)
+server.listen(8080)
