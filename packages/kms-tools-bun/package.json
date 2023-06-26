@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "bun --hot server.ts"
+    "dev": "bun run --watch src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@sinclair/typebox": "^0.28.18",
     "bun": "^0.6.9",
-    "bun-types": "^0.6.9"
+    "bun-types": "^0.6.9",
+    "elysia": "^0.5.20"
   }
 }
