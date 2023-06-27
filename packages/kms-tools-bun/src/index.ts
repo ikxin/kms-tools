@@ -47,3 +47,5 @@ server.post('/api/check-kms', async context => {
 })
 
 server.listen(8080)
+
+console.log(`🦊 Elysia is running at ${server.server.hostname}:${server.server.port}`)
