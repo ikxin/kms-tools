@@ -7,7 +7,8 @@
     "eslint:recommended",
     "plugin:vue/vue3-essential",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "./src/typings/auto-import.eslintrc.json"
   ],
   "overrides": [],
   "parser": "vue-eslint-parser",
@@ -17,5 +18,7 @@
     "sourceType": "module"
   },
   "plugins": ["vue", "@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "vue/multi-word-component-names": "off"
+  }
 }

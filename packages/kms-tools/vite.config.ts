@@ -28,14 +28,12 @@ export default defineConfig({
     }),
     UnoCSS(),
     AutoImport({
+      eslintrc: {
+        enabled: true,
+        filepath: './src/typings/auto-import.eslintrc.json'
+      },
       dts: './src/typings/auto-imports.d.ts',
-      imports: [
-        '@vueuse/core',
-        'pinia',
-        'vue-i18n',
-        'vue',
-        VueRouterAutoImports
-      ],
+      imports: ['@vueuse/core', 'pinia', 'vue-i18n', 'vue', VueRouterAutoImports],
       resolvers: [ArcoResolver()]
     }),
     Components({
