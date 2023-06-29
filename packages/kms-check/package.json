@@ -1,0 +1,11 @@
+{
+  "name": "kms-check",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "tsx watch server.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.2",
+    "tsx": "^3.12.7"
+  }
+}
