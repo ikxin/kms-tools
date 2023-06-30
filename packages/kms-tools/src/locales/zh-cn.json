@@ -97,16 +97,20 @@
     "title": "KMS 服务器状态检测",
     "form": {
       "host": {
-        "label": "KMS 主机"
+        "label": "KMS 主机",
+        "placeholder": "请输入 KMS 主机"
       },
       "port": {
-        "label": "KMS 端口"
+        "label": "KMS 端口",
+        "placeholder": "请输入 KMS 端口"
       },
       "app": {
-        "label": "激活产品"
+        "label": "激活产品",
+        "placeholder": "请选择激活产品"
       },
       "protocol": {
-        "label": "激活协议"
+        "label": "激活协议",
+        "placeholder": "请选择激活协议"
       }
     }
   }
