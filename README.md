@@ -1,4 +1,4 @@
-<p align="center"><img width="400" src="./packages/kms-tools/src/assets/images/readme-logo.svg" /></p>
+<p align="center"><img width="400" src="./src/assets/images/readme-logo.svg" /></p>
 
 <p align="center">
 <a href="https://github.com/ikxin/kms-tools/releases"><img src="https://badgen.net/github/release/ikxin/kms-tools" /></a>
