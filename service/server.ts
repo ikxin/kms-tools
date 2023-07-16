@@ -1,47 +1,31 @@
-import { createServer } from 'http'
 import { platform } from 'os'
 import { execFile } from 'child_process'
 
-type Body = {
-  port: string
-  host: string
-  app: string
-  protocol: '4' | '5' | '6'
-}
-
-const getResult = (body: Body) => {
-  const { port, host, app, protocol } = body
-
+const fetchData = params => {
   return new Promise(resolve => {
+    const { host, port, app, protocol } = params
     execFile(
-      `./vlmcs/vlmcs-${platform()}`,
-      [
-        `-${['4', '5', '6'].includes(protocol) ? protocol : '6'}`,
-        `${host}:${port}`,
-        `${app === '' ? '' : '-l ' + app}`
-      ],
-      { timeout: 5000 },
-      (err, std) => {
-        if (err) {
-          resolve({ msg: 'error', result: std.toString() })
-        } else {
-          resolve({ msg: 'success', result: std.toString() })
-        }
+      `./service/vlmcs/vlmcs-${platform()}`,
+      [`-l ${app}`, `-${protocol}`, `${host}:${port}`],
+      { timeout: 10 * 1000 },
+      function (error, stdout) {
+        resolve({ result: error ? 'error' : 'success', stdout: stdout.toString() })
       }
     )
   })
 }
 
-const server = createServer(async (req, res) => {
-  const url = new URL(req.url, `http://${req.headers.host}`)
-
-  const body = Object.fromEntries(url.searchParams) as Body
-
-  if (url.pathname === '/check') {
-    res.end(JSON.stringify(await getResult(body)))
-  } else {
-    res.end('KMS Tools')
+const server = Bun.serve({
+  async fetch(req) {
+    const url = new URL(req.url)
+    if (url.pathname === '/api/kms-check') {
+      const params = Object.fromEntries(url.searchParams)
+      const result = await fetchData(params)
+      return new Response(JSON.stringify(result))
+    } else {
+      return new Response(`404!`)
+    }
   }
 })
 
-server.listen(3000, () => console.log('Server running at http://localhost:3000/'))
+console.log(`Server running at http://localhost:${server.port}`)
