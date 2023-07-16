@@ -16,7 +16,7 @@
 - Cloudflare: [https://kmstools.pages.dev](https://kmstools.pages.dev)
 - Vercel: [https://kmstools.vercel.app](https://kmstools.vercel.app)
 
-![](./packages/kms-tools/src/assets/images/preview.png)
+![](./src/assets/images/preview.png)
 
 ## ✨ 技术栈
 
