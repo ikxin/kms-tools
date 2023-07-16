@@ -2,14 +2,7 @@ import { createServer } from 'http'
 import { platform } from 'os'
 import { execFile } from 'child_process'
 
-type Body = {
-  port: string
-  host: string
-  app: string
-  protocol: '4' | '5' | '6'
-}
-
-const getResult = (body: Body) => {
+const getResult = body => {
   const { port, host, app, protocol } = body
 
   return new Promise(resolve => {
@@ -35,7 +28,7 @@ const getResult = (body: Body) => {
 const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`)
 
-  const body = Object.fromEntries(url.searchParams) as Body
+  const body = Object.fromEntries(url.searchParams)
 
   if (url.pathname === '/check') {
     res.end(JSON.stringify(await getResult(body)))
