@@ -8,7 +8,7 @@
     "plugin:vue/vue3-essential",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "./src/typings/auto-import.eslintrc.json"
+    "./src/typings/.eslintrc.json"
   ],
   "overrides": [],
   "parser": "vue-eslint-parser",
