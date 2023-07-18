@@ -3,8 +3,9 @@
     "baseUrl": "./",
     "esModuleInterop": true,
     "noEmit": true,
+    "paths": { "@/*": ["src/*"] },
     "skipLibCheck": true,
-    "paths": { "@/*": ["src/*"] }
+    "types": ["bun-types"]
   },
   "include": ["**/*.vue", "**/*.ts", "**/*.d.ts"]
 }

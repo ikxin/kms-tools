@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "@intlify/unplugin-vue-i18n": "^0.11.0",
-    "@types/node": "^20.4.2",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-vue": "^4.2.3",
