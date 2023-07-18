@@ -14,7 +14,7 @@ import { VueRouterAutoImports } from 'unplugin-vue-router'
 export default defineConfig({
   plugins: [
     VueRouter({
-      dts: './src/typings/typed-router.d.ts',
+      dts: './src/typings/router.d.ts',
       extensions: ['.vue'],
       routesFolder: './src/views'
     }),
@@ -30,9 +30,9 @@ export default defineConfig({
     AutoImport({
       eslintrc: {
         enabled: true,
-        filepath: './src/typings/auto-import.eslintrc.json'
+        filepath: './src/typings/.eslintrc.json'
       },
-      dts: './src/typings/auto-imports.d.ts',
+      dts: './src/typings/imports.d.ts',
       imports: ['@vueuse/core', 'pinia', 'vue-i18n', 'vue', VueRouterAutoImports],
       resolvers: [ArcoResolver()]
     }),
