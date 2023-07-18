@@ -6,9 +6,10 @@
   "author": "一纸忘忧 <i@ikxin.com>",
   "type": "module",
   "scripts": {
-    "build": "vue-tsc && vite build",
-    "dev": "vite",
-    "start": "bun --watch service/server.ts"
+    "build": "bun x vite build",
+    "dev": "bun x vite",
+    "service": "bun --watch service/server.ts",
+    "tsc": "bun x vue-tsc"
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.48.1",
