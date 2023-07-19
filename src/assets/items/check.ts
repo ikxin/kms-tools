@@ -202,9 +202,3 @@ export const appItems = {
   '201': 'Office Visio Standard 2019',
   '202': 'Office Word 2019'
 }
-
-export const protocolItems = {
-  '4': 'V4 protocol',
-  '5': 'V5 protocol',
-  '6': 'V6 protocol'
-}
