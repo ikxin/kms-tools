@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AAlert: typeof import('@arco-design/web-vue')['Alert']
     AButton: typeof import('@arco-design/web-vue')['Button']
     ACard: typeof import('@arco-design/web-vue')['Card']
     ADoption: typeof import('@arco-design/web-vue')['Doption']
@@ -27,6 +28,7 @@ declare module 'vue' {
     ARadioGroup: typeof import('@arco-design/web-vue')['RadioGroup']
     ASelect: typeof import('@arco-design/web-vue')['Select']
     ASpace: typeof import('@arco-design/web-vue')['Space']
+    ASpin: typeof import('@arco-design/web-vue')['Spin']
     ASubMenu: typeof import('@arco-design/web-vue')['SubMenu']
     ATable: typeof import('@arco-design/web-vue')['Table']
     ATextarea: typeof import('@arco-design/web-vue')['Textarea']

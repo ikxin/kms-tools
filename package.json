@@ -18,6 +18,8 @@
     "@iconify-json/ic": "^1.1.13",
     "@iconify-json/mdi": "^1.1.53",
     "@vueuse/core": "^10.2.1",
+    "@vueuse/integrations": "^10.2.1",
+    "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "less": "^4.1.3",
     "markdown-it-shiki": "^0.9.0",
