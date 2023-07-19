@@ -13,12 +13,12 @@ const navItems = computed(() => [
     icon: 'i-mdi:home'
   },
   {
-    name: 'activate',
+    name: 'activation',
     label: t('app.nav.activate'),
     icon: 'i-mdi:microsoft-windows'
   },
   {
-    name: 'check',
+    name: 'detection',
     label: t('app.nav.check'),
     icon: 'i-mdi:check-network'
   },

@@ -54,8 +54,8 @@ export const router = createRouter({
   history: createWebHistory(),
   extendRoutes: routes => {
     routes.find(route => {
-      return route.name === '/activate'
-    }).redirect = '/activate/windows'
+      return route.name === '/activation'
+    }).redirect = '/activation/windows'
 
     return routes
   }
