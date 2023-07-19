@@ -1,16 +1,18 @@
 import { platform } from 'os'
-import { execFile } from 'child_process'
+import { execFile, ExecFileException } from 'child_process'
 
-const fetchData = params => {
-  return new Promise(resolve => {
-    const { host, port, app, protocol } = params
+const getData = formData => {
+  const { domain, port, protocol, software } = formData
+  return new Promise<{
+    error: ExecFileException | null
+    stdout: string
+    stderr: string
+  }>(resolve => {
     execFile(
       `./service/vlmcs/vlmcs-${platform()}`,
-      [`-l ${app}`, `-${protocol}`, `${host}:${port}`],
-      { timeout: 10 * 1000 },
-      function (error, stdout) {
-        resolve({ result: error ? 'error' : 'success', stdout: stdout.toString() })
-      }
+      [`${domain}:${port}`, `-${protocol}`, `-l ${software}`],
+      { timeout: 5 * 1000 },
+      (error, stdout, stderr) => resolve({ error, stdout, stderr })
     )
   })
 }
@@ -18,12 +20,14 @@ const fetchData = params => {
 const server = Bun.serve({
   async fetch(req) {
     const url = new URL(req.url)
-    if (url.pathname === '/api/kms-check') {
-      const params = Object.fromEntries(url.searchParams)
-      const result = await fetchData(params)
-      return new Response(JSON.stringify(result))
-    } else {
-      return new Response(`404!`)
+    if (url.pathname === '/api/kms/detection') {
+      const formData = Object.fromEntries(await req.formData())
+      const { error, stdout, stderr } = await getData(formData)
+      if (error === null) {
+        return new Response(JSON.stringify({ type: 'success', message: stdout }))
+      } else {
+        return new Response(JSON.stringify({ type: 'error', message: stderr || stdout }))
+      }
     }
   }
 })
