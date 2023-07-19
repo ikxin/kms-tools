@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { FieldRule } from '@arco-design/web-vue'
-import { appItems, protocolItems } from '@/assets/items/check'
+import { appItems } from '@/assets/items/check'
 import { useAxios } from '@vueuse/integrations/useAxios'
 
 const { t } = useI18n()
 
-const formData = reactive({
-  host: 'kms.ikxin.com',
+const formData = ref({
+  domain: 'kms.ikxin.com',
   port: '1688',
-  app: '1',
-  protocol: '6'
+  protocol: '6',
+  software: '1'
 })
 
 const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
   return {
-    host: {
+    domain: {
       required: true,
       message: t('check.form.host.placeholder')
     },
@@ -22,69 +22,74 @@ const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
       required: true,
       message: t('check.form.port.placeholder')
     },
-    app: {
-      required: true,
-      message: t('check.form.app.placeholder')
-    },
     protocol: {
       required: true,
       message: t('check.form.protocol.placeholder')
+    },
+    software: {
+      required: true,
+      message: t('check.form.app.placeholder')
     }
   }
 })
 
-const visible = ref(false)
-const loading = ref(false)
-
-const alertInfo = reactive<{
+const resultInfo = reactive<{
+  loading: boolean
+  message: string
   type: 'normal' | 'error' | 'success' | 'warning' | 'info'
-  meaasge: string
+  visible: boolean
 }>({
+  loading: false,
+  message: '',
   type: 'normal',
-  meaasge: ''
+  visible: false
 })
 
 const handleSubmit = async data => {
   if (data.errors === undefined) {
-    loading.value = true
-    const { data } = await useAxios('/api/kms-check', { method: 'get', params: formData })
-    alertInfo.meaasge = data.value.stdout
-    alertInfo.type = data.value.result
-    visible.value = true
-    loading.value = false
+    resultInfo.loading = true
+    const { data } = await useAxios('/api/kms/detection', {
+      method: 'post',
+      data: formData.value,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    Object.assign(resultInfo, data.value)
+    resultInfo.visible = true
+    resultInfo.loading = false
   }
 }
 </script>
 
 <template>
   <ACard :title="t('check.title')" class="h-full">
-    <ASpin :loading="loading" dot class="w-full">
-      <AForm :model="formData" :rules="formRules" auto-label-width>
-        <AFormItem :label="t('check.form.host.label')" field="host">
-          <AInput v-model="formData.host"></AInput>
+    <ASpin :loading="resultInfo.loading" dot class="w-full">
+      <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
+        <AFormItem :label="t('check.form.host.label')" field="domain">
+          <AInput v-model="formData.domain"></AInput>
         </AFormItem>
         <AFormItem :label="t('check.form.port.label')" field="port">
           <AInput v-model="formData.port"></AInput>
         </AFormItem>
-        <AFormItem :label="t('check.form.app.label')" field="app">
-          <ASelect v-model="formData.app">
+        <AFormItem :label="t('check.form.protocol.label')" field="protocol">
+          <ASelect v-model="formData.protocol">
+            <AOption value="6">V6 Protocol</AOption>
+            <AOption value="5">V5 Protocol</AOption>
+            <AOption value="4">V4 Protocol</AOption>
+          </ASelect>
+        </AFormItem>
+        <AFormItem :label="t('check.form.app.label')" field="software">
+          <ASelect v-model="formData.software">
             <AOption v-for="(value, key) in appItems" :key="key" :value="key">{{ value }}</AOption>
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('check.form.protocol.label')" field="protocol">
-          <ASelect v-model="formData.protocol">
-            <AOption v-for="(value, key) in protocolItems" :key="key" :value="key">{{ value }}</AOption>
-          </ASelect>
-        </AFormItem>
         <AFormItem>
-          <ASpace>
-            <AButton type="primary" @click="handleSubmit">提交</AButton>
-          </ASpace>
+          <AButton html-type="submit" type="primary">提交</AButton>
         </AFormItem>
       </AForm>
-      <AAlert v-show="visible" :type="alertInfo.type">
-        <template #title> {{ alertInfo.type }} </template>
-        {{ alertInfo.meaasge }}
+      <AAlert v-show="resultInfo.visible" :type="resultInfo.type" :title="resultInfo.type" class="whitespace-pre">
+        {{ resultInfo.message }}
       </AAlert>
     </ASpin>
   </ACard>
