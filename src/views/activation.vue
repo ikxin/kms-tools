@@ -22,11 +22,11 @@ const selectedKeys = ref(pathName)
         </template>
         <template #icon><i class="i-mdi:server" /></template>
         <template #title>{{ t('activate.sidebar.system') }}</template>
-        <AMenuItem key="windows" @click="router.push({ path: '/activate/windows' })">
+        <AMenuItem key="windows" @click="router.push({ path: '/activation/windows' })">
           <template #icon><i class="i-mdi:microsoft-windows" /></template>
           <span>Windows</span>
         </AMenuItem>
-        <AMenuItem key="windows-server" @click="router.push({ path: '/activate/windows-server' })">
+        <AMenuItem key="windows-server" @click="router.push({ path: '/activation/windows-server' })">
           <template #icon><i class="i-mdi:microsoft-windows" /></template>
           <span>Windows Server</span>
         </AMenuItem>
@@ -37,7 +37,7 @@ const selectedKeys = ref(pathName)
         </template>
         <template #icon><i class="i-mdi:application-brackets" /></template>
         <template #title>{{ t('activate.sidebar.software') }}</template>
-        <AMenuItem key="office" @click="router.push({ path: '/activate/office' })">
+        <AMenuItem key="office" @click="router.push({ path: '/activation/office' })">
           <template #icon><i class="i-mdi:microsoft-office" /></template>
           <span>Office</span>
         </AMenuItem>
