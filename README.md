@@ -20,11 +20,16 @@
 
 ## ✨ 技术栈
 
-- 🌈 [Vue3](https://github.com/vuejs/core)
-- 📦 [Vue Router](https://github.com/vuejs/vue-router)
-- 🚀 [Vite](https://github.com/vitejs/vite)
-- 🎨 [Ant Design Vue](https://github.com/vueComponent/ant-design-vue)
-- ⚙️ [pnpm](https://github.com/pnpm/pnpm)
+- [Vue.js](https://github.com/vuejs/core) - 构建用户界面的 JavaScript 框架
+- [Bun](https://github.com/oven-sh/bun) - 用于 JavaScript 和 TypeScript 应用程序的一体化工具包
+- [Vite](https://github.com/vitejs/vite) - 下一代的前端工程构建工具
+- [Arco Design Vue](https://github.com/arco-design/arco-design-vue) - ByteDance 开发的企业级产品设计系统
+- [Vue Router](https://github.com/vuejs/vue-router) - Vue.js 核心团队开发的路由组件
+- [Pinia](https://github.com/unocss/unocss) - 类型安全、可扩展性以及模块化设计的状态管理库
+- [UnoCSS](https://github.com/unocss/unocss) - 即时的按需加载原子 CSS 引擎
+- [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import) - Composition API 自动按需导入的插件
+- [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) - Vue 组件自动按需导入的插件
+- [unplugin-vue-router](https://github.com/posva/unplugin-vue-router) - Vue Router 基于文件自动加载的路由系统
 
 ## ⚙️ 构建
 
