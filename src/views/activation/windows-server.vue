@@ -72,7 +72,7 @@ const copyScript = () => useScriptCopy(activateScript.value)
 
 <template>
   <div class="flex flex-col gap-4">
-    <ACard>
+    <ACard title="Windows Server">
       <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
         <AFormItem :label="t('activate.windows.form-item.version.label')" field="version">
           <ASelect v-model="formData.version" :placeholder="t('activate.windows.form-item.version.placeholder')">
