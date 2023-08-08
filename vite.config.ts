@@ -45,7 +45,7 @@ export default defineConfig({
       ]
     }),
     VueI18nPlugin({
-      include: [resolve(__dirname, './src/locales/**')]
+      include: [resolve(__dirname, './src/locales/**/*.json')]
     })
   ],
   resolve: {
