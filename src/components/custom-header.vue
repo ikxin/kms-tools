@@ -5,96 +5,66 @@ const { t } = useI18n()
 
 const appStore = useAppStore()
 
-/** 导航选项 */
 const navItems = computed(() => [
   {
-    name: 'home',
-    label: t('app.nav.home'),
-    icon: 'i-mdi:home'
-  },
-  {
     name: 'activation',
-    label: t('app.nav.activate'),
+    label: t('main.module.activate'),
     icon: 'i-mdi:microsoft-windows'
   },
   {
     name: 'detection',
-    label: t('app.nav.check'),
+    label: t('main.module.tools'),
     icon: 'i-mdi:check-network'
-  },
-  {
-    name: 'download',
-    label: t('app.nav.download'),
-    icon: 'i-mdi:folder-download'
-  },
-  {
-    name: 'guide',
-    label: t('app.nav.guide'),
-    icon: 'i-mdi:document'
-  },
-  {
-    name: 'monitor',
-    label: t('app.nav.monitor'),
-    icon: 'i-mdi:monitor-dashboard'
   }
 ])
 
-/** 路由 */
 const router = useRouter()
 
-/** 跳转页面 */
 const redirectPage = (name: string) => {
   router.push({ path: name === 'home' ? '/' : '/' + name })
 }
 
-/** 路径解析 */
 const pathName = location.pathname.match(/\b\w+\b/g)
 
-/** 导航选中项 */
 const navSelected = ref([!pathName?.[0] ? 'home' : pathName?.[0]])
 
-/** 主题选项 */
 const themeItems = computed(() => [
   {
-    lable: t('app.theme.auto'),
+    lable: t('main.theme.auto'),
     value: 'auto',
     icon: 'i-ic:round-brightness-auto'
   },
   {
-    lable: t('app.theme.dark'),
+    lable: t('main.theme.dark'),
     value: 'dark',
     icon: 'i-ic:round-dark-mode'
   },
   {
-    lable: t('app.theme.light'),
+    lable: t('main.theme.light'),
     value: 'light',
     icon: 'i-ic:round-light-mode'
   }
 ])
 
-/** 主题图标 */
 const themeIcon = computed(() => {
   return themeItems.value.find(item => item.value === appStore.theme)?.icon
 })
 
-/** 切换主题 */
 const themeChange = val => (appStore.theme = val)
 
-/** 语言选项 */
 const languagesItems = computed(() => [
   {
-    lable: t('app.languages.zh-cn'),
+    lable: t('main.languages.zh-cn'),
     value: 'zh-cn',
     icon: 'i-flag:cn-4x3'
   },
   {
-    lable: t('app.languages.en-us'),
+    lable: t('main.languages.en-us'),
     value: 'en-us',
     icon: 'i-flag:us-4x3'
   }
 ])
 
-/** 切换语言 */
 const languagesChange = val => (appStore.languages = val)
 </script>
 

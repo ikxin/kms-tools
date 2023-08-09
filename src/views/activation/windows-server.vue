@@ -5,50 +5,44 @@ import { useScript } from '@/composables/useScript'
 
 const { t } = useI18n()
 
-/** 表单数据 */
 const formData = reactive({
   version: '',
   edition: '',
   service: 'kms.moeclub.org',
-  license: ''
+  license: '',
 })
 
 watchEffect(() => (formData.license = formData.edition))
 
-/** 表单校验规则 */
 const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
   return {
     version: {
       required: true,
-      message: t('activate.windows.form-item.version.placeholder')
+      message: t('activate.form.placeholder.version'),
     },
     edition: {
       required: true,
-      message: t('activate.windows.form-item.edition.placeholder')
+      message: t('activate.form.placeholder.edition'),
     },
     service: {
       required: true,
-      message: t('activate.windows.form-item.service.placeholder')
-    }
+      message: t('activate.form.placeholder.service'),
+    },
   }
 })
 
-/** 激活脚本 */
 const activateScript = computed(() => {
   return `@echo off\r\nslmgr /skms ${formData.service}\r\nslmgr /ipk ${formData.license}\r\nslmgr /ato\r\nslmgr /xpr`
 })
 
-/** 激活脚本显示 */
 const activateScriptVisible = ref<boolean>(false)
 
-/** 表单提交 */
 const handleSubmit = data => {
   if (data.errors === undefined) {
     activateScriptVisible.value = true
   }
 }
 
-/** 表格数据 */
 const tableData = computed(() => {
   if (!gvlks[formData.version]) return []
   return gvlks[formData.version]?.edition.map(item => {
@@ -58,9 +52,9 @@ const tableData = computed(() => {
 
 const tableColumns = computed(
   (): Array<TableColumnData> => [
-    { title: t('activate.windows.table.columns.edition'), dataIndex: 'edition' },
-    { title: t('activate.windows.table.columns.license'), dataIndex: 'license' }
-  ]
+    { title: t('activate.table.columns.edition'), dataIndex: 'edition' },
+    { title: t('activate.table.columns.license'), dataIndex: 'license' },
+  ],
 )
 
 const { useScriptDownload, useScriptCopy } = useScript()
@@ -74,13 +68,13 @@ const copyScript = () => useScriptCopy(activateScript.value)
   <div class="flex flex-col gap-4">
     <ACard title="Windows Server">
       <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
-        <AFormItem :label="t('activate.windows.form-item.version.label')" field="version">
-          <ASelect v-model="formData.version" :placeholder="t('activate.windows.form-item.version.placeholder')">
+        <AFormItem :label="t('activate.form.label.version')" field="version">
+          <ASelect v-model="formData.version" :placeholder="t('activate.form.placeholder.version')">
             <AOption v-for="(item, key) in gvlks" :key="key" :label="item.version" :value="key" />
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('activate.windows.form-item.edition.label')" field="edition">
-          <ASelect v-model="formData.edition" :placeholder="t('activate.windows.form-item.edition.placeholder')">
+        <AFormItem :label="t('activate.form.label.edition')" field="edition">
+          <ASelect v-model="formData.edition" :placeholder="t('activate.form.placeholder.edition')">
             <AOption
               v-for="(item, index) in gvlks[formData.version]?.edition"
               :key="index"
@@ -89,18 +83,18 @@ const copyScript = () => useScriptCopy(activateScript.value)
             />
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('activate.windows.form-item.service.label')" field="service">
+        <AFormItem :label="t('activate.form.label.service')" field="service">
           <AInput v-model="formData.service" />
         </AFormItem>
-        <AFormItem :label="t('activate.windows.form-item.license.label')" field="license">
+        <AFormItem :label="t('activate.form.label.license')" field="license">
           <AInput v-model="formData.license" disabled />
         </AFormItem>
         <AFormItem>
           <ASpace size="small">
-            <AButton html-type="submit" type="primary">{{ t('activate.button.create-script') }}</AButton>
+            <AButton html-type="submit" type="primary">{{ t('activate.button.create') }}</AButton>
             <template v-if="activateScriptVisible">
-              <AButton @click="downloadScript">{{ t('activate.button.download-script') }}</AButton>
-              <AButton @click="copyScript">{{ t('activate.button.copy-script') }}</AButton>
+              <AButton @click="downloadScript">{{ t('activate.button.download') }}</AButton>
+              <AButton @click="copyScript">{{ t('activate.button.copy') }}</AButton>
             </template>
           </ASpace>
         </AFormItem>

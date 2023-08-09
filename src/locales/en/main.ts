@@ -1,12 +1,8 @@
 export default {
   author: 'ikxin',
-  nav: {
+  module: {
     activate: 'Activate',
-    check: 'Check',
-    download: 'Download',
-    guide: 'Guide',
-    home: 'Home',
-    monitor: 'Monitor'
+    tools: 'Tools'
   },
   theme: {
     auto: 'Auto Mode',
@@ -14,7 +10,7 @@ export default {
     light: 'Light Mode'
   },
   languages: {
-    'en-us': 'English',
-    'zh-cn': 'Simplified Chinese'
+    en: 'English',
+    zhCn: 'Simplified Chinese'
   }
 }

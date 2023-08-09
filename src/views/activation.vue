@@ -21,7 +21,7 @@ const selectedKeys = ref(pathName)
           <i class="i-mdi:chevron-down inline-block" />
         </template>
         <template #icon><i class="i-mdi:server" /></template>
-        <template #title>{{ t('activate.sidebar.system') }}</template>
+        <template #title>{{ t('activate.sider.system') }}</template>
         <AMenuItem key="windows" @click="router.push({ path: '/activation/windows' })">
           <template #icon><i class="i-mdi:microsoft-windows" /></template>
           <span>Windows</span>
@@ -36,7 +36,7 @@ const selectedKeys = ref(pathName)
           <i class="i-mdi:chevron-down inline-block" />
         </template>
         <template #icon><i class="i-mdi:application-brackets" /></template>
-        <template #title>{{ t('activate.sidebar.software') }}</template>
+        <template #title>{{ t('activate.sider.software') }}</template>
         <AMenuItem key="office" @click="router.push({ path: '/activation/office' })">
           <template #icon><i class="i-mdi:microsoft-office" /></template>
           <span>Office</span>
