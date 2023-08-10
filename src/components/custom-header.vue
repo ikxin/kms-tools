@@ -9,12 +9,12 @@ const navItems = computed(() => [
   {
     name: 'activate',
     label: t('main.module.activate'),
-    icon: 'i-mdi:microsoft-windows',
+    icon: 'i-icons:activate',
   },
   {
     name: 'tools',
     label: t('main.module.tools'),
-    icon: 'i-mdi:check-network',
+    icon: 'i-icons:tools',
   },
 ])
 
@@ -31,19 +31,19 @@ const navSelected = ref([!pathName?.[0] ? 'home' : pathName?.[0]])
 
 const themeItems = computed(() => [
   {
-    lable: t('main.theme.auto'),
-    value: 'auto',
-    icon: 'i-ic:round-brightness-auto',
+    lable: t('main.theme.light'),
+    value: 'light',
+    icon: 'i-icons:light-mode',
   },
   {
     lable: t('main.theme.dark'),
     value: 'dark',
-    icon: 'i-ic:round-dark-mode',
+    icon: 'i-icons:dark-mode',
   },
   {
-    lable: t('main.theme.light'),
-    value: 'light',
-    icon: 'i-ic:round-light-mode',
+    lable: t('main.theme.auto'),
+    value: 'auto',
+    icon: 'i-icons:auto-mode',
   },
 ])
 
@@ -57,12 +57,12 @@ const languagesItems = computed(() => [
   {
     lable: t('main.languages.zhCn'),
     value: 'zh-cn',
-    icon: 'i-flag:cn-4x3',
+    icon: 'i-languages:zh',
   },
   {
     lable: t('main.languages.en'),
     value: 'en-us',
-    icon: 'i-flag:us-4x3',
+    icon: 'i-languages:en',
   },
 ])
 
@@ -105,7 +105,7 @@ const languagesChange = val => (appStore.languages = val)
         </ADropdown>
         <ADropdown>
           <AButton size="small" type="secondary">
-            <template #icon><i class="i-mdi:google-translate" /></template>
+            <template #icon><i class="i-icons:languages" /></template>
           </AButton>
           <template #content>
             <ADoption v-for="item in languagesItems" :key="item.value" @click="languagesChange(item.value)">
@@ -115,7 +115,7 @@ const languagesChange = val => (appStore.languages = val)
           </template>
         </ADropdown>
         <AButton size="small" type="secondary">
-          <template #icon><i class="i-mdi:github-box" /></template>
+          <template #icon><i class="i-icons:github" /></template>
         </AButton>
       </ASpace>
     </div>

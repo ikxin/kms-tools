@@ -8,6 +8,7 @@ export default defineConfig({
     presetIcons({
       collections: {
         icons: FileSystemIconLoader('./src/assets/icons/others'),
+        languages: FileSystemIconLoader('./src/assets/icons/languages'),
       },
     }),
   ],

@@ -61,7 +61,10 @@ const handleSubmit = async data => {
 </script>
 
 <template>
-  <ACard :title="t('tools.card.title')" class="h-full">
+  <ACard class="h-full">
+    <template #title>
+      <div class="flex items-center gap-2"><i class="i-icons:check" />{{ t('tools.card.title') }}</div>
+    </template>
     <ASpin :loading="resultInfo.loading" dot class="w-full">
       <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
         <AFormItem :label="t('tools.form.label.domain')" field="domain">
