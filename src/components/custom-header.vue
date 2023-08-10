@@ -54,12 +54,12 @@ const themeChange = val => (appStore.theme = val)
 
 const languagesItems = computed(() => [
   {
-    lable: t('main.languages.zh-cn'),
+    lable: t('main.languages.zhCn'),
     value: 'zh-cn',
     icon: 'i-flag:cn-4x3',
   },
   {
-    lable: t('main.languages.en-us'),
+    lable: t('main.languages.en'),
     value: 'en-us',
     icon: 'i-flag:us-4x3',
   },

@@ -1,19 +1,14 @@
-const en = import.meta.glob('./en/*.ts', {
+const locales = import.meta.glob('./en/*.ts', {
   import: 'default',
-  eager: true
+  eager: true,
 })
 
-const message = {}
+const languages = {}
 
-for (const key in en) {
-  const [language, fileName] = key.split('/').slice(1)
-  const value = en[key]
-
-  if (!message[language]) {
-    message[language] = {}
-  }
-
-  message[language][fileName.split('.')[0]] = value
+for (const locale in locales) {
+  const [language, fileName] = locale.split('/').slice(1)
+  if (!languages[language]) languages[language] = {}
+  languages[language][fileName.split('.')[0]] = locales[locale]
 }
 
-export default message
+export default languages
