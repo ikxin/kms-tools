@@ -20,14 +20,14 @@ const selectedKeys = ref(pathName)
         <template #expand-icon-down>
           <i class="i-mdi:chevron-down inline-block" />
         </template>
-        <template #icon><i class="i-mdi:server" /></template>
+        <template #icon><i class="i-icons:system text-base" /></template>
         <template #title>{{ t('activate.sider.system') }}</template>
         <AMenuItem key="windows" @click="router.push({ path: '/activation/windows' })">
-          <template #icon><i class="i-mdi:microsoft-windows" /></template>
+          <template #icon><i class="i-icons:windows" /></template>
           <span>Windows</span>
         </AMenuItem>
         <AMenuItem key="windows-server" @click="router.push({ path: '/activation/windows-server' })">
-          <template #icon><i class="i-mdi:microsoft-windows" /></template>
+          <template #icon><i class="i-icons:windows-server" /></template>
           <span>Windows Server</span>
         </AMenuItem>
       </ASubMenu>
@@ -35,10 +35,10 @@ const selectedKeys = ref(pathName)
         <template #expand-icon-down>
           <i class="i-mdi:chevron-down inline-block" />
         </template>
-        <template #icon><i class="i-mdi:application-brackets" /></template>
+        <template #icon><i class="i-icons:software text-base" /></template>
         <template #title>{{ t('activate.sider.software') }}</template>
         <AMenuItem key="office" @click="router.push({ path: '/activation/office' })">
-          <template #icon><i class="i-mdi:microsoft-office" /></template>
+          <template #icon><i class="i-icons:office" /></template>
           <span>Office</span>
         </AMenuItem>
       </ASubMenu>
