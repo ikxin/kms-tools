@@ -78,9 +78,6 @@ const languagesChange = val => (appStore.languages = val)
         mode="horizontal"
         class="grow [&_.arco-menu-overflow-wrap]:text-end [&_.arco-menu-selected-label]:left-4"
       >
-        <template #expand-icon-down>
-          <i class="i-mdi:chevron-down inline-block" />
-        </template>
         <AMenuItem
           v-for="item in navItems"
           :key="item.name"

@@ -17,9 +17,6 @@ const selectedKeys = ref(pathName)
       class="[&_.arco-menu-icon>i]:inline-block select-none h-full [&>.arco-menu-inner]:p-2"
     >
       <ASubMenu key="system">
-        <template #expand-icon-down>
-          <i class="i-mdi:chevron-down inline-block" />
-        </template>
         <template #icon><i class="i-icons:system text-base" /></template>
         <template #title>{{ t('activate.sider.system') }}</template>
         <AMenuItem key="windows" @click="router.push({ path: '/activate/windows' })">
@@ -32,9 +29,6 @@ const selectedKeys = ref(pathName)
         </AMenuItem>
       </ASubMenu>
       <ASubMenu key="software">
-        <template #expand-icon-down>
-          <i class="i-mdi:chevron-down inline-block" />
-        </template>
         <template #icon><i class="i-icons:software text-base" /></template>
         <template #title>{{ t('activate.sider.software') }}</template>
         <AMenuItem key="office" @click="router.push({ path: '/activate/office' })">
