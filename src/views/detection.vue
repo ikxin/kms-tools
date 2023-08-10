@@ -9,27 +9,27 @@ const formData = ref({
   domain: 'kms.ikxin.com',
   port: '1688',
   protocol: '6',
-  software: '1'
+  software: '1',
 })
 
 const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
   return {
     domain: {
       required: true,
-      message: t('check.form.host.placeholder')
+      message: t('tools.form.placeholder.domain'),
     },
     port: {
       required: true,
-      message: t('check.form.port.placeholder')
+      message: t('tools.form.placeholder.port'),
     },
     protocol: {
       required: true,
-      message: t('check.form.protocol.placeholder')
+      message: t('tools.form.placeholder.protocol'),
     },
     software: {
       required: true,
-      message: t('check.form.app.placeholder')
-    }
+      message: t('tools.form.placeholder.software'),
+    },
   }
 })
 
@@ -42,7 +42,7 @@ const resultInfo = reactive<{
   loading: false,
   message: '',
   type: 'normal',
-  visible: false
+  visible: false,
 })
 
 const handleSubmit = async data => {
@@ -51,9 +51,7 @@ const handleSubmit = async data => {
     const { data } = await useAxios('/api/kms/detection', {
       method: 'post',
       data: formData.value,
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+      headers: { 'Content-Type': 'multipart/form-data' },
     })
     Object.assign(resultInfo, data.value)
     resultInfo.visible = true
@@ -63,29 +61,29 @@ const handleSubmit = async data => {
 </script>
 
 <template>
-  <ACard :title="t('check.title')" class="h-full">
+  <ACard :title="t('tools.card.title')" class="h-full">
     <ASpin :loading="resultInfo.loading" dot class="w-full">
       <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
-        <AFormItem :label="t('check.form.host.label')" field="domain">
+        <AFormItem :label="t('tools.form.label.domain')" field="domain">
           <AInput v-model="formData.domain"></AInput>
         </AFormItem>
-        <AFormItem :label="t('check.form.port.label')" field="port">
+        <AFormItem :label="t('tools.form.label.port')" field="port">
           <AInput v-model="formData.port"></AInput>
         </AFormItem>
-        <AFormItem :label="t('check.form.protocol.label')" field="protocol">
+        <AFormItem :label="t('tools.form.label.protocol')" field="protocol">
           <ASelect v-model="formData.protocol">
             <AOption value="6">V6 Protocol</AOption>
             <AOption value="5">V5 Protocol</AOption>
             <AOption value="4">V4 Protocol</AOption>
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('check.form.app.label')" field="software">
+        <AFormItem :label="t('tools.form.label.software')" field="software">
           <ASelect v-model="formData.software">
             <AOption v-for="(value, key) in appItems" :key="key" :value="key">{{ value }}</AOption>
           </ASelect>
         </AFormItem>
         <AFormItem>
-          <AButton html-type="submit" type="primary">提交</AButton>
+          <AButton html-type="submit" type="primary">{{ t('tools.button.submit') }}</AButton>
         </AFormItem>
       </AForm>
       <AAlert v-show="resultInfo.visible" :type="resultInfo.type" :title="resultInfo.type" class="whitespace-pre">
