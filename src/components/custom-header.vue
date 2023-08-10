@@ -21,6 +21,7 @@ const navItems = computed(() => [
 const router = useRouter()
 
 const redirectPage = (name: string) => {
+  navSelected.value = [name]
   router.push({ path: name === 'home' ? '/' : '/' + name })
 }
 
@@ -71,7 +72,7 @@ const languagesChange = val => (appStore.languages = val)
 <template>
   <ALayoutHeader class="select-none bg-[--color-bg-2] px-2 shadow-md">
     <div class="mx-auto flex w-256 max-w-full items-center justify-between">
-      <img h-12 src="../assets/icons/logo.svg" />
+      <div class="i-icons:kms-tools w-48 h-12 cursor-pointer" @click="redirectPage('home')"></div>
       <AMenu
         v-model:selected-keys="navSelected"
         mode="horizontal"

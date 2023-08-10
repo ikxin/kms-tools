@@ -7,7 +7,7 @@ export default defineConfig({
     presetUno(),
     presetIcons({
       collections: {
-        icons: FileSystemIconLoader('./src/assets/icons'),
+        icons: FileSystemIconLoader('./src/assets/icons/others'),
       },
     }),
   ],
