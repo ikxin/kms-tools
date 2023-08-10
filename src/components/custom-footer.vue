@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
+import * as dayjs from 'dayjs'
 
 const currentYear = ref(dayjs().year())
 

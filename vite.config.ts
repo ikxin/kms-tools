@@ -14,51 +14,49 @@ import { VueRouterAutoImports } from 'unplugin-vue-router'
 export default defineConfig({
   plugins: [
     VueRouter({
-      dts: './src/typings/router.d.ts',
+      dts: './src/typings/vue-router.d.ts',
       extensions: ['.vue'],
-      routesFolder: './src/views'
+      routesFolder: './src/views',
     }),
     Vue({
-      include: [/\.vue$/, /\.md$/]
+      include: [/\.vue$/, /\.md$/],
     }),
     Markdown({
       markdownItSetup(md) {
         md.use(Shiki)
-      }
+      },
     }),
     UnoCSS(),
     AutoImport({
       eslintrc: {
         enabled: true,
-        filepath: './src/typings/.eslintrc.json'
+        filepath: './src/typings/.eslintrc.json',
       },
       dts: './src/typings/imports.d.ts',
       imports: ['@vueuse/core', 'pinia', 'vue-i18n', 'vue', VueRouterAutoImports],
-      resolvers: [ArcoResolver()]
+      resolvers: [ArcoResolver()],
     }),
     Components({
       dts: './src/typings/components.d.ts',
       resolvers: [
         ArcoResolver({
-          sideEffect: false
-        })
-      ]
+          sideEffect: false,
+        }),
+      ],
     }),
-    VueI18nPlugin({
-      include: [resolve(__dirname, './src/locales/**/*.json')]
-    })
+    VueI18nPlugin({}),
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
-    }
+      '@': resolve(__dirname, './src'),
+    },
   },
   server: {
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
-        changeOrigin: true
-      }
-    }
-  }
+        changeOrigin: true,
+      },
+    },
+  },
 })
