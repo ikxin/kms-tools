@@ -48,7 +48,7 @@ const resultInfo = reactive<{
 const handleSubmit = async data => {
   if (data.errors === undefined) {
     resultInfo.loading = true
-    const { data } = await useAxios('/api/kms/detection', {
+    const { data } = await useAxios('/api/kms/check', {
       method: 'post',
       data: formData.value,
       headers: { 'Content-Type': 'multipart/form-data' },

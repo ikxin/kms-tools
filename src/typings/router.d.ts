@@ -40,14 +40,14 @@ import type {
 declare module 'vue-router/auto/routes' {
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
-    '/activation': RouteRecordInfo<'/activation', '/activation', Record<never, never>, Record<never, never>>,
-    '/activation/office': RouteRecordInfo<'/activation/office', '/activation/office', Record<never, never>, Record<never, never>>,
-    '/activation/windows': RouteRecordInfo<'/activation/windows', '/activation/windows', Record<never, never>, Record<never, never>>,
-    '/activation/windows-server': RouteRecordInfo<'/activation/windows-server', '/activation/windows-server', Record<never, never>, Record<never, never>>,
-    '/detection': RouteRecordInfo<'/detection', '/detection', Record<never, never>, Record<never, never>>,
+    '/activate': RouteRecordInfo<'/activate', '/activate', Record<never, never>, Record<never, never>>,
+    '/activate/office': RouteRecordInfo<'/activate/office', '/activate/office', Record<never, never>, Record<never, never>>,
+    '/activate/windows': RouteRecordInfo<'/activate/windows', '/activate/windows', Record<never, never>, Record<never, never>>,
+    '/activate/windows-server': RouteRecordInfo<'/activate/windows-server', '/activate/windows-server', Record<never, never>, Record<never, never>>,
     '/download/': RouteRecordInfo<'/download/', '/download', Record<never, never>, Record<never, never>>,
     '/guide/': RouteRecordInfo<'/guide/', '/guide', Record<never, never>, Record<never, never>>,
     '/monitor/': RouteRecordInfo<'/monitor/', '/monitor', Record<never, never>, Record<never, never>>,
+    '/tools': RouteRecordInfo<'/tools', '/tools', Record<never, never>, Record<never, never>>,
   }
 }
 

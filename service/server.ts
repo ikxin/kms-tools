@@ -12,7 +12,7 @@ const getData = formData => {
       `./service/vlmcs/vlmcs-${platform()}`,
       [`${domain}:${port}`, `-${protocol}`, `-l ${software}`],
       { timeout: 5 * 1000 },
-      (error, stdout, stderr) => resolve({ error, stdout, stderr })
+      (error, stdout, stderr) => resolve({ error, stdout, stderr }),
     )
   })
 }
@@ -20,7 +20,7 @@ const getData = formData => {
 const server = Bun.serve({
   async fetch(req) {
     const url = new URL(req.url)
-    if (url.pathname === '/api/kms/detection') {
+    if (url.pathname === '/api/kms/check') {
       const formData = Object.fromEntries(await req.formData())
       const { error, stdout, stderr } = await getData(formData)
       if (error === null) {
@@ -29,7 +29,7 @@ const server = Bun.serve({
         return new Response(JSON.stringify({ type: 'error', message: stderr || stdout }))
       }
     }
-  }
+  },
 })
 
 console.log(`Server running at http://localhost:${server.port}`)

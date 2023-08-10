@@ -7,15 +7,15 @@ const appStore = useAppStore()
 
 const navItems = computed(() => [
   {
-    name: 'activation',
+    name: 'activate',
     label: t('main.module.activate'),
-    icon: 'i-mdi:microsoft-windows'
+    icon: 'i-mdi:microsoft-windows',
   },
   {
-    name: 'detection',
+    name: 'tools',
     label: t('main.module.tools'),
-    icon: 'i-mdi:check-network'
-  }
+    icon: 'i-mdi:check-network',
+  },
 ])
 
 const router = useRouter()
@@ -32,18 +32,18 @@ const themeItems = computed(() => [
   {
     lable: t('main.theme.auto'),
     value: 'auto',
-    icon: 'i-ic:round-brightness-auto'
+    icon: 'i-ic:round-brightness-auto',
   },
   {
     lable: t('main.theme.dark'),
     value: 'dark',
-    icon: 'i-ic:round-dark-mode'
+    icon: 'i-ic:round-dark-mode',
   },
   {
     lable: t('main.theme.light'),
     value: 'light',
-    icon: 'i-ic:round-light-mode'
-  }
+    icon: 'i-ic:round-light-mode',
+  },
 ])
 
 const themeIcon = computed(() => {
@@ -56,13 +56,13 @@ const languagesItems = computed(() => [
   {
     lable: t('main.languages.zh-cn'),
     value: 'zh-cn',
-    icon: 'i-flag:cn-4x3'
+    icon: 'i-flag:cn-4x3',
   },
   {
     lable: t('main.languages.en-us'),
     value: 'en-us',
-    icon: 'i-flag:us-4x3'
-  }
+    icon: 'i-flag:us-4x3',
+  },
 ])
 
 const languagesChange = val => (appStore.languages = val)
