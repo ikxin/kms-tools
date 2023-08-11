@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FieldRule } from '@arco-design/web-vue'
+import { FieldRule, Notification } from '@arco-design/web-vue'
 import { appItems } from '@/assets/items/check'
 import { useAxios } from '@vueuse/integrations/useAxios'
 
@@ -48,14 +48,19 @@ const resultInfo = reactive<{
 const handleSubmit = async data => {
   if (data.errors === undefined) {
     resultInfo.loading = true
-    const { data } = await useAxios('/api/kms/check', {
-      method: 'post',
-      data: formData.value,
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    Object.assign(resultInfo, data.value)
-    resultInfo.visible = true
-    resultInfo.loading = false
+    try {
+      const { data } = await useAxios('/api/kms/check', {
+        method: 'post',
+        data: formData.value,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      Object.assign(resultInfo, data.value)
+      resultInfo.visible = true
+      resultInfo.loading = false
+    } catch ({ code, message }) {
+      Notification.error({ title: code, content: message })
+      resultInfo.loading = false
+    }
   }
 }
 </script>
