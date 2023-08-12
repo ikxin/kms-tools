@@ -10,9 +10,10 @@ export const useMonitorStore = defineStore('monitor', async () => {
     'm794366683-525bb3bcd660d58d54fd8045',
     'm791948435-e8e6c704d43fac76fb6cd3ea',
     'm794992994-7688fbdc23c247ff8f2cd07d',
+    'm790633514-8e1d658a806daa670799a6f5',
   ]
 
-  const timestamps = Array.from({ length: 90 }, (_, num) => {
+  const timestamps = Array.from({ length: 120 }, (_, num) => {
     return (
       dayjs().startOf('day').subtract(num, 'day').unix() +
       '_' +
@@ -21,7 +22,7 @@ export const useMonitorStore = defineStore('monitor', async () => {
   }).reverse()
 
   const params = {
-    api_key: apiKey[0],
+    api_key: apiKey[5],
     custom_uptime_ranges: timestamps.join('-'),
   }
 

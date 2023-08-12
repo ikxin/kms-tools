@@ -16,6 +16,11 @@ const navItems = computed(() => [
     label: t('main.module.tools'),
     icon: 'i-icons:tools',
   },
+  {
+    name: 'monitor',
+    label: t('main.module.monitor'),
+    icon: 'i-icons:monitor',
+  },
 ])
 
 const router = useRouter()

@@ -2,15 +2,16 @@ export default {
   author: 'ikxin',
   module: {
     activate: 'Activate',
-    tools: 'Tools'
+    monitor: 'Monitor',
+    tools: 'Tools',
   },
   theme: {
     auto: 'Auto Mode',
     dark: 'Dark Mode',
-    light: 'Light Mode'
+    light: 'Light Mode',
   },
   languages: {
     en: 'English',
-    zhCn: 'Simplified Chinese'
-  }
+    zhCn: 'Simplified Chinese',
+  },
 }
