@@ -5,5 +5,7 @@ useMonitorStore()
 </script>
 
 <template>
-  <div>monitor</div>
+  <div>
+    <ACard></ACard>
+  </div>
 </template>
