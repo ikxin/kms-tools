@@ -17,6 +17,7 @@
     "@vueuse/integrations": "^10.3.0",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
+    "echarts": "^5.4.3",
     "less": "^4.2.0",
     "markdown-it-shiki": "^0.9.0",
     "pinia": "^2.1.6",
