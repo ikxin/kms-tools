@@ -4,7 +4,6 @@ import { Notification } from '@arco-design/web-vue'
 
 export const useMonitorStore = defineStore('monitor', () => {
   const apiUrl = 'https://api.uptimerobot.com/v2/getMonitors'
-
   const apiKey = ['m794366630-4128d6474ac33847941241ec', 'm794366608-72bc068b4b9b17ef4ed6485d']
 
   const timestamps = Array.from({ length: 120 }, (_, num) => {
@@ -15,25 +14,31 @@ export const useMonitorStore = defineStore('monitor', () => {
     )
   }).reverse()
 
-  const monitorData = ref([])
+  const loading = ref(false)
+  const monitors = useStorage('monitors', [])
 
-  const getMonitorData = async () => {
-    apiKey.forEach(async item => {
+  const getMonitors = async () => {
+    loading.value = true
+    const _monitors = []
+    if (monitors.value.length !== 0) {
+      loading.value = false
+      return
+    }
+    for (const api_key of apiKey) {
       try {
-        const {
-          data: { monitors = [] },
-        } = await axios.post(apiUrl, {
-          api_key: item,
+        const { data } = await axios.post(apiUrl, {
+          api_key,
           custom_uptime_ranges: timestamps.join('-'),
         })
-        monitorData.value.push(...monitors)
+        _monitors.push(...data.monitors)
       } catch ({ code, message }) {
         Notification.error({ title: code, content: message })
+        loading.value = false
       }
-    })
+    }
+    monitors.value = _monitors
+    loading.value = false
   }
 
-  getMonitorData()
-
-  return { monitorData }
+  return { getMonitors, loading, monitors }
 })
