@@ -4,7 +4,7 @@ import { Notification } from '@arco-design/web-vue'
 
 export const useMonitorStore = defineStore('monitor', () => {
   const apiUrl = 'https://api.uptimerobot.com/v2/getMonitors'
-  const apiKey = ['m794366630-4128d6474ac33847941241ec', 'm794366608-72bc068b4b9b17ef4ed6485d']
+  const apiKey = ['m794366630-4128d6474ac33847941241ec', 'm790633514-8e1d658a806daa670799a6f5']
 
   const timestamps = Array.from({ length: 120 }, (_, num) => {
     return (
