@@ -3,3 +3,5 @@
 .DS_Store
 node_modules
 dist
+sqlite.db
+drizzle
