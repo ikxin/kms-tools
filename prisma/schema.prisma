@@ -11,6 +11,16 @@ datasource db {
 }
 
 model Server {
-  id Int @id @default(autoincrement())
-  address String @unique
+  id      Int      @id @default(autoincrement())
+  address String   @unique
+  record  Record[]
+}
+
+model Record {
+  id        Int      @id @default(autoincrement())
+  server    Server?  @relation(fields: [serverId], references: [id])
+  serverId  Int?
+  delay     Int
+  status    Boolean
+  createdAt DateTime @default(now())
 }

@@ -8,7 +8,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "service": "bun --watch index.ts",
+    "service": "bun --watch service/index.ts",
     "generate": "drizzle-kit generate:sqlite",
     "tsc": "vue-tsc"
   },
@@ -34,8 +34,6 @@
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@typescript-eslint/parser": "^6.17.0",
     "@vitejs/plugin-vue": "^5.0.2",
-    "drizzle-kit": "^0.20.13",
-    "drizzle-orm": "^0.29.3",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.19.2",

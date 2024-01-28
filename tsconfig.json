@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "module": "ESNext",
+    "target": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
     "paths": { "@/*": ["src/*"] },
