@@ -9,8 +9,10 @@
     "build": "vite build",
     "dev": "vite",
     "service": "bun --watch service/index.ts",
-    "generate": "drizzle-kit generate:sqlite",
-    "tsc": "vue-tsc"
+    "generate": "prisma generate",
+    "tsc": "vue-tsc",
+    "init-db": "prisma init --datasource-provider sqlite",
+    "migrate": "prisma migrate dev --name init"
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.54.1",
