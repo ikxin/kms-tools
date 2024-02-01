@@ -32,7 +32,7 @@
 - <img src="./src/assets/icons/logos/unjs.svg" /> [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import) - 自动按需导入 Composition API 的插件
 - <img src="./src/assets/icons/logos/unjs.svg" /> [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) - 自动按需导入 Vue 组件的插件
 - <img src="./src/assets/icons/logos/unjs.svg" /> [unplugin-vue-router](https://github.com/posva/unplugin-vue-router) - Vue Router 自动加载基于文件的路由系统
-- <img src="./src/assets/icons/logos/markdown.svg" /> [vite-plugin-vue-markdown](https://github.com/mdit-vue/vite-plugin-vue-markdown) - Markdown 文档支持
+- <img src="./src/assets/icons/logos/markdown.svg" /> [unplugin-vue-markdown](https://github.com/unplugin/unplugin-vue-markdown) - Markdown 文档支持
 
 ## ⚙️ 构建
 
