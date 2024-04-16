@@ -6,7 +6,8 @@
     "moduleResolution": "Bundler",
     "noEmit": true,
     "paths": { "@/*": ["src/*"] },
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strict": true
   },
   "include": ["**/*.vue", "**/*.ts", "**/*.d.ts"]
 }
