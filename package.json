@@ -12,9 +12,11 @@
     "service": "bun --watch service/index.ts",
     "generate": "prisma generate",
     "tsc": "vue-tsc",
-    "init-db": "prisma init --datasource-provider sqlite",
+    "init-prisma": "prisma init --datasource-provider sqlite",
     "migrate": "prisma migrate dev --name init",
-    "kill-vlmcsd": "pkill -f vlmcsd"
+    "kill-vlmcsd": "pkill -f vlmcsd",
+    "db-studio": "drizzle-kit studio",
+    "init-db": "drizzle-kit generate:sqlite && bun service/scripts/migrate.ts"
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.55.1",
