@@ -17,24 +17,9 @@ app.get('/*', () => Bun.file('dist/index.html'))
 app.listen(3000)
 
 try {
-  const { stdout, exitCode } =
-    platform() === 'win32'
-      ? await $`netstat -ano | findstr 1688`.nothrow()
-      : await $`lsof -i :1688 | grep LISTEN`.nothrow()
-
-  if (exitCode === 0) {
-    const lines = stdout.toString().split('\n')
-    for (const line of lines) {
-      const match = line.match(/\b(\d+)\b/)
-      if (match) {
-        const pid = match[0]
-        platform() === 'win32'
-          ? await $`taskkill /F /PID ${pid}`.nothrow()
-          : await $`kill -9 ${pid}`.nothrow()
-        break
-      }
-    }
-  }
+  platform() === 'win32'
+    ? await $`taskkill /IM vlmcsd* /F`.nothrow()
+    : await $`pkill -f vlmcsd`.nothrow()
 } catch (err) {
   console.error(err)
 }
