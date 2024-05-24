@@ -4,7 +4,7 @@ import { arch, platform } from 'os'
 import { $ } from 'bun'
 import { drizzle } from 'drizzle-orm/bun-sqlite'
 import { Database } from 'bun:sqlite'
-import * as schema from './db/schema'
+import * as schema from './schema'
 
 const sqlite = new Database('sqlite.db')
 const db = drizzle(sqlite, { schema })
@@ -21,7 +21,7 @@ app.use(
 app.get('/*', () => Bun.file('dist/index.html'))
 
 app.get('/api/record', async () => {
-  return await db.query.record.findMany()
+  return await db.query.logs.findMany()
 })
 
 app.listen(3000)

@@ -3,6 +3,5 @@
 .DS_Store
 node_modules
 dist
-dev.db*
 migrations
 sqlite.db

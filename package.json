@@ -6,17 +6,15 @@
   "author": "一纸忘忧 <i@ikxin.com>",
   "type": "module",
   "scripts": {
-    "web-dev": "bun --watch service",
     "build": "vite build",
     "dev": "vite",
-    "service": "bun --watch service/index.ts",
-    "generate": "prisma generate",
+    "service": "bun --watch service",
     "tsc": "vue-tsc",
-    "init-prisma": "prisma init --datasource-provider sqlite",
-    "migrate": "prisma migrate dev --name init",
-    "kill-vlmcsd": "pkill -f vlmcsd",
-    "db-studio": "drizzle-kit studio",
-    "init-db": "drizzle-kit generate:sqlite && bun service/scripts/migrate.ts"
+    "db:init": "drizzle-kit generate --name init_db",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio --verbose",
+    "db:clear": "rm -rf service/migrations sqlite.db",
+    "kill-vlmcsd": "pkill -f vlmcsd"
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.55.1",
@@ -42,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "@vitejs/plugin-vue": "^5.0.4",
-    "drizzle-kit": "^0.20.18",
+    "drizzle-kit": "^0.21.4",
     "drizzle-orm": "^0.30.10",
     "eslint": "^9.2.0",
     "eslint-config-prettier": "^9.1.0",
