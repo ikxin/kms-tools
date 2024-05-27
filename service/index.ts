@@ -20,7 +20,12 @@ const vlmcsdServers = [
 ]
 
 const runVlmcs = (server: string) => {
-  return new Promise(resolve => {
+  return new Promise<{
+    content: string
+    delay: number
+    server: string
+    status: boolean
+  }>(resolve => {
     const before = Date.now()
     execFile(
       `./service/binaries/vlmcs-${platform()}-${arch()}`,
@@ -33,7 +38,7 @@ const runVlmcs = (server: string) => {
           server,
           status: err ? false : true,
         })
-      }
+      },
     )
   })
 }
@@ -43,7 +48,12 @@ new CronJob(
   async function () {
     for (const item of vlmcsdServers) {
       const result = await runVlmcs(item)
-      console.log(result)
+      db.insert(schema.logs)
+        .values({
+          ...result,
+          createdAt: Date.now(),
+        })
+        .run()
     }
   },
   null,
