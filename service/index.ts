@@ -1,13 +1,55 @@
-import { Elysia } from 'elysia'
-import { staticPlugin } from '@elysiajs/static'
-import { arch, platform } from 'os'
 import { $ } from 'bun'
-import { drizzle } from 'drizzle-orm/bun-sqlite'
+import { arch, platform } from 'os'
+import { CronJob } from 'cron'
 import { Database } from 'bun:sqlite'
+import { drizzle } from 'drizzle-orm/bun-sqlite'
+import { Elysia } from 'elysia'
+import { execFile } from 'child_process'
+import { staticPlugin } from '@elysiajs/static'
 import * as schema from './schema'
 
 const sqlite = new Database('sqlite.db')
 const db = drizzle(sqlite, { schema })
+
+const vlmcsdServers = [
+  'kms.03k.org',
+  'kms.ikxin.com',
+  'kms.loli.best',
+  'kms.lolico.moe',
+  's1.kms.cx',
+]
+
+const runVlmcs = (server: string) => {
+  return new Promise(resolve => {
+    const before = Date.now()
+    execFile(
+      `./service/binaries/vlmcs-${platform()}-${arch()}`,
+      [server],
+      { timeout: 5 * 1000 },
+      (err, stdout) => {
+        resolve({
+          content: stdout.trim(),
+          delay: Date.now() - before,
+          server,
+          status: err ? false : true,
+        })
+      }
+    )
+  })
+}
+
+new CronJob(
+  '0/20 * * * * *',
+  async function () {
+    for (const item of vlmcsdServers) {
+      const result = await runVlmcs(item)
+      console.log(result)
+    }
+  },
+  null,
+  true,
+  'Asia/Shanghai',
+)
 
 const app = new Elysia()
 

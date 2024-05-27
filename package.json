@@ -8,12 +8,12 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "service": "bun --watch service",
+    "service": "bun --watch service/index.ts",
     "tsc": "vue-tsc",
+    "db:clear": "rm -r service/migrations sqlite.db",
     "db:init": "drizzle-kit generate --name init_db",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio --verbose",
-    "db:clear": "rm -rf service/migrations sqlite.db",
     "kill-vlmcsd": "pkill -f vlmcsd"
   },
   "dependencies": {
@@ -40,6 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "@vitejs/plugin-vue": "^5.0.4",
+    "cron": "^3.1.7",
     "drizzle-kit": "^0.21.4",
     "drizzle-orm": "^0.30.10",
     "eslint": "^9.2.0",
