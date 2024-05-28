@@ -18,15 +18,15 @@ const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
   return {
     version: {
       required: true,
-      message: t('activate.form.placeholder.version'),
+      message: t('placeholder.version'),
     },
     edition: {
       required: true,
-      message: t('activate.form.placeholder.edition'),
+      message: t('placeholder.edition'),
     },
     service: {
       required: true,
-      message: t('activate.form.placeholder.service'),
+      message: t('placeholder.service'),
     },
   }
 })
@@ -52,8 +52,8 @@ const tableData = computed(() => {
 
 const tableColumns = computed(
   (): Array<TableColumnData> => [
-    { title: t('activate.table.columns.edition'), dataIndex: 'edition' },
-    { title: t('activate.table.columns.license'), dataIndex: 'license' },
+    { title: t('label.edition'), dataIndex: 'edition' },
+    { title: t('label.license'), dataIndex: 'license' },
   ],
 )
 
@@ -68,16 +68,34 @@ const copyScript = () => useScriptCopy(activateScript.value)
   <div class="flex flex-col gap-4">
     <ACard>
       <template #title>
-        <div class="flex items-center gap-2"><i class="i-icons:windows" />Windows</div>
+        <div class="flex items-center gap-2">
+          <i class="i-icons:windows" />Windows
+        </div>
       </template>
-      <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
-        <AFormItem :label="t('activate.form.label.version')" field="version">
-          <ASelect v-model="formData.version" :placeholder="t('activate.form.placeholder.version')">
-            <AOption v-for="(item, key) in gvlks" :key="key" :label="item.version" :value="key" />
+      <AForm
+        :model="formData"
+        :rules="formRules"
+        @submit="handleSubmit"
+        auto-label-width
+      >
+        <AFormItem :label="t('label.version')" field="version">
+          <ASelect
+            v-model="formData.version"
+            :placeholder="t('placeholder.version')"
+          >
+            <AOption
+              v-for="(item, key) in gvlks"
+              :key="key"
+              :label="item.version"
+              :value="key"
+            />
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('activate.form.label.edition')" field="edition">
-          <ASelect v-model="formData.edition" :placeholder="t('activate.form.placeholder.edition')">
+        <AFormItem :label="t('label.edition')" field="edition">
+          <ASelect
+            v-model="formData.edition"
+            :placeholder="t('placeholder.edition')"
+          >
             <AOption
               v-for="(item, index) in gvlks[formData.version]?.edition"
               :key="index"
@@ -86,18 +104,24 @@ const copyScript = () => useScriptCopy(activateScript.value)
             />
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('activate.form.label.service')" field="service">
+        <AFormItem :label="t('label.service')" field="service">
           <AInput v-model="formData.service" />
         </AFormItem>
-        <AFormItem :label="t('activate.form.label.license')" field="license">
+        <AFormItem :label="t('label.license')" field="license">
           <AInput v-model="formData.license" disabled />
         </AFormItem>
         <AFormItem>
           <ASpace size="small">
-            <AButton html-type="submit" type="primary">{{ t('activate.button.create') }}</AButton>
+            <AButton html-type="submit" type="primary">
+              {{ t('button.generate-script') }}
+            </AButton>
             <template v-if="activateScriptVisible">
-              <AButton @click="downloadScript">{{ t('activate.button.download') }}</AButton>
-              <AButton @click="copyScript">{{ t('activate.button.copy') }}</AButton>
+              <AButton @click="downloadScript">
+                {{ t('button.download-script') }}
+              </AButton>
+              <AButton @click="copyScript">
+                {{ t('button.copy-script') }}
+              </AButton>
             </template>
           </ASpace>
         </AFormItem>

@@ -34,7 +34,13 @@ export default defineConfig({
         filepath: './src/typings/.eslintrc.json',
       },
       dts: './src/typings/imports.d.ts',
-      imports: ['@vueuse/core', 'pinia', 'vue-i18n', 'vue', VueRouterAutoImports],
+      imports: [
+        '@vueuse/core',
+        'pinia',
+        'vue-i18n',
+        'vue',
+        VueRouterAutoImports,
+      ],
       resolvers: [ArcoResolver()],
     }),
     Components({
@@ -45,7 +51,9 @@ export default defineConfig({
         }),
       ],
     }),
-    VueI18nPlugin({}),
+    VueI18nPlugin({
+      include: [resolve(__dirname, './src/locales/**')],
+    }),
     VueDevTools(),
   ],
   resolve: {

@@ -1,0 +1,48 @@
+{
+  "label": {
+    "activate": "Activate",
+    "check": "Check",
+    "monitor": "Monitor",
+    "auto-theme": "System",
+    "light-theme": "Light",
+    "dark-theme": "Dark",
+    "zh-cn": "Simplified Chinese",
+    "zh-tw": "Traditional Chinese",
+    "en": "English",
+    "operating-system": "Operating System",
+    "software": "Software",
+    "edition": "Edition",
+    "cpuarch": "CPU Arch",
+    "license": "License Key",
+    "product": "Product",
+    "service": "KMS Server",
+    "version": "Version",
+    "x64": "x64",
+    "x86": "x86",
+    "domain": "Domain",
+    "port": "Port",
+    "protocol": "Protocol"
+  },
+  "name": {
+    "author": "ikxin"
+  },
+  "placeholder": {
+    "domain": "Please input domain",
+    "port": "Please input port",
+    "protocol": "Please select protocol",
+    "software": "Please select software",
+    "edition": "Please select edition",
+    "product": "Please select product",
+    "service": "Please select kms server",
+    "version": "Please select version"
+  },
+  "button": {
+    "copy-script": "Copy Script",
+    "generate-script": "Generate Script",
+    "download-script": "Download Script",
+    "submit": "Submit"
+  },
+  "title": {
+    "kms-check": "KMS Server Check"
+  }
+}

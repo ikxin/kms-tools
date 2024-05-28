@@ -9,7 +9,10 @@ const selectedKeys = ref(pathName)
 </script>
 
 <template>
-  <ALayoutSider :width="240" class="[&>.arco-layout-sider-children]:rounded rounded">
+  <ALayoutSider
+    :width="240"
+    class="[&>.arco-layout-sider-children]:rounded rounded"
+  >
     <AMenu
       v-model:selected-keys="selectedKeys"
       :default-open-keys="['system', 'software']"
@@ -18,20 +21,29 @@ const selectedKeys = ref(pathName)
     >
       <ASubMenu key="system">
         <template #icon><i class="i-icons:system text-base" /></template>
-        <template #title>{{ t('activate.sider.system') }}</template>
-        <AMenuItem key="windows" @click="router.push({ path: '/activate/windows' })">
+        <template #title>{{ t('label.operating-system') }}</template>
+        <AMenuItem
+          key="windows"
+          @click="router.push({ path: '/activate/windows' })"
+        >
           <template #icon><i class="i-icons:windows" /></template>
           <span>Windows</span>
         </AMenuItem>
-        <AMenuItem key="windows-server" @click="router.push({ path: '/activate/windows-server' })">
+        <AMenuItem
+          key="windows-server"
+          @click="router.push({ path: '/activate/windows-server' })"
+        >
           <template #icon><i class="i-icons:windows-server" /></template>
           <span>Windows Server</span>
         </AMenuItem>
       </ASubMenu>
       <ASubMenu key="software">
         <template #icon><i class="i-icons:software text-base" /></template>
-        <template #title>{{ t('activate.sider.software') }}</template>
-        <AMenuItem key="office" @click="router.push({ path: '/activate/office' })">
+        <template #title>{{ t('label.software') }}</template>
+        <AMenuItem
+          key="office"
+          @click="router.push({ path: '/activate/office' })"
+        >
           <template #icon><i class="i-icons:office" /></template>
           <span>Office</span>
         </AMenuItem>

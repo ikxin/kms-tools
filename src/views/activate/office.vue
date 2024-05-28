@@ -19,15 +19,15 @@ const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
   return {
     version: {
       required: true,
-      message: t('activate.form.placeholder.version'),
+      message: t('placeholder.version'),
     },
     product: {
       required: true,
-      message: t('activate.form.placeholder.product'),
+      message: t('placeholder.product'),
     },
     service: {
       required: true,
-      message: t('activate.form.placeholder.service'),
+      message: t('placeholder.service'),
     },
   }
 })
@@ -58,8 +58,8 @@ const tableData = computed(() => {
 
 const tableColumns = computed(
   (): Array<TableColumnData> => [
-    { title: t('activate.table.columns.product'), dataIndex: 'product' },
-    { title: t('activate.table.columns.license'), dataIndex: 'license' },
+    { title: t('label.product'), dataIndex: 'product' },
+    { title: t('label.license'), dataIndex: 'license' },
   ],
 )
 
@@ -74,16 +74,34 @@ const copyScript = () => useScriptCopy(activateScript.value)
   <div class="flex flex-col gap-4">
     <ACard>
       <template #title>
-        <div class="flex items-center gap-2"><i class="i-icons:office" />Office</div>
+        <div class="flex items-center gap-2">
+          <i class="i-icons:office" />Office
+        </div>
       </template>
-      <AForm :model="formData" :rules="formRules" @submit="handleSubmit" auto-label-width>
-        <AFormItem :label="t('activate.form.label.version')" field="version">
-          <ASelect v-model="formData.version" :placeholder="t('activate.form.placeholder.version')">
-            <AOption v-for="(item, key) in gvlks" :key="key" :label="item.version" :value="key" />
+      <AForm
+        :model="formData"
+        :rules="formRules"
+        @submit="handleSubmit"
+        auto-label-width
+      >
+        <AFormItem :label="t('label.version')" field="version">
+          <ASelect
+            v-model="formData.version"
+            :placeholder="t('placeholder.version')"
+          >
+            <AOption
+              v-for="(item, key) in gvlks"
+              :key="key"
+              :label="item.version"
+              :value="key"
+            />
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('activate.form.label.product')" field="product">
-          <ASelect v-model="formData.product" :placeholder="t('activate.form.placeholder.product')">
+        <AFormItem :label="t('label.product')" field="product">
+          <ASelect
+            v-model="formData.product"
+            :placeholder="t('placeholder.product')"
+          >
             <AOption
               v-for="(item, index) in gvlks[formData.version]?.product"
               :key="index"
@@ -92,24 +110,30 @@ const copyScript = () => useScriptCopy(activateScript.value)
             />
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('activate.form.label.cpuarch')" field="cpuarch">
+        <AFormItem :label="t('label.cpuarch')" field="cpuarch">
           <ARadioGroup v-model="formData.cpuarch" type="button">
-            <ARadio :value="false">{{ t('activate.radio.x86') }}</ARadio>
-            <ARadio :value="true">{{ t('activate.radio.x64') }}</ARadio>
+            <ARadio :value="false">{{ t('label.x86') }}</ARadio>
+            <ARadio :value="true">{{ t('label.x64') }}</ARadio>
           </ARadioGroup>
         </AFormItem>
-        <AFormItem :label="t('activate.form.label.service')" field="service">
+        <AFormItem :label="t('label.service')" field="service">
           <AInput v-model="formData.service" />
         </AFormItem>
-        <AFormItem :label="t('activate.form.label.license')" field="license">
+        <AFormItem :label="t('label.license')" field="license">
           <AInput v-model="formData.license" disabled />
         </AFormItem>
         <AFormItem>
           <ASpace size="small">
-            <AButton html-type="submit" type="primary">{{ t('activate.button.create') }}</AButton>
+            <AButton html-type="submit" type="primary">
+              {{ t('button.generate-script') }}
+            </AButton>
             <template v-if="activateScriptVisible">
-              <AButton @click="downloadScript">{{ t('activate.button.download') }}</AButton>
-              <AButton @click="copyScript">{{ t('activate.button.copy') }}</AButton>
+              <AButton @click="downloadScript">
+                {{ t('button.download-script') }}
+              </AButton>
+              <AButton @click="copyScript">
+                {{ t('button.copy-script') }}
+              </AButton>
             </template>
           </ASpace>
         </AFormItem>

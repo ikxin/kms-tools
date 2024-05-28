@@ -8,17 +8,17 @@ const appStore = useAppStore()
 const navItems = computed(() => [
   {
     name: 'activate',
-    label: t('main.module.activate'),
+    label: t('label.activate'),
     icon: 'i-icons:activate',
   },
   {
     name: 'tools',
-    label: t('main.module.tools'),
+    label: t('label.check'),
     icon: 'i-icons:tools',
   },
   {
     name: 'monitor',
-    label: t('main.module.monitor'),
+    label: t('label.monitor'),
     icon: 'i-icons:monitor',
   },
 ])
@@ -36,17 +36,17 @@ const navSelected = ref([!pathName?.[0] ? 'home' : pathName?.[0]])
 
 const themeItems = computed(() => [
   {
-    lable: t('main.theme.light'),
+    lable: t('label.light-theme'),
     value: 'light',
     icon: 'i-icons:light-mode',
   },
   {
-    lable: t('main.theme.dark'),
+    lable: t('label.dark-theme'),
     value: 'dark',
     icon: 'i-icons:dark-mode',
   },
   {
-    lable: t('main.theme.auto'),
+    lable: t('label.auto-theme'),
     value: 'auto',
     icon: 'i-icons:auto-mode',
   },
@@ -60,13 +60,13 @@ const themeChange = val => (appStore.theme = val)
 
 const languagesItems = computed(() => [
   {
-    lable: t('main.languages.zhCn'),
+    lable: t('label.zh-cn'),
     value: 'zh-cn',
     icon: 'i-languages:zh',
   },
   {
-    lable: t('main.languages.en'),
-    value: 'en-us',
+    lable: t('label.en'),
+    value: 'en',
     icon: 'i-languages:en',
   },
 ])
@@ -77,7 +77,10 @@ const languagesChange = val => (appStore.languages = val)
 <template>
   <ALayoutHeader class="select-none bg-[--color-bg-2] px-2 shadow-md">
     <div class="mx-auto flex w-256 max-w-full items-center justify-between">
-      <div class="i-icons:kms-tools w-48 h-12 cursor-pointer" @click="redirectPage('home')"></div>
+      <div
+        class="i-icons:kms-tools w-48 h-12 cursor-pointer"
+        @click="redirectPage('home')"
+      ></div>
       <AMenu
         v-model:selected-keys="navSelected"
         mode="horizontal"
@@ -99,7 +102,11 @@ const languagesChange = val => (appStore.languages = val)
             <template #icon><i :class="themeIcon" /></template>
           </AButton>
           <template #content>
-            <ADoption v-for="item in themeItems" :key="item.value" @click="themeChange(item.value)">
+            <ADoption
+              v-for="item in themeItems"
+              :key="item.value"
+              @click="themeChange(item.value)"
+            >
               <template #icon><i :class="item.icon" /></template>
               <template #default>{{ item.lable }}</template>
             </ADoption>
@@ -110,7 +117,11 @@ const languagesChange = val => (appStore.languages = val)
             <template #icon><i class="i-icons:languages" /></template>
           </AButton>
           <template #content>
-            <ADoption v-for="item in languagesItems" :key="item.value" @click="languagesChange(item.value)">
+            <ADoption
+              v-for="item in languagesItems"
+              :key="item.value"
+              @click="languagesChange(item.value)"
+            >
               <template #icon><i :class="item.icon" /></template>
               <template #default>{{ item.lable }}</template>
             </ADoption>
