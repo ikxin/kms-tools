@@ -7,6 +7,7 @@ import { Elysia } from 'elysia'
 import { execFile } from 'child_process'
 import { staticPlugin } from '@elysiajs/static'
 import * as schema from './schema'
+import { cors } from '@elysiajs/cors'
 
 const sqlite = new Database('sqlite.db')
 const db = drizzle(sqlite, { schema })
@@ -19,7 +20,19 @@ const vlmcsdServers = [
   's1.kms.cx',
 ]
 
-const runVlmcs = (server: string) => {
+export type RunVlmcsType = {
+  domain: string
+  port?: number
+  protocol?: number
+  app?: number
+}
+
+const runVlmcs = ({
+  domain,
+  port = 1688,
+  protocol = 6,
+  app = 26,
+}: RunVlmcsType) => {
   return new Promise<{
     content: string
     delay: number
@@ -29,13 +42,13 @@ const runVlmcs = (server: string) => {
     const before = Date.now()
     execFile(
       `./service/binaries/vlmcs-${platform()}-${arch()}`,
-      [server],
+      [`${domain}:${port}`, `-${protocol}`, `-l ${app}`],
       { timeout: 5 * 1000 },
       (err, stdout) => {
         resolve({
           content: stdout.trim(),
           delay: Date.now() - before,
-          server,
+          server: domain,
           status: err ? false : true,
         })
       },
@@ -47,7 +60,7 @@ new CronJob(
   '0/20 * * * * *',
   async function () {
     for (const item of vlmcsdServers) {
-      const result = await runVlmcs(item)
+      const result = await runVlmcs({ domain: item })
       db.insert(schema.logs)
         .values({
           ...result,
@@ -70,10 +83,17 @@ app.use(
   }),
 )
 
+app.use(cors())
+
 app.get('/*', () => Bun.file('dist/index.html'))
 
-app.get('/api/record', async () => {
+app.get('/api/logs', async () => {
   return await db.query.logs.findMany()
+})
+
+app.post('/api/check', async (request) => {
+  const body = request.body as RunVlmcsType
+  return await runVlmcs(body)
 })
 
 app.listen(3000)

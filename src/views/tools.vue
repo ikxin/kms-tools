@@ -49,7 +49,7 @@ const handleSubmit = async data => {
   if (data.errors === undefined) {
     resultInfo.loading = true
     try {
-      const { data } = await useAxios('/api/kms/check', {
+      const { data } = await useAxios('http://localhost:3000/api/check', {
         method: 'post',
         data: formData.value,
         headers: { 'Content-Type': 'multipart/form-data' },

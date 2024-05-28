@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.55.1",
+    "@elysiajs/cors": "^1.0.2",
     "@elysiajs/static": "^1.0.3",
     "@vueuse/core": "^10.9.0",
     "@vueuse/integrations": "^10.9.0",
