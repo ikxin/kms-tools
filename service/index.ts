@@ -59,6 +59,7 @@ const runVlmcs = ({
 new CronJob(
   '0/20 * * * * *',
   async function () {
+    console.log(new Date())
     for (const item of vlmcsdServers) {
       const result = await runVlmcs({ domain: item })
       db.insert(schema.logs)
@@ -91,12 +92,12 @@ app.get('/api/logs', async () => {
   return await db.query.logs.findMany()
 })
 
-app.post('/api/check', async (request) => {
+app.post('/api/check', async request => {
   const body = request.body as RunVlmcsType
   return await runVlmcs(body)
 })
 
-app.listen(3000)
+app.listen(Bun.env.PORT || 3000)
 
 console.log(`Elysia is running at on port ${app.server?.url} ...`)
 

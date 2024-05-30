@@ -40,6 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^7.11.0",
     "@typescript-eslint/parser": "^7.11.0",
     "@vitejs/plugin-vue": "^5.0.4",
+    "better-sqlite3": "^10.0.0",
     "cron": "^3.1.7",
     "drizzle-kit": "^0.21.4",
     "drizzle-orm": "^0.30.10",
