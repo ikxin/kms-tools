@@ -4,3 +4,4 @@ node_modules
 dist
 migrations
 sqlite.db
+.env
