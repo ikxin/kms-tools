@@ -16,34 +16,34 @@ const connection = await mysql.createConnection(
 const db = drizzle(connection, { schema, mode: 'default' })
 
 export type RunVlmcsType = {
-  domain: string
+  host: string
   port?: number
-  protocol?: number
   app?: number
+  protocol?: number
 }
 
 const runVlmcs = ({
-  domain,
+  host,
   port = 1688,
-  protocol = 6,
   app = 26,
+  protocol = 6,
 }: RunVlmcsType) => {
   return new Promise<{
     content: string
     delay: number
-    domain: string
+    host: string
     status: boolean
   }>(resolve => {
     const before = Date.now()
     execFile(
       `./service/binaries/vlmcs-${platform()}-${arch()}`,
-      [`${domain}:${port}`, `-${protocol}`, `-l ${app}`],
+      [`${host}:${port}`, `-${protocol}`, `-l ${app}`],
       { timeout: 5 * 1000 },
       (err, stdout) => {
         resolve({
-          content: stdout.trim(),
+          host,
           delay: Date.now() - before,
-          domain,
+          content: stdout.trim(),
           status: err ? false : true,
         })
       },
@@ -64,19 +64,20 @@ app.use(cors())
 
 app.use(
   cron({
-    name: 'heartbeat',
-    pattern: Patterns.everySenconds(1),
+    name: 'check',
+    pattern: Patterns.everySenconds(10),
     async run() {
-      const vlmcsdService = await db.query.serviceTable.findMany()
-      if (Array.isArray(vlmcsdService) && vlmcsdService?.length > 0) {
-        for (const item of vlmcsdService) {
-          const { domain, port } = item
-          const data = await runVlmcs({ domain, port })
-          const result = await db.insert(schema.logsTable).values({
-            ...data,
+      const servers = await db.query.server.findMany()
+      if (Array.isArray(servers) && servers?.length > 0) {
+        for (const item of servers) {
+          const result = await runVlmcs({
+            host: item.host,
+            port: item.port,
+          })
+          await db.insert(schema.logs).values({
+            ...result,
             createdAt: new Date(),
           })
-          console.log(result)
         }
       }
     },
@@ -86,7 +87,7 @@ app.use(
 app.get('/*', () => Bun.file('dist/index.html'))
 
 app.get('/api/logs', async () => {
-  return await db.query.logsTable.findMany()
+  return await db.query.logs.findMany()
 })
 
 app.post('/api/check', async request => {
