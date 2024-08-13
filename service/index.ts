@@ -1,24 +1,19 @@
 import { $ } from 'bun'
 import { arch, platform } from 'os'
-import { CronJob } from 'cron'
-import { Database } from 'bun:sqlite'
-import { drizzle } from 'drizzle-orm/bun-sqlite'
 import { Elysia } from 'elysia'
 import { execFile } from 'child_process'
 import { staticPlugin } from '@elysiajs/static'
-import * as schema from './schema'
 import { cors } from '@elysiajs/cors'
+import { cron, Patterns } from '@elysiajs/cron'
+import { drizzle } from 'drizzle-orm/mysql2'
+import mysql from 'mysql2/promise'
+import * as schema from './schema'
 
-const sqlite = new Database('sqlite.db')
-const db = drizzle(sqlite, { schema })
+const connection = await mysql.createConnection(
+  Bun.env.DATABASE_URL || 'mysql://root:password@localhost:3306/database',
+)
 
-const vlmcsdServers = [
-  'kms.03k.org',
-  'kms.ikxin.com',
-  'kms.loli.best',
-  'kms.lolico.moe',
-  's1.kms.cx',
-]
+const db = drizzle(connection, { schema, mode: 'default' })
 
 export type RunVlmcsType = {
   domain: string
@@ -36,7 +31,7 @@ const runVlmcs = ({
   return new Promise<{
     content: string
     delay: number
-    server: string
+    domain: string
     status: boolean
   }>(resolve => {
     const before = Date.now()
@@ -48,32 +43,13 @@ const runVlmcs = ({
         resolve({
           content: stdout.trim(),
           delay: Date.now() - before,
-          server: domain,
+          domain,
           status: err ? false : true,
         })
       },
     )
   })
 }
-
-new CronJob(
-  '0/20 * * * * *',
-  async function () {
-    console.log(new Date())
-    for (const item of vlmcsdServers) {
-      const result = await runVlmcs({ domain: item })
-      db.insert(schema.logs)
-        .values({
-          ...result,
-          createdAt: Date.now(),
-        })
-        .run()
-    }
-  },
-  null,
-  true,
-  'Asia/Shanghai',
-)
 
 const app = new Elysia()
 
@@ -86,10 +62,31 @@ app.use(
 
 app.use(cors())
 
+app.use(
+  cron({
+    name: 'heartbeat',
+    pattern: Patterns.everySenconds(1),
+    async run() {
+      const vlmcsdService = await db.query.serviceTable.findMany()
+      if (Array.isArray(vlmcsdService) && vlmcsdService?.length > 0) {
+        for (const item of vlmcsdService) {
+          const { domain, port } = item
+          const data = await runVlmcs({ domain, port })
+          const result = await db.insert(schema.logsTable).values({
+            ...data,
+            createdAt: new Date(),
+          })
+          console.log(result)
+        }
+      }
+    },
+  }),
+)
+
 app.get('/*', () => Bun.file('dist/index.html'))
 
 app.get('/api/logs', async () => {
-  return await db.query.logs.findMany()
+  return await db.query.logsTable.findMany()
 })
 
 app.post('/api/check', async request => {

@@ -1,10 +1,14 @@
 import { defineConfig } from 'drizzle-kit'
 
 export default defineConfig({
-  dialect: 'sqlite',
-  out: './service/migrations',
   schema: './service/schema.ts',
+  out: './service/migrations',
+  dialect: 'mysql',
   dbCredentials: {
-    url: 'sqlite.db',
+    url:
+      process.env.DATABASE_URL ||
+      'mysql://root:password@localhost:3306/database',
   },
+  verbose: true,
+  strict: true,
 })
