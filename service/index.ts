@@ -39,7 +39,7 @@ const runVlmcs = ({
     execFile(
       `./service/binaries/vlmcs-${platform()}-${arch()}`,
       [`${host}:${port}`, `-${protocol}`, `-l ${app}`],
-      { timeout: 5 * 1000 },
+      { timeout: 10 * 1000 },
       (err, stdout) => {
         resolve({
           host,

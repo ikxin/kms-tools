@@ -6,7 +6,7 @@ import { useAxios } from '@vueuse/integrations/useAxios'
 const { t } = useI18n()
 
 const formData = ref({
-  domain: 'kms.ikxin.com',
+  host: 'kms.8b5.cn',
   port: '1688',
   protocol: '6',
   software: '1',
@@ -14,7 +14,7 @@ const formData = ref({
 
 const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
   return {
-    domain: {
+    host: {
       required: true,
       message: t('placeholder.domain'),
     },
@@ -49,12 +49,13 @@ const handleSubmit = async data => {
   if (data.errors === undefined) {
     resultInfo.loading = true
     try {
-      const { data } = await useAxios('http://localhost:3000/api/check', {
+      const { data } = await useAxios('/api/check', {
         method: 'post',
         data: formData.value,
         headers: { 'Content-Type': 'multipart/form-data' },
       })
-      Object.assign(resultInfo, data.value)
+      resultInfo.message = data.value.content
+      resultInfo.type = data.value.status ? 'success' : 'error'
       resultInfo.visible = true
       resultInfo.loading = false
     } catch ({ code, message }) {
@@ -79,8 +80,8 @@ const handleSubmit = async data => {
         @submit="handleSubmit"
         auto-label-width
       >
-        <AFormItem :label="t('label.domain')" field="domain">
-          <AInput v-model="formData.domain"></AInput>
+        <AFormItem :label="t('label.domain')" field="host">
+          <AInput v-model="formData.host"></AInput>
         </AFormItem>
         <AFormItem :label="t('label.port')" field="port">
           <AInput v-model="formData.port"></AInput>
