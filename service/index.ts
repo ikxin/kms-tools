@@ -8,6 +8,7 @@ import { cron, Patterns } from '@elysiajs/cron'
 import { drizzle } from 'drizzle-orm/mysql2'
 import mysql from 'mysql2/promise'
 import * as schema from './schema'
+import { count, eq, sql, sum } from 'drizzle-orm'
 
 const connection = await mysql.createConnection(
   Bun.env.DATABASE_URL || 'mysql://root:password@localhost:3306/database',
@@ -64,12 +65,12 @@ app.use(cors())
 
 app.use(
   cron({
-    name: 'check',
-    pattern: Patterns.everySenconds(10),
+    name: 'heartbeat',
+    pattern: Patterns.everyMinutes(10),
     async run() {
       const servers = await db.query.server.findMany()
       if (Array.isArray(servers) && servers?.length > 0) {
-        for (const item of servers) {
+        for await (const item of servers) {
           const result = await runVlmcs({
             host: item.host,
             port: item.port,
@@ -79,6 +80,33 @@ app.use(
             createdAt: new Date(),
           })
         }
+
+        const result = await db
+          .select({
+            host: schema.logs.host,
+            total: count(),
+            success: sum(eq(schema.logs.status, true)).mapWith(Number),
+            fail: sum(eq(schema.logs.status, false)).mapWith(Number),
+            delay: sql<number>`avg(case when ${schema.logs.status} = true then ${schema.logs.delay} else null end)`,
+          })
+          .from(schema.logs)
+          .groupBy(schema.logs.host)
+
+        for await (const item of result) {
+          const { host, total, success, fail, delay } = item
+
+          await db
+            .update(schema.server)
+            .set({
+              total,
+              success,
+              fail,
+              delay: Number(delay),
+              rate: Number((success / total).toFixed(2)),
+              updatedAt: new Date(),
+            })
+            .where(eq(schema.server.host, host))
+        }
       }
     },
   }),
@@ -86,13 +114,13 @@ app.use(
 
 app.get('/*', () => Bun.file('dist/index.html'))
 
-app.get('/api/logs', async () => {
-  return await db.query.logs.findMany()
-})
-
 app.post('/api/check', async request => {
   const body = request.body as RunVlmcsType
   return await runVlmcs(body)
+})
+
+app.get('/api/server', async () => {
+  return await db.query.server.findMany()
 })
 
 app.listen(Bun.env.PORT || 3000)

@@ -16,7 +16,6 @@ export const server = mysqlTable('server', {
   fail: int('fail').notNull().default(0),
   delay: float('delay').notNull().default(0),
   rate: float('rate').notNull().default(0),
-  rateAll: float('rate_all').notNull().default(0),
   updatedAt: timestamp('updated_at'),
   createdAt: timestamp('created_at'),
 })
