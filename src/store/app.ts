@@ -1,18 +1,21 @@
 export const useAppStore = defineStore('app', () => {
-  const { locale } = useI18n()
-
   const theme = useColorMode({
     attribute: 'arco-theme',
     emitAuto: true,
     selector: 'body',
-    storageKey: 'theme'
+    storageKey: 'theme',
   })
 
-  const { language: _language } = useNavigatorLanguage()
+  const { locale } = useI18n()
 
-  const languages = useStorage('languages', _language.value.toLocaleLowerCase())
+  const { language } = useNavigatorLanguage()
 
-  watch(languages, value => (locale.value = value))
+  const _locale = useStorage(
+    'locale',
+    language.value?.toLocaleLowerCase() || 'zh-cn',
+  )
 
-  return { theme, languages }
+  watchEffect(() => (locale.value = _locale.value))
+
+  return { theme, locale }
 })

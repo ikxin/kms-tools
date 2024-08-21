@@ -1,11 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createWebHistory, createRouter } from 'vue-router'
+import { routes } from 'vue-router/auto-routes'
+
+for (const route of routes) {
+  if (route.name === '/activate') {
+    route.redirect = '/activate/windows'
+  }
+}
 
 export const router = createRouter({
   history: createWebHistory(),
-  extendRoutes: routes => {
-    routes.find(route => {
-      return route.name === '/activate'
-    }).redirect = '/activate/windows'
-    return routes
-  },
+  routes,
 })

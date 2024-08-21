@@ -17,7 +17,11 @@ export default defineConfig({
     VueRouter({
       dts: './src/typings/vue-router.d.ts',
       extensions: ['.vue'],
-      routesFolder: './src/views',
+      routesFolder: [
+        {
+          src: './src/views',
+        },
+      ],
     }),
     Vue({
       include: [/\.vue$/, /\.md$/],

@@ -71,7 +71,7 @@ const languagesItems = computed(() => [
   },
 ])
 
-const languagesChange = val => (appStore.languages = val)
+const languagesChange = (val: string) => (appStore.locale = val)
 </script>
 
 <template>
