@@ -45,7 +45,7 @@ export const runCheck = async () => {
           success,
           fail,
           delay: Number(delay),
-          rate: Number((success / total).toFixed(2)),
+          rate: Number((success / total).toFixed(4)),
           updatedAt: new Date(),
         })
         .where(eq(schema.server.host, host))

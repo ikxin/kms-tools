@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { FieldRule, Notification } from '@arco-design/web-vue'
 import { appItems } from '@/assets/items/check'
-import { useAxios } from '@vueuse/integrations/useAxios'
+import fetch from '@/utils/fetch'
+import { FieldRule, ValidatedError } from '@arco-design/web-vue'
 
 const { t } = useI18n()
 
@@ -45,21 +45,24 @@ const resultInfo = reactive<{
   visible: false,
 })
 
-const handleSubmit = async data => {
+const handleSubmit = async (data: {
+  values: Record<string, any>
+  errors: Record<string, ValidatedError> | undefined
+}) => {
   if (data.errors === undefined) {
     resultInfo.loading = true
     try {
-      const { data } = await useAxios('/api/check', {
+      const { data } = await fetch({
+        url: '/api/check',
         method: 'post',
         data: formData.value,
         headers: { 'Content-Type': 'multipart/form-data' },
       })
-      resultInfo.message = data.value.content
-      resultInfo.type = data.value.status ? 'success' : 'error'
+      resultInfo.message = data.content
+      resultInfo.type = data.status ? 'success' : 'error'
       resultInfo.visible = true
       resultInfo.loading = false
-    } catch ({ code, message }) {
-      Notification.error({ title: code, content: message })
+    } catch (err) {
       resultInfo.loading = false
     }
   }
@@ -86,6 +89,16 @@ const handleSubmit = async data => {
         <AFormItem :label="t('label.port')" field="port">
           <AInput v-model="formData.port"></AInput>
         </AFormItem>
+        <AFormItem :label="t('label.software')" field="software">
+          <ASelect v-model="formData.software">
+            <AOption
+              v-for="(value, key) in appItems"
+              :key="key"
+              :value="key"
+              :label="value"
+            />
+          </ASelect>
+        </AFormItem>
         <AFormItem :label="t('label.protocol')" field="protocol">
           <ASelect v-model="formData.protocol">
             <AOption value="6">V6 Protocol</AOption>
@@ -93,17 +106,10 @@ const handleSubmit = async data => {
             <AOption value="4">V4 Protocol</AOption>
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('label.software')" field="software">
-          <ASelect v-model="formData.software">
-            <AOption v-for="(value, key) in appItems" :key="key" :value="key">{{
-              value
-            }}</AOption>
-          </ASelect>
-        </AFormItem>
         <AFormItem>
-          <AButton html-type="submit" type="primary">{{
-            t('button.submit')
-          }}</AButton>
+          <AButton html-type="submit" type="primary">
+            {{ t('button.submit') }}
+          </AButton>
         </AFormItem>
       </AForm>
       <AAlert

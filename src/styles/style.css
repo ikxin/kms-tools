@@ -3,14 +3,9 @@ body {
 }
 
 #app {
-  @apply flex flex-col gap-4 min-h-screen bg-[--color-neutral-2] text-[--color-text-2];
+  @apply flex flex-col gap-4 min-h-screen bg-[--color-neutral-2] text-[--color-text-2] select-none;
 }
 
 .arco-layout-header span > i {
   font-size: 1rem;
 }
-
-.arco-dropdown{
-  @apply select-none;
-}
-
