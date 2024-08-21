@@ -6,16 +6,24 @@ export const useAppStore = defineStore('app', () => {
     storageKey: 'theme',
   })
 
-  const { locale } = useI18n()
+  const { locale: _locale } = useI18n()
 
   const { language } = useNavigatorLanguage()
 
-  const _locale = useStorage(
+  const locale = useStorage(
     'locale',
     language.value?.toLocaleLowerCase() || 'zh-cn',
   )
 
-  watchEffect(() => (locale.value = _locale.value))
+  function setLocale(val: LocaleValue) {
+    locale.value = val
+  }
 
-  return { theme, locale }
+  watchEffect(() => (_locale.value = locale.value))
+
+  return {
+    locale,
+    theme,
+    setLocale,
+  }
 })

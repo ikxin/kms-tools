@@ -19,6 +19,7 @@
     "@elysiajs/cors": "^1.1.0",
     "@elysiajs/cron": "^1.1.0",
     "@elysiajs/static": "^1.1.0",
+    "@iconify-json/flag": "^1.1.54",
     "@vueuse/core": "^11.0.1",
     "@vueuse/integrations": "^11.0.1",
     "axios": "^1.7.4",

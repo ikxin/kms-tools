@@ -5,6 +5,8 @@ const { t } = useI18n()
 
 const appStore = useAppStore()
 
+const { setLocale } = useAppStore()
+
 const navItems = computed(() => [
   {
     name: 'activate',
@@ -58,20 +60,18 @@ const themeIcon = computed(() => {
 
 const themeChange = val => (appStore.theme = val)
 
-const languagesItems = computed(() => [
+const locales: LocaleItem[] = [
   {
-    lable: t('label.zh-cn'),
+    lable: '简体中文',
     value: 'zh-cn',
-    icon: 'i-languages:zh',
+    icon: 'i-flag:cn-4x3',
   },
   {
-    lable: t('label.en'),
+    lable: 'English',
     value: 'en',
-    icon: 'i-languages:en',
+    icon: 'i-flag:us-4x3',
   },
-])
-
-const languagesChange = (val: string) => (appStore.locale = val)
+]
 </script>
 
 <template>
@@ -118,12 +118,12 @@ const languagesChange = (val: string) => (appStore.locale = val)
           </AButton>
           <template #content>
             <ADoption
-              v-for="item in languagesItems"
-              :key="item.value"
-              @click="languagesChange(item.value)"
+              v-for="locale in locales"
+              :key="locale.value"
+              @click="setLocale(locale.value)"
             >
-              <template #icon><i :class="item.icon" /></template>
-              <template #default>{{ item.lable }}</template>
+              <template #icon><i :class="locale.icon" /></template>
+              <template #default>{{ locale.lable }}</template>
             </ADoption>
           </template>
         </ADropdown>
