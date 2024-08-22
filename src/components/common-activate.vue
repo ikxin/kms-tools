@@ -4,7 +4,7 @@ import { useMonitorStore } from '@/store/monitor'
 const props = defineProps<{
   editionData: EditionItem[]
   title: string
-  generateScript: (host: string, license: string, arch?: string) => string
+  generateScript: (formData: ActivateFormData) => string
 }>()
 
 const { t } = useI18n()
@@ -15,25 +15,25 @@ const monitorStore = useMonitorStore()
 
 const { monitors } = monitorStore
 
-const formData = ref({
+const formData = ref<ActivateFormData>({
   edition: editionData[0].edition[0][1],
-  arch: '',
+  arch: 'x64',
   host: monitors[0].host,
-  gvlk: '',
+  license: '',
 })
 
 watchEffect(() => {
   for (const item of editionData) {
-    for (const [token, name] of item.edition) {
+    for (const [license, name] of item.edition) {
       if (name === formData.value.edition) {
-        formData.value.gvlk = token
+        formData.value.license = license
       }
     }
   }
 })
 
 const content = computed(() => {
-  return props.generateScript(formData.value.host, formData.value.gvlk)
+  return props.generateScript(formData.value)
 })
 
 const file = computed(() => {
@@ -53,7 +53,7 @@ const { copy, copied } = useClipboard({
     <ACard>
       <template #title>
         <div class="flex items-center gap-2">
-          <i :class="`i-icons:${title.toLowerCase()}`" />
+          <i :class="`i-icons:${title.toLowerCase().replace(/ /g, '-')}`" />
           <span>{{ title }}</span>
         </div>
       </template>
@@ -69,6 +69,17 @@ const { copy, copied } = useClipboard({
             </template>
           </ASelect>
         </AFormItem>
+        <AFormItem
+          v-if="title.toLowerCase() === 'office'"
+          field="arch"
+          :label="t('label.arch')"
+          required
+        >
+          <ARadioGroup v-model="formData.arch" type="button">
+            <ARadio value="x64">{{ t('label.x64') }}</ARadio>
+            <ARadio value="x86">{{ t('label.x86') }}</ARadio>
+          </ARadioGroup>
+        </AFormItem>
         <AFormItem :label="t('label.host')" field="host" required>
           <ASelect v-model="formData.host">
             <template v-for="item in monitors" :key="item.id">
@@ -76,8 +87,8 @@ const { copy, copied } = useClipboard({
             </template>
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('label.gvlk')" field="gvlk" required>
-          <AInput v-model="formData.gvlk" disabled />
+        <AFormItem :label="t('label.license')" field="license" required>
+          <AInput v-model="formData.license" disabled />
         </AFormItem>
         <AFormItem :label="t('label.script')" required>
           <ATextarea v-model="content" auto-size />

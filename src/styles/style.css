@@ -9,3 +9,7 @@ body {
 .arco-layout-header span > i {
   font-size: 1rem;
 }
+
+.arco-select-dropdown-list-wrapper {
+  max-height: 400px;
+}

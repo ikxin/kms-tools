@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import editionData from '@/assets/gvlks/windows.json'
 
-function generateScript(host: string, license: string) {
-  if (!host || !license) return ''
+function generateScript(formData: ActivateFormData) {
+  const { host, license } = formData
   return (
     `@echo off\r\n` +
     `slmgr /skms ${host}\r\n` +

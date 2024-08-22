@@ -35,3 +35,10 @@ interface RecordItem {
   updatedAt: Date
   createdAt: Date
 }
+
+interface ActivateFormData {
+  edition: string
+  arch: string
+  host: string
+  license: string
+}
