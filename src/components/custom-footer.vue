@@ -21,7 +21,7 @@ const { t } = useI18n()
         <div>
           Code with by
           <ALink target="_blank" href="https://www.ikxin.com">
-            {{ t('name.author') }}
+            {{ t('label.author') }}
           </ALink>
         </div>
       </ASpace>

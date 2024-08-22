@@ -1,8 +1,8 @@
 export interface RunVlmcsParams {
   host: string
   port?: number
-  app?: number
   protocol?: number
+  edition?: number
 }
 
 export interface RunVlmcsResult {

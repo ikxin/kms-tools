@@ -38,19 +38,19 @@ const navSelected = ref([!pathName?.[0] ? 'home' : pathName?.[0]])
 
 const themeItems = computed(() => [
   {
-    lable: t('label.light-theme'),
-    value: 'light',
-    icon: 'i-icons:light-mode',
+    lable: t('label.auto'),
+    value: 'auto',
+    icon: 'i-icons:auto-mode',
   },
   {
-    lable: t('label.dark-theme'),
+    lable: t('label.dark'),
     value: 'dark',
     icon: 'i-icons:dark-mode',
   },
   {
-    lable: t('label.auto-theme'),
-    value: 'auto',
-    icon: 'i-icons:auto-mode',
+    lable: t('label.light'),
+    value: 'light',
+    icon: 'i-icons:light-mode',
   },
 ])
 
@@ -58,7 +58,7 @@ const themeIcon = computed(() => {
   return themeItems.value.find(item => item.value === appStore.theme)?.icon
 })
 
-const themeChange = val => (appStore.theme = val)
+const themeChange = (val: any) => (appStore.theme = val)
 
 const locales: LocaleItem[] = [
   {

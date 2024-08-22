@@ -21,7 +21,7 @@ const selectedKeys = ref(pathName)
     >
       <ASubMenu key="system">
         <template #icon><i class="i-icons:system text-base" /></template>
-        <template #title>{{ t('label.operating-system') }}</template>
+        <template #title>{{ t('label.system') }}</template>
         <AMenuItem
           key="windows"
           @click="router.push({ path: '/activate/windows' })"

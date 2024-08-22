@@ -9,26 +9,22 @@ const formData = ref({
   host: 'kms.8b5.cn',
   port: '1688',
   protocol: '6',
-  software: '1',
+  edition: '1',
 })
 
 const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
   return {
     host: {
       required: true,
-      message: t('placeholder.domain'),
     },
     port: {
       required: true,
-      message: t('placeholder.port'),
     },
     protocol: {
       required: true,
-      message: t('placeholder.protocol'),
     },
-    software: {
+    edition: {
       required: true,
-      message: t('placeholder.software'),
     },
   }
 })
@@ -83,14 +79,14 @@ const handleSubmit = async (data: {
         @submit="handleSubmit"
         auto-label-width
       >
-        <AFormItem :label="t('label.domain')" field="host">
+        <AFormItem :label="t('label.host')" field="host">
           <AInput v-model="formData.host"></AInput>
         </AFormItem>
         <AFormItem :label="t('label.port')" field="port">
           <AInput v-model="formData.port"></AInput>
         </AFormItem>
-        <AFormItem :label="t('label.software')" field="software">
-          <ASelect v-model="formData.software">
+        <AFormItem :label="t('label.edition')" field="edition">
+          <ASelect v-model="formData.edition">
             <AOption
               v-for="(value, key) in appItems"
               :key="key"
@@ -108,7 +104,7 @@ const handleSubmit = async (data: {
         </AFormItem>
         <AFormItem>
           <AButton html-type="submit" type="primary">
-            {{ t('button.submit') }}
+            {{ t('label.submit') }}
           </AButton>
         </AFormItem>
       </AForm>

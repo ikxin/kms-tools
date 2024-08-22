@@ -3,68 +3,72 @@ import { useMonitorStore } from '@/store/monitor'
 import { TableColumnData } from '@arco-design/web-vue'
 import dayjs from 'dayjs'
 
-const columns: TableColumnData[] = [
-  {
-    dataIndex: 'host',
-    title: '服务器',
-    minWidth: 160,
-  },
-  {
-    dataIndex: 'port',
-    title: '端口',
-    width: 80,
-  },
-  {
-    dataIndex: 'rate',
-    title: '成功率',
-    width: 100,
-    align: 'center',
-    sortable: {
-      sortDirections: ['ascend', 'descend'],
+const { t } = useI18n()
+
+const columns = computed<TableColumnData[]>(() => {
+  return [
+    {
+      dataIndex: 'host',
+      title: t('label.host'),
+      minWidth: 160,
     },
-    render({ record }) {
-      return `${(record.rate * 100).toFixed(2)} %`
+    {
+      dataIndex: 'port',
+      title: t('label.port'),
+      width: 80,
     },
-  },
-  {
-    dataIndex: 'delay',
-    title: '平均延迟',
-    width: 120,
-    align: 'center',
-    sortable: {
-      sortDirections: ['ascend', 'descend'],
+    {
+      dataIndex: 'rate',
+      title: t('label.rate'),
+      width: 100,
+      align: 'center',
+      sortable: {
+        sortDirections: ['ascend', 'descend'],
+      },
+      render({ record }) {
+        return `${(record.rate * 100).toFixed(2)} %`
+      },
     },
-    render({ record }) {
-      return `${record.delay.toFixed(2)} ms`
+    {
+      dataIndex: 'delay',
+      title: t('label.delay'),
+      width: 120,
+      align: 'center',
+      sortable: {
+        sortDirections: ['ascend', 'descend'],
+      },
+      render({ record }) {
+        return `${record.delay.toFixed(2)} ms`
+      },
     },
-  },
-  {
-    dataIndex: 'total',
-    title: '总请求',
-    width: 80,
-    align: 'center',
-  },
-  {
-    dataIndex: 'success',
-    title: '成功数',
-    width: 80,
-    align: 'center',
-  },
-  {
-    dataIndex: 'fail',
-    title: '失败数',
-    width: 80,
-    align: 'center',
-  },
-  {
-    dataIndex: 'updatedAt',
-    title: '更新时间',
-    width: 170,
-    render({ record }) {
-      return dayjs(record.updatedAt).format('YYYY-MM-DD HH:mm:ss')
+    {
+      dataIndex: 'total',
+      title: t('label.total'),
+      width: 80,
+      align: 'center',
     },
-  },
-]
+    {
+      dataIndex: 'success',
+      title: t('label.success-total'),
+      width: 80,
+      align: 'center',
+    },
+    {
+      dataIndex: 'fail',
+      title: t('label.fail-total'),
+      width: 80,
+      align: 'center',
+    },
+    {
+      dataIndex: 'updatedAt',
+      title: t('label.updated-at'),
+      width: 170,
+      render({ record }) {
+        return dayjs(record.updatedAt).format('YYYY-MM-DD HH:mm:ss')
+      },
+    },
+  ]
+})
 
 const monitorStore = useMonitorStore()
 </script>

@@ -1,46 +1,30 @@
 {
   "label": {
+    "author": "一纸忘忧",
     "activate": "激活",
-    "check": "检测",
+    "check": "检查",
     "monitor": "监控",
-    "auto-theme": "跟随系统",
-    "light-theme": "浅色模式",
-    "dark-theme": "深色模式",
-    "zh-cn": "简体中文",
-    "zh-tw": "繁体中文",
-    "en": "英语",
-    "operating-system": "操作系统",
+    "auto": "自动",
+    "dark": "深色模式",
+    "light": "浅色模式",
+    "system": "系统",
     "software": "软件",
     "edition": "发行版本",
-    "cpuarch": "CPU 架构",
-    "license": "许可证",
-    "product": "产品",
-    "service": "KMS 服务器",
-    "version": "系统版本",
-    "x64": "64 位",
-    "x86": "32 位",
-    "domain": "域名",
+    "host": "KMS 服务器",
     "port": "端口",
-    "protocol": "协议"
-  },
-  "name": {
-    "author": "一纸忘忧"
-  },
-  "placeholder": {
-    "domain": "请输入域名",
-    "port": "请输入端口",
-    "protocol": "请选择协议",
-    "software": "请选择软件",
-    "edition": "请选择版本",
-    "product": "请选择产品",
-    "service": "请选择 kms 服务器",
-    "version": "请选择版本"
-  },
-  "button": {
-    "copy-script": "复制脚本",
-    "generate-script": "生成脚本",
-    "download-script": "下载脚本",
-    "submit": "提交"
+    "gvlk": "许可证",
+    "script": "CMD 脚本",
+    "copy": "复制",
+    "copy-success": "复制成功",
+    "download": "下载",
+    "protocol": "请求协议",
+    "submit": "提交",
+    "rate": "成功率",
+    "delay": "平均延迟",
+    "total": "总请求",
+    "success-total": "成功数",
+    "fail-total": "失败数",
+    "updated-at": "更新时间"
   },
   "title": {
     "kms-check": "KMS 服务器检测"

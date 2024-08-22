@@ -58,7 +58,7 @@ const { copy, copied } = useClipboard({
         </div>
       </template>
       <AForm :model="formData" auto-label-width>
-        <AFormItem :label="t('label.version')" field="edition" required>
+        <AFormItem :label="t('label.edition')" field="edition" required>
           <ASelect v-model="formData.edition">
             <template v-for="item in editionData" :key="item.version">
               <AOptgroup :label="item.version">
@@ -69,24 +69,24 @@ const { copy, copied } = useClipboard({
             </template>
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('label.service')" field="host" required>
+        <AFormItem :label="t('label.host')" field="host" required>
           <ASelect v-model="formData.host">
             <template v-for="item in monitors" :key="item.id">
               <AOption :label="item.host" />
             </template>
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('label.license')" field="gvlk" required>
+        <AFormItem :label="t('label.gvlk')" field="gvlk" required>
           <AInput v-model="formData.gvlk" disabled />
         </AFormItem>
-        <AFormItem label="CMD Script">
+        <AFormItem :label="t('label.script')" required>
           <ATextarea v-model="content" auto-size />
         </AFormItem>
         <AFormItem>
           <ASpace size="small">
             <a :href="fileUrl" :download="file.name">
               <AButton type="primary">
-                {{ t('button.download-script') }}
+                {{ t('label.download') }}
               </AButton>
             </a>
             <AButton
@@ -94,7 +94,7 @@ const { copy, copied } = useClipboard({
               :status="copied ? 'success' : 'normal'"
               @click="copy()"
             >
-              {{ copied ? t('button.copy-script') : t('button.copy-script') }}
+              {{ copied ? t('label.copy-success') : t('label.copy') }}
             </AButton>
           </ASpace>
         </AFormItem>
