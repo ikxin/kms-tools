@@ -17,3 +17,21 @@ interface LocaleItem {
   icon?: string
   value: LocaleValue
 }
+
+interface EditionItem {
+  version: string
+  edition: string[][]
+}
+
+interface RecordItem {
+  id: number
+  host: string
+  port: number
+  total: number
+  success: number
+  fail: number
+  delay: number
+  rate: number
+  updatedAt: Date
+  createdAt: Date
+}

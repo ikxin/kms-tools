@@ -1,7 +1,7 @@
 import fetch from '@/utils/fetch'
 
 export const useMonitorStore = defineStore('monitor', () => {
-  const monitors = useStorage('monitors', [])
+  const monitors = useStorage<RecordItem[]>('monitors', [])
 
   const getMonitors = async () => {
     try {
