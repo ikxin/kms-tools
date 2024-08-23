@@ -9,27 +9,31 @@ const props = defineProps<{
 
 const { t } = useI18n()
 
-const { title, editionData } = props
+const { title, editionData } = toRefs(props)
 
 const monitorStore = useMonitorStore()
 
 const { monitors } = monitorStore
 
 const formData = ref<ActivateFormData>({
-  edition: editionData[0].edition[0][1],
+  edition: editionData.value[0].edition[0][1],
   arch: 'x64',
   host: monitors[0].host,
   license: '',
 })
 
 watchEffect(() => {
-  for (const item of editionData) {
+  for (const item of editionData.value) {
     for (const [license, name] of item.edition) {
       if (name === formData.value.edition) {
         formData.value.license = license
       }
     }
   }
+})
+
+watch(editionData, () => {
+  formData.value.edition = editionData.value[0].edition[0][1]
 })
 
 const content = computed(() => {
@@ -69,12 +73,7 @@ const { copy, copied } = useClipboard({
             </template>
           </ASelect>
         </AFormItem>
-        <AFormItem
-          v-if="title.toLowerCase() === 'office'"
-          field="arch"
-          :label="t('label.arch')"
-          required
-        >
+        <AFormItem v-if="title.toLowerCase() === 'office'" field="arch" :label="t('label.arch')" required>
           <ARadioGroup v-model="formData.arch" type="button">
             <ARadio value="x64">{{ t('label.x64') }}</ARadio>
             <ARadio value="x86">{{ t('label.x86') }}</ARadio>
@@ -100,11 +99,7 @@ const { copy, copied } = useClipboard({
                 {{ t('label.download') }}
               </AButton>
             </a>
-            <AButton
-              type="secondary"
-              :status="copied ? 'success' : 'normal'"
-              @click="copy()"
-            >
+            <AButton type="secondary" :status="copied ? 'success' : 'normal'" @click="copy()">
               {{ copied ? t('label.copy-success') : t('label.copy') }}
             </AButton>
           </ASpace>

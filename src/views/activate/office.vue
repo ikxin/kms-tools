@@ -1,5 +1,16 @@
 <script setup lang="ts">
-import editionData from '@/assets/gvlks/office.json'
+import zhEditionData from '@/assets/gvlks/office.json'
+import enEditionData from '@/assets/gvlks/office.en.json'
+
+const { locale } = useI18n()
+
+const editionData = computed(() => {
+  if (locale.value === 'zh-cn' || locale.value === 'zh-tw') {
+    return zhEditionData
+  } else {
+    return enEditionData
+  }
+})
 
 function generateScript(formData: ActivateFormData) {
   const { edition, arch, host, license } = formData
