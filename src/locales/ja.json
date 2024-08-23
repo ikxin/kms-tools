@@ -1,0 +1,35 @@
+{
+  "label": {
+    "author": "一纸忘忧",
+    "activate": "有効化",
+    "check": "確認",
+    "monitor": "監視",
+    "auto": "自動",
+    "dark": "ダークモード",
+    "light": "ライトモード",
+    "system": "システム",
+    "software": "ソフトウェア",
+    "edition": "エディション",
+    "host": "サーバー",
+    "port": "ポート",
+    "arch": "システムアーキテクチャ",
+    "x64": "64 ビット",
+    "x86": "32 ビット",
+    "license": "ライセンス",
+    "script": "CMD スクリプト",
+    "copy": "コピー",
+    "copy-success": "コピー成功",
+    "download": "ダウンロード",
+    "protocol": "プロトコル",
+    "submit": "送信",
+    "rate": "成功率",
+    "delay": "平均遅延",
+    "total": "総リクエスト",
+    "success-total": "成功数",
+    "fail-total": "失敗数",
+    "updated-at": "更新日時"
+  },
+  "title": {
+    "kms-check": "KMS サーバーチェック"
+  }
+}

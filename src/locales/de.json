@@ -1,0 +1,35 @@
+{
+  "label": {
+    "author": "一纸忘忧",
+    "activate": "Aktivieren",
+    "check": "Prüfen",
+    "monitor": "Überwachen",
+    "auto": "Automatisch",
+    "dark": "Dunkler Modus",
+    "light": "Heller Modus",
+    "system": "System",
+    "software": "Software",
+    "edition": "Ausgabe",
+    "host": "Server",
+    "port": "Port",
+    "arch": "Systemarchitektur",
+    "x64": "64 Bit",
+    "x86": "32 Bit",
+    "license": "Lizenz",
+    "script": "CMD-Skript",
+    "copy": "Kopieren",
+    "copy-success": "Erfolgreich kopiert",
+    "download": "Herunterladen",
+    "protocol": "Protokoll",
+    "submit": "Absenden",
+    "rate": "Erfolgsrate",
+    "delay": "Verzögerung",
+    "total": "Gesamtanfragen",
+    "success-total": "Erfolgreiche",
+    "fail-total": "Fehler",
+    "updated-at": "Aktualisiert am"
+  },
+  "title": {
+    "kms-check": "KMS-Server-Prüfung"
+  }
+}

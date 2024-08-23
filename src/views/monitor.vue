@@ -15,12 +15,12 @@ const columns = computed<TableColumnData[]>(() => {
     {
       dataIndex: 'port',
       title: t('label.port'),
-      width: 80,
+      minWidth: 80,
     },
     {
       dataIndex: 'rate',
       title: t('label.rate'),
-      width: 100,
+      minWidth: 100,
       align: 'center',
       sortable: {
         sortDirections: ['ascend', 'descend'],
@@ -32,7 +32,7 @@ const columns = computed<TableColumnData[]>(() => {
     {
       dataIndex: 'delay',
       title: t('label.delay'),
-      width: 120,
+      minWidth: 120,
       align: 'center',
       sortable: {
         sortDirections: ['ascend', 'descend'],
@@ -44,25 +44,25 @@ const columns = computed<TableColumnData[]>(() => {
     {
       dataIndex: 'total',
       title: t('label.total'),
-      width: 80,
+      minWidth: 100,
       align: 'center',
     },
     {
       dataIndex: 'success',
       title: t('label.success-total'),
-      width: 80,
+      minWidth: 100,
       align: 'center',
     },
     {
       dataIndex: 'fail',
       title: t('label.fail-total'),
-      width: 80,
+      minWidth: 100,
       align: 'center',
     },
     {
       dataIndex: 'updatedAt',
       title: t('label.updated-at'),
-      width: 170,
+      minWidth: 180,
       render({ record }) {
         return dayjs(record.updatedAt).format('YYYY-MM-DD HH:mm:ss')
       },

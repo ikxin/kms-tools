@@ -10,7 +10,16 @@ declare module '*.md' {
   export default Component
 }
 
-type LocaleValue = 'zh-cn' | 'en'
+type LocaleValue =
+  | 'zh-cn'
+  | 'zh-tw'
+  | 'de'
+  | 'en'
+  | 'fr'
+  | 'ja'
+  | 'ko'
+  | 'nl'
+  | 'ru'
 
 interface LocaleItem {
   lable: string

@@ -67,16 +67,51 @@ const locales: LocaleItem[] = [
     icon: 'i-flag:cn-4x3',
   },
   {
+    lable: '繁体中文',
+    value: 'zh-tw',
+    icon: 'i-flag:tw-4x3',
+  },
+  {
+    lable: 'Deutsch',
+    value: 'de',
+    icon: 'i-flag:de-4x3',
+  },
+  {
     lable: 'English',
     value: 'en',
     icon: 'i-flag:us-4x3',
+  },
+  {
+    lable: 'Français',
+    value: 'fr',
+    icon: 'i-flag:fr-4x3',
+  },
+  {
+    lable: '日本語',
+    value: 'ja',
+    icon: 'i-flag:jp-4x3',
+  },
+  {
+    lable: '한국어',
+    value: 'ko',
+    icon: 'i-flag:kr-4x3',
+  },
+  {
+    lable: 'Nederlands',
+    value: 'nl',
+    icon: 'i-flag:nl-4x3',
+  },
+  {
+    lable: 'Русский',
+    value: 'ru',
+    icon: 'i-flag:ru-4x3',
   },
 ]
 </script>
 
 <template>
   <ALayoutHeader class="select-none bg-[--color-bg-2] px-2 shadow-md">
-    <div class="mx-auto flex w-256 max-w-full items-center justify-between">
+    <div class="mx-auto flex w-6xl max-w-full items-center justify-between">
       <div
         class="i-icons:kms-tools w-48 h-12 cursor-pointer"
         @click="redirectPage('home')"
