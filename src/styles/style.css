@@ -13,3 +13,7 @@ body {
 .arco-select-dropdown-list-wrapper {
   max-height: 400px;
 }
+
+.arco-select-option-content {
+  width: 100%;
+}

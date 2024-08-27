@@ -2,6 +2,8 @@
 import { useMonitorStore } from '@/store/monitor'
 import { TableColumnData } from '@arco-design/web-vue'
 import dayjs from 'dayjs'
+import { Tag } from '@arco-design/web-vue'
+import { delayColor, rateColor } from '@/utils/formatter'
 
 const { t } = useI18n()
 
@@ -11,6 +13,9 @@ const columns = computed<TableColumnData[]>(() => {
       dataIndex: 'host',
       title: t('label.host'),
       minWidth: 160,
+      render({ record }) {
+        return h('span', { class: 'select-auto', innerHTML: record.host })
+      },
     },
     {
       dataIndex: 'port',
@@ -26,7 +31,12 @@ const columns = computed<TableColumnData[]>(() => {
         sortDirections: ['ascend', 'descend'],
       },
       render({ record }) {
-        return `${(record.rate * 100).toFixed(2)} %`
+        return h(Tag, {
+          color: rateColor(record.rate),
+          class: 'w-18 justify-center',
+          size: 'small',
+          innerHTML: `${(record.rate * 100).toFixed(2)} %`,
+        })
       },
     },
     {
@@ -38,7 +48,12 @@ const columns = computed<TableColumnData[]>(() => {
         sortDirections: ['ascend', 'descend'],
       },
       render({ record }) {
-        return `${record.delay.toFixed(2)} ms`
+        return h(Tag, {
+          color: delayColor(record.delay),
+          class: 'w-18 justify-center',
+          size: 'small',
+          innerHTML: `${record.delay.toFixed(2)} ms`,
+        })
       },
     },
     {

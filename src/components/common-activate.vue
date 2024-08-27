@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useMonitorStore } from '@/store/monitor'
+import { rateColor, delayColor } from '@/utils/formatter'
 
 const props = defineProps<{
   editionData: EditionItem[]
@@ -73,7 +74,12 @@ const { copy, copied } = useClipboard({
             </template>
           </ASelect>
         </AFormItem>
-        <AFormItem v-if="title.toLowerCase() === 'office'" field="arch" :label="t('label.arch')" required>
+        <AFormItem
+          v-if="title.toLowerCase() === 'office'"
+          field="arch"
+          :label="t('label.arch')"
+          required
+        >
           <ARadioGroup v-model="formData.arch" type="button">
             <ARadio value="x64">{{ t('label.x64') }}</ARadio>
             <ARadio value="x86">{{ t('label.x86') }}</ARadio>
@@ -82,7 +88,25 @@ const { copy, copied } = useClipboard({
         <AFormItem :label="t('label.host')" field="host" required>
           <ASelect v-model="formData.host">
             <template v-for="item in monitors" :key="item.id">
-              <AOption :label="item.host" />
+              <AOption :value="item.host" :label="item.host">
+                <div class="flex gap-2 items-center">
+                  <div class="flex-1">{{ item.host }}</div>
+                  <ATag
+                    :color="rateColor(item.rate)"
+                    class="w-18 justify-center"
+                    size="small"
+                  >
+                    {{ `${(item.rate * 100).toFixed(2)} %` }}
+                  </ATag>
+                  <ATag
+                    :color="delayColor(item.delay)"
+                    class="w-20 justify-center"
+                    size="small"
+                  >
+                    {{ `${item.delay.toFixed(2)} ms` }}
+                  </ATag>
+                </div>
+              </AOption>
             </template>
           </ASelect>
         </AFormItem>
@@ -99,7 +123,11 @@ const { copy, copied } = useClipboard({
                 {{ t('label.download') }}
               </AButton>
             </a>
-            <AButton type="secondary" :status="copied ? 'success' : 'normal'" @click="copy()">
+            <AButton
+              type="secondary"
+              :status="copied ? 'success' : 'normal'"
+              @click="copy()"
+            >
               {{ copied ? t('label.copy-success') : t('label.copy') }}
             </AButton>
           </ASpace>

@@ -32,6 +32,7 @@ declare module 'vue' {
     ASpin: typeof import('@arco-design/web-vue')['Spin']
     ASubMenu: typeof import('@arco-design/web-vue')['SubMenu']
     ATable: typeof import('@arco-design/web-vue')['Table']
+    ATag: typeof import('@arco-design/web-vue')['Tag']
     ATextarea: typeof import('@arco-design/web-vue')['Textarea']
     CommonActivate: typeof import('./../components/common-activate.vue')['default']
     CustomFooter: typeof import('./../components/custom-footer.vue')['default']
