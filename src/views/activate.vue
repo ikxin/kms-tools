@@ -50,7 +50,7 @@ const selectedKeys = ref(pathName)
       </ASubMenu>
     </AMenu>
   </ALayoutSider>
-  <ALayoutContent>
+  <ALayoutContent class="flex flex-col gap-4">
     <RouterView />
   </ALayoutContent>
 </template>

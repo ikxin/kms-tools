@@ -30,6 +30,7 @@
     "updated-at": "Updated At"
   },
   "title": {
-    "kms-check": "KMS Server Check"
+    "kms-check": "KMS Server Check",
+    "tips": "Tips"
   }
 }

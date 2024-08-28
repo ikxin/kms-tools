@@ -30,6 +30,7 @@
     "updated-at": "更新时间"
   },
   "title": {
-    "kms-check": "KMS 服务器检测"
+    "kms-check": "KMS 服务器检测",
+    "tips": "提示"
   }
 }

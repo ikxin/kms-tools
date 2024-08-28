@@ -31,4 +31,5 @@ function generateScript(formData: ActivateFormData) {
 
 <template>
   <CommonActivate title="Office" :editionData :generateScript></CommonActivate>
+  <CommonTips></CommonTips>
 </template>

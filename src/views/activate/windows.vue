@@ -26,4 +26,5 @@ function generateScript(formData: ActivateFormData) {
 
 <template>
   <CommonActivate title="Windows" :editionData :generateScript></CommonActivate>
+  <CommonTips></CommonTips>
 </template>
