@@ -162,9 +162,11 @@ const locales: LocaleItem[] = [
             </ADoption>
           </template>
         </ADropdown>
-        <AButton size="small" type="secondary">
-          <template #icon><i class="i-icons:github" /></template>
-        </AButton>
+        <a target="_blank" href="https://github.com/ikxin/kms-tools">
+          <AButton size="small" type="secondary">
+            <template #icon><i class="i-icons:github" /></template>
+          </AButton>
+        </a>
       </ASpace>
     </div>
   </ALayoutHeader>

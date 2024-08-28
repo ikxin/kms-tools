@@ -19,11 +19,12 @@ const README = computed(() => {
   </ACard>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .markdown-body {
   padding: 16px;
+  user-select: text;
 
-  :deep(a) {
+  a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -43,31 +44,36 @@ const README = computed(() => {
     }
   }
 
-  :deep(img) {
+  img {
     max-width: 100%;
   }
 
-  :deep(pre) {
+  pre {
+    line-height: 1.5;
     padding: 16px;
     overflow: auto;
   }
 
-  :deep(ul) {
+  ul {
     padding-left: 16px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
   }
 
-  :deep(li) {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  li {
+    code {
+      border-radius: 2px;
+      padding: 2px 4px;
+      background-color: var(--color-fill-3);
+    }
   }
 
-  :deep(p) {
+  p {
     line-height: 1.5;
-  }
-
-  :deep(#hide) {
-    display: none;
   }
 }
 </style>
