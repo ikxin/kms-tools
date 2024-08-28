@@ -16,7 +16,7 @@ import README from '../../README.md'
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1px 4px;
+    padding: 1px 2px;
     color: rgb(var(--link-6));
     font-size: 14px;
     line-height: 1.5715;
@@ -39,6 +39,20 @@ import README from '../../README.md'
   :deep(pre) {
     padding: 16px;
     overflow: auto;
+  }
+
+  :deep(ul) {
+    padding-left: 16px;
+  }
+
+  :deep(li) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  :deep(p) {
+    line-height: 1.5;
   }
 }
 </style>
