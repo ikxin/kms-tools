@@ -1,5 +1,16 @@
 <script setup lang="ts">
-import README from '../../README.md'
+import README_ZH from '../../README.md'
+import README_EN from '../../README_EN.md'
+
+const { locale } = useI18n()
+
+const README = computed(() => {
+  if (locale.value === 'zh-cn' || locale.value === 'zh-tw') {
+    return README_ZH
+  } else {
+    return README_EN
+  }
+})
 </script>
 
 <template>
@@ -53,6 +64,10 @@ import README from '../../README.md'
 
   :deep(p) {
     line-height: 1.5;
+  }
+
+  :deep(#hide) {
+    display: none;
   }
 }
 </style>

@@ -10,6 +10,10 @@
 <a href="https://github.com/ikxin/kms-tools/blob/master/LICENSE"><img src="https://badgen.net/github/license/ikxin/kms-tools" /></a>
 </p>
 
+<p align="center" id="hide">
+<a href="./README_EN.md">English</a>
+</p>
+
 ## 📖 介绍
 
 一站式 KMS 工具箱，集成了 KMS 激活脚本生成、KMS 服务器检测、KMS 服务器状态监控等功能。
@@ -33,9 +37,8 @@
 
 ## 👀 历史版本
 
-|                                     |                                     |
-| ----------------------------------- | ----------------------------------- |
 | ![](./src/assets/images/v2.0.0.png) | ![](./src/assets/images/v1.2.0.png) |
+| ----------------------------------- | ----------------------------------- |
 | ![](./src/assets/images/v1.0.0.png) | ![](./src/assets/images/v0.1.5.png) |
 
 ## ✨ 技术栈
