@@ -15,23 +15,23 @@
     "migrate": "drizzle-kit migrate"
   },
   "dependencies": {
-    "@arco-design/web-vue": "^2.56.0",
+    "@arco-design/web-vue": "^2.56.1",
     "@elysiajs/cors": "^1.1.0",
     "@elysiajs/cron": "^1.1.0",
     "@elysiajs/static": "^1.1.0",
-    "@iconify-json/flag": "^1.1.54",
-    "@vueuse/core": "^11.0.1",
-    "@vueuse/integrations": "^11.0.1",
-    "axios": "^1.7.4",
-    "dayjs": "^1.11.12",
+    "@iconify-json/flag": "^1.2.0",
+    "@vueuse/core": "^11.0.3",
+    "@vueuse/integrations": "^11.0.3",
+    "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
     "echarts": "^5.5.1",
-    "elysia": "^1.1.7",
+    "elysia": "^1.1.11",
     "less": "^4.2.0",
     "markdown-it-shiki": "^0.9.0",
     "mysql2": "^3.11.0",
     "pinia": "^2.2.2",
-    "unocss": "^0.62.2",
-    "vue": "^3.4.38",
+    "unocss": "^0.62.3",
+    "vue": "^3.5.2",
     "vue-i18n": "^9.14.0",
     "vue-router": "^4.4.3"
   },
@@ -52,9 +52,9 @@
     "unplugin-vue-components": "^0.27.4",
     "unplugin-vue-markdown": "^0.26.2",
     "unplugin-vue-router": "^0.10.7",
-    "vite": "^5.4.1",
+    "vite": "^5.4.3",
     "vite-plugin-vue-devtools": "^7.3.8",
     "vue-eslint-parser": "^9.4.3",
-    "vue-tsc": "^2.0.29"
+    "vue-tsc": "^2.1.6"
   }
 }

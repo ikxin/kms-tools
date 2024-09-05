@@ -2,7 +2,7 @@
 import { useMonitorStore } from '@/store/monitor'
 import { rateColor, delayColor } from '@/utils/formatter'
 
-const props = defineProps<{
+const { editionData, title, generateScript } = defineProps<{
   editionData: EditionItem[]
   title: string
   generateScript: (formData: ActivateFormData) => string
@@ -10,21 +10,19 @@ const props = defineProps<{
 
 const { t } = useI18n()
 
-const { title, editionData } = toRefs(props)
-
 const monitorStore = useMonitorStore()
 
 const { monitors } = monitorStore
 
 const formData = ref<ActivateFormData>({
-  edition: editionData.value[0].edition[0][1],
+  edition: editionData[0].edition[0][1],
   arch: 'x64',
   host: monitors[0].host,
   license: '',
 })
 
 watchEffect(() => {
-  for (const item of editionData.value) {
+  for (const item of editionData) {
     for (const [license, name] of item.edition) {
       if (name === formData.value.edition) {
         formData.value.license = license
@@ -33,12 +31,15 @@ watchEffect(() => {
   }
 })
 
-watch(editionData, () => {
-  formData.value.edition = editionData.value[0].edition[0][1]
-})
+watch(
+  () => editionData,
+  () => {
+    formData.value.edition = editionData[0].edition[0][1]
+  },
+)
 
 const content = computed(() => {
-  return props.generateScript(formData.value)
+  return generateScript(formData.value)
 })
 
 const file = computed(() => {
