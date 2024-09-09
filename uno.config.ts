@@ -1,4 +1,10 @@
-import { defineConfig, presetAttributify, presetIcons, presetUno, transformerDirectives } from 'unocss'
+import {
+  defineConfig,
+  presetAttributify,
+  presetIcons,
+  presetUno,
+  transformerDirectives,
+} from 'unocss'
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 
 export default defineConfig({
@@ -8,7 +14,6 @@ export default defineConfig({
     presetIcons({
       collections: {
         icons: FileSystemIconLoader('./src/assets/icons/others'),
-        languages: FileSystemIconLoader('./src/assets/icons/languages'),
       },
     }),
   ],
