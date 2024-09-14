@@ -21,7 +21,7 @@ app.use(cors())
 app.use(
   cron({
     name: 'heartbeat',
-    pattern: Patterns.everyMinutes(10),
+    pattern: Patterns.everyMinutes(5),
     run: runCheck,
   }),
 )
