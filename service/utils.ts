@@ -10,7 +10,7 @@ export const runVlmcs = ({
 }: RunVlmcsParams) => {
   return new Promise<RunVlmcsResult>(resolve => {
     const before = Date.now()
-    execFile(
+    const vlmcs = execFile(
       `./service/binaries/vlmcs-${platform()}-${arch()}`,
       [`${host}:${port}`, `-${protocol}`, `-l ${edition}`],
       { timeout: 10 * 1000 },
@@ -21,6 +21,7 @@ export const runVlmcs = ({
           content: stdout.trim(),
           status: err ? false : true,
         })
+        vlmcs.kill()
       },
     )
   })
