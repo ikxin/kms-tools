@@ -21,8 +21,15 @@ export const runVlmcs = ({
           content: stdout.trim(),
           status: err ? false : true,
         })
-        vlmcs.kill()
       },
     )
+
+    vlmcs.on('error', () => {
+      vlmcs.kill()
+    })
+
+    vlmcs.on('close', () => {
+      vlmcs.kill()
+    })
   })
 }
