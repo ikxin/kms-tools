@@ -1,14 +1,4 @@
 {
-  "compilerOptions": {
-    "baseUrl": "./",
-    "module": "ESNext",
-    "target": "ESNext",
-    "moduleResolution": "Bundler",
-    "noEmit": true,
-    "paths": { "@/*": ["src/*"] },
-    "skipLibCheck": true,
-    "strict": true,
-    "types": ["unplugin-vue-router/client", "vite/client"]
-  },
-  "include": ["**/*.vue", "**/*.ts", "**/*.d.ts"]
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
 }
