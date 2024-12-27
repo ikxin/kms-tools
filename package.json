@@ -13,6 +13,7 @@
   "dependencies": {
     "@iconify-json/flag": "^1.2.3",
     "@nuxt/icon": "1.10.3",
+    "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/i18n": "9.1.1",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "arco-design-nuxt-module": "^0.1.0",

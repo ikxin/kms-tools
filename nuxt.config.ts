@@ -5,18 +5,20 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  css: ['~/assets/css/main.css'],
   modules: [
     'arco-design-nuxt-module',
     '@nuxt/icon',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
+    '@nuxtjs/color-mode',
   ],
   i18n: {
     defaultLocale: 'zh-cn',
     langDir: 'locales',
     locales: [
-      { code: 'zh-cn', file: 'zh-cn.json', name: '简体中文' },
-      { code: 'zh-tw', file: 'zh-tw.json', name: '繁體中文' },
+      { code: 'zh-cn', file: 'zh-cn.json', name: '简体中文', icon: 'cn' },
+      { code: 'zh-tw', file: 'zh-tw.json', name: '繁體中文', icon: 'tw' },
     ],
     strategy: 'no_prefix',
   },

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { locales, t, setLocale } = useI18n()
 
 const navItems = computed(() => [
   {
@@ -22,68 +22,17 @@ const navItems = computed(() => [
 const themeItems = computed(() => [
   {
     lable: t('label.auto'),
-    value: 'auto',
-    icon: 'icons:auto-mode',
+    value: 'system',
   },
   {
     lable: t('label.dark'),
     value: 'dark',
-    icon: 'icons:dark-mode',
   },
   {
     lable: t('label.light'),
     value: 'light',
-    icon: 'icons:light-mode',
   },
 ])
-
-const locales: LocaleItem[] = [
-  {
-    lable: '简体中文',
-    value: 'zh-cn',
-    icon: 'flag:cn-4x3',
-  },
-  {
-    lable: '繁体中文',
-    value: 'zh-tw',
-    icon: 'flag:tw-4x3',
-  },
-  {
-    lable: 'Deutsch',
-    value: 'de',
-    icon: 'flag:de-4x3',
-  },
-  {
-    lable: 'English',
-    value: 'en',
-    icon: 'flag:us-4x3',
-  },
-  {
-    lable: 'Français',
-    value: 'fr',
-    icon: 'flag:fr-4x3',
-  },
-  {
-    lable: '日本語',
-    value: 'ja',
-    icon: 'flag:jp-4x3',
-  },
-  {
-    lable: '한국어',
-    value: 'ko',
-    icon: 'flag:kr-4x3',
-  },
-  {
-    lable: 'Nederlands',
-    value: 'nl',
-    icon: 'flag:nl-4x3',
-  },
-  {
-    lable: 'Русский',
-    value: 'ru',
-    icon: 'flag:ru-4x3',
-  },
-]
 </script>
 
 <template>
@@ -107,12 +56,23 @@ const locales: LocaleItem[] = [
       <ASpace>
         <ADropdown>
           <AButton size="small" type="secondary">
-            <template #icon></template>
+            <template #icon>
+              <ClientOnly>
+                <Icon :name="`icons:${$colorMode.preference}-mode`" />
+                <template #fallback>
+                  <Icon :name="`icons:system-mode`" />
+                </template>
+              </ClientOnly>
+            </template>
           </AButton>
           <template #content>
-            <ADoption v-for="item in themeItems" :key="item.value">
+            <ADoption
+              v-for="item in themeItems"
+              :key="item.value"
+              @click="$colorMode.preference = item.value"
+            >
               <template #icon>
-                <Icon :name="item.icon" />
+                <Icon :name="`icons:${item.value}-mode`" />
               </template>
               <template #default>{{ item.lable }}</template>
             </ADoption>
@@ -123,11 +83,15 @@ const locales: LocaleItem[] = [
             <template #icon><Icon name="icons:languages" /></template>
           </AButton>
           <template #content>
-            <ADoption v-for="locale in locales" :key="locale.value">
+            <ADoption
+              v-for="locale in locales"
+              :key="locale.code"
+              @click.prevent.stop="setLocale(locale.code)"
+            >
               <template #icon>
-                <Icon :name="locale.icon!" />
+                <Icon :name="`flag:${locale.icon}-4x3`" />
               </template>
-              <template #default>{{ locale.lable }}</template>
+              <template #default>{{ locale.name }}</template>
             </ADoption>
           </template>
         </ADropdown>
