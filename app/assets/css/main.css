@@ -3,6 +3,10 @@ body {
   color: var(--color-text-2);
 }
 
+#__nuxt {
+  @apply flex flex-col gap-4 min-h-screen;
+}
+
 html[class='dark-mode'] body {
   --red-1: 77, 0, 10;
   --red-2: 119, 6, 17;
