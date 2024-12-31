@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { appItems } from '@/assets/items/check'
-import fetch from '@/utils/fetch'
-import { FieldRule, ValidatedError } from '@arco-design/web-vue'
+import type { ValidatedError } from '@arco-design/web-vue'
 
 const { t } = useI18n()
 
@@ -10,23 +8,6 @@ const formData = ref({
   port: '1688',
   protocol: '6',
   edition: '1',
-})
-
-const formRules = computed((): Record<string, FieldRule | FieldRule[]> => {
-  return {
-    host: {
-      required: true,
-    },
-    port: {
-      required: true,
-    },
-    protocol: {
-      required: true,
-    },
-    edition: {
-      required: true,
-    },
-  }
 })
 
 const resultInfo = reactive<{
@@ -48,11 +29,9 @@ const handleSubmit = async (data: {
   if (data.errors === undefined) {
     resultInfo.loading = true
     try {
-      const { data } = await fetch({
-        url: '/api/check',
+      const data = await $fetch('/api/check', {
         method: 'post',
-        data: formData.value,
-        headers: { 'Content-Type': 'multipart/form-data' },
+        body: formData.value,
       })
       resultInfo.message = data.content
       resultInfo.type = data.status ? 'success' : 'error'
@@ -73,19 +52,14 @@ const handleSubmit = async (data: {
       </div>
     </template>
     <ASpin :loading="resultInfo.loading" dot class="w-full">
-      <AForm
-        :model="formData"
-        :rules="formRules"
-        @submit="handleSubmit"
-        auto-label-width
-      >
-        <AFormItem :label="t('label.host')" field="host">
+      <AForm :model="formData" @submit="handleSubmit">
+        <AFormItem :label="t('label.host')" field="host" required>
           <AInput v-model="formData.host"></AInput>
         </AFormItem>
-        <AFormItem :label="t('label.port')" field="port">
+        <AFormItem :label="t('label.port')" field="port" required>
           <AInput v-model="formData.port"></AInput>
         </AFormItem>
-        <AFormItem :label="t('label.edition')" field="edition">
+        <AFormItem :label="t('label.edition')" field="edition" required>
           <ASelect v-model="formData.edition">
             <AOption
               v-for="(value, key) in appItems"
@@ -95,7 +69,7 @@ const handleSubmit = async (data: {
             />
           </ASelect>
         </AFormItem>
-        <AFormItem :label="t('label.protocol')" field="protocol">
+        <AFormItem :label="t('label.protocol')" field="protocol" required>
           <ASelect v-model="formData.protocol">
             <AOption value="6">V6 Protocol</AOption>
             <AOption value="5">V5 Protocol</AOption>

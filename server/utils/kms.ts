@@ -1,6 +1,5 @@
 import { execFile } from 'child_process'
 import { arch, platform } from 'os'
-import { RunVlmcsParams, RunVlmcsResult } from './types'
 
 export const runVlmcs = ({
   host,
@@ -21,7 +20,7 @@ export const runVlmcs = ({
           content: stdout.trim(),
           status: err ? false : true,
         })
-      },
+      }
     )
 
     vlmcs.on('error', () => {
