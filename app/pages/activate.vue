@@ -3,9 +3,9 @@ const router = useRouter()
 
 const { t } = useI18n()
 
-const pathName = location.pathname.slice(1).split('/')
+// const pathName = location.pathname.slice(1).split('/')
 
-const selectedKeys = ref(pathName)
+const selectedKeys = ref()
 </script>
 
 <template>
@@ -20,37 +20,47 @@ const selectedKeys = ref(pathName)
       class="[&_.arco-menu-icon>i]:inline-block select-none h-full [&>.arco-menu-inner]:p-2"
     >
       <ASubMenu key="system">
-        <template #icon><i class="i-icons:system text-base" /></template>
+        <template #icon>
+          <Icon name="icons:system" />
+        </template>
         <template #title>{{ t('label.system') }}</template>
         <AMenuItem
           key="windows"
           @click="router.push({ path: '/activate/windows' })"
         >
-          <template #icon><i class="i-icons:windows" /></template>
+          <template #icon>
+            <Icon name="icons:windows" />
+          </template>
           <span>Windows</span>
         </AMenuItem>
         <AMenuItem
           key="windows-server"
           @click="router.push({ path: '/activate/windows-server' })"
         >
-          <template #icon><i class="i-icons:windows-server" /></template>
+          <template #icon>
+            <Icon name="icons:windows-server" />
+          </template>
           <span>Windows Server</span>
         </AMenuItem>
       </ASubMenu>
       <ASubMenu key="software">
-        <template #icon><i class="i-icons:software text-base" /></template>
+        <template #icon>
+          <Icon name="icons:software" />
+        </template>
         <template #title>{{ t('label.software') }}</template>
         <AMenuItem
           key="office"
           @click="router.push({ path: '/activate/office' })"
         >
-          <template #icon><i class="i-icons:office" /></template>
+          <template #icon>
+            <Icon name="icons:office" />
+          </template>
           <span>Office</span>
         </AMenuItem>
       </ASubMenu>
     </AMenu>
   </ALayoutSider>
   <ALayoutContent class="flex flex-col gap-4">
-    <RouterView />
+    <NuxtPage />
   </ALayoutContent>
 </template>
