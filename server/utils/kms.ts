@@ -1,6 +1,15 @@
 import { execFile } from 'child_process'
 import { arch, platform } from 'os'
 
+export const monitorList = process.env.MONITOR_LIST?.split(',') || [
+  'kms.03k.org',
+  'kms.wxlost.com',
+  'kms.sixyin.com',
+  'kms.zhi.fun',
+  'kms.loli.best',
+  'kms.vmem.top',
+]
+
 export const runVlmcs = ({
   host,
   port = 1688,

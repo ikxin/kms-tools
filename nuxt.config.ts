@@ -5,6 +5,14 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  nitro: {
+    experimental: {
+      tasks: true,
+    },
+    scheduledTasks: {
+      '0/10 * * * * *': ['monitor'],
+    },
+  },
   css: ['~/assets/css/main.css'],
   modules: [
     'arco-design-nuxt-module',
