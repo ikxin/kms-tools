@@ -7,10 +7,10 @@ export const runVlmcs = ({
   protocol = 6,
   edition = 26,
 }: RunVlmcsParams) => {
-  return new Promise<RunVlmcsResult>(resolve => {
+  return new Promise<RunVlmcsResult>((resolve, reject) => {
     const before = Date.now()
     const vlmcs = execFile(
-      `./service/binaries/vlmcs-${platform()}-${arch()}`,
+      `./binaries/vlmcs-${platform()}-${arch()}`,
       [`${host}:${port}`, `-${protocol}`, `-l ${edition}`],
       { timeout: 10 * 1000 },
       (err, stdout) => {
@@ -23,11 +23,12 @@ export const runVlmcs = ({
       }
     )
 
-    vlmcs.on('error', () => {
-      vlmcs.kill()
+    vlmcs.on('error', err => {
+      reject(err)
     })
 
     vlmcs.on('close', () => {
+      vlmcs.removeAllListeners()
       vlmcs.kill()
     })
   })
