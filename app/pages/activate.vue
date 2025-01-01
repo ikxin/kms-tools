@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const router = useRouter()
+const route = useRoute()
 
 const { t } = useI18n()
 
-// const pathName = location.pathname.slice(1).split('/')
+const pathName = route.path.slice(1).split('/')
 
-const selectedKeys = ref()
+const selectedKeys = ref(pathName)
 </script>
 
 <template>
@@ -24,10 +24,7 @@ const selectedKeys = ref()
           <Icon name="icons:system" />
         </template>
         <template #title>{{ t('label.system') }}</template>
-        <AMenuItem
-          key="windows"
-          @click="router.push({ path: '/activate/windows' })"
-        >
+        <AMenuItem key="windows" @click="navigateTo('/activate/windows')">
           <template #icon>
             <Icon name="icons:windows" />
           </template>
@@ -35,7 +32,7 @@ const selectedKeys = ref()
         </AMenuItem>
         <AMenuItem
           key="windows-server"
-          @click="router.push({ path: '/activate/windows-server' })"
+          @click="navigateTo('/activate/windows-server')"
         >
           <template #icon>
             <Icon name="icons:windows-server" />
@@ -48,10 +45,7 @@ const selectedKeys = ref()
           <Icon name="icons:software" />
         </template>
         <template #title>{{ t('label.software') }}</template>
-        <AMenuItem
-          key="office"
-          @click="router.push({ path: '/activate/office' })"
-        >
+        <AMenuItem key="office" @click="navigateTo('/activate/office')">
           <template #icon>
             <Icon name="icons:office" />
           </template>

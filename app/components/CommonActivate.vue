@@ -83,7 +83,7 @@ const { copy, copied } = useClipboard({
         </AFormItem>
         <AFormItem :label="t('label.host')" field="host" required>
           <ASelect v-model="formData.host">
-            <template v-for="(value, key, index) in monitorData" :key>
+            <template v-for="(value, key) in monitorData" :key>
               <AOption
                 :value="key"
                 :label="key.toString()"

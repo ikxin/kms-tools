@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import zhEditionData from 'assets/gvlks/windows-server.json'
+import zhEditionData from 'assets/gvlks/windows.json'
 import enEditionData from 'assets/gvlks/windows.en.json'
 
 const { locale } = useI18n()
