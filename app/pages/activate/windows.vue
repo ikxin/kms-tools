@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import zhEditionData from '../../../src/assets/gvlks/windows.json'
-import enEditionData from '../../../src/assets/gvlks/windows.en.json'
+import zhEditionData from 'assets/gvlks/windows-server.json'
+import enEditionData from 'assets/gvlks/windows.en.json'
 
 const { locale } = useI18n()
 
@@ -26,4 +26,5 @@ function generateScript(formData: ActivateFormData) {
 
 <template>
   <CommonActivate title="Windows" :editionData :generateScript></CommonActivate>
+  <CommonTips></CommonTips>
 </template>

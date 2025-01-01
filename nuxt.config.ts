@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     locales: [
       { code: 'zh-cn', file: 'zh-cn.json', name: '简体中文', icon: 'cn' },
       { code: 'zh-tw', file: 'zh-tw.json', name: '繁體中文', icon: 'tw' },
+      { code: 'en', file: 'en.json', name: 'English', icon: 'us' },
     ],
     strategy: 'no_prefix',
   },
