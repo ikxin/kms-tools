@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    '@vueuse/nuxt',
   ],
   i18n: {
     defaultLocale: 'zh-cn',
