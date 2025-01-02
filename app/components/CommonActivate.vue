@@ -1,52 +1,66 @@
 <script lang="ts" setup>
-const { editionData, title, generateScript } = defineProps<{
-  editionData: EditionItem[]
-  title: string
-  generateScript: (formData: ActivateFormData) => string
-}>()
+const { glvksData, title, generateScript } = defineProps<{
+  glvksData: GlvksData[];
+  title: string;
+  generateScript: (formData: ActivateFormData) => string;
+}>();
 
-const { t } = useI18n()
+const { t, locale } = useI18n();
 
-const monitorData = useState<{ [key: string]: any[] }>('monitorData')
+const monitorData = useState<MonitorInfo[]>("monitorData");
+
+const rankVal = ref(1);
 
 const formData = ref<ActivateFormData>({
-  edition: editionData?.[0]?.edition?.[0]?.[1] || '',
-  arch: 'x64',
-  host: Object.keys(monitorData.value)[0]!,
-  license: '',
-})
-
-watchEffect(() => {
-  for (const item of editionData) {
-    for (const [license, name] of item.edition) {
-      if (name === formData.value.edition) {
-        formData.value.license = license!
-      }
-    }
-  }
-})
+  edition: glvksData[0]?.edition[0]?.[rankVal.value] || "",
+  arch: "x64",
+  host: monitorData.value[0]?.host || "",
+  license: "",
+});
 
 watch(
-  () => editionData,
+  () => formData.value.edition,
   () => {
-    formData.value.edition = editionData?.[0]?.edition?.[0]?.[1] || ''
-  }
-)
+    for (const item of glvksData) {
+      const result = item.edition.find((_) => {
+        return _[rankVal.value] === formData.value.edition;
+      });
+      if (result) {
+        formData.value.license = result[0]!;
+        break;
+      }
+    }
+  },
+  { immediate: true }
+);
+
+watch(
+  () => locale.value,
+  (val) => {
+    if (val === "zh-cn") {
+      rankVal.value = 2;
+    } else {
+      rankVal.value = 1;
+    }
+    formData.value.edition = glvksData?.[0]?.edition?.[0]?.[rankVal.value]!;
+  },
+  { immediate: true }
+);
 
 const content = computed(() => {
-  return generateScript(formData.value)
-})
+  return generateScript(formData.value);
+});
 
 const file = computed(() => {
-  return new File([content.value], 'kms.bat', { type: 'application/txt' })
-})
+  return new File([content.value], "kms.bat", { type: "application/txt" });
+});
 
-const fileUrl = useObjectUrl(file)
+const fileUrl = useObjectUrl(file);
 
 const { copy, copied } = useClipboard({
   legacy: true,
   source: content,
-})
+});
 </script>
 
 <template>
@@ -61,10 +75,13 @@ const { copy, copied } = useClipboard({
       <AForm :model="formData" layout="vertical">
         <AFormItem :label="t('label.edition')" field="edition" required>
           <ASelect v-model="formData.edition">
-            <template v-for="item in editionData" :key="item.version">
+            <template v-for="item in glvksData" :key="item.version">
               <AOptgroup :label="item.version">
-                <template v-for="edition in item.edition" :key="edition[1]">
-                  <AOption :label="edition[1]" />
+                <template
+                  v-for="edition in item.edition"
+                  :key="edition[rankVal]"
+                >
+                  <AOption :label="edition[rankVal]" />
                 </template>
               </AOptgroup>
             </template>
@@ -77,31 +94,28 @@ const { copy, copied } = useClipboard({
           required
         >
           <ARadioGroup v-model="formData.arch" type="button">
-            <ARadio value="x64">{{ t('label.x64') }}</ARadio>
-            <ARadio value="x86">{{ t('label.x86') }}</ARadio>
+            <ARadio value="x64">{{ t("label.x64") }}</ARadio>
+            <ARadio value="x86">{{ t("label.x86") }}</ARadio>
           </ARadioGroup>
         </AFormItem>
         <AFormItem :label="t('label.host')" field="host" required>
           <ASelect v-model="formData.host">
-            <template v-for="(value, key) in monitorData" :key>
+            <template v-for="item in monitorData" :key="item.host">
               <AOption
-                :value="key"
-                :label="key.toString()"
+                :value="item.host"
+                :label="item.host"
                 class="[&>*]:w-full"
               >
                 <div class="flex gap-2 items-center">
-                  <div class="flex-1">{{ key }}</div>
+                  <div class="flex-1">{{ item.host }}</div>
                   <ATag
-                    :color="getRateColor(getSuccessRate(value))"
+                    :color="getRateColor(item.success / item.total)"
                     size="small"
                   >
-                    {{ `${(getSuccessRate(value) * 100).toFixed(2)} %` }}
+                    {{ `${((item.success / item.total) * 100).toFixed(2)} %` }}
                   </ATag>
-                  <ATag
-                    :color="getDelayColor(getAverageDelay(value))"
-                    size="small"
-                  >
-                    {{ `${getAverageDelay(value).toFixed(2)} ms` }}
+                  <ATag :color="getDelayColor(item.delay)" size="small">
+                    {{ `${item.delay.toFixed(2)} ms` }}
                   </ATag>
                 </div>
               </AOption>
@@ -115,7 +129,7 @@ const { copy, copied } = useClipboard({
           <ClientOnly fallback-tag="textarea">
             <ATextarea v-model="content" auto-size />
             <template #fallback>
-              <ATextarea />
+              <ATextarea auto-size />
             </template>
           </ClientOnly>
         </AFormItem>
@@ -124,7 +138,7 @@ const { copy, copied } = useClipboard({
             <ClientOnly fallback-tag="a">
               <a :href="fileUrl" :download="file.name">
                 <AButton type="primary">
-                  {{ t('label.download') }}
+                  {{ t("label.download") }}
                 </AButton>
               </a>
             </ClientOnly>
@@ -133,7 +147,7 @@ const { copy, copied } = useClipboard({
               :status="copied ? 'success' : 'normal'"
               @click="copy()"
             >
-              {{ copied ? t('label.copy-success') : t('label.copy') }}
+              {{ copied ? t("label.copy-success") : t("label.copy") }}
             </AButton>
           </ASpace>
         </AFormItem>

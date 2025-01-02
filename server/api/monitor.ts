@@ -26,5 +26,12 @@ export default defineEventHandler(async () => {
     })
   );
 
-  return results;
+  const sortedData = results.sort((a, b) => {
+    const successRateA = a.success / a.total;
+    const successRateB = b.success / b.total;
+
+    return successRateB - successRateA || a.delay - b.delay;
+  });
+
+  return sortedData;
 });
