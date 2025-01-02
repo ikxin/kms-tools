@@ -1,14 +1,16 @@
-import { execFile } from 'child_process'
-import { arch, platform } from 'os'
+import { execFile } from "child_process";
+import { arch, platform } from "os";
 
-export const monitorList = process.env.MONITOR_LIST?.split(',') || [
-  'kms.03k.org',
-  'kms.wxlost.com',
-  'kms.sixyin.com',
-  'kms.zhi.fun',
-  'kms.loli.best',
-  'kms.vmem.top',
-]
+export const monitorList = process.env.MONITOR_LIST?.split(",") || [
+  "kms.8b5.cn",
+  "kms.wxlost.com",
+  "kms.03k.org",
+  "kms.sixyin.com",
+  "kms.343.re",
+  "kms.vmem.top",
+  "kms.zhi.fun",
+  "kms.loli.best",
+];
 
 export const runVlmcs = ({
   host,
@@ -17,7 +19,7 @@ export const runVlmcs = ({
   edition = 26,
 }: RunVlmcsParams) => {
   return new Promise<RunVlmcsResult>((resolve, reject) => {
-    const before = Date.now()
+    const before = Date.now();
     const vlmcs = execFile(
       `./binaries/vlmcs-${platform()}-${arch()}`,
       [`${host}:${port}`, `-${protocol}`, `-l ${edition}`],
@@ -28,17 +30,17 @@ export const runVlmcs = ({
           delay: Date.now() - before,
           content: stdout.trim(),
           status: err ? false : true,
-        })
+        });
       }
-    )
+    );
 
-    vlmcs.on('error', err => {
-      reject(err)
-    })
+    vlmcs.on("error", (err) => {
+      reject(err);
+    });
 
-    vlmcs.on('close', () => {
-      vlmcs.removeAllListeners()
-      vlmcs.kill()
-    })
-  })
-}
+    vlmcs.on("close", () => {
+      vlmcs.removeAllListeners();
+      vlmcs.kill();
+    });
+  });
+};
