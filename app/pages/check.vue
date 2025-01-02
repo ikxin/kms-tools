@@ -45,14 +45,15 @@ const handleSubmit = async (data: {
 </script>
 
 <template>
-  <ACard class="h-full">
+  <ACard class="h-full w-full">
     <template #title>
       <div class="flex items-center gap-2">
-        <i class="i-icons:check" />{{ t('title.kms-check') }}
+        <Icon name="icons:check" />
+        <span>{{ t('title.kms-check') }}</span>
       </div>
     </template>
     <ASpin :loading="resultInfo.loading" dot class="w-full">
-      <AForm :model="formData" @submit="handleSubmit">
+      <AForm :model="formData" @submit="handleSubmit" layout="vertical">
         <AFormItem :label="t('label.host')" field="host" required>
           <AInput v-model="formData.host"></AInput>
         </AFormItem>

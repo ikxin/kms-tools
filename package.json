@@ -22,6 +22,9 @@
     "vue": "^3.5.13"
   },
   "prettier": {
+    "arrowParens": "avoid",
+    "semi": false,
+    "singleQuote": true,
     "overrides": [
       {
         "files": "shared/utils/gvlks.ts",
