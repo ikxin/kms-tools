@@ -19,9 +19,9 @@ export default defineTask({
         const { status, delay } = await runVlmcs({ host });
 
         monitorData.push({
-          delay,
           status,
           time: Date.now(),
+          delay,
         });
 
         await storage.setItem<MonitorData[]>(`${host}.json`, monitorData);
