@@ -1,17 +1,4 @@
 <script setup lang="ts">
-import zhEditionData from 'assets/gvlks/windows-server.json'
-import enEditionData from 'assets/gvlks/windows-server.en.json'
-
-const { locale } = useI18n()
-
-const editionData = computed(() => {
-  if (locale.value === 'zh-cn' || locale.value === 'zh-tw') {
-    return zhEditionData
-  } else {
-    return enEditionData
-  }
-})
-
 function generateScript(formData: ActivateFormData) {
   const { host, license } = formData
   return (
@@ -27,7 +14,7 @@ function generateScript(formData: ActivateFormData) {
 <template>
   <CommonActivate
     title="Windows Server"
-    :editionData
+    :gvlksData="WINDOWS_SERVER_GVLKS"
     :generateScript
   ></CommonActivate>
   <CommonTips></CommonTips>

@@ -1,66 +1,66 @@
 <script lang="ts" setup>
-const { glvksData, title, generateScript } = defineProps<{
-  glvksData: GlvksData[];
-  title: string;
-  generateScript: (formData: ActivateFormData) => string;
-}>();
+const { gvlksData, title, generateScript } = defineProps<{
+  gvlksData: GvlksData[]
+  title: string
+  generateScript: (formData: ActivateFormData) => string
+}>()
 
-const { t, locale } = useI18n();
+const { t, locale } = useI18n()
 
-const monitorData = useState<MonitorInfo[]>("monitorData");
+const monitorData = useState<MonitorInfo[]>('monitorData')
 
-const rankVal = ref(1);
+const rankVal = ref(1)
 
 const formData = ref<ActivateFormData>({
-  edition: glvksData[0]?.edition[0]?.[rankVal.value] || "",
-  arch: "x64",
-  host: monitorData.value[0]?.host || "",
-  license: "",
-});
+  edition: gvlksData[0]?.edition[0]?.[rankVal.value] || '',
+  arch: 'x64',
+  host: monitorData.value[0]?.host || '',
+  license: '',
+})
 
 watch(
   () => formData.value.edition,
   () => {
-    for (const item of glvksData) {
-      const result = item.edition.find((_) => {
-        return _[rankVal.value] === formData.value.edition;
-      });
+    for (const item of gvlksData) {
+      const result = item.edition.find(_ => {
+        return _[rankVal.value] === formData.value.edition
+      })
       if (result) {
-        formData.value.license = result[0]!;
-        break;
+        formData.value.license = result[0]!
+        break
       }
     }
   },
   { immediate: true }
-);
+)
 
 watch(
   () => locale.value,
-  (val) => {
-    if (val === "zh-cn") {
-      rankVal.value = 2;
+  val => {
+    if (val === 'zh-cn') {
+      rankVal.value = 2
     } else {
-      rankVal.value = 1;
+      rankVal.value = 1
     }
-    formData.value.edition = glvksData?.[0]?.edition?.[0]?.[rankVal.value]!;
+    formData.value.edition = gvlksData?.[0]?.edition?.[0]?.[rankVal.value]!
   },
   { immediate: true }
-);
+)
 
 const content = computed(() => {
-  return generateScript(formData.value);
-});
+  return generateScript(formData.value)
+})
 
 const file = computed(() => {
-  return new File([content.value], "kms.bat", { type: "application/txt" });
-});
+  return new File([content.value], 'kms.bat', { type: 'application/txt' })
+})
 
-const fileUrl = useObjectUrl(file);
+const fileUrl = useObjectUrl(file)
 
 const { copy, copied } = useClipboard({
   legacy: true,
   source: content,
-});
+})
 </script>
 
 <template>
@@ -75,7 +75,7 @@ const { copy, copied } = useClipboard({
       <AForm :model="formData" layout="vertical">
         <AFormItem :label="t('label.edition')" field="edition" required>
           <ASelect v-model="formData.edition">
-            <template v-for="item in glvksData" :key="item.version">
+            <template v-for="item in gvlksData" :key="item.version">
               <AOptgroup :label="item.version">
                 <template
                   v-for="edition in item.edition"
@@ -94,8 +94,8 @@ const { copy, copied } = useClipboard({
           required
         >
           <ARadioGroup v-model="formData.arch" type="button">
-            <ARadio value="x64">{{ t("label.x64") }}</ARadio>
-            <ARadio value="x86">{{ t("label.x86") }}</ARadio>
+            <ARadio value="x64">{{ t('label.x64') }}</ARadio>
+            <ARadio value="x86">{{ t('label.x86') }}</ARadio>
           </ARadioGroup>
         </AFormItem>
         <AFormItem :label="t('label.host')" field="host" required>
@@ -138,7 +138,7 @@ const { copy, copied } = useClipboard({
             <ClientOnly fallback-tag="a">
               <a :href="fileUrl" :download="file.name">
                 <AButton type="primary">
-                  {{ t("label.download") }}
+                  {{ t('label.download') }}
                 </AButton>
               </a>
             </ClientOnly>
@@ -147,7 +147,7 @@ const { copy, copied } = useClipboard({
               :status="copied ? 'success' : 'normal'"
               @click="copy()"
             >
-              {{ copied ? t("label.copy-success") : t("label.copy") }}
+              {{ copied ? t('label.copy-success') : t('label.copy') }}
             </AButton>
           </ASpace>
         </AFormItem>
