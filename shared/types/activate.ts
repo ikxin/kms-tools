@@ -1,16 +1,16 @@
 export interface EditionItem {
-  version: string;
-  edition: string[][];
+  version: string
+  edition: string[][]
 }
 
 export interface ActivateFormData {
-  edition: string;
-  arch: string;
-  host: string;
-  license: string;
+  edition: string
+  arch: string
+  host: string
+  license: string
 }
 
-export interface GlvksData {
-  version: string;
-  edition: string[][];
+export interface GvlksData {
+  version: string
+  edition: string[][]
 }
