@@ -1,11 +1,15 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const localePath = useLocalePath()
+
 const { t } = useI18n()
 
-const pathName = route.path.slice(1).split('/')
+const path = computed(() => route.path.slice(1).split('/'))
 
-const selectedKeys = ref(pathName)
+if (!path.value.at(-1)) {
+  navigateTo(localePath('/activate/windows'))
+}
 </script>
 
 <template>
@@ -14,9 +18,8 @@ const selectedKeys = ref(pathName)
     class="[&>.arco-layout-sider-children]:rounded rounded"
   >
     <AMenu
-      v-model:selected-keys="selectedKeys"
+      :selected-keys="path"
       :default-open-keys="['system', 'software']"
-      :default-selected-keys="['windows']"
       class="[&_.arco-menu-icon>i]:inline-block select-none h-full [&>.arco-menu-inner]:p-2"
     >
       <ASubMenu key="system">
@@ -24,7 +27,10 @@ const selectedKeys = ref(pathName)
           <Icon name="icons:system" />
         </template>
         <template #title>{{ t('label.system') }}</template>
-        <AMenuItem key="windows" @click="navigateTo('/activate/windows')">
+        <AMenuItem
+          key="windows"
+          @click="navigateTo(localePath('/activate/windows'))"
+        >
           <template #icon>
             <Icon name="icons:windows" />
           </template>
@@ -32,7 +38,7 @@ const selectedKeys = ref(pathName)
         </AMenuItem>
         <AMenuItem
           key="windows-server"
-          @click="navigateTo('/activate/windows-server')"
+          @click="navigateTo(localePath('/activate/windows-server'))"
         >
           <template #icon>
             <Icon name="icons:windows-server" />
@@ -45,7 +51,10 @@ const selectedKeys = ref(pathName)
           <Icon name="icons:software" />
         </template>
         <template #title>{{ t('label.software') }}</template>
-        <AMenuItem key="office" @click="navigateTo('/activate/office')">
+        <AMenuItem
+          key="office"
+          @click="navigateTo(localePath('/activate/office'))"
+        >
           <template #icon>
             <Icon name="icons:office" />
           </template>

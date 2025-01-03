@@ -1,5 +1,11 @@
 <script setup lang="ts">
+const route = useRoute()
+
 const { locales, t, setLocale } = useI18n()
+
+const localePath = useLocalePath()
+
+const path = computed(() => route.path.slice(1).split('/'))
 
 const navItems = computed(() => [
   {
@@ -8,7 +14,7 @@ const navItems = computed(() => [
     icon: 'icons:activate',
   },
   {
-    name: 'tools',
+    name: 'check',
     label: t('label.check'),
     icon: 'icons:tools',
   },
@@ -41,6 +47,7 @@ const themeItems = computed(() => [
       <Icon class="w-48 h-12 cursor-pointer" name="icons:kms-tools" />
 
       <AMenu
+        :selected-keys="path"
         mode="horizontal"
         class="grow [&_.arco-menu-overflow-wrap]:text-end [&_.arco-menu-selected-label]:left-4"
       >
@@ -48,6 +55,13 @@ const themeItems = computed(() => [
           v-for="item in navItems"
           :key="item.name"
           class="!inline-flex items-center gap-1"
+          @click="
+            navigateTo(
+              localePath(
+                item.name === 'activate' ? '/activate/windows' : `/${item.name}`
+              )
+            )
+          "
         >
           <Icon :name="item.icon" />
           <span>{{ item.label }}</span>
