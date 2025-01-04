@@ -52,6 +52,10 @@ watch(
   { immediate: true }
 )
 
+watch(monitorData, val => {
+  formData.value.host = val?.[0]?.host || ''
+})
+
 const content = computed(() => {
   return generateScript(formData.value)
 })
