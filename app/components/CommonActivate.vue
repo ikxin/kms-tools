@@ -7,12 +7,7 @@ const { gvlksData, title, generateScript } = defineProps<{
 
 const { t, locale } = useI18n()
 
-const monitorData = ref<MonitorInfo[]>()
-
-onMounted(async () => {
-  const data = await request()<MonitorInfo[]>('/api/monitor')
-  monitorData.value = data
-})
+const monitorData = useState<MonitorInfo[]>('monitorData')
 
 const rankVal = ref(1)
 

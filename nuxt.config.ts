@@ -18,6 +18,11 @@ export default defineNuxtConfig({
       apiUrl: '',
     },
   },
+  routeRules: {
+    '/api/*': {
+      cors: true,
+    },
+  },
   css: ['~/assets/css/main.css'],
   modules: [
     'arco-design-nuxt-module',
