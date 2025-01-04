@@ -13,6 +13,11 @@ export default defineNuxtConfig({
       '0/10 * * * * *': ['monitor'],
     },
   },
+  runtimeConfig: {
+    public: {
+      apiUrl: '',
+    },
+  },
   css: ['~/assets/css/main.css'],
   modules: [
     'arco-design-nuxt-module',

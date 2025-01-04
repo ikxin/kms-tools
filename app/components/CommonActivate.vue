@@ -7,14 +7,19 @@ const { gvlksData, title, generateScript } = defineProps<{
 
 const { t, locale } = useI18n()
 
-const monitorData = useState<MonitorInfo[]>('monitorData')
+const monitorData = ref<MonitorInfo[]>()
+
+onMounted(async () => {
+  const data = await request()<MonitorInfo[]>('/api/monitor')
+  monitorData.value = data
+})
 
 const rankVal = ref(1)
 
 const formData = ref<ActivateFormData>({
   edition: gvlksData[0]?.edition[0]?.[rankVal.value] || '',
   arch: 'x64',
-  host: monitorData.value[0]?.host || '',
+  host: monitorData.value?.[0]?.host || '',
   license: '',
 })
 
