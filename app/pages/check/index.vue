@@ -30,8 +30,7 @@ const handleSubmit = async (data: {
     resultInfo.loading = true
     try {
       const data = await $fetch('/api/check', {
-        method: 'post',
-        body: formData.value,
+        query: formData.value,
       })
       resultInfo.message = data.content
       resultInfo.type = data.status ? 'success' : 'error'
