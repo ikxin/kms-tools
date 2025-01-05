@@ -44,7 +44,12 @@ const themeItems = computed(() => [
 <template>
   <ALayoutHeader class="select-none bg-[--color-bg-2] px-2 shadow-md">
     <div class="mx-auto flex w-[72rem] max-w-full items-center justify-between">
-      <Icon class="w-48 h-12 cursor-pointer" name="icons:kms-tools" />
+      <img
+        src="/assets/icons/kms-tools.svg"
+        alt="KMS Tools"
+        class="w-48 h-12 cursor-pointer"
+        @click="navigateTo(localePath('/'))"
+      />
 
       <AMenu
         :selected-keys="path"
