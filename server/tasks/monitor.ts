@@ -1,47 +1,47 @@
 export default defineTask({
   meta: {
-    name: "monitor",
-    description: "Run KMS server monitoring.",
+    name: 'monitor',
+    description: 'Run KMS server monitoring.',
   },
   async run() {
     const results = await Promise.all(
-      monitorList.map(async (host) => {
-        let monitorData = await storage.getItem<MonitorData[]>(`${host}.json`);
+      monitorList.map(async host => {
+        let monitorData = await storage.getItem<MonitorData[]>(`${host}.json`)
 
         if (!Array.isArray(monitorData)) {
-          monitorData = [];
+          monitorData = []
         }
 
         if (monitorData.length >= 100) {
-          monitorData.shift();
+          monitorData.shift()
         }
 
-        const { status, delay } = await runVlmcs({ host });
+        const { status, delay } = await runVlmcs({ host })
 
         monitorData.push({
           status,
           time: Date.now(),
           delay,
-        });
+        })
 
-        await storage.setItem<MonitorData[]>(`${host}.json`, monitorData);
+        await storage.setItem<MonitorData[]>(`${host}.json`, monitorData)
 
-        return { host, status };
+        return { host, status }
       })
-    );
+    )
 
-    const count = results.filter((item) => {
+    const count = results.filter(item => {
       if (!item.status) {
-        console.log("Monitor failed:", item.host);
+        console.log('Monitor failed:', item.host)
       }
-      return item.status;
-    }).length;
+      return item.status
+    }).length
 
     console.log(
       new Date().toISOString(),
       `Monitor task completed, successful: ${count}`
-    );
+    )
 
-    return { result: "Done" };
+    return { result: 'Done' }
   },
-});
+})
