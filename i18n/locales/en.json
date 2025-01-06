@@ -1,4 +1,23 @@
 {
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "All-in-One KMS Toolbox"
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "Activate Windows",
+        "windows-server": "Activate Windows Server",
+        "office": "Activate Office"
+      }
+    },
+    "check": {
+      "title": "Check KMS Server"
+    },
+    "monitor": {
+      "title": "Monitor KMS Server"
+    }
+  },
   "label": {
     "author": "ikxin",
     "activate": "Activate",

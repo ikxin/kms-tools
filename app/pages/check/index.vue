@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { ValidatedError } from '@arco-design/web-vue'
 
+definePageMeta({
+  title: 'pages.check.title',
+})
+
 const { t } = useI18n()
 
 const formData = ref({

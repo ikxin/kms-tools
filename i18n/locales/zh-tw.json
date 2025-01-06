@@ -1,0 +1,21 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "一站式 KMS 工具箱"
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "啟用 Windows",
+        "windows-server": "啟用 Windows Server",
+        "office": "啟用 Office"
+      }
+    },
+    "check": {
+      "title": "檢測 KMS 伺服器"
+    },
+    "monitor": {
+      "title": "監控 KMS 伺服器"
+    }
+  }
+}

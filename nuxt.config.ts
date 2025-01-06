@@ -16,6 +16,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiUrl: '',
+      i18n: {
+        baseUrl: 'https://kms.ikxin.com',
+      },
     },
   },
   routeRules: {
@@ -35,6 +38,7 @@ export default defineNuxtConfig({
   i18n: {
     defaultLocale: 'en',
     langDir: 'locales',
+    strategy: 'prefix_except_default',
     locales: [
       {
         code: 'en',
@@ -50,8 +54,14 @@ export default defineNuxtConfig({
         name: '简体中文',
         icon: 'cn',
       },
+      {
+        code: 'zh-tw',
+        language: 'zh-TW',
+        file: 'zh-tw.json',
+        name: '繁体中文',
+        icon: 'tw',
+      },
     ],
-    strategy: 'prefix_except_default',
   },
   icon: {
     customCollections: [

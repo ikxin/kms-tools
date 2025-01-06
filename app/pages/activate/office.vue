@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  title: 'pages.activate.title.office',
+})
+
 function generateScript(formData: ActivateFormData) {
   const { edition, arch, host, license } = formData
 

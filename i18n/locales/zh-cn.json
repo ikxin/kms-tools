@@ -1,4 +1,23 @@
 {
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "一站式 KMS 工具箱"
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "激活 Windows",
+        "windows-server": "激活 Windows Server",
+        "office": "激活 Office"
+      }
+    },
+    "check": {
+      "title": "检测 KMS 服务器"
+    },
+    "monitor": {
+      "title": "监控 KMS 服务器"
+    }
+  },
   "label": {
     "author": "一纸忘忧",
     "activate": "激活",

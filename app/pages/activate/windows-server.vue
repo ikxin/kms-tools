@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  title: 'pages.activate.title.windows-server',
+})
+
 function generateScript(formData: ActivateFormData) {
   const { host, license } = formData
   return (
