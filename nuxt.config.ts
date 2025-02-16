@@ -13,6 +13,17 @@ export default defineNuxtConfig({
       '0/10 * * * * *': ['monitor'],
     },
   },
+  app: {
+    head: {
+      script: [
+        {
+          defer: '',
+          src: 'https://umami.ikxin.com/script.js',
+          'data-website-id': '6c719cb2-4a72-46e6-a4fa-2ee357a38467',
+        },
+      ],
+    },
+  },
   runtimeConfig: {
     public: {
       apiUrl: '',
