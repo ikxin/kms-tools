@@ -45,6 +45,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
+    'nuxt-echarts',
   ],
   i18n: {
     defaultLocale: 'en',
@@ -81,5 +82,10 @@ export default defineNuxtConfig({
         dir: './app/assets/icons',
       },
     ],
+  },
+  echarts: {
+    charts: ['LineChart'],
+    components: ['TooltipComponent', 'GridComponent'],
+    features: ['UniversalTransition', 'LabelLayout'],
   },
 })
