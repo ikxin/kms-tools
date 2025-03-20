@@ -12,7 +12,7 @@ export default defineTask({
           monitorData = []
         }
 
-        if (monitorData.length >= 100) {
+        if (monitorData.length >= 120) {
           monitorData.shift()
         }
 
@@ -27,7 +27,7 @@ export default defineTask({
         await storage.setItem<MonitorData[]>(`${host}.json`, monitorData)
 
         return { host, status }
-      })
+      }),
     )
 
     const count = results.filter(item => {
@@ -39,7 +39,7 @@ export default defineTask({
 
     console.log(
       new Date().toISOString(),
-      `Monitor task completed, successful: ${count}`
+      `Monitor task completed, successful: ${count}`,
     )
 
     return { result: 'Done' }

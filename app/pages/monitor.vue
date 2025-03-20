@@ -6,6 +6,7 @@ definePageMeta({
 const monitorData = useState<MonitorInfo[]>('monitorData')
 
 function getColor(value: number): string {
+  if (value < 0) return '#d9d9d9'
   if (value < 200) return '#52c41a'
   if (value < 500) return '#faad14'
   return '#f5222d'
@@ -29,17 +30,19 @@ function getChartOption(item: MonitorInfo): ECOption {
       trigger: 'axis',
     },
     grid: {
+      containLabel: true,
       left: 0,
-      right: 16,
+      right: 24,
       top: 8,
       bottom: 8,
-      containLabel: true,
     },
     xAxis: {
       type: 'category',
       data: times,
     },
     yAxis: {
+      max: 999,
+      min: 0,
       type: 'value',
       show: false,
     },
@@ -56,10 +59,14 @@ function getChartOption(item: MonitorInfo): ECOption {
 </script>
 
 <template>
-  <div class="flex w-full flex-col gap-4">
+  <div class="flex w-full flex-col gap-4" ref="monitor">
     <template v-for="item in monitorData" :key="item.host">
       <ACard :title="item.host">
-        <VChart :option="getChartOption(item)" class="h-24 w-full" />
+        <VChart
+          :autoresize="true"
+          :option="getChartOption(item)"
+          class="h-32 w-full"
+        />
       </ACard>
     </template>
   </div>
