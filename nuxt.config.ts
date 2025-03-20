@@ -84,8 +84,7 @@ export default defineNuxtConfig({
     ],
   },
   echarts: {
-    charts: ['LineChart'],
+    charts: ['BarChart'],
     components: ['TooltipComponent', 'GridComponent'],
-    features: ['UniversalTransition', 'LabelLayout'],
   },
 })

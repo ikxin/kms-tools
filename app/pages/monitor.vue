@@ -5,43 +5,50 @@ definePageMeta({
 
 const monitorData = useState<MonitorInfo[]>('monitorData')
 
+function getColor(value: number): string {
+  if (value < 200) return '#52c41a'
+  if (value < 500) return '#faad14'
+  return '#f5222d'
+}
+
 function formatTime(timestamp: number): string {
   return new Date(timestamp).toLocaleTimeString()
 }
 
-function getChartOption(item: MonitorInfo) {
+function getChartOption(item: MonitorInfo): ECOption {
   const times = item.data.map(data => formatTime(data.time))
-  const delays = item.data.map(data => data.delay)
+  const delays = item.data.map(data => ({
+    value: data.delay,
+    itemStyle: {
+      color: getColor(data.delay),
+    },
+  }))
 
   return {
     tooltip: {
       trigger: 'axis',
     },
+    grid: {
+      left: 0,
+      right: 16,
+      top: 8,
+      bottom: 8,
+      containLabel: true,
+    },
     xAxis: {
       type: 'category',
       data: times,
-      axisLabel: {
-        rotate: 45,
-        formatter: (value: string) => value.slice(0, 8),
-      },
     },
     yAxis: {
       type: 'value',
-      name: '延迟 (ms)',
+      show: false,
     },
     series: [
       {
         name: '延迟',
-        type: 'line',
-        smooth: true,
+        type: 'bar',
         data: delays,
-        lineStyle: {
-          width: 2,
-          color: '#5470c6',
-        },
-        areaStyle: {
-          color: 'rgba(84, 112, 198, 0.2)',
-        },
+        barWidth: '70%',
       },
     ],
   }
@@ -49,22 +56,17 @@ function getChartOption(item: MonitorInfo) {
 </script>
 
 <template>
-  <ACard class="w-full p-4">
+  <div class="flex w-full flex-col gap-4">
     <template v-for="item in monitorData" :key="item.host">
-      <div
-        class="mb-6 flex flex-col items-start rounded-lg bg-gray-50 p-4 shadow lg:flex-row"
-      >
-        <div class="mb-4 w-full lg:mb-0 lg:w-1/4 lg:pr-4">
-          <h2 class="text-lg font-semibold text-gray-700">{{ item.host }}</h2>
-          <p class="text-sm text-gray-500">监控点数：{{ item.data.length }}</p>
-        </div>
-        <div class="w-full lg:w-3/4">
-          <VChart
-            :option="getChartOption(item)"
-            style="width: 100%; height: 200px"
-          />
-        </div>
-      </div>
+      <ACard :title="item.host">
+        <VChart :option="getChartOption(item)" class="h-24 w-full" />
+      </ACard>
     </template>
-  </ACard>
+  </div>
 </template>
+
+<style scoped>
+:deep(.arco-card-size-medium .arco-card-body) {
+  padding: 0px !important;
+}
+</style>
