@@ -34,7 +34,7 @@ const title = computed(() => {
     </Head>
     <Body>
       <AppHeader />
-      <section class="flex flex-1 mx-auto max-w-full gap-4 w-[72rem]">
+      <section class="mx-auto flex w-[72rem] max-w-full flex-1 gap-4">
         <slot></slot>
       </section>
       <AppFooter />

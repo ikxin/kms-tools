@@ -5,7 +5,7 @@ const { t } = useI18n()
 <template>
   <ALayoutFooter class="bg-[--color-bg-2] px-2">
     <div
-      class="mx-auto flex h-14 max-w-full whitespace-nowrap items-center justify-center"
+      class="mx-auto flex h-14 max-w-full items-center justify-center whitespace-nowrap"
     >
       <ASpace>
         <div>
@@ -15,8 +15,14 @@ const { t } = useI18n()
           </ALink>
         </div>
         <div>
+          Running on
+          <ALink target="_blank" href="https://www.asiayun.com/aff/TVXVRALM">
+            AsiaYun
+          </ALink>
+        </div>
+        <div>
           Code with by
-          <ALink target="_blank" href="https://www.ikxin.com">
+          <ALink target="_blank" href="https://blog.ikxin.com">
             {{ t('label.author') }}
           </ALink>
         </div>
