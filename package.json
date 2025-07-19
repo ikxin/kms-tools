@@ -18,7 +18,7 @@
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@vueuse/nuxt": "12.2.0",
     "arco-design-nuxt-module": "^0.2.1",
-    "nuxt": "^3.17.3",
+    "nuxt": "^4.0.0",
     "nuxt-echarts": "^0.2.6",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
