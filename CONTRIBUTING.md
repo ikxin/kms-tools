@@ -1,9 +1,9 @@
-## 欢迎来到 kms-tools 贡献指南
+## Welcome to the kms-tools Contribution Guide
 
-感谢你投入时间为我们的项目做贡献！你的任何贡献都将反映在 [contributors](https://github.com/ikxin/kms-tools/graphs/contributors) 上。
+Thank you for dedicating your time to contribute to our project! Your contributions will be reflected in the [contributors](https://github.com/ikxin/kms-tools/graphs/contributors) section.
 
-请阅读我们的[行为准则](./CODE_OF_CONDUCT.md)，以保持我们的社区平易近人和受到尊重。
+Please take a moment to review our [code of conduct](./CODE_OF_CONDUCT.md) to ensure our community remains friendly and respectful.
 
-在本指南中，你将得到一个关于贡献工作流程的概述，包括打开一个问题、创建一个PR、审查和合并PR。
+In this guide, you will receive an overview of the contribution workflow, including opening an issue, creating a PR, and reviewing and merging PRs.
 
-使用本文档左上角的目录图标可以快速进入本指南的特定章节。
+You can quickly navigate to specific sections of this guide using the directory icon in the top left corner of this document.
