@@ -47,6 +47,9 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-echarts',
   ],
+  colorMode: {
+    classSuffix: '-mode',
+  },
   i18n: {
     defaultLocale: 'en',
     langDir: 'locales',
