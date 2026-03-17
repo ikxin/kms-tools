@@ -3,6 +3,30 @@
     "title": "KMS Tools",
     "titleTemplate": "All-in-One KMS Toolbox"
   },
+  "home": {
+    "hero": {
+      "subtitle": "All-in-One KMS Toolbox",
+      "description": "A simple and powerful KMS management tool for activating Windows, Office and more, with server check and real-time monitoring",
+      "get-started": "Get Started",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "Core Features",
+      "subtitle": "Powerful and simple KMS toolkit",
+      "activate": {
+        "title": "Product Activation",
+        "description": "One-click activation for Windows, Windows Server and Office with auto-generated scripts"
+      },
+      "check": {
+        "title": "Server Check",
+        "description": "Quickly verify KMS server availability, check connection status and response latency"
+      },
+      "monitor": {
+        "title": "Real-time Monitoring",
+        "description": "Continuously monitor KMS server status with visual charts for success rate and latency"
+      }
+    }
+  },
   "pages": {
     "activate": {
       "title": {
@@ -36,6 +60,7 @@
     "x86": "32 Bit",
     "license": "License",
     "script": "CMD Script",
+    "menu": "Menu",
     "copy": "Copy",
     "copy-success": "Copy Successful",
     "download": "Download",

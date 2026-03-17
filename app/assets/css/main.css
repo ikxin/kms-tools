@@ -1,10 +1,17 @@
 body {
   background-color: var(--color-neutral-2);
   color: var(--color-text-2);
+  --border-radius-small: 4px;
+  --border-radius-medium: 6px;
+  --border-radius-large: 10px;
 }
 
 #__nuxt {
-  @apply flex flex-col gap-4 min-h-screen;
+  @apply flex min-h-screen flex-col gap-4;
+}
+
+.arco-drawer-body {
+  padding: 0;
 }
 
 html[class='dark-mode'] body {

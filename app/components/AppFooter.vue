@@ -3,11 +3,11 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <ALayoutFooter class="bg-[--color-bg-2] px-2">
+  <ALayoutFooter class="bg-[--color-bg-2] px-4">
     <div
-      class="mx-auto flex h-14 max-w-full items-center justify-center whitespace-nowrap"
+      class="mx-auto flex min-h-14 max-w-full flex-col items-center justify-center gap-1 py-3 text-center text-sm md:flex-row md:gap-0 md:py-0"
     >
-      <ASpace>
+      <ASpace wrap class="justify-center">
         <div>
           Copyright &copy; {{ new Date().getFullYear() }}
           <ALink target="_blank" href="https://github.com/ikxin/kms-tools">

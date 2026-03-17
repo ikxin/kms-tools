@@ -7,6 +7,8 @@ const localePath = useLocalePath()
 
 const path = computed(() => route.path.slice(1).split('/'))
 
+const drawerVisible = ref(false)
+
 const navItems = computed(() => [
   {
     name: 'activate',
@@ -39,39 +41,42 @@ const themeItems = computed(() => [
     value: 'light',
   },
 ])
+
+function handleNavClick(name: string) {
+  navigateTo(localePath(name === 'activate' ? '/activate/windows' : `/${name}`))
+  drawerVisible.value = false
+}
 </script>
 
 <template>
-  <ALayoutHeader class="select-none bg-[--color-bg-2] px-2 shadow-md">
+  <ALayoutHeader
+    class="sticky top-0 z-[100] flex h-20 select-none items-center bg-[--color-bg-2] px-4 shadow-md"
+  >
     <div class="mx-auto flex w-[72rem] max-w-full items-center justify-between">
       <img
         src="/assets/icons/kms-tools.svg"
         alt="KMS Tools"
-        class="w-48 h-12 cursor-pointer"
+        class="h-14 w-auto cursor-pointer"
         @click="navigateTo(localePath('/'))"
       />
 
+      <!-- Desktop Menu -->
       <AMenu
         :selected-keys="path"
         mode="horizontal"
-        class="grow [&_.arco-menu-overflow-wrap]:text-end [&_.arco-menu-selected-label]:left-4"
+        class="hidden grow md:flex [&_.arco-menu-overflow-wrap]:text-end [&_.arco-menu-selected-label]:left-4"
       >
         <AMenuItem
           v-for="item in navItems"
           :key="item.name"
           class="!inline-flex items-center gap-1"
-          @click="
-            navigateTo(
-              localePath(
-                item.name === 'activate' ? '/activate/windows' : `/${item.name}`
-              )
-            )
-          "
+          @click="handleNavClick(item.name)"
         >
           <Icon :name="item.icon" />
           <span>{{ item.label }}</span>
         </AMenuItem>
       </AMenu>
+
       <ASpace>
         <ADropdown>
           <AButton size="small" type="secondary">
@@ -119,7 +124,34 @@ const themeItems = computed(() => [
             <template #icon><Icon name="icons:github" /></template>
           </AButton>
         </a>
+
+        <!-- Mobile Hamburger -->
+        <div class="md:hidden">
+          <AButton size="small" type="secondary" @click="drawerVisible = true">
+            <template #icon><Icon name="material-symbols:menu" /></template>
+          </AButton>
+        </div>
       </ASpace>
     </div>
   </ALayoutHeader>
+
+  <!-- Mobile Drawer -->
+  <ADrawer
+    v-model:visible="drawerVisible"
+    placement="right"
+    :width="280"
+    :title="t('label.menu')"
+    :footer="false"
+  >
+    <AMenu :selected-keys="path" class="!border-none">
+      <AMenuItem
+        v-for="item in navItems"
+        :key="item.name"
+        @click="handleNavClick(item.name)"
+      >
+        <template #icon><Icon :name="item.icon" /></template>
+        {{ item.label }}
+      </AMenuItem>
+    </AMenu>
+  </ADrawer>
 </template>

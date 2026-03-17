@@ -3,6 +3,30 @@
     "title": "KMS Tools",
     "titleTemplate": "一站式 KMS 工具箱"
   },
+  "home": {
+    "hero": {
+      "subtitle": "一站式 KMS 工具箱",
+      "description": "简单易用的 KMS 管理工具，支持激活 Windows、Office 等多种产品，提供服务器检测与实时监控功能",
+      "get-started": "开始使用",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "核心功能",
+      "subtitle": "强大而简洁的 KMS 工具集",
+      "activate": {
+        "title": "产品激活",
+        "description": "支持 Windows、Windows Server 和 Office 的一键激活，自动生成激活脚本"
+      },
+      "check": {
+        "title": "服务器检测",
+        "description": "快速检测 KMS 服务器的可用性，验证服务器连接状态及响应延迟"
+      },
+      "monitor": {
+        "title": "实时监控",
+        "description": "持续监控 KMS 服务器运行状态，可视化展示成功率与延迟数据"
+      }
+    }
+  },
   "pages": {
     "activate": {
       "title": {
@@ -36,6 +60,7 @@
     "x86": "32 位",
     "license": "许可证",
     "script": "CMD 脚本",
+    "menu": "菜单",
     "copy": "复制",
     "copy-success": "复制成功",
     "download": "下载",

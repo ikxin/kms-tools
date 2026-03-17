@@ -51,17 +51,10 @@ export default defineNuxtConfig({
     classSuffix: '-mode',
   },
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'zh-cn',
     langDir: 'locales',
-    strategy: 'prefix_except_default',
+    strategy: 'prefix_and_default',
     locales: [
-      {
-        code: 'en',
-        language: 'en-US',
-        file: 'en.json',
-        name: 'English',
-        icon: 'us',
-      },
       {
         code: 'zh-cn',
         language: 'zh-CN',
@@ -70,11 +63,11 @@ export default defineNuxtConfig({
         icon: 'cn',
       },
       {
-        code: 'zh-tw',
-        language: 'zh-TW',
-        file: 'zh-tw.json',
-        name: '繁体中文',
-        icon: 'tw',
+        code: 'en',
+        language: 'en-US',
+        file: 'en.json',
+        name: 'English',
+        icon: 'us',
       },
     ],
   },
