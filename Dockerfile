@@ -1,14 +1,16 @@
-FROM node:lts as builder
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
+COPY package.json pnpm-lock.yaml ./
+
+RUN corepack enable && pnpm install --frozen-lockfile
+
 COPY . .
 
-RUN corepack enable \
-  && pnpm install \
-  && NITRO_PRESET=node-server pnpm run build
+RUN NITRO_PRESET=node-server pnpm run build
 
-FROM node:lts
+FROM node:20-slim
 
 COPY --from=builder /app/.output /app/.output
 COPY --from=builder /app/binaries /app/binaries
