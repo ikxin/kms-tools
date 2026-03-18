@@ -72,11 +72,15 @@ https://kms.ikxin.com
 
 ### 环境变量
 
-| 名称                  | 示例值                      | 描述                                     |
-| --------------------- | --------------------------- | ---------------------------------------- |
-| `NUXT_PUBLIC_API_URL` | `https://kms.ikxin.com`     | 静态版本 API 接口地址                    |
-| `MONITOR_LIST`        | `kms.org.cn,win.freekms.cn` | 自定义监控 KMS 服务器列表，使用 `,` 分隔 |
-| `ENABLE_VLMCSD`       | `false`                     | 是否启用内置 VLMCSD 服务                 |
+| 名称                       | 示例值                      | 描述                                                              |
+| -------------------------- | --------------------------- | ----------------------------------------------------------------- |
+| `NUXT_PUBLIC_API_URL`      | `https://kms.ikxin.com`     | 静态版本 API 接口地址                                             |
+| `NUXT_MONITOR_LIST`        | `kms.org.cn,win.freekms.cn` | 自定义监控 KMS 服务器列表，使用 `,` 分隔                          |
+| `NUXT_ENABLE_VLMCSD`       | `false`                     | 是否启用内置 VLMCSD 服务                                          |
+| `PORT`                     | `3000`                      | 服务监听端口（也可使用 `NITRO_PORT`）                             |
+
+> [!NOTE]
+> 生产环境（`node .output/server/index.mjs`）不会自动读取 `.env` 文件，环境变量需要在运行前通过系统环境或部署平台进行配置。`.env` 文件仅在开发和构建阶段有效。
 
 ### 全栈版本
 
@@ -95,7 +99,7 @@ services:
     volumes:
       - kms-data:/app/.data
     environment:
-      - MONITOR_LIST=kms.org.cn,win.freekms.cn
+      - NUXT_MONITOR_LIST=kms.org.cn,win.freekms.cn
     restart: unless-stopped
 
 volumes:
@@ -138,10 +142,16 @@ cd kms-tools && pnpm install
 pnpm run build
 ```
 
-3. 启动服务，项目默认监听 `3000` 端口
+3. 启动服务，项目默认监听 `3000` 端口，可通过 `PORT` 环境变量修改
 
 ```bash
 node .output/server/index.mjs
+```
+
+如需自定义端口和监控列表，可在启动时设置环境变量：
+
+```bash
+PORT=3512 NUXT_MONITOR_LIST=kms.example.com node .output/server/index.mjs
 ```
 
 ### 静态版本

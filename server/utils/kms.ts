@@ -1,7 +1,7 @@
 import { execFile } from 'child_process'
 import { arch, platform } from 'os'
 
-export const monitorList = process.env.MONITOR_LIST?.split(',') || [
+const defaultMonitorList = [
   'kms.8b5.cn',
   'kms.org.cn',
   'win.freekms.cn',
@@ -21,6 +21,18 @@ export const monitorList = process.env.MONITOR_LIST?.split(',') || [
   'kms.wxlost.com',
   'kms.digiboy.ir',
 ]
+
+export const getMonitorList = (() => {
+  let cached: string[] | undefined
+  return () => {
+    if (cached) return cached
+    const config = useRuntimeConfig()
+    const listStr =
+      (config.monitorList as string) || process.env.MONITOR_LIST
+    cached = listStr?.split(',').filter(Boolean) || defaultMonitorList
+    return cached
+  }
+})()
 
 export const runVlmcs = ({
   host,

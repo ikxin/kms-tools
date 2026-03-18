@@ -25,6 +25,8 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    monitorList: '',
+    enableVlmcsd: '',
     public: {
       apiUrl: '',
       i18n: {

@@ -72,11 +72,15 @@ The static version uses https://kms.ikxin.com API by default. You can deploy you
 
 ### Environment Variables
 
-| Name                  | Example                     | Description                                         |
-| --------------------- | --------------------------- | --------------------------------------------------- |
-| `NUXT_PUBLIC_API_URL` | `https://kms.ikxin.com`     | API URL for the static version                      |
-| `MONITOR_LIST`        | `kms.org.cn,win.freekms.cn` | Custom KMS server monitoring list, separated by `,` |
-| `ENABLE_VLMCSD`       | `false`                     | Whether to enable the built-in VLMCSD service       |
+| Name                       | Example                     | Description                                                            |
+| -------------------------- | --------------------------- | ---------------------------------------------------------------------- |
+| `NUXT_PUBLIC_API_URL`      | `https://kms.ikxin.com`     | API URL for the static version                                         |
+| `NUXT_MONITOR_LIST`        | `kms.org.cn,win.freekms.cn` | Custom KMS server monitoring list, separated by `,`                    |
+| `NUXT_ENABLE_VLMCSD`       | `false`                     | Whether to enable the built-in VLMCSD service                          |
+| `PORT`                     | `3000`                      | Server listening port (also accepts `NITRO_PORT`)                      |
+
+> [!NOTE]
+> The production server (`node .output/server/index.mjs`) does **not** automatically load `.env` files. Environment variables must be set in the system environment or your deployment platform before starting the server. The `.env` file is only used during development and the build phase.
 
 ### Full-Stack Version
 
@@ -95,7 +99,7 @@ services:
     volumes:
       - kms-data:/app/.data
     environment:
-      - MONITOR_LIST=kms.org.cn,win.freekms.cn
+      - NUXT_MONITOR_LIST=kms.org.cn,win.freekms.cn
     restart: unless-stopped
 
 volumes:
@@ -138,10 +142,16 @@ cd kms-tools && pnpm install
 pnpm run build
 ```
 
-3. Start the service (default port: `3000`)
+3. Start the service (default port: `3000`), configurable via the `PORT` environment variable
 
 ```bash
 node .output/server/index.mjs
+```
+
+To set a custom port and monitor list, pass environment variables at startup:
+
+```bash
+PORT=3512 NUXT_MONITOR_LIST=kms.example.com node .output/server/index.mjs
 ```
 
 ### Static Version
