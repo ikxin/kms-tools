@@ -76,7 +76,7 @@ https://kms.ikxin.com
 | -------------------------- | --------------------------- | ----------------------------------------------------------------- |
 | `NUXT_PUBLIC_API_URL`      | `https://kms.ikxin.com`     | 静态版本 API 接口地址                                             |
 | `NUXT_MONITOR_LIST`        | `kms.org.cn,win.freekms.cn` | 自定义监控 KMS 服务器列表，使用 `,` 分隔                          |
-| `MONITOR_INTERVAL`         | `10`                        | 监控频率，单位为秒，默认 10 秒                                    |
+| `NUXT_MONITOR_INTERVAL`    | `10`                        | 监控频率，单位为秒，默认 10 秒                                    |
 | `NUXT_ENABLE_VLMCSD`       | `false`                     | 是否启用内置 VLMCSD 服务                                          |
 | `PORT`                     | `3000`                      | 服务监听端口（也可使用 `NITRO_PORT`）                             |
 

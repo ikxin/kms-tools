@@ -76,7 +76,7 @@ The static version uses https://kms.ikxin.com API by default. You can deploy you
 | -------------------------- | --------------------------- | ---------------------------------------------------------------------- |
 | `NUXT_PUBLIC_API_URL`      | `https://kms.ikxin.com`     | API URL for the static version                                         |
 | `NUXT_MONITOR_LIST`        | `kms.org.cn,win.freekms.cn` | Custom KMS server monitoring list, separated by `,`                    |
-| `MONITOR_INTERVAL`         | `10`                        | Monitoring interval in seconds, default is 10                          |
+| `NUXT_MONITOR_INTERVAL`    | `10`                        | Monitoring interval in seconds, default is 10                          |
 | `NUXT_ENABLE_VLMCSD`       | `false`                     | Whether to enable the built-in VLMCSD service                          |
 | `PORT`                     | `3000`                      | Server listening port (also accepts `NITRO_PORT`)                      |
 
