@@ -4,7 +4,13 @@ import { arch, platform } from 'os'
 import { existsSync } from 'fs'
 
 export default defineNitroPlugin(nitro => {
-  if (process.env.ENABLE_VLMCSD !== 'true') {
+  const config = useRuntimeConfig()
+  const enableVlmcsd =
+    config.enableVlmcsd === true ||
+    config.enableVlmcsd === 'true' ||
+    process.env.ENABLE_VLMCSD === 'true'
+
+  if (!enableVlmcsd) {
     console.log('Vlmcsd is disabled')
     return
   }

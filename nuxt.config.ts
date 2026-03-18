@@ -1,7 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 const getMonitorCron = () => {
-  const raw = parseInt(process.env.MONITOR_INTERVAL || '10', 10)
+  const raw = parseInt(
+    process.env.NUXT_MONITOR_INTERVAL || process.env.MONITOR_INTERVAL || '10',
+    10,
+  )
   const seconds = isNaN(raw) || raw <= 0 ? 10 : raw
   if (seconds < 60) {
     return `*/${seconds} * * * * *`
@@ -36,6 +39,9 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    monitorList: '',
+    enableVlmcsd: '',
+    monitorInterval: '10',
     public: {
       apiUrl: '',
       i18n: {

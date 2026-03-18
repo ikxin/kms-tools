@@ -1,6 +1,6 @@
 export default defineEventHandler(async () => {
   const results = await Promise.all(
-    monitorList.map(async host => {
+    getMonitorList().map(async host => {
       let data = await storage.getItem<MonitorData[]>(`${host}.json`)
 
       if (!Array.isArray(data)) {

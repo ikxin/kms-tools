@@ -5,7 +5,7 @@ export default defineTask({
   },
   async run() {
     const results = await Promise.all(
-      monitorList.map(async host => {
+      getMonitorList().map(async host => {
         let monitorData = await storage.getItem<MonitorData[]>(`${host}.json`)
 
         if (!Array.isArray(monitorData)) {
