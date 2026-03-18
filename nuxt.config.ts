@@ -1,4 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+const getMonitorCron = () => {
+  const raw = parseInt(process.env.MONITOR_INTERVAL || '10', 10)
+  const seconds = isNaN(raw) || raw <= 0 ? 10 : raw
+  if (seconds < 60) {
+    return `*/${seconds} * * * * *`
+  }
+  const minutes = Math.floor(seconds / 60)
+  return `0 */${minutes} * * * *`
+}
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -10,7 +21,7 @@ export default defineNuxtConfig({
       tasks: true,
     },
     scheduledTasks: {
-      '0/10 * * * * *': ['monitor'],
+      [getMonitorCron()]: ['monitor'],
     },
   },
   app: {
