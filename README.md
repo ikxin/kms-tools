@@ -72,13 +72,12 @@ https://kms.ikxin.com
 
 ### 环境变量
 
-| 名称                       | 示例值                      | 描述                                                              |
-| -------------------------- | --------------------------- | ----------------------------------------------------------------- |
-| `NUXT_PUBLIC_API_URL`      | `https://kms.ikxin.com`     | 静态版本 API 接口地址                                             |
-| `NUXT_MONITOR_LIST`        | `kms.org.cn,win.freekms.cn` | 自定义监控 KMS 服务器列表，使用 `,` 分隔                          |
-| `NUXT_MONITOR_INTERVAL`    | `10`                        | 监控频率，单位为秒，默认 10 秒                                    |
-| `NUXT_ENABLE_VLMCSD`       | `false`                     | 是否启用内置 VLMCSD 服务                                          |
-| `PORT`                     | `3000`                      | 服务监听端口（也可使用 `NITRO_PORT`）                             |
+| 名称                    | 示例值                      | 描述                                     |
+| ----------------------- | --------------------------- | ---------------------------------------- |
+| `NUXT_PUBLIC_API_URL`   | `https://kms.ikxin.com`     | 静态版本 API 接口地址                    |
+| `NUXT_MONITOR_LIST`     | `kms.org.cn,win.freekms.cn` | 自定义监控 KMS 服务器列表，使用 `,` 分隔 |
+| `NUXT_MONITOR_INTERVAL` | `10`                        | 监控频率，单位为秒，默认 10 秒           |
+| `PORT`                  | `3000`                      | 服务监听端口（也可使用 `NITRO_PORT`）    |
 
 > [!NOTE]
 > 生产环境（`node .output/server/index.mjs`）不会自动读取 `.env` 文件，环境变量需要在运行前通过系统环境或部署平台进行配置。`.env` 文件仅在开发和构建阶段有效。

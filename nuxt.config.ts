@@ -40,7 +40,6 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     monitorList: '',
-    enableVlmcsd: '',
     monitorInterval: '10',
     public: {
       apiUrl: '',

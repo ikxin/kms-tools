@@ -20,7 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - 新增暗色模式支持（亮色 / 暗色 / 跟随系统）
 - 新增国际化支持（简体中文 / English）
 - 新增 ECharts 图表可视化监控数据
-- 新增内置 VLMCSD 服务（可选启用）
 - 新增定时任务自动监控 KMS 服务器状态
 
 ### 🛠️ Improvements

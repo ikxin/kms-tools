@@ -72,13 +72,12 @@ The static version uses https://kms.ikxin.com API by default. You can deploy you
 
 ### Environment Variables
 
-| Name                       | Example                     | Description                                                            |
-| -------------------------- | --------------------------- | ---------------------------------------------------------------------- |
-| `NUXT_PUBLIC_API_URL`      | `https://kms.ikxin.com`     | API URL for the static version                                         |
-| `NUXT_MONITOR_LIST`        | `kms.org.cn,win.freekms.cn` | Custom KMS server monitoring list, separated by `,`                    |
-| `NUXT_MONITOR_INTERVAL`    | `10`                        | Monitoring interval in seconds, default is 10                          |
-| `NUXT_ENABLE_VLMCSD`       | `false`                     | Whether to enable the built-in VLMCSD service                          |
-| `PORT`                     | `3000`                      | Server listening port (also accepts `NITRO_PORT`)                      |
+| Name                    | Example                     | Description                                         |
+| ----------------------- | --------------------------- | --------------------------------------------------- |
+| `NUXT_PUBLIC_API_URL`   | `https://kms.ikxin.com`     | API URL for the static version                      |
+| `NUXT_MONITOR_LIST`     | `kms.org.cn,win.freekms.cn` | Custom KMS server monitoring list, separated by `,` |
+| `NUXT_MONITOR_INTERVAL` | `10`                        | Monitoring interval in seconds, default is 10       |
+| `PORT`                  | `3000`                      | Server listening port (also accepts `NITRO_PORT`)   |
 
 > [!NOTE]
 > The production server (`node .output/server/index.mjs`) does **not** automatically load `.env` files. Environment variables must be set in the system environment or your deployment platform before starting the server. The `.env` file is only used during development and the build phase.
