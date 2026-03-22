@@ -3,7 +3,7 @@
 const getMonitorCron = () => {
   const raw = parseInt(
     process.env.NUXT_MONITOR_INTERVAL || process.env.MONITOR_INTERVAL || '10',
-    10,
+    60,
   )
   const seconds = isNaN(raw) || raw <= 0 ? 10 : raw
   if (seconds < 60) {
@@ -38,6 +38,11 @@ export default defineNuxtConfig({
       ],
     },
   },
+  vite: {
+    optimizeDeps: {
+      include: ['@vue/devtools-core', '@vue/devtools-kit'],
+    },
+  },
   runtimeConfig: {
     monitorList: '',
     monitorInterval: '10',
@@ -61,6 +66,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
+    'motion-v/nuxt',
     'nuxt-echarts',
   ],
   colorMode: {

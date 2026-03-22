@@ -1,3 +1,6 @@
 {
-  "ignore_dockerfile": true
+  "app_dir": "/",
+  "build_command": "pnpm run -w build",
+  "ignore_dockerfile": true,
+  "start_command": "node .output/server/index.mjs"
 }

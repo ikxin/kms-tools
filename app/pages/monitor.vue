@@ -1,9 +1,13 @@
 <script lang="ts" setup>
+import { motion } from 'motion-v'
+
 definePageMeta({
   title: 'pages.monitor.title',
 })
 
 const monitorData = useState<MonitorInfo[]>('monitorData')
+
+const { hidden, hoverLift, viewport, visible } = useMotionPresets()
 
 function getColor(value: number): string {
   if (value < 0) return '#d9d9d9'
@@ -61,13 +65,21 @@ function getChartOption(item: MonitorInfo): ECOption {
 <template>
   <div class="flex w-full flex-col gap-4" ref="monitor">
     <template v-for="item in monitorData" :key="item.host">
-      <ACard :title="item.host">
-        <VChart
-          :autoresize="true"
-          :option="getChartOption(item)"
-          class="h-32 w-full"
-        />
-      </ACard>
+      <motion.div
+        :initial="hidden(20, 0.98)"
+        :whileInView="visible(0.04)"
+        :inViewOptions="viewport"
+        :whileHover="hoverLift(8, 1.006)"
+        layout
+      >
+        <ACard :title="item.host" class="!bg-transparent overflow-hidden">
+          <VChart
+            :autoresize="true"
+            :option="getChartOption(item)"
+            class="h-32 w-full"
+          />
+        </ACard>
+      </motion.div>
     </template>
   </div>
 </template>

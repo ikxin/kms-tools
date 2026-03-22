@@ -20,6 +20,7 @@
     "@vueuse/nuxt": "14.2.1",
     "arco-design-nuxt-module": "^0.2.1",
     "echarts": "^6.0.0",
+    "motion-v": "^2.0.1",
     "nuxt": "^4.4.2",
     "nuxt-echarts": "^1.0.1",
     "prettier": "^3.8.1",

@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { motion } from 'motion-v'
+
 definePageMeta({
   title: 'pages.activate.title.office',
 })
+
+const { hidden, visible } = useMotionPresets()
 
 function generateScript(formData: ActivateFormData) {
   const { edition, arch, host, license } = formData
@@ -23,10 +27,16 @@ function generateScript(formData: ActivateFormData) {
 </script>
 
 <template>
-  <CommonActivate
-    title="Office"
-    :gvlksData="OFFICE_GVLKS"
-    :generateScript
-  ></CommonActivate>
-  <CommonTips></CommonTips>
+  <div class="flex w-full flex-col gap-4">
+    <motion.div :initial="hidden(18, 0.98)" :animate="visible(0.04)">
+      <CommonActivate
+        title="Office"
+        :gvlksData="OFFICE_GVLKS"
+        :generateScript
+      ></CommonActivate>
+    </motion.div>
+    <motion.div :initial="hidden(18, 0.98)" :animate="visible(0.12)">
+      <CommonTips></CommonTips>
+    </motion.div>
+  </div>
 </template>

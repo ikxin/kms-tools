@@ -1,5 +1,23 @@
 body {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(232, 83, 73, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(48, 111, 255, 0.08),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-bg-1) 0%,
+      var(--color-neutral-2) 46%,
+      var(--color-bg-1) 100%
+    );
   background-color: var(--color-neutral-2);
+  background-attachment: fixed;
   color: var(--color-text-2);
   --border-radius-small: 4px;
   --border-radius-medium: 6px;
@@ -9,6 +27,38 @@ body {
 #__nuxt {
   @apply flex min-h-screen flex-col gap-4;
 }
+
+a,
+button,
+.arco-btn,
+.arco-card,
+.arco-menu-item,
+.arco-link {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* .arco-card,
+.arco-collapse,
+.arco-collapse-item,
+.arco-collapse-item-header,
+.arco-collapse-item-content,
+.arco-menu,
+.arco-menu-inner,
+.arco-menu-light,
+.arco-layout-sider,
+.arco-layout-sider-light,
+.arco-layout-sider-children,
+.arco-menu-inline-header,
+.arco-menu-inline-content,
+.arco-menu-item,
+.arco-menu-item-inner {
+  background-color: transparent !important;
+} */
 
 .arco-drawer-body {
   padding: 0;

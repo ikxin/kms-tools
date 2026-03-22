@@ -32,7 +32,7 @@ export default defineTask({
 
     const count = results.filter(item => {
       if (!item.status) {
-        console.log('Monitor failed:', item.host)
+        // console.log('Monitor failed:', item.host)
       }
       return item.status
     }).length
