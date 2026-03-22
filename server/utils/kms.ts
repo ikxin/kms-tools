@@ -1,5 +1,4 @@
-import { execFile } from 'child_process'
-import { arch, platform } from 'os'
+import { runVlmcs as runNodeVlmcs } from 'node-vlmcs'
 
 const defaultMonitorList = [
   'kms.8b5.cn',
@@ -27,8 +26,7 @@ export const getMonitorList = (() => {
   return () => {
     if (cached) return cached
     const config = useRuntimeConfig()
-    const listStr =
-      (config.monitorList as string) || process.env.MONITOR_LIST
+    const listStr = (config.monitorList as string) || process.env.MONITOR_LIST
     cached = listStr?.split(',').filter(Boolean) || defaultMonitorList
     return cached
   }
@@ -39,30 +37,13 @@ export const runVlmcs = ({
   port = 1688,
   protocol = 6,
   edition = 26,
+  verbose = false,
 }: RunVlmcsParams) => {
-  return new Promise<RunVlmcsResult>((resolve, reject) => {
-    const before = Date.now()
-    const vlmcs = execFile(
-      `./binaries/vlmcs-${platform()}-${arch()}`,
-      [`${host}:${port}`, `-${protocol}`, `-l ${edition}`],
-      { timeout: 5 * 1000 },
-      (err, stdout) => {
-        resolve({
-          host,
-          delay: err ? -1 : Date.now() - before,
-          content: stdout.trim(),
-          status: err ? false : true,
-        })
-      },
-    )
-
-    vlmcs.on('error', err => {
-      reject(err)
-    })
-
-    vlmcs.on('close', () => {
-      vlmcs.removeAllListeners()
-      vlmcs.kill()
-    })
-  })
+  return runNodeVlmcs({
+    host,
+    port: Number(port),
+    protocol: Number(protocol),
+    edition: Number(edition),
+    verbose,
+  }) as Promise<RunVlmcsResult>
 }

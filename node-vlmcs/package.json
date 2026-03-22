@@ -2,7 +2,16 @@
   "name": "node-vlmcs",
   "version": "1.0.0",
   "description": "Node.js implementation of vlmcs KMS client",
-  "main": "dist/cli.js",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./cli": "./dist/cli.js"
+  },
+  "types": "dist/index.d.ts",
   "bin": {
     "vlmcs": "dist/cli.js"
   },

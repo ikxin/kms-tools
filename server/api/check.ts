@@ -11,6 +11,7 @@ export default defineEventHandler(async event => {
     port,
     protocol,
     edition,
+    verbose: true,
   })
 
   return result

@@ -3,6 +3,7 @@ export interface RunVlmcsParams {
   port?: number
   protocol?: number
   edition?: number
+  verbose?: boolean
 }
 
 export interface RunVlmcsResult {

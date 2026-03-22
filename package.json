@@ -9,7 +9,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "pnpm -C node-vlmcs build && nuxt prepare"
   },
   "dependencies": {
     "@iconify-json/flag": "^1.2.11",
@@ -21,6 +21,7 @@
     "arco-design-nuxt-module": "^0.2.1",
     "echarts": "^6.0.0",
     "motion-v": "^2.0.1",
+    "node-vlmcs": "workspace:*",
     "nuxt": "^4.4.2",
     "nuxt-echarts": "^1.0.1",
     "prettier": "^3.8.1",
