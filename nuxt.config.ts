@@ -2,7 +2,7 @@
 
 const getMonitorCron = () => {
   const raw = parseInt(
-    process.env.NUXT_MONITOR_INTERVAL || process.env.MONITOR_INTERVAL || '10',
+    process.env.NUXT_MONITOR_INTERVAL || process.env.MONITOR_INTERVAL || '30',
     60,
   )
   const seconds = isNaN(raw) || raw <= 0 ? 10 : raw
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     monitorList: '',
-    monitorInterval: '10',
+    monitorInterval: '5',
     public: {
       apiUrl: '',
       i18n: {
