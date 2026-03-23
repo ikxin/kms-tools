@@ -21,6 +21,12 @@ import { connectToAddress } from './network'
 import { logRequestVerbose, logResponseVerbose } from './output'
 
 const DEFAULT_TIMEOUT_MS = 5 * 1000
+const NS_PER_MS = 1_000_000
+
+function measureElapsedMs(startNs: bigint): number {
+  const elapsedNs = process.hrtime.bigint() - startNs
+  return Math.round((Number(elapsedNs) / NS_PER_MS) * 1000) / 1000
+}
 
 export interface VlmcsCheckParams {
   host: string
@@ -273,10 +279,10 @@ export async function runVlmcs(
   const sku = KmsData.skuItems[edition - 1]
   const protocol = normalizeProtocol(params.protocol, sku.protocolVersion)
 
-  const startedAt = Date.now()
   let socket: net.Socket | null = null
 
   const executeCheck = async (): Promise<VlmcsCheckResult> => {
+    const startedAtNs = process.hrtime.bigint()
     try {
       const requestBase = buildRequest({ protocol, edition })
 
@@ -348,7 +354,7 @@ export async function runVlmcs(
       return {
         host,
         status: parsed.status,
-        delay: parsed.status ? Date.now() - startedAt : -1,
+        delay: parsed.status ? measureElapsedMs(startedAtNs) : -1,
         content: parsed.summary,
       }
     } catch (error) {

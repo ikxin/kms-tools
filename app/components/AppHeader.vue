@@ -1,18 +1,11 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
-import logoUrl from '~/assets/icons/kms-tools.svg'
-
 const route = useRoute()
 
 const { locales, t, setLocale } = useI18n()
 
-const { hidden, hoverLift, press, visible } = useMotionPresets()
-
 const localePath = useLocalePath()
 
 const path = computed(() => route.path.slice(1).split('/'))
-
-const activeSection = computed(() => path.value[0] || '')
 
 const drawerVisible = ref(false)
 
@@ -57,63 +50,45 @@ function handleNavClick(name: string) {
 
 <template>
   <ALayoutHeader
-    class="sticky top-0 z-[100] flex h-20 select-none items-center border-b border-white/10 bg-[--color-bg-2]/80 px-4 shadow-md backdrop-blur-xl"
+    class="sticky top-0 z-[100] flex h-20 select-none items-center bg-[--color-bg-2] px-4 shadow-md"
   >
     <div class="mx-auto flex w-[72rem] max-w-full items-center justify-between">
-      <motion.img
-        :src="logoUrl"
+      <img
+        src="/assets/icons/kms-tools.svg"
         alt="KMS Tools"
         class="h-14 w-auto cursor-pointer"
-        :initial="hidden(10)"
-        :animate="visible(0.02)"
-        :whileHover="{ scale: 1.04, rotate: -2 }"
-        :whilePress="press"
         @click="navigateTo(localePath('/'))"
       />
 
-      <nav class="hidden grow items-center justify-center gap-2 md:flex">
-        <motion.button
+      <!-- Desktop Menu -->
+      <AMenu
+        :selected-keys="path"
+        mode="horizontal"
+        class="hidden grow md:flex [&_.arco-menu-overflow-wrap]:text-end [&_.arco-menu-selected-label]:left-4"
+      >
+        <AMenuItem
           v-for="item in navItems"
           :key="item.name"
-          type="button"
-          class="relative flex items-center gap-2 overflow-hidden rounded-full px-4 py-2 text-sm font-medium text-[var(--color-text-2)] transition-colors hover:text-[var(--color-text-1)]"
-          :initial="hidden(10)"
-          :animate="visible(navItems.findIndex(nav => nav.name === item.name) * 0.05 + 0.08)"
-          :whileHover="hoverLift(4, 1.02)"
-          :whilePress="press"
+          class="!inline-flex items-center gap-1"
           @click="handleNavClick(item.name)"
         >
-          <motion.span
-            v-if="activeSection === item.name"
-            layoutId="header-nav-pill"
-            class="absolute inset-0 rounded-full bg-[rgb(var(--primary-6))]/14 ring-1 ring-[rgb(var(--primary-6))]/20"
-          />
-          <span class="relative z-[1] inline-flex items-center gap-2">
-            <Icon :name="item.icon" />
-            <span>{{ item.label }}</span>
-          </span>
-        </motion.button>
-      </nav>
+          <Icon :name="item.icon" />
+          <span>{{ item.label }}</span>
+        </AMenuItem>
+      </AMenu>
 
       <ASpace>
         <ADropdown>
-          <motion.div
-            :initial="hidden(10)"
-            :animate="visible(0.14)"
-            :whileHover="hoverLift(3, 1.04)"
-            :whilePress="press"
-          >
-            <AButton size="small" type="secondary">
-              <template #icon>
-                <ClientOnly>
-                  <Icon :name="`icons:${$colorMode.preference}-mode`" />
-                  <template #fallback>
-                    <Icon :name="`icons:system-mode`" />
-                  </template>
-                </ClientOnly>
-              </template>
-            </AButton>
-          </motion.div>
+          <AButton size="small" type="secondary">
+            <template #icon>
+              <ClientOnly>
+                <Icon :name="`icons:${$colorMode.preference}-mode`" />
+                <template #fallback>
+                  <Icon :name="`icons:system-mode`" />
+                </template>
+              </ClientOnly>
+            </template>
+          </AButton>
           <template #content>
             <ADoption
               v-for="item in themeItems"
@@ -128,16 +103,9 @@ function handleNavClick(name: string) {
           </template>
         </ADropdown>
         <ADropdown>
-          <motion.div
-            :initial="hidden(10)"
-            :animate="visible(0.18)"
-            :whileHover="hoverLift(3, 1.04)"
-            :whilePress="press"
-          >
-            <AButton size="small" type="secondary">
-              <template #icon><Icon name="icons:languages" /></template>
-            </AButton>
-          </motion.div>
+          <AButton size="small" type="secondary">
+            <template #icon><Icon name="icons:languages" /></template>
+          </AButton>
           <template #content>
             <ADoption
               v-for="locale in locales"
@@ -152,30 +120,16 @@ function handleNavClick(name: string) {
           </template>
         </ADropdown>
         <a target="_blank" href="https://github.com/ikxin/kms-tools">
-          <motion.div
-            :initial="hidden(10)"
-            :animate="visible(0.22)"
-            :whileHover="hoverLift(3, 1.04)"
-            :whilePress="press"
-          >
-            <AButton size="small" type="secondary">
-              <template #icon><Icon name="icons:github" /></template>
-            </AButton>
-          </motion.div>
+          <AButton size="small" type="secondary">
+            <template #icon><Icon name="icons:github" /></template>
+          </AButton>
         </a>
 
         <!-- Mobile Hamburger -->
         <div class="md:hidden">
-          <motion.div
-            :initial="hidden(10)"
-            :animate="visible(0.24)"
-            :whileHover="hoverLift(3, 1.04)"
-            :whilePress="press"
-          >
-            <AButton size="small" type="secondary" @click="drawerVisible = true">
-              <template #icon><Icon name="material-symbols:menu" /></template>
-            </AButton>
-          </motion.div>
+          <AButton size="small" type="secondary" @click="drawerVisible = true">
+            <template #icon><Icon name="material-symbols:menu" /></template>
+          </AButton>
         </div>
       </ASpace>
     </div>

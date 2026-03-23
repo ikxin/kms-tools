@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { motion } from 'motion-v'
-
 const { gvlksData, title, generateScript } = defineProps<{
   gvlksData: GvlksData[]
   title: string
@@ -8,8 +6,6 @@ const { gvlksData, title, generateScript } = defineProps<{
 }>()
 
 const { t, locale } = useI18n()
-
-const { hidden, hoverLift, press, viewport, visible } = useMotionPresets()
 
 const monitorData = useState<MonitorInfo[]>('monitorData')
 
@@ -72,31 +68,16 @@ const { copy, copied } = useClipboard({
 </script>
 
 <template>
-  <motion.div class="flex flex-col gap-4" :initial="hidden(22, 0.98)" :animate="visible(0.04)">
-    <motion.div
-      :initial="hidden(24, 0.98)"
-      :whileInView="visible()"
-      :inViewOptions="viewport"
-      :whileHover="hoverLift(6, 1.005)"
-    >
-      <ACard class="!bg-transparent relative overflow-hidden">
-        <div
-          class="pointer-events-none absolute -right-12 top-0 h-32 w-32 rounded-full bg-[rgb(var(--primary-6))]/12 blur-3xl"
-        />
+  <div class="flex flex-col gap-4">
+    <ACard>
       <template #title>
-        <motion.div
-          class="flex items-center gap-2"
-          :initial="hidden(12)"
-          :whileInView="visible()"
-          :inViewOptions="viewport"
-        >
+        <div class="flex items-center gap-2">
           <i :class="`i-icons:${title.toLowerCase().replace(/ /g, '-')}`" />
           <span>{{ title }}</span>
-        </motion.div>
+        </div>
       </template>
       <AForm :model="formData" layout="vertical">
-        <motion.div :initial="hidden(16)" :whileInView="visible(0.04)" :inViewOptions="viewport">
-          <AFormItem :label="t('label.edition')" field="edition" required>
+        <AFormItem :label="t('label.edition')" field="edition" required>
           <ASelect v-model="formData.edition">
             <template v-for="item in gvlksData" :key="item.version">
               <AOptgroup :label="item.version">
@@ -109,23 +90,19 @@ const { copy, copied } = useClipboard({
               </AOptgroup>
             </template>
           </ASelect>
-          </AFormItem>
-        </motion.div>
-        <motion.div
+        </AFormItem>
+        <AFormItem
           v-if="title.toLowerCase() === 'office'"
-          :initial="hidden(16)"
-          :whileInView="visible(0.08)"
-          :inViewOptions="viewport"
+          field="arch"
+          :label="t('label.arch')"
+          required
         >
-          <AFormItem field="arch" :label="t('label.arch')" required>
-            <ARadioGroup v-model="formData.arch" type="button">
-              <ARadio value="x64">{{ t('label.x64') }}</ARadio>
-              <ARadio value="x86">{{ t('label.x86') }}</ARadio>
-            </ARadioGroup>
-          </AFormItem>
-        </motion.div>
-        <motion.div :initial="hidden(16)" :whileInView="visible(0.12)" :inViewOptions="viewport">
-          <AFormItem :label="t('label.host')" field="host" required>
+          <ARadioGroup v-model="formData.arch" type="button">
+            <ARadio value="x64">{{ t('label.x64') }}</ARadio>
+            <ARadio value="x86">{{ t('label.x86') }}</ARadio>
+          </ARadioGroup>
+        </AFormItem>
+        <AFormItem :label="t('label.host')" field="host" required>
           <ASelect v-model="formData.host">
             <template v-for="item in monitorData" :key="item.host">
               <AOption
@@ -148,49 +125,37 @@ const { copy, copied } = useClipboard({
               </AOption>
             </template>
           </ASelect>
-          </AFormItem>
-        </motion.div>
-        <motion.div :initial="hidden(16)" :whileInView="visible(0.16)" :inViewOptions="viewport">
-          <AFormItem :label="t('label.license')" field="license" required>
-            <AInput v-model="formData.license" disabled />
-          </AFormItem>
-        </motion.div>
-        <motion.div :initial="hidden(16)" :whileInView="visible(0.2)" :inViewOptions="viewport" layout>
-          <AFormItem :label="t('label.script')" required>
-            <ClientOnly fallback-tag="textarea">
-              <ATextarea v-model="content" auto-size />
-              <template #fallback>
-                <ATextarea auto-size />
-              </template>
-            </ClientOnly>
-          </AFormItem>
-        </motion.div>
-        <motion.div :initial="hidden(16)" :whileInView="visible(0.24)" :inViewOptions="viewport" layout>
-          <AFormItem>
-            <ASpace size="small">
-              <ClientOnly fallback-tag="a">
-                <a :href="fileUrl" :download="file.name">
-                  <motion.div :whileHover="hoverLift(4, 1.03)" :whilePress="press">
-                    <AButton type="primary">
-                      {{ t('label.download') }}
-                    </AButton>
-                  </motion.div>
-                </a>
-              </ClientOnly>
-              <motion.div :whileHover="hoverLift(4, 1.03)" :whilePress="press" layout>
-                <AButton
-                  type="secondary"
-                  :status="copied ? 'success' : 'normal'"
-                  @click="copy()"
-                >
-                  {{ copied ? t('label.copy-success') : t('label.copy') }}
+        </AFormItem>
+        <AFormItem :label="t('label.license')" field="license" required>
+          <AInput v-model="formData.license" disabled />
+        </AFormItem>
+        <AFormItem :label="t('label.script')" required>
+          <ClientOnly fallback-tag="textarea">
+            <ATextarea v-model="content" auto-size />
+            <template #fallback>
+              <ATextarea auto-size />
+            </template>
+          </ClientOnly>
+        </AFormItem>
+        <AFormItem>
+          <ASpace size="small">
+            <ClientOnly fallback-tag="a">
+              <a :href="fileUrl" :download="file.name">
+                <AButton type="primary">
+                  {{ t('label.download') }}
                 </AButton>
-              </motion.div>
-            </ASpace>
-          </AFormItem>
-        </motion.div>
+              </a>
+            </ClientOnly>
+            <AButton
+              type="secondary"
+              :status="copied ? 'success' : 'normal'"
+              @click="copy()"
+            >
+              {{ copied ? t('label.copy-success') : t('label.copy') }}
+            </AButton>
+          </ASpace>
+        </AFormItem>
       </AForm>
-      </ACard>
-    </motion.div>
-  </motion.div>
+    </ACard>
+  </div>
 </template>

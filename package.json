@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.32.1",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host 0.0.0.0",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "pnpm -C node-vlmcs build && nuxt prepare"
@@ -20,7 +20,6 @@
     "@vueuse/nuxt": "14.2.1",
     "arco-design-nuxt-module": "^0.2.1",
     "echarts": "^6.0.0",
-    "motion-v": "^2.0.1",
     "node-vlmcs": "workspace:*",
     "nuxt": "^4.4.2",
     "nuxt-echarts": "^1.0.1",

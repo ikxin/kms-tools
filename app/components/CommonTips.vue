@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import { motion } from 'motion-v'
-
 const { t, locale } = useI18n()
-
-const { hidden, hoverLift, viewport, visible } = useMotionPresets()
 
 const zhTips = [
   {
@@ -62,7 +58,7 @@ const enTips = [
 ]
 
 const tips = computed(() => {
-  if (locale.value === 'zh-cn') {
+  if (locale.value === 'zh-cn' || locale.value === 'zh-tw') {
     return zhTips
   } else {
     return enTips
@@ -71,29 +67,17 @@ const tips = computed(() => {
 </script>
 
 <template>
-  <motion.div
-    :initial="hidden(22, 0.98)"
-    :whileInView="visible(0.04)"
-    :inViewOptions="viewport"
-    :whileHover="hoverLift(6, 1.004)"
-  >
-    <ACard class="!bg-transparent">
-      <template #title>
-        <motion.div
-          class="flex items-center gap-2"
-          :initial="hidden(12)"
-          :whileInView="visible()"
-          :inViewOptions="viewport"
-        >
-          <i :class="`i-icons:tips`" />
-          <span>{{ t('title.tips') }}</span>
-        </motion.div>
-      </template>
-      <ACollapse>
-        <ACollapseItem v-for="{ key, header, content } in tips" :key :header>
-          <span class="select-text leading-relaxed" v-html="content"></span>
-        </ACollapseItem>
-      </ACollapse>
-    </ACard>
-  </motion.div>
+  <ACard>
+    <template #title>
+      <div class="flex items-center gap-2">
+        <i :class="`i-icons:tips`" />
+        <span>{{ t('title.tips') }}</span>
+      </div>
+    </template>
+    <ACollapse>
+      <ACollapseItem v-for="{ key, header, content } in tips" :key :header>
+        <span class="leading-relaxed select-text" v-html="content"></span>
+      </ACollapseItem>
+    </ACollapse>
+  </ACard>
 </template>
