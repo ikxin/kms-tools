@@ -36,7 +36,48 @@
       }
     },
     "check": {
-      "title": "检测 KMS 服务器"
+      "title": "检测 KMS 服务器",
+      "result": {
+        "passed-title": "KMS 检测通过",
+        "passed-desc": "服务器返回了有效的激活响应。",
+        "failed-title": "KMS 检测失败",
+        "failed-desc": "服务器未返回有效的激活响应。",
+        "default-title": "KMS 检测结果",
+        "default-desc": "请求已完成。",
+        "errors-title": "连接 / 运行时错误",
+        "connection-title": "连接状态",
+        "request-title": "请求参数",
+        "response-title": "KMS 服务器响应",
+        "rpc-title": "RPC 时间线",
+        "raw-title": "原始输出",
+        "request-empty": "未检测到可结构化的请求参数。",
+        "response-empty": "未找到响应载荷，这通常表示连接超时或绑定失败。",
+        "unknown-request-error": "未知请求错误",
+        "request-params": {
+          "protocol-version": "协议版本",
+          "client-is-vm": "客户端是否为虚拟机",
+          "licensing-status": "许可状态",
+          "remaining-time": "剩余时间（0 表示永久）",
+          "application-id": "应用程序 ID",
+          "sku-id": "SKU ID（即激活 ID）",
+          "kms-id": "KMS ID（即 KMS 计数 ID）",
+          "client-machine-id": "客户端机器 ID",
+          "previous-client-machine-id": "上一个客户端机器 ID",
+          "client-request-timestamp-utc": "客户端请求时间戳（UTC）",
+          "workstation-name": "工作站名称",
+          "n-count-policy": "N 计数策略（最小客户端数）"
+        },
+        "response-params": {
+          "kms-response-size": "KMS 响应大小",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS 硬件 ID",
+          "client-machine-id": "客户端机器 ID",
+          "client-request-timestamp-utc": "客户端请求时间戳（UTC）",
+          "kms-host-current-active-clients": "KMS 主机当前活跃客户端数",
+          "renewal-interval-policy": "续期周期策略",
+          "activation-interval-policy": "激活周期策略"
+        }
+      }
     },
     "monitor": {
       "title": "监控 KMS 服务器"
@@ -67,6 +108,23 @@
     "protocol": "请求协议",
     "submit": "提交",
     "delay": "延迟"
+  },
+  "footer": {
+    "badge": "Arco 设计体系",
+    "description": "简洁稳定的 KMS 在线工具，覆盖激活、检测与监控场景，提供一致、可靠的操作体验。",
+    "openSource": "开源项目",
+    "sections": {
+      "product": "产品功能",
+      "resources": "相关资源"
+    },
+    "links": {
+      "github": "GitHub 仓库",
+      "blog": "作者博客",
+      "hosting": "云服务"
+    },
+    "copyright": "版权所有",
+    "runningOn": "运行于",
+    "codeBy": "开发者"
   },
   "title": {
     "kms-check": "KMS 服务器检测",

@@ -26,9 +26,9 @@ const features = computed(() => [
     <!-- Hero Section -->
     <div class="w-full rounded bg-[var(--color-bg-2)] p-6 shadow-lg md:p-10">
       <div
-        class="flex flex-col items-center gap-8 py-4 md:flex-row md:gap-12 md:py-8"
+        class="flex flex-col items-center gap-8 py-4 md:flex-row md:gap-10 md:py-8"
       >
-        <div class="w-full text-center md:w-1/2 md:pl-8 md:text-left lg:pl-12">
+        <div class="w-full text-center md:w-3/5 md:pl-8 md:text-left lg:pl-16">
           <h2
             class="mx-auto mb-4 w-fit bg-gradient-to-r from-[#e85349] to-[#f3bb4b] bg-clip-text text-4xl font-bold text-transparent md:mx-0 md:mb-6 md:text-7xl"
           >
@@ -57,7 +57,7 @@ const features = computed(() => [
             </NuxtLink>
           </div>
         </div>
-        <div class="hidden w-1/2 justify-center md:flex">
+        <div class="hidden w-2/5 justify-center md:flex">
           <img
             src="/images/homepage-right.svg"
             alt="KMS Tools"

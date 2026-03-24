@@ -36,7 +36,48 @@
       }
     },
     "check": {
-      "title": "Check KMS Server"
+      "title": "Check KMS Server",
+      "result": {
+        "passed-title": "KMS Check Passed",
+        "passed-desc": "The server responded with a valid activation payload.",
+        "failed-title": "KMS Check Failed",
+        "failed-desc": "The server did not return a valid activation response.",
+        "default-title": "KMS Check Result",
+        "default-desc": "Request completed.",
+        "errors-title": "Connection / Runtime Errors",
+        "connection-title": "Connection Status",
+        "request-title": "Request Parameters",
+        "response-title": "Response from KMS Server",
+        "rpc-title": "RPC Timeline",
+        "raw-title": "Raw Output",
+        "request-empty": "No structured request parameters detected.",
+        "response-empty": "No response payload found. This usually means connection timeout or bind failure.",
+        "unknown-request-error": "Unknown request error",
+        "request-params": {
+          "protocol-version": "Protocol Version",
+          "client-is-vm": "Client Is a Virtual Machine",
+          "licensing-status": "Licensing Status",
+          "remaining-time": "Remaining Time (0 = Forever)",
+          "application-id": "Application ID",
+          "sku-id": "SKU ID (aka Activation ID)",
+          "kms-id": "KMS ID (aka KMS Counted ID)",
+          "client-machine-id": "Client Machine ID",
+          "previous-client-machine-id": "Previous Client Machine ID",
+          "client-request-timestamp-utc": "Client Request Timestamp (UTC)",
+          "workstation-name": "Workstation Name",
+          "n-count-policy": "N Count Policy (Minimum Clients)"
+        },
+        "response-params": {
+          "kms-response-size": "Size of KMS Response",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "Client Machine ID",
+          "client-request-timestamp-utc": "Client Request Timestamp (UTC)",
+          "kms-host-current-active-clients": "KMS Host Current Active Clients",
+          "renewal-interval-policy": "Renewal Interval Policy",
+          "activation-interval-policy": "Activation Interval Policy"
+        }
+      }
     },
     "monitor": {
       "title": "Monitor KMS Server"
@@ -67,6 +108,23 @@
     "protocol": "Protocol",
     "submit": "Submit",
     "delay": "Delay"
+  },
+  "footer": {
+    "badge": "Arco Design System",
+    "description": "Lightweight online utilities for activation workflows, KMS diagnostics and service monitoring.",
+    "openSource": "Open Source",
+    "sections": {
+      "product": "Product",
+      "resources": "Resources"
+    },
+    "links": {
+      "github": "GitHub Repository",
+      "blog": "Author Blog",
+      "hosting": "Cloud Hosting"
+    },
+    "copyright": "Copyright",
+    "runningOn": "Running on",
+    "codeBy": "Code by"
   },
   "title": {
     "kms-check": "KMS Server Check",
