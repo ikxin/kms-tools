@@ -25,6 +25,11 @@
         "title": "Real-time Monitoring",
         "description": "Continuously monitor KMS server status with visual charts for success rate and latency"
       }
+    },
+    "sponsors": {
+      "title": "Sponsors",
+      "subtitle": "Thanks to our partners for supporting KMS Tools",
+      "visit": "Visit Website"
     }
   },
   "pages": {
@@ -110,21 +115,7 @@
     "delay": "Delay"
   },
   "footer": {
-    "badge": "Arco Design System",
-    "description": "Lightweight online utilities for activation workflows, KMS diagnostics and service monitoring.",
-    "openSource": "Open Source",
-    "sections": {
-      "product": "Product",
-      "resources": "Resources"
-    },
-    "links": {
-      "github": "GitHub Repository",
-      "blog": "Author Blog",
-      "hosting": "Cloud Hosting"
-    },
-    "copyright": "Copyright",
-    "runningOn": "Running on",
-    "codeBy": "Code by"
+    "description": "Lightweight online utilities for activation workflows, KMS diagnostics and service monitoring."
   },
   "title": {
     "kms-check": "KMS Server Check",

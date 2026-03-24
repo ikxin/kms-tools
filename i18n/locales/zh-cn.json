@@ -25,6 +25,11 @@
         "title": "实时监控",
         "description": "持续监控 KMS 服务器运行状态，可视化展示成功率与延迟数据"
       }
+    },
+    "sponsors": {
+      "title": "赞助商",
+      "subtitle": "感谢以下伙伴对 KMS Tools 的支持",
+      "visit": "访问官网"
     }
   },
   "pages": {
@@ -110,21 +115,7 @@
     "delay": "延迟"
   },
   "footer": {
-    "badge": "Arco 设计体系",
-    "description": "简洁稳定的 KMS 在线工具，覆盖激活、检测与监控场景，提供一致、可靠的操作体验。",
-    "openSource": "开源项目",
-    "sections": {
-      "product": "产品功能",
-      "resources": "相关资源"
-    },
-    "links": {
-      "github": "GitHub 仓库",
-      "blog": "作者博客",
-      "hosting": "云服务"
-    },
-    "copyright": "版权所有",
-    "runningOn": "运行于",
-    "codeBy": "开发者"
+    "description": "简洁稳定的 KMS 在线工具，覆盖激活、检测与监控场景，提供一致、可靠的操作体验。"
   },
   "title": {
     "kms-check": "KMS 服务器检测",

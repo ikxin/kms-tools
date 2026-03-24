@@ -19,6 +19,10 @@ const features = computed(() => [
     link: '/monitor'
   }
 ])
+
+function openBase64Url(urlBase64: string) {
+  window.open(atob(urlBase64), '_blank', 'noopener,noreferrer')
+}
 </script>
 
 <template>
@@ -103,6 +107,66 @@ const features = computed(() => [
             {{ t(`home.features.${feature.key}.description`) }}
           </p>
         </NuxtLink>
+      </div>
+    </div>
+
+    <!-- Sponsors Section -->
+    <div class="w-full rounded bg-[var(--color-bg-2)] p-6 shadow-lg md:p-10">
+      <div class="mb-6 text-center md:mb-8">
+        <h3
+          class="mb-2 text-2xl font-bold text-[var(--color-text-1)] md:text-3xl"
+        >
+          {{ t('home.sponsors.title') }}
+        </h3>
+        <p class="text-sm text-[var(--color-text-3)] md:text-base">
+          {{ t('home.sponsors.subtitle') }}
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+        <button
+          type="button"
+          class="group flex items-center justify-between rounded-lg border border-[var(--color-border)] p-5 text-left transition-all hover:border-[rgb(var(--primary-6))] hover:shadow-md md:p-6"
+          @click="openBase64Url('aHR0cHM6Ly9jaGF0Lm1hcmtodWIudG9wLw==')"
+        >
+          <div>
+            <h4
+              class="mb-1 text-lg font-semibold text-[var(--color-text-1)] group-hover:text-[rgb(var(--primary-6))]"
+            >
+              MarkHub AI
+            </h4>
+            <p class="text-sm text-[var(--color-text-3)]">
+              {{ t('home.sponsors.visit') }}
+            </p>
+          </div>
+          <Icon
+            name="tabler:external-link"
+            class="text-xl text-[var(--color-text-3)] transition-colors group-hover:text-[rgb(var(--primary-6))]"
+          />
+        </button>
+        <button
+          type="button"
+          class="group flex items-center justify-between rounded-lg border border-[var(--color-border)] p-5 text-left transition-all hover:border-[rgb(var(--primary-6))] hover:shadow-md md:p-6"
+          @click="
+            openBase64Url(
+              'aHR0cHM6Ly93d3cucmFpbnl1bi5jb20vbW1fP3M9a21zLXRvb2xz'
+            )
+          "
+        >
+          <div>
+            <h4
+              class="mb-1 text-lg font-semibold text-[var(--color-text-1)] group-hover:text-[rgb(var(--primary-6))]"
+            >
+              RainYun
+            </h4>
+            <p class="text-sm text-[var(--color-text-3)]">
+              {{ t('home.sponsors.visit') }}
+            </p>
+          </div>
+          <Icon
+            name="tabler:external-link"
+            class="text-xl text-[var(--color-text-3)] transition-colors group-hover:text-[rgb(var(--primary-6))]"
+          />
+        </button>
       </div>
     </div>
   </div>
