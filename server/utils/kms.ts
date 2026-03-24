@@ -12,7 +12,6 @@ const defaultMonitorList = [
   'kms.jihuowin.com',
   'kms.kuretru.com',
   'kms.litbear.cn',
-  'kms.loli.beer',
   'kms.loli.best',
   'kms.lolico.moe',
   'kms.mc06.net',

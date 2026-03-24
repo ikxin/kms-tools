@@ -66,12 +66,7 @@
     "download": "下载",
     "protocol": "请求协议",
     "submit": "提交",
-    "rate": "成功率",
-    "delay": "平均延迟",
-    "total": "总请求",
-    "success-total": "成功数",
-    "fail-total": "失败数",
-    "updated-at": "更新时间"
+    "delay": "延迟"
   },
   "title": {
     "kms-check": "KMS 服务器检测",

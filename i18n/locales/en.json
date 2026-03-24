@@ -66,12 +66,7 @@
     "download": "Download",
     "protocol": "Protocol",
     "submit": "Submit",
-    "rate": "Success Rate",
-    "delay": "Average Delay",
-    "total": "Total Requests",
-    "success-total": "Successes",
-    "fail-total": "Failures",
-    "updated-at": "Updated At"
+    "delay": "Delay"
   },
   "title": {
     "kms-check": "KMS Server Check",
