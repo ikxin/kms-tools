@@ -3,7 +3,7 @@ export default defineEventHandler(async event => {
     host,
     port = 1688,
     protocol = 6,
-    edition = 1,
+    edition = 1
   } = getQuery<RunVlmcsParams>(event)
 
   const result = await runVlmcs({
@@ -11,7 +11,7 @@ export default defineEventHandler(async event => {
     port,
     protocol,
     edition,
-    verbose: true,
+    verbose: true
   })
 
   return result

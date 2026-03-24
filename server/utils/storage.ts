@@ -1,1 +1,1 @@
-export const storage = useStorage("data");
+export const storage = useStorage('data')

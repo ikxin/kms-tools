@@ -41,25 +41,25 @@ const RPC_HEADER_SIZE = 16
 /** NDR32 传输语法 GUID */
 const TransferSyntaxNDR32 = Buffer.from([
   0x04, 0x5d, 0x88, 0x8a, 0xeb, 0x1c, 0xc9, 0x11, 0x9f, 0xe8, 0x08, 0x00, 0x2b,
-  0x10, 0x48, 0x60,
+  0x10, 0x48, 0x60
 ])
 
 /** KMS 接口 UUID */
 const InterfaceUuid = Buffer.from([
   0x75, 0x21, 0xc8, 0x51, 0x4e, 0x84, 0x50, 0x47, 0xb0, 0xd8, 0xec, 0x25, 0x55,
-  0x55, 0xbc, 0x06,
+  0x55, 0xbc, 0x06
 ])
 
 /** NDR64 传输语法 GUID */
 const TransferSyntaxNDR64 = Buffer.from([
   0x33, 0x05, 0x71, 0x71, 0xba, 0xbe, 0x37, 0x49, 0x83, 0x19, 0xb5, 0xdb, 0xef,
-  0x9c, 0xcc, 0x36,
+  0x9c, 0xcc, 0x36
 ])
 
 /** 绑定时间特性协商 GUID (BTFN) */
 const BindTimeFeatureNegotiation = Buffer.from([
   0x2c, 0x1c, 0xb7, 0x6c, 0x12, 0x98, 0x40, 0x45, 0x03, 0x00, 0x00, 0x00, 0x00,
-  0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00
 ])
 
 // ─── 导出接口 ───────────────────────────────────────────────────────────────
@@ -94,7 +94,7 @@ function writeRpcHeader(
   packetType: number,
   packetFlags: number,
   fragLength: number,
-  currentCallId: number,
+  currentCallId: number
 ): void {
   buf.writeUInt8(5, 0) // VersionMajor = 5
   buf.writeUInt8(0, 1) // VersionMinor = 0
@@ -129,7 +129,7 @@ function parseRpcHeader(buf: Buffer): RpcHeader {
     dataRepresentation: buf.readUInt32LE(4),
     fragLength: buf.readUInt16LE(8),
     authLength: buf.readUInt16LE(10),
-    callId: buf.readUInt32LE(12),
+    callId: buf.readUInt32LE(12)
   }
 }
 
@@ -173,7 +173,7 @@ function buildBindPacket(
   packetType: number,
   packetFlags: number,
   currentCallId: number,
-  ctxItems: CtxItem[],
+  ctxItems: CtxItem[]
 ): Buffer {
   const ctxItemSize = 44
   // 绑定体: MaxXmitFrag(2) + MaxRecvFrag(2) + AssocGroup(4) + NumCtxItems(4) + 上下文项数组
@@ -219,7 +219,7 @@ interface BindResult {
  */
 function parseBindResponse(
   body: Buffer,
-  verbose: boolean,
+  verbose: boolean
 ): { results: BindResult[]; maxRecvFrag: number } {
   let offset = 0
 
@@ -233,7 +233,7 @@ function parseBindResponse(
 
   if (verbose) {
     console.log(
-      `  Max Xmit/Recv Frag: ${maxXmitFrag}/${maxRecvFrag}, AssocGroup: 0x${assocGroup.toString(16).padStart(8, '0')}`,
+      `  Max Xmit/Recv Frag: ${maxXmitFrag}/${maxRecvFrag}, AssocGroup: 0x${assocGroup.toString(16).padStart(8, '0')}`
     )
     console.log(`  Secondary Address Length: ${secondaryAddressLength}`)
   }
@@ -268,7 +268,7 @@ function parseBindResponse(
               ? 'Ack'
               : `Unknown(0x${ackResult.toString(16)})`
       console.log(
-        `  Result[${i}]: ${resultStr} (reason: 0x${ackReason.toString(16)})`,
+        `  Result[${i}]: ${resultStr} (reason: 0x${ackReason.toString(16)})`
       )
     }
 
@@ -293,12 +293,12 @@ async function rpcBindOrAlterContext(
   useClientRpcBTFN: boolean,
   useMultiplexedRpc: boolean,
   rpcFlags: RpcFlags,
-  rpcDiag: RpcDiag,
+  rpcDiag: RpcDiag
 ): Promise<number> {
   // AlterContext 只发送 NDR32；Bind 发送 NDR32 + 可选 NDR64 + BTFN
   const isBind = packetType === RPC_PT_BIND_REQ
   const ctxItems: CtxItem[] = [
-    { transferSyntax: TransferSyntaxNDR32, syntaxVersion: 2 },
+    { transferSyntax: TransferSyntaxNDR32, syntaxVersion: 2 }
   ]
 
   let ctxNDR64 = -1
@@ -313,7 +313,7 @@ async function rpcBindOrAlterContext(
     ctxBTFN = ctxItems.length
     ctxItems.push({
       transferSyntax: BindTimeFeatureNegotiation,
-      syntaxVersion: 1,
+      syntaxVersion: 1
     })
   }
 
@@ -324,7 +324,7 @@ async function rpcBindOrAlterContext(
     packetType,
     packetFlags,
     currentCallId,
-    ctxItems,
+    ctxItems
   )
 
   await sendData(sock, bindPacket)
@@ -335,7 +335,7 @@ async function rpcBindOrAlterContext(
 
   if (verbose) {
     console.log(
-      `Received RPC ${packetTypeName(header.packetType)} (FragLength=${header.fragLength}, CallId=${header.callId})`,
+      `Received RPC ${packetTypeName(header.packetType)} (FragLength=${header.fragLength}, CallId=${header.callId})`
     )
   }
 
@@ -401,17 +401,17 @@ export async function rpcBindClient(
   verbose: boolean,
   useClientRpcNDR64: boolean,
   useClientRpcBTFN: boolean,
-  useMultiplexedRpc: boolean,
+  useMultiplexedRpc: boolean
 ): Promise<{ status: number; rpcDiag: RpcDiag; rpcFlags: RpcFlags }> {
   const rpcFlags: RpcFlags = {
     hasNDR32: false,
     hasNDR64: false,
-    hasBTFN: false,
+    hasBTFN: false
   }
   const rpcDiag: RpcDiag = {
     hasRpcDiag: false,
     hasBTFN: false,
-    hasNDR64: false,
+    hasNDR64: false
   }
 
   // 第一步: 发送 Bind 请求
@@ -423,7 +423,7 @@ export async function rpcBindClient(
     useClientRpcBTFN,
     useMultiplexedRpc,
     rpcFlags,
-    rpcDiag,
+    rpcDiag
   )
 
   if (status) return { status, rpcDiag, rpcFlags }
@@ -438,14 +438,14 @@ export async function rpcBindClient(
       false,
       useMultiplexedRpc,
       rpcFlags,
-      rpcDiag,
+      rpcDiag
     )
     if (status) return { status, rpcDiag, rpcFlags }
   }
 
   if (!rpcFlags.hasNDR32 && !rpcFlags.hasNDR64) {
     process.stderr.write(
-      '\nFatal: Could neither negotiate NDR32 nor NDR64 with the RPC server\n',
+      '\nFatal: Could neither negotiate NDR32 nor NDR64 with the RPC server\n'
     )
     return { status: 1, rpcDiag, rpcFlags }
   }
@@ -473,7 +473,7 @@ export async function rpcSendRequest(
   kmsRequest: Buffer,
   rpcFlags: RpcFlags,
   useClientRpcNDR64: boolean,
-  firstPacketSent: boolean,
+  firstPacketSent: boolean
 ): Promise<{
   status: number
   kmsResponse: Buffer | null
@@ -525,7 +525,7 @@ export async function rpcSendRequest(
     RPC_PT_REQUEST,
     RPC_PF_FIRST | RPC_PF_LAST,
     totalSize,
-    currentCallId,
+    currentCallId
   )
   requestBody.copy(packet, RPC_HEADER_SIZE)
 

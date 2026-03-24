@@ -13,33 +13,33 @@ const navItems = computed(() => [
   {
     name: 'activate',
     label: t('label.activate'),
-    icon: 'icons:activate',
+    icon: 'icons:activate'
   },
   {
     name: 'check',
     label: t('label.check'),
-    icon: 'icons:tools',
+    icon: 'icons:tools'
   },
   {
     name: 'monitor',
     label: t('label.monitor'),
-    icon: 'icons:monitor',
-  },
+    icon: 'icons:monitor'
+  }
 ])
 
 const themeItems = computed(() => [
   {
     lable: t('label.auto'),
-    value: 'system',
+    value: 'system'
   },
   {
     lable: t('label.dark'),
-    value: 'dark',
+    value: 'dark'
   },
   {
     lable: t('label.light'),
-    value: 'light',
-  },
+    value: 'light'
+  }
 ])
 
 function handleNavClick(name: string) {

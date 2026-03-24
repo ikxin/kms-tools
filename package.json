@@ -9,13 +9,15 @@
     "dev": "nuxt dev --host 0.0.0.0",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "postinstall": "pnpm -C node-vlmcs build && nuxt prepare"
   },
   "dependencies": {
     "@iconify-json/flag": "^1.2.11",
     "@nuxt/icon": "^2.2.1",
     "@nuxtjs/color-mode": "^4.0.0",
-    "@nuxtjs/i18n": "^10.2.3",
+    "@nuxtjs/i18n": "^10.2.4",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@vueuse/nuxt": "14.2.1",
     "arco-design-nuxt-module": "^0.2.1",
@@ -23,24 +25,7 @@
     "node-vlmcs": "workspace:*",
     "nuxt": "^4.4.2",
     "nuxt-echarts": "^1.0.1",
-    "prettier": "^3.8.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
+    "oxfmt": "^0.41.0",
     "vue": "^3.5.30"
-  },
-  "prettier": {
-    "arrowParens": "avoid",
-    "semi": false,
-    "singleQuote": true,
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ],
-    "overrides": [
-      {
-        "files": "shared/utils/gvlks.ts",
-        "options": {
-          "printWidth": 200
-        }
-      }
-    ]
   }
 }

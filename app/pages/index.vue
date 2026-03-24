@@ -6,18 +6,18 @@ const features = computed(() => [
   {
     key: 'activate',
     icon: 'icons:activate',
-    link: '/activate/windows',
+    link: '/activate/windows'
   },
   {
     key: 'check',
     icon: 'icons:tools',
-    link: '/check',
+    link: '/check'
   },
   {
     key: 'monitor',
     icon: 'icons:monitor',
-    link: '/monitor',
-  },
+    link: '/monitor'
+  }
 ])
 </script>
 

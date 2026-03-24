@@ -15,7 +15,7 @@ const formData = ref<ActivateFormData>({
   edition: gvlksData[0]?.edition[0]?.[rankVal.value] || '',
   arch: 'x64',
   host: monitorData.value?.[0]?.host || '',
-  license: '',
+  license: ''
 })
 
 watch(
@@ -63,7 +63,7 @@ const fileUrl = useObjectUrl(file)
 
 const { copy, copied } = useClipboard({
   legacy: true,
-  source: content,
+  source: content
 })
 </script>
 
@@ -110,7 +110,7 @@ const { copy, copied } = useClipboard({
                 :label="item.host"
                 class="[&>*]:w-full"
               >
-                <div class="flex gap-2 items-center">
+                <div class="flex items-center gap-2">
                   <div class="flex-1">{{ item.host }}</div>
                   <ATag
                     :color="getRateColor(item.success / item.total)"

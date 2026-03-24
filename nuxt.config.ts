@@ -3,7 +3,7 @@
 const getMonitorCron = () => {
   const raw = parseInt(
     process.env.NUXT_MONITOR_INTERVAL || process.env.MONITOR_INTERVAL || '30',
-    60,
+    60
   )
   const seconds = isNaN(raw) || raw <= 0 ? 10 : raw
   if (seconds < 60) {
@@ -17,15 +17,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   future: {
-    compatibilityVersion: 4,
+    compatibilityVersion: 4
   },
   nitro: {
     experimental: {
-      tasks: true,
+      tasks: true
     },
     scheduledTasks: {
-      [getMonitorCron()]: ['monitor'],
-    },
+      [getMonitorCron()]: ['monitor']
+    }
   },
   app: {
     head: {
@@ -33,15 +33,15 @@ export default defineNuxtConfig({
         {
           defer: '',
           src: 'https://umami.ikxin.com/script.js',
-          'data-website-id': '6c719cb2-4a72-46e6-a4fa-2ee357a38467',
-        },
-      ],
-    },
+          'data-website-id': '6c719cb2-4a72-46e6-a4fa-2ee357a38467'
+        }
+      ]
+    }
   },
   vite: {
     optimizeDeps: {
-      include: ['@vue/devtools-core', '@vue/devtools-kit'],
-    },
+      include: ['@vue/devtools-core', '@vue/devtools-kit']
+    }
   },
   runtimeConfig: {
     monitorList: '',
@@ -49,14 +49,14 @@ export default defineNuxtConfig({
     public: {
       apiUrl: '',
       i18n: {
-        baseUrl: 'https://kms.ikxin.com',
-      },
-    },
+        baseUrl: 'https://kms.ikxin.com'
+      }
+    }
   },
   routeRules: {
     '/api/*': {
-      cors: true,
-    },
+      cors: true
+    }
   },
   css: ['~/assets/css/main.css'],
   modules: [
@@ -66,10 +66,10 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
-    'nuxt-echarts',
+    'nuxt-echarts'
   ],
   colorMode: {
-    classSuffix: '-mode',
+    classSuffix: '-mode'
   },
   i18n: {
     defaultLocale: 'zh-cn',
@@ -81,27 +81,27 @@ export default defineNuxtConfig({
         language: 'zh-CN',
         file: 'zh-cn.json',
         name: '简体中文',
-        icon: 'cn',
+        icon: 'cn'
       },
       {
         code: 'en',
         language: 'en-US',
         file: 'en.json',
         name: 'English',
-        icon: 'us',
-      },
-    ],
+        icon: 'us'
+      }
+    ]
   },
   icon: {
     customCollections: [
       {
         prefix: 'icons',
-        dir: './app/assets/icons',
-      },
-    ],
+        dir: './app/assets/icons'
+      }
+    ]
   },
   echarts: {
     charts: ['BarChart'],
-    components: ['TooltipComponent', 'GridComponent'],
-  },
+    components: ['TooltipComponent', 'GridComponent']
+  }
 })

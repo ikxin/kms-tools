@@ -21,9 +21,9 @@ export default defineEventHandler(async () => {
         success,
         fail,
         delay: delay ? Number(delay.toFixed(2)) : 0,
-        data,
+        data
       }
-    }),
+    })
   )
 
   // Sort by success rate and delay

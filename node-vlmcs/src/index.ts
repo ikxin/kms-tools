@@ -7,13 +7,13 @@ import {
   ucs2ToUtf8,
   unixTimeToFileTime,
   PID_BUFFER_SIZE,
-  WORKSTATION_NAME_BUFFER,
+  WORKSTATION_NAME_BUFFER
 } from './types'
 import {
   createRequestV4,
   createRequestV6,
   decryptResponseV4,
-  decryptResponseV6,
+  decryptResponseV6
 } from './kms'
 import { rpcBindClient, rpcSendRequest } from './rpc'
 import { get16RandomBytes } from './crypto'
@@ -47,7 +47,7 @@ export interface VlmcsCheckResult {
 function connectSocket(
   host: string,
   port: number,
-  timeout: number,
+  timeout: number
 ): Promise<net.Socket> {
   return new Promise((resolve, reject) => {
     const socket = net.createConnection({ host, port })
@@ -88,7 +88,7 @@ function normalizeEdition(edition: number): number {
 
 function normalizeProtocol(
   protocol: number | undefined,
-  fallback: number,
+  fallback: number
 ): number {
   const raw = Number(protocol)
   if (!Number.isFinite(raw)) return fallback
@@ -109,7 +109,7 @@ function randomWorkstationName(): string {
 
 function buildRequest({
   protocol,
-  edition,
+  edition
 }: {
   protocol: number
   edition: number
@@ -141,7 +141,7 @@ function buildRequest({
 
   utf8ToUcs2(randomWorkstationName(), WORKSTATION_NAME_BUFFER).copy(
     request,
-    108,
+    108
   )
   return request
 }
@@ -156,7 +156,7 @@ interface ParsedKmsResult {
 
 function parseKmsResponse(
   rawResponse: Buffer,
-  rawRequest: Buffer,
+  rawRequest: Buffer
 ): ParsedKmsResult {
   const responseMajorVersion = rawResponse.readUInt16LE(2)
 
@@ -168,7 +168,7 @@ function parseKmsResponse(
         status: false,
         ePID: '',
         hwid: Buffer.alloc(8),
-        response,
+        response
       }
     }
     const ePID = ucs2ToUtf8(response.kmsPID, PID_BUFFER_SIZE)
@@ -177,7 +177,7 @@ function parseKmsResponse(
       status: true,
       ePID,
       hwid: Buffer.alloc(8),
-      response,
+      response
     }
   }
 
@@ -188,7 +188,7 @@ function parseKmsResponse(
       status: false,
       ePID: '',
       hwid,
-      response,
+      response
     }
   }
 
@@ -202,7 +202,7 @@ function parseKmsResponse(
       status: true,
       ePID,
       hwid,
-      response,
+      response
     }
   }
 
@@ -211,7 +211,7 @@ function parseKmsResponse(
     status: true,
     ePID,
     hwid,
-    response,
+    response
   }
 }
 
@@ -269,7 +269,7 @@ async function captureVerboseOutput<T>(fn: () => Promise<T>): Promise<{
 }
 
 export async function runVlmcs(
-  params: VlmcsCheckParams,
+  params: VlmcsCheckParams
 ): Promise<VlmcsCheckResult> {
   const { host, timeout = DEFAULT_TIMEOUT_MS, verbose = false } = params
   const portRaw = Number(params.port ?? 1688)
@@ -304,7 +304,7 @@ export async function runVlmcs(
           host,
           status: false,
           delay: -1,
-          content: `RPC bind failed: ${bind.status}`,
+          content: `RPC bind failed: ${bind.status}`
         }
       }
 
@@ -319,7 +319,7 @@ export async function runVlmcs(
 
       if (verbose) {
         process.stdout.write(
-          `Sending activation request (KMS V${protocol}) 1 of 1 `,
+          `Sending activation request (KMS V${protocol}) 1 of 1 `
         )
       }
 
@@ -328,7 +328,7 @@ export async function runVlmcs(
         request,
         bind.rpcFlags,
         true,
-        false,
+        false
       )
 
       if (rpcResult.status !== 0 || !rpcResult.kmsResponse) {
@@ -336,7 +336,7 @@ export async function runVlmcs(
           host,
           status: false,
           delay: -1,
-          content: `KMS request failed: 0x${(rpcResult.status >>> 0).toString(16).toUpperCase().padStart(8, '0')}`,
+          content: `KMS request failed: 0x${(rpcResult.status >>> 0).toString(16).toUpperCase().padStart(8, '0')}`
         }
       }
 
@@ -347,7 +347,7 @@ export async function runVlmcs(
           parsed.ePID,
           parsed.hwid,
           parsed.response,
-          rpcResult.kmsResponse.length,
+          rpcResult.kmsResponse.length
         )
       }
 
@@ -355,14 +355,14 @@ export async function runVlmcs(
         host,
         status: parsed.status,
         delay: parsed.status ? measureElapsedMs(startedAtNs) : -1,
-        content: parsed.summary,
+        content: parsed.summary
       }
     } catch (error) {
       return {
         host,
         status: false,
         delay: -1,
-        content: error instanceof Error ? error.message : String(error),
+        content: error instanceof Error ? error.message : String(error)
       }
     } finally {
       if (socket) {
@@ -378,6 +378,6 @@ export async function runVlmcs(
   const { result, output } = await captureVerboseOutput(executeCheck)
   return {
     ...result,
-    content: output || result.content,
+    content: output || result.content
   }
 }

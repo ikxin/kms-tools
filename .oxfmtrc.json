@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "arrowParens": "avoid",
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "sortTailwindcss": {},
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "ignorePatterns": [],
+  "overrides": [
+    {
+      "files": ["shared/utils/gvlks.ts"],
+      "options": {
+        "printWidth": 200
+      }
+    }
+  ]
+}

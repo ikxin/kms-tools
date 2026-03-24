@@ -1,7 +1,7 @@
 export default defineTask({
   meta: {
     name: 'monitor',
-    description: 'Run KMS server monitoring.',
+    description: 'Run KMS server monitoring.'
   },
   async run() {
     const results = await Promise.all(
@@ -21,13 +21,13 @@ export default defineTask({
         monitorData.push({
           status,
           time: Date.now(),
-          delay,
+          delay
         })
 
         await storage.setItem<MonitorData[]>(`${host}.json`, monitorData)
 
         return { host, status }
-      }),
+      })
     )
 
     const count = results.filter(item => {
@@ -39,9 +39,9 @@ export default defineTask({
 
     console.log(
       new Date().toISOString(),
-      `Monitor task completed, successful: ${count}`,
+      `Monitor task completed, successful: ${count}`
     )
 
     return { result: 'Done' }
-  },
+  }
 })

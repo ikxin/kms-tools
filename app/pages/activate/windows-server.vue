@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'pages.activate.title.windows-server',
+  title: 'pages.activate.title.windows-server'
 })
 
 function generateScript(formData: ActivateFormData) {

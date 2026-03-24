@@ -1,5 +1,5 @@
 export default {
   fallbackLocale: {
-    default: ["zh-cn", "en"],
-  },
-};
+    default: ['zh-cn', 'en']
+  }
+}

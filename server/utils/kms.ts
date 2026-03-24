@@ -26,7 +26,7 @@ const defaultMonitorList = [
   'kms.wxlost.com',
   'kms.zhi.fun',
   'win.kms.pub',
-  'windows.kms.app',
+  'windows.kms.app'
 ]
 
 export const getMonitorList = (() => {
@@ -45,13 +45,13 @@ export const runVlmcs = ({
   port = 1688,
   protocol = 6,
   edition = 26,
-  verbose = false,
+  verbose = false
 }: RunVlmcsParams) => {
   return runNodeVlmcs({
     host,
     port: Number(port),
     protocol: Number(protocol),
     edition: Number(edition),
-    verbose,
+    verbose
   }) as Promise<RunVlmcsResult>
 }

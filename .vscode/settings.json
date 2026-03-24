@@ -1,5 +1,6 @@
 {
   "chat.tools.terminal.autoApprove": { "/.*/": true },
   "chat.tools.terminal.ignoreDefaultAutoApproveRules": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true
 }

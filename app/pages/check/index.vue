@@ -2,7 +2,7 @@
 import type { ValidatedError } from '@arco-design/web-vue'
 
 definePageMeta({
-  title: 'pages.check.title',
+  title: 'pages.check.title'
 })
 
 const { t } = useI18n()
@@ -11,7 +11,7 @@ const formData = ref({
   host: 'kms.8b5.cn',
   port: '1688',
   protocol: '6',
-  edition: '1',
+  edition: '1'
 })
 
 const resultInfo = reactive<{
@@ -23,7 +23,7 @@ const resultInfo = reactive<{
   loading: false,
   message: '',
   type: 'normal',
-  visible: false,
+  visible: false
 })
 
 const handleSubmit = async (data: {
@@ -34,7 +34,7 @@ const handleSubmit = async (data: {
     resultInfo.loading = true
     try {
       const data = await request()('/api/check', {
-        query: formData.value,
+        query: formData.value
       })
       resultInfo.message = data.content
       resultInfo.type = data.status ? 'success' : 'error'

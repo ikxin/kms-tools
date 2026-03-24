@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 definePageMeta({
-  title: 'pages.monitor.title',
+  title: 'pages.monitor.title'
 })
 
 const monitorData = useState<MonitorInfo[]>('monitorData')
@@ -21,39 +21,39 @@ function getChartOption(item: MonitorInfo): ECOption {
   const delays = item.data.map(data => ({
     value: data.delay,
     itemStyle: {
-      color: getColor(data.delay),
-    },
+      color: getColor(data.delay)
+    }
   }))
 
   return {
     tooltip: {
-      trigger: 'axis',
+      trigger: 'axis'
     },
     grid: {
       containLabel: true,
       left: 0,
       right: 24,
       top: 8,
-      bottom: 8,
+      bottom: 8
     },
     xAxis: {
       type: 'category',
-      data: times,
+      data: times
     },
     yAxis: {
       max: 999,
       min: 0,
       type: 'value',
-      show: false,
+      show: false
     },
     series: [
       {
         name: '延迟',
         type: 'bar',
         data: delays,
-        barWidth: '70%',
-      },
-    ],
+        barWidth: '70%'
+      }
+    ]
   }
 }
 </script>

@@ -17,7 +17,7 @@ watch(
   () => route.path,
   () => {
     drawerVisible.value = false
-  },
+  }
 )
 
 function handleMenuClick(key: string) {
