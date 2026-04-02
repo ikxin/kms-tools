@@ -1,10 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
-const localePath = useLocalePath()
 
 const currentYear = new Date().getFullYear()
-
-
 </script>
 
 <template>
@@ -23,7 +20,9 @@ const currentYear = new Date().getFullYear()
         </div>
       </div>
 
-      <div class="mt-6 flex flex-col gap-2 pt-4 text-xs text-[--color-text-3] sm:flex-row sm:items-center sm:justify-between">
+      <div
+        class="mt-6 flex flex-col gap-2 pt-4 text-xs text-[--color-text-3] sm:flex-row sm:items-center sm:justify-between"
+      >
         <p>
           Copyright &copy; {{ currentYear }}
           <ALink target="_blank" href="https://github.com/ikxin/kms-tools">

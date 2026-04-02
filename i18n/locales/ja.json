@@ -1,0 +1,124 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "オールインワン KMS ツールボックス"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "オールインワン KMS ツールボックス",
+      "description": "Windows や Office などの有効化、サーバーチェック、リアルタイム監視をまとめて行える、シンプルで強力な KMS 管理ツールです。",
+      "get-started": "始める",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "主な機能",
+      "subtitle": "強力でシンプルな KMS ツールキット",
+      "activate": {
+        "title": "製品の有効化",
+        "description": "Windows、Windows Server、Office をワンクリックで有効化し、自動生成されたスクリプトを利用できます。"
+      },
+      "check": {
+        "title": "サーバーチェック",
+        "description": "KMS サーバーの可用性をすばやく確認し、接続状態と応答遅延を検査します。"
+      },
+      "monitor": {
+        "title": "リアルタイム監視",
+        "description": "KMS サーバーの状態を継続監視し、成功率と遅延を可視化します。"
+      }
+    },
+    "sponsors": {
+      "title": "スポンサー",
+      "subtitle": "KMS Tools を支援してくださるパートナーの皆さまに感謝します。",
+      "visit": "サイトを見る"
+    }
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "Windows を有効化",
+        "windows-server": "Windows Server を有効化",
+        "office": "Office を有効化"
+      }
+    },
+    "check": {
+      "title": "KMS サーバーを確認",
+      "result": {
+        "passed-title": "KMS チェック成功",
+        "passed-desc": "サーバーは有効なアクティベーションペイロードを返しました。",
+        "failed-title": "KMS チェック失敗",
+        "failed-desc": "サーバーは有効なアクティベーション応答を返しませんでした。",
+        "default-title": "KMS チェック結果",
+        "default-desc": "リクエストが完了しました。",
+        "errors-title": "接続 / 実行時エラー",
+        "connection-title": "接続状態",
+        "request-title": "リクエストパラメータ",
+        "response-title": "KMS サーバーからの応答",
+        "rpc-title": "RPC タイムライン",
+        "raw-title": "生の出力",
+        "request-empty": "構造化されたリクエストパラメータは検出されませんでした。",
+        "response-empty": "応答ペイロードが見つかりませんでした。通常は接続タイムアウトまたはバインド失敗を意味します。",
+        "unknown-request-error": "不明なリクエストエラー",
+        "request-params": {
+          "protocol-version": "プロトコルバージョン",
+          "client-is-vm": "クライアントは仮想マシン",
+          "licensing-status": "ライセンス状態",
+          "remaining-time": "残り時間（0 = 永久）",
+          "application-id": "アプリケーション ID",
+          "sku-id": "SKU ID（別名 Activation ID）",
+          "kms-id": "KMS ID（別名 KMS Counted ID）",
+          "client-machine-id": "クライアントマシン ID",
+          "previous-client-machine-id": "前回のクライアントマシン ID",
+          "client-request-timestamp-utc": "クライアント要求タイムスタンプ（UTC）",
+          "workstation-name": "ワークステーション名",
+          "n-count-policy": "N カウントポリシー（最小クライアント数）"
+        },
+        "response-params": {
+          "kms-response-size": "KMS 応答サイズ",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "クライアントマシン ID",
+          "client-request-timestamp-utc": "クライアント要求タイムスタンプ（UTC）",
+          "kms-host-current-active-clients": "KMS ホストの現在のアクティブクライアント数",
+          "renewal-interval-policy": "更新間隔ポリシー",
+          "activation-interval-policy": "有効化間隔ポリシー"
+        }
+      }
+    },
+    "monitor": {
+      "title": "KMS サーバーを監視"
+    }
+  },
+  "label": {
+    "author": "ikxin",
+    "activate": "有効化",
+    "check": "確認",
+    "monitor": "監視",
+    "auto": "自動",
+    "dark": "ダークモード",
+    "light": "ライトモード",
+    "system": "システム",
+    "software": "ソフトウェア",
+    "edition": "エディション",
+    "host": "サーバー",
+    "port": "ポート",
+    "arch": "システムアーキテクチャ",
+    "x64": "64 ビット",
+    "x86": "32 ビット",
+    "license": "ライセンス",
+    "script": "CMD スクリプト",
+    "menu": "メニュー",
+    "copy": "コピー",
+    "copy-success": "コピーに成功しました",
+    "download": "ダウンロード",
+    "protocol": "プロトコル",
+    "submit": "送信",
+    "delay": "遅延"
+  },
+  "footer": {
+    "description": "有効化ワークフロー、KMS 診断、サービス監視のための軽量オンラインユーティリティです。"
+  },
+  "title": {
+    "kms-check": "KMS サーバーチェック",
+    "tips": "ヒント"
+  }
+}

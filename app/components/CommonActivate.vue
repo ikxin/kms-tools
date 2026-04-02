@@ -37,7 +37,7 @@ watch(
 watch(
   () => locale.value,
   val => {
-    if (val === 'zh-cn') {
+    if (val.startsWith('zh')) {
       rankVal.value = 2
     } else {
       rankVal.value = 1

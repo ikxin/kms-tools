@@ -1,0 +1,124 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "Caixa de ferramentas KMS tudo-em-um"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Caixa de ferramentas KMS tudo-em-um",
+      "description": "Uma ferramenta de gestão KMS simples e poderosa para ativar Windows, Office e muito mais, com verificação de servidor e monitoramento em tempo real.",
+      "get-started": "Começar",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "Funcionalidades principais",
+      "subtitle": "Kit KMS poderoso e simples",
+      "activate": {
+        "title": "Ativação de produtos",
+        "description": "Ativação com um clique para Windows, Windows Server e Office com scripts gerados automaticamente."
+      },
+      "check": {
+        "title": "Verificação do servidor",
+        "description": "Verifique rapidamente a disponibilidade do servidor KMS e analise o estado da conexão e a latência de resposta."
+      },
+      "monitor": {
+        "title": "Monitoramento em tempo real",
+        "description": "Acompanhe continuamente o estado do servidor KMS e visualize a taxa de sucesso e a latência."
+      }
+    },
+    "sponsors": {
+      "title": "Patrocinadores",
+      "subtitle": "Obrigado aos nossos parceiros pelo apoio ao KMS Tools.",
+      "visit": "Visitar site"
+    }
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "Ativar Windows",
+        "windows-server": "Ativar Windows Server",
+        "office": "Ativar Office"
+      }
+    },
+    "check": {
+      "title": "Verificar servidor KMS",
+      "result": {
+        "passed-title": "Verificação KMS aprovada",
+        "passed-desc": "O servidor retornou uma carga útil de ativação válida.",
+        "failed-title": "Verificação KMS falhou",
+        "failed-desc": "O servidor não retornou uma resposta de ativação válida.",
+        "default-title": "Resultado da verificação KMS",
+        "default-desc": "A solicitação foi concluída.",
+        "errors-title": "Erros de conexão / execução",
+        "connection-title": "Estado da conexão",
+        "request-title": "Parâmetros da solicitação",
+        "response-title": "Resposta do servidor KMS",
+        "rpc-title": "Linha do tempo RPC",
+        "raw-title": "Saída bruta",
+        "request-empty": "Nenhum parâmetro de solicitação estruturado foi detectado.",
+        "response-empty": "Nenhuma carga útil de resposta encontrada. Isso normalmente significa tempo limite de conexão ou falha de bind.",
+        "unknown-request-error": "Erro de solicitação desconhecido",
+        "request-params": {
+          "protocol-version": "Versão do protocolo",
+          "client-is-vm": "O cliente é uma máquina virtual",
+          "licensing-status": "Estado da licença",
+          "remaining-time": "Tempo restante (0 = para sempre)",
+          "application-id": "ID do aplicativo",
+          "sku-id": "ID do SKU (também ID de ativação)",
+          "kms-id": "ID do KMS (também ID contado do KMS)",
+          "client-machine-id": "ID da máquina do cliente",
+          "previous-client-machine-id": "ID anterior da máquina do cliente",
+          "client-request-timestamp-utc": "Carimbo de data/hora da solicitação do cliente (UTC)",
+          "workstation-name": "Nome da estação de trabalho",
+          "n-count-policy": "Política N Count (mínimo de clientes)"
+        },
+        "response-params": {
+          "kms-response-size": "Tamanho da resposta KMS",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "ID da máquina do cliente",
+          "client-request-timestamp-utc": "Carimbo de data/hora da solicitação do cliente (UTC)",
+          "kms-host-current-active-clients": "Clientes ativos atuais do host KMS",
+          "renewal-interval-policy": "Política de intervalo de renovação",
+          "activation-interval-policy": "Política de intervalo de ativação"
+        }
+      }
+    },
+    "monitor": {
+      "title": "Monitorar servidor KMS"
+    }
+  },
+  "label": {
+    "author": "ikxin",
+    "activate": "Ativar",
+    "check": "Verificar",
+    "monitor": "Monitorar",
+    "auto": "Automático",
+    "dark": "Modo escuro",
+    "light": "Modo claro",
+    "system": "Sistema",
+    "software": "Software",
+    "edition": "Edição",
+    "host": "Servidor",
+    "port": "Porta",
+    "arch": "Arquitetura do sistema",
+    "x64": "64 bits",
+    "x86": "32 bits",
+    "license": "Licença",
+    "script": "Script CMD",
+    "menu": "Menu",
+    "copy": "Copiar",
+    "copy-success": "Cópia concluída",
+    "download": "Baixar",
+    "protocol": "Protocolo",
+    "submit": "Enviar",
+    "delay": "Latência"
+  },
+  "footer": {
+    "description": "Utilitários online leves para fluxos de ativação, diagnósticos KMS e monitoramento de serviços."
+  },
+  "title": {
+    "kms-check": "Verificação do servidor KMS",
+    "tips": "Dicas"
+  }
+}

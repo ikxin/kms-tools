@@ -3,7 +3,7 @@ const monitorData = useState<MonitorInfo[]>('monitorData')
 const { locale } = useI18n()
 
 const echartsLocale = computed(() => {
-  if (locale.value === 'zh-cn') return 'ZH'
+  if (locale.value.startsWith('zh')) return 'ZH'
   return 'EN'
 })
 

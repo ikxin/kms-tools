@@ -7,7 +7,8 @@ const monitorData = useState<MonitorInfo[]>('monitorData')
 const { t, locale } = useI18n()
 
 const timeLocale = computed(() => {
-  if (locale.value === 'zh-cn') return 'zh-CN'
+  if (locale.value === 'zh-tw') return 'zh-TW'
+  if (locale.value.startsWith('zh')) return 'zh-CN'
   return 'en-US'
 })
 

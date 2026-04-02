@@ -1,0 +1,124 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "صندوق أدوات KMS الشامل"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "صندوق أدوات KMS الشامل",
+      "description": "أداة إدارة KMS بسيطة وقوية لتفعيل Windows وOffice وغيرها، مع فحص الخادم والمراقبة في الوقت الحقيقي.",
+      "get-started": "ابدأ الآن",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "الميزات الأساسية",
+      "subtitle": "حزمة أدوات KMS قوية وبسيطة",
+      "activate": {
+        "title": "تفعيل المنتجات",
+        "description": "تفعيل بنقرة واحدة لـ Windows وWindows Server وOffice مع إنشاء سكربتات تلقائياً."
+      },
+      "check": {
+        "title": "فحص الخادم",
+        "description": "تحقق بسرعة من توفر خادم KMS وافحص حالة الاتصال وزمن الاستجابة."
+      },
+      "monitor": {
+        "title": "المراقبة في الوقت الحقيقي",
+        "description": "راقب حالة خادم KMS باستمرار واعرض معدل النجاح وزمن الاستجابة بصرياً."
+      }
+    },
+    "sponsors": {
+      "title": "الجهات الداعمة",
+      "subtitle": "شكراً لشركائنا على دعم KMS Tools.",
+      "visit": "زيارة الموقع"
+    }
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "تفعيل Windows",
+        "windows-server": "تفعيل Windows Server",
+        "office": "تفعيل Office"
+      }
+    },
+    "check": {
+      "title": "فحص خادم KMS",
+      "result": {
+        "passed-title": "نجح فحص KMS",
+        "passed-desc": "أعاد الخادم حمولة تفعيل صالحة.",
+        "failed-title": "فشل فحص KMS",
+        "failed-desc": "لم يُرجع الخادم استجابة تفعيل صالحة.",
+        "default-title": "نتيجة فحص KMS",
+        "default-desc": "اكتمل الطلب.",
+        "errors-title": "أخطاء الاتصال / وقت التشغيل",
+        "connection-title": "حالة الاتصال",
+        "request-title": "معلمات الطلب",
+        "response-title": "استجابة خادم KMS",
+        "rpc-title": "الخط الزمني RPC",
+        "raw-title": "المخرجات الخام",
+        "request-empty": "لم يتم اكتشاف معلمات طلب منظمة.",
+        "response-empty": "لم يتم العثور على حمولة استجابة. هذا يعني عادةً انتهاء مهلة الاتصال أو فشل الربط.",
+        "unknown-request-error": "خطأ طلب غير معروف",
+        "request-params": {
+          "protocol-version": "إصدار البروتوكول",
+          "client-is-vm": "العميل جهاز افتراضي",
+          "licensing-status": "حالة الترخيص",
+          "remaining-time": "الوقت المتبقي (0 = دائم)",
+          "application-id": "معرّف التطبيق",
+          "sku-id": "معرّف SKU (ويُسمى أيضاً Activation ID)",
+          "kms-id": "معرّف KMS (ويُسمى أيضاً KMS Counted ID)",
+          "client-machine-id": "معرّف جهاز العميل",
+          "previous-client-machine-id": "معرّف جهاز العميل السابق",
+          "client-request-timestamp-utc": "الطابع الزمني لطلب العميل (UTC)",
+          "workstation-name": "اسم محطة العمل",
+          "n-count-policy": "سياسة N Count (الحد الأدنى للعملاء)"
+        },
+        "response-params": {
+          "kms-response-size": "حجم استجابة KMS",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "معرّف جهاز العميل",
+          "client-request-timestamp-utc": "الطابع الزمني لطلب العميل (UTC)",
+          "kms-host-current-active-clients": "العملاء النشطون الحاليون لدى مضيف KMS",
+          "renewal-interval-policy": "سياسة فترة التجديد",
+          "activation-interval-policy": "سياسة فترة التفعيل"
+        }
+      }
+    },
+    "monitor": {
+      "title": "مراقبة خادم KMS"
+    }
+  },
+  "label": {
+    "author": "ikxin",
+    "activate": "تفعيل",
+    "check": "فحص",
+    "monitor": "مراقبة",
+    "auto": "تلقائي",
+    "dark": "الوضع الداكن",
+    "light": "الوضع الفاتح",
+    "system": "النظام",
+    "software": "البرنامج",
+    "edition": "الإصدار",
+    "host": "الخادم",
+    "port": "المنفذ",
+    "arch": "معمارية النظام",
+    "x64": "64 بت",
+    "x86": "32 بت",
+    "license": "الترخيص",
+    "script": "سكربت CMD",
+    "menu": "القائمة",
+    "copy": "نسخ",
+    "copy-success": "تم النسخ بنجاح",
+    "download": "تنزيل",
+    "protocol": "البروتوكول",
+    "submit": "إرسال",
+    "delay": "الزمن"
+  },
+  "footer": {
+    "description": "أدوات خفيفة عبر الإنترنت لعمليات التفعيل وتشخيص KMS ومراقبة الخدمات."
+  },
+  "title": {
+    "kms-check": "فحص خادم KMS",
+    "tips": "نصائح"
+  }
+}

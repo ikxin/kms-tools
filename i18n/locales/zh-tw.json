@@ -1,0 +1,124 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "一站式 KMS 工具箱"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "一站式 KMS 工具箱",
+      "description": "簡單易用的 KMS 管理工具，支援啟用 Windows、Office 等多種產品，提供伺服器檢測與即時監控功能",
+      "get-started": "開始使用",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "核心功能",
+      "subtitle": "強大而簡潔的 KMS 工具集",
+      "activate": {
+        "title": "產品啟用",
+        "description": "支援 Windows、Windows Server 和 Office 的一鍵啟用，自動產生啟用指令碼"
+      },
+      "check": {
+        "title": "伺服器檢測",
+        "description": "快速檢查 KMS 伺服器的可用性，驗證連線狀態與回應延遲"
+      },
+      "monitor": {
+        "title": "即時監控",
+        "description": "持續監控 KMS 伺服器運作狀態，以視覺化圖表呈現成功率與延遲資料"
+      }
+    },
+    "sponsors": {
+      "title": "贊助商",
+      "subtitle": "感謝以下夥伴對 KMS Tools 的支持",
+      "visit": "前往官網"
+    }
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "啟用 Windows",
+        "windows-server": "啟用 Windows Server",
+        "office": "啟用 Office"
+      }
+    },
+    "check": {
+      "title": "檢查 KMS 伺服器",
+      "result": {
+        "passed-title": "KMS 檢查通過",
+        "passed-desc": "伺服器回傳了有效的啟用負載。",
+        "failed-title": "KMS 檢查失敗",
+        "failed-desc": "伺服器未回傳有效的啟用回應。",
+        "default-title": "KMS 檢查結果",
+        "default-desc": "請求已完成。",
+        "errors-title": "連線 / 執行時錯誤",
+        "connection-title": "連線狀態",
+        "request-title": "請求參數",
+        "response-title": "KMS 伺服器回應",
+        "rpc-title": "RPC 時間軸",
+        "raw-title": "原始輸出",
+        "request-empty": "未偵測到可結構化的請求參數。",
+        "response-empty": "找不到回應載荷，這通常表示連線逾時或繫結失敗。",
+        "unknown-request-error": "未知的請求錯誤",
+        "request-params": {
+          "protocol-version": "協定版本",
+          "client-is-vm": "用戶端是否為虛擬機",
+          "licensing-status": "授權狀態",
+          "remaining-time": "剩餘時間（0 代表永久）",
+          "application-id": "應用程式 ID",
+          "sku-id": "SKU ID（即啟用 ID）",
+          "kms-id": "KMS ID（即 KMS 計數 ID）",
+          "client-machine-id": "用戶端機器 ID",
+          "previous-client-machine-id": "前一個用戶端機器 ID",
+          "client-request-timestamp-utc": "用戶端請求時間戳記（UTC）",
+          "workstation-name": "工作站名稱",
+          "n-count-policy": "N 計數策略（最小用戶端數）"
+        },
+        "response-params": {
+          "kms-response-size": "KMS 回應大小",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "用戶端機器 ID",
+          "client-request-timestamp-utc": "用戶端請求時間戳記（UTC）",
+          "kms-host-current-active-clients": "KMS 主機目前活躍用戶端數",
+          "renewal-interval-policy": "續約間隔策略",
+          "activation-interval-policy": "啟用間隔策略"
+        }
+      }
+    },
+    "monitor": {
+      "title": "監控 KMS 伺服器"
+    }
+  },
+  "label": {
+    "author": "一紙忘憂",
+    "activate": "啟用",
+    "check": "檢查",
+    "monitor": "監控",
+    "auto": "自動",
+    "dark": "深色模式",
+    "light": "淺色模式",
+    "system": "系統",
+    "software": "軟體",
+    "edition": "版本",
+    "host": "伺服器",
+    "port": "埠號",
+    "arch": "系統架構",
+    "x64": "64 位元",
+    "x86": "32 位元",
+    "license": "授權",
+    "script": "CMD 指令碼",
+    "menu": "選單",
+    "copy": "複製",
+    "copy-success": "複製成功",
+    "download": "下載",
+    "protocol": "協定",
+    "submit": "送出",
+    "delay": "延遲"
+  },
+  "footer": {
+    "description": "輕量級線上工具，支援啟用流程、KMS 診斷與服務監控。"
+  },
+  "title": {
+    "kms-check": "KMS 伺服器檢查",
+    "tips": "提示"
+  }
+}

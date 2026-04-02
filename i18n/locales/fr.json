@@ -1,0 +1,124 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "Boîte à outils KMS tout-en-un"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Boîte à outils KMS tout-en-un",
+      "description": "Un outil de gestion KMS simple et puissant pour activer Windows, Office et plus encore, avec vérification de serveur et surveillance en temps réel.",
+      "get-started": "Commencer",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "Fonctionnalités principales",
+      "subtitle": "Boîte à outils KMS puissante et simple",
+      "activate": {
+        "title": "Activation des produits",
+        "description": "Activation en un clic pour Windows, Windows Server et Office avec des scripts générés automatiquement."
+      },
+      "check": {
+        "title": "Vérification du serveur",
+        "description": "Vérifiez rapidement la disponibilité du serveur KMS et analysez l’état de connexion ainsi que la latence de réponse."
+      },
+      "monitor": {
+        "title": "Surveillance en temps réel",
+        "description": "Surveillez en continu l’état du serveur KMS et visualisez le taux de réussite et la latence."
+      }
+    },
+    "sponsors": {
+      "title": "Sponsors",
+      "subtitle": "Merci à nos partenaires de soutenir KMS Tools.",
+      "visit": "Visiter le site"
+    }
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "Activer Windows",
+        "windows-server": "Activer Windows Server",
+        "office": "Activer Office"
+      }
+    },
+    "check": {
+      "title": "Vérifier le serveur KMS",
+      "result": {
+        "passed-title": "Vérification KMS réussie",
+        "passed-desc": "Le serveur a renvoyé une charge utile d’activation valide.",
+        "failed-title": "Vérification KMS échouée",
+        "failed-desc": "Le serveur n’a pas renvoyé de réponse d’activation valide.",
+        "default-title": "Résultat de la vérification KMS",
+        "default-desc": "La requête est terminée.",
+        "errors-title": "Erreurs de connexion / d’exécution",
+        "connection-title": "État de la connexion",
+        "request-title": "Paramètres de requête",
+        "response-title": "Réponse du serveur KMS",
+        "rpc-title": "Chronologie RPC",
+        "raw-title": "Sortie brute",
+        "request-empty": "Aucun paramètre de requête structuré détecté.",
+        "response-empty": "Aucune charge utile de réponse trouvée. Cela signifie généralement un délai d’attente de connexion ou un échec de liaison.",
+        "unknown-request-error": "Erreur de requête inconnue",
+        "request-params": {
+          "protocol-version": "Version du protocole",
+          "client-is-vm": "Le client est une machine virtuelle",
+          "licensing-status": "État de licence",
+          "remaining-time": "Temps restant (0 = toujours)",
+          "application-id": "ID de l’application",
+          "sku-id": "ID SKU (alias ID d’activation)",
+          "kms-id": "ID KMS (alias ID compté KMS)",
+          "client-machine-id": "ID de la machine cliente",
+          "previous-client-machine-id": "ID précédent de la machine cliente",
+          "client-request-timestamp-utc": "Horodatage de la requête client (UTC)",
+          "workstation-name": "Nom du poste de travail",
+          "n-count-policy": "Politique N Count (nombre minimal de clients)"
+        },
+        "response-params": {
+          "kms-response-size": "Taille de la réponse KMS",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "ID de la machine cliente",
+          "client-request-timestamp-utc": "Horodatage de la requête client (UTC)",
+          "kms-host-current-active-clients": "Clients actifs actuels de l’hôte KMS",
+          "renewal-interval-policy": "Politique d’intervalle de renouvellement",
+          "activation-interval-policy": "Politique d’intervalle d’activation"
+        }
+      }
+    },
+    "monitor": {
+      "title": "Surveiller le serveur KMS"
+    }
+  },
+  "label": {
+    "author": "ikxin",
+    "activate": "Activer",
+    "check": "Vérifier",
+    "monitor": "Surveiller",
+    "auto": "Automatique",
+    "dark": "Mode sombre",
+    "light": "Mode clair",
+    "system": "Système",
+    "software": "Logiciel",
+    "edition": "Édition",
+    "host": "Serveur",
+    "port": "Port",
+    "arch": "Architecture système",
+    "x64": "64 bits",
+    "x86": "32 bits",
+    "license": "Licence",
+    "script": "Script CMD",
+    "menu": "Menu",
+    "copy": "Copier",
+    "copy-success": "Copie réussie",
+    "download": "Télécharger",
+    "protocol": "Protocole",
+    "submit": "Envoyer",
+    "delay": "Latence"
+  },
+  "footer": {
+    "description": "Utilitaires en ligne légers pour les flux d’activation, les diagnostics KMS et la surveillance des services."
+  },
+  "title": {
+    "kms-check": "Vérification du serveur KMS",
+    "tips": "Conseils"
+  }
+}

@@ -8,10 +8,24 @@ const { t } = useI18n()
 const path = computed(() => route.path.slice(1).split('/'))
 
 const drawerVisible = ref(false)
+const isDesktop = useMediaQuery('(min-width: 768px)')
 
 if (!path.value.at(-1)) {
   navigateTo(localePath('/activate/windows'))
 }
+
+watch(
+  isDesktop,
+  value => {
+    if (value) {
+      drawerVisible.value = false
+    }
+  },
+  {
+    immediate: true,
+    flush: 'post'
+  }
+)
 
 watch(
   () => route.path,
@@ -35,68 +49,69 @@ function handleRainyunAdClick() {
 
 <template>
   <!-- Mobile: floating left-edge tab -->
-  <div
-    v-show="!drawerVisible"
-    class="fixed left-0 top-1/3 z-[100] -translate-y-1/2 cursor-pointer rounded-r-lg bg-[rgb(var(--primary-6))] px-1 py-4 text-white shadow-lg md:hidden"
-    @click="drawerVisible = true"
-  >
-    <Icon name="material-symbols:chevron-right" class="text-base" />
-  </div>
-
-  <!-- Mobile: left-side drawer -->
-  <ADrawer
-    v-model:visible="drawerVisible"
-    placement="left"
-    :width="240"
-    :title="t('label.activate')"
-    :footer="false"
-  >
-    <AMenu
-      :selected-keys="path"
-      :default-open-keys="['system', 'software']"
-      class="select-none !border-none [&_.arco-menu-icon>i]:inline-block"
-    >
-      <ASubMenu key="system">
-        <template #icon><Icon name="icons:system" /></template>
-        <template #title>{{ t('label.system') }}</template>
-        <AMenuItem key="windows" @click="handleMenuClick('windows')">
-          <template #icon><Icon name="icons:windows" /></template>
-          Windows
-        </AMenuItem>
-        <AMenuItem
-          key="windows-server"
-          @click="handleMenuClick('windows-server')"
-        >
-          <template #icon><Icon name="icons:windows-server" /></template>
-          Windows Server
-        </AMenuItem>
-      </ASubMenu>
-      <ASubMenu key="software">
-        <template #icon><Icon name="icons:software" /></template>
-        <template #title>{{ t('label.software') }}</template>
-        <AMenuItem key="office" @click="handleMenuClick('office')">
-          <template #icon><Icon name="icons:office" /></template>
-          Office
-        </AMenuItem>
-      </ASubMenu>
-    </AMenu>
-
+  <template v-if="!isDesktop">
     <div
-      class="hover:bg-[var(--color-fill-2)]/50 group relative mt-4 flex rounded-lg bg-[var(--color-bg-2)] p-2 ring-1 ring-[var(--color-border)] transition"
+      v-show="!drawerVisible"
+      class="fixed left-0 top-1/3 z-[100] -translate-y-1/2 cursor-pointer rounded-r-lg bg-[rgb(var(--primary-6))] px-1 py-4 text-white shadow-lg md:hidden"
+      @click="drawerVisible = true"
     >
-      <button
-        type="button"
-        class="flex w-full flex-col items-start gap-y-2 text-left"
-        @click="handleRainyunAdClick"
-      >
-        <img
-          src="/images/rainyun_1.png"
-          alt="RainYun"
-          class="h-auto w-full rounded-md object-cover"
-        />
-      </button>
+      <Icon name="material-symbols:chevron-right" class="text-base" />
     </div>
-  </ADrawer>
+
+    <!-- Mobile: left-side drawer -->
+    <ADrawer
+      v-model:visible="drawerVisible"
+      placement="left"
+      :width="240"
+      :title="t('label.activate')"
+      :footer="false"
+      unmount-on-close
+    >
+      <AMenu
+        :selected-keys="path"
+        :default-open-keys="['system', 'software']"
+        class="select-none !border-none [&_.arco-menu-icon>i]:inline-block"
+      >
+        <ASubMenu key="system">
+          <template #icon><Icon name="icons:system" /></template>
+          <template #title>{{ t('label.system') }}</template>
+          <AMenuItem key="windows" @click="handleMenuClick('windows')">
+            <template #icon><Icon name="icons:windows" /></template>
+            Windows
+          </AMenuItem>
+          <AMenuItem
+            key="windows-server"
+            @click="handleMenuClick('windows-server')"
+          >
+            <template #icon><Icon name="icons:windows-server" /></template>
+            Windows Server
+          </AMenuItem>
+        </ASubMenu>
+        <ASubMenu key="software">
+          <template #icon><Icon name="icons:software" /></template>
+          <template #title>{{ t('label.software') }}</template>
+          <AMenuItem key="office" @click="handleMenuClick('office')">
+            <template #icon><Icon name="icons:office" /></template>
+            Office
+          </AMenuItem>
+        </ASubMenu>
+      </AMenu>
+
+      <div class="group relative flex rounded-md transition">
+        <button
+          type="button"
+          class="flex w-full flex-col items-start gap-y-2 text-left"
+          @click="handleRainyunAdClick"
+        >
+          <img
+            src="/images/rainyun_1.png"
+            alt="RainYun"
+            class="h-auto w-full rounded-md object-cover"
+          />
+        </button>
+      </div>
+    </ADrawer>
+  </template>
 
   <!-- Mobile: page content -->
   <div class="flex w-full flex-col gap-4 md:hidden">
@@ -150,9 +165,7 @@ function handleRainyunAdClick() {
       </AMenu>
 
       <div class="p-2 pt-0">
-        <div
-          class="hover:bg-[var(--color-fill-2)]/50 group relative flex rounded-lg bg-[var(--color-bg-2)] p-2 ring-1 ring-[var(--color-border)] transition"
-        >
+        <div class="group relative flex rounded-md transition">
           <button
             type="button"
             class="flex w-full flex-col items-start gap-y-2 text-left"

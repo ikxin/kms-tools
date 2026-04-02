@@ -41,9 +41,11 @@ type ParsedOutput = {
 
 const requestParamLabelMap: Record<string, string> = {
   'Protocol version': 'pages.check.result.request-params.protocol-version',
-  'Client is a virtual machine': 'pages.check.result.request-params.client-is-vm',
+  'Client is a virtual machine':
+    'pages.check.result.request-params.client-is-vm',
   'Licensing status': 'pages.check.result.request-params.licensing-status',
-  'Remaining time (0 = forever)': 'pages.check.result.request-params.remaining-time',
+  'Remaining time (0 = forever)':
+    'pages.check.result.request-params.remaining-time',
   'Application ID': 'pages.check.result.request-params.application-id',
   'SKU ID (aka Activation ID)': 'pages.check.result.request-params.sku-id',
   'KMS ID (aka KMS counted ID)': 'pages.check.result.request-params.kms-id',
@@ -58,7 +60,8 @@ const requestParamLabelMap: Record<string, string> = {
 }
 
 const responseParamLabelMap: Record<string, string> = {
-  'Size of KMS Response': 'pages.check.result.response-params.kms-response-size',
+  'Size of KMS Response':
+    'pages.check.result.response-params.kms-response-size',
   'KMS ePID': 'pages.check.result.response-params.kms-epid',
   'KMS HwId': 'pages.check.result.response-params.kms-hwid',
   'Client machine ID': 'pages.check.result.response-params.client-machine-id',
@@ -126,7 +129,10 @@ const parsedOutput = computed<ParsedOutput>(() => {
   const rpcLines =
     rpcStart >= 0
       ? lines
-          .slice(rpcStart, responseStart > rpcStart ? responseStart : lines.length)
+          .slice(
+            rpcStart,
+            responseStart > rpcStart ? responseStart : lines.length
+          )
           .filter(line => line.trim())
       : []
 
@@ -280,7 +286,9 @@ const handleSubmit = async (data: {
       resultInfo.visible = true
       resultInfo.loading = false
     } catch (err) {
-      resultInfo.message = String(err || t('pages.check.result.unknown-request-error'))
+      resultInfo.message = String(
+        err || t('pages.check.result.unknown-request-error')
+      )
       resultInfo.type = 'error'
       resultInfo.visible = true
       resultInfo.loading = false
@@ -341,7 +349,9 @@ const handleSubmit = async (data: {
                 : 'border-[rgb(var(--primary-6))] bg-[rgb(var(--primary-1))]'
           "
         >
-          <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div
+            class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+          >
             <div class="flex min-w-0 flex-col gap-1">
               <div class="flex items-center gap-2">
                 <Icon
@@ -354,22 +364,28 @@ const handleSubmit = async (data: {
                   "
                   class="text-lg"
                 />
-                <span class="text-base font-semibold text-[var(--color-text-1)]">
+                <span
+                  class="text-base font-semibold text-[var(--color-text-1)]"
+                >
                   {{ statusMeta.title }}
                 </span>
               </div>
-              <span class="text-sm text-[var(--color-text-2)]">{{ statusMeta.desc }}</span>
+              <span class="text-sm text-[var(--color-text-2)]">{{
+                statusMeta.desc
+              }}</span>
             </div>
-            <ATag bordered :color="statusMeta.color">{{ resultInfo.type.toUpperCase() }}</ATag>
+            <ATag bordered :color="statusMeta.color">{{
+              resultInfo.type.toUpperCase()
+            }}</ATag>
           </div>
 
           <div
             v-if="parsedOutput.connectionLine"
             class="mt-3 rounded bg-[var(--color-fill-2)] px-3 py-2 font-mono text-xs text-[var(--color-text-2)]"
           >
-            <span class="mr-1 text-[var(--color-text-3)]">{{
-              t('pages.check.result.connection-title')
-            }}:</span>
+            <span class="mr-1 text-[var(--color-text-3)]"
+              >{{ t('pages.check.result.connection-title') }}:</span
+            >
             {{ parsedOutput.connectionLine }}
           </div>
         </ACard>
@@ -445,7 +461,8 @@ const handleSubmit = async (data: {
         >
           <pre
             class="max-h-72 overflow-auto whitespace-pre rounded bg-[var(--color-fill-1)] p-3 font-mono text-xs leading-5 text-[var(--color-text-2)]"
-          >{{ rpcText }}</pre>
+            >{{ rpcText }}</pre
+          >
         </ACard>
 
         <ACollapse>
@@ -454,7 +471,10 @@ const handleSubmit = async (data: {
             :header="t('pages.check.result.raw-title')"
             class="overflow-hidden [&_.arco-collapse-item-content]:bg-[var(--color-bg-2)] [&_.arco-collapse-item-content]:px-4 [&_.arco-collapse-item-content]:py-3"
           >
-            <pre class="max-h-72 overflow-auto whitespace-pre rounded bg-[var(--color-fill-1)] p-3 font-mono text-xs leading-5 text-[var(--color-text-2)]">{{ rawOutputText }}</pre>
+            <pre
+              class="max-h-72 overflow-auto whitespace-pre rounded bg-[var(--color-fill-1)] p-3 font-mono text-xs leading-5 text-[var(--color-text-2)]"
+              >{{ rawOutputText }}</pre
+            >
           </ACollapseItem>
         </ACollapse>
       </div>

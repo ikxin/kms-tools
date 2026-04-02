@@ -1,0 +1,124 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "All-in-One-KMS-Toolbox"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "All-in-One-KMS-Toolbox",
+      "description": "Ein einfaches und leistungsstarkes KMS-Verwaltungstool für die Aktivierung von Windows, Office und mehr mit Serverprüfung und Echtzeitüberwachung.",
+      "get-started": "Loslegen",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "Kernfunktionen",
+      "subtitle": "Leistungsstarkes und einfaches KMS-Toolkit",
+      "activate": {
+        "title": "Produktaktivierung",
+        "description": "Ein-Klick-Aktivierung für Windows, Windows Server und Office mit automatisch generierten Skripten."
+      },
+      "check": {
+        "title": "Serverprüfung",
+        "description": "KMS-Serververfügbarkeit schnell prüfen und Verbindungsstatus sowie Antwortlatenz analysieren."
+      },
+      "monitor": {
+        "title": "Echtzeitüberwachung",
+        "description": "KMS-Serverstatus fortlaufend überwachen und Erfolgsrate sowie Latenz visualisieren."
+      }
+    },
+    "sponsors": {
+      "title": "Sponsoren",
+      "subtitle": "Danke an unsere Partner für die Unterstützung von KMS Tools.",
+      "visit": "Website besuchen"
+    }
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "Windows aktivieren",
+        "windows-server": "Windows Server aktivieren",
+        "office": "Office aktivieren"
+      }
+    },
+    "check": {
+      "title": "KMS-Server prüfen",
+      "result": {
+        "passed-title": "KMS-Prüfung bestanden",
+        "passed-desc": "Der Server hat eine gültige Aktivierungsnutzlast zurückgegeben.",
+        "failed-title": "KMS-Prüfung fehlgeschlagen",
+        "failed-desc": "Der Server hat keine gültige Aktivierungsantwort zurückgegeben.",
+        "default-title": "KMS-Prüfergebnis",
+        "default-desc": "Anfrage abgeschlossen.",
+        "errors-title": "Verbindungs- / Laufzeitfehler",
+        "connection-title": "Verbindungsstatus",
+        "request-title": "Anfrageparameter",
+        "response-title": "Antwort des KMS-Servers",
+        "rpc-title": "RPC-Zeitachse",
+        "raw-title": "Rohdaten",
+        "request-empty": "Keine strukturierten Anfrageparameter erkannt.",
+        "response-empty": "Keine Antwortdaten gefunden. Dies bedeutet meist ein Verbindungs-Timeout oder einen Bind-Fehler.",
+        "unknown-request-error": "Unbekannter Anfragefehler",
+        "request-params": {
+          "protocol-version": "Protokollversion",
+          "client-is-vm": "Client ist eine virtuelle Maschine",
+          "licensing-status": "Lizenzstatus",
+          "remaining-time": "Verbleibende Zeit (0 = immer)",
+          "application-id": "Anwendungs-ID",
+          "sku-id": "SKU-ID (auch Aktivierungs-ID)",
+          "kms-id": "KMS-ID (auch KMS Counted ID)",
+          "client-machine-id": "Client-Maschinen-ID",
+          "previous-client-machine-id": "Vorherige Client-Maschinen-ID",
+          "client-request-timestamp-utc": "Zeitstempel der Client-Anfrage (UTC)",
+          "workstation-name": "Arbeitsstationsname",
+          "n-count-policy": "N-Count-Richtlinie (Mindestanzahl Clients)"
+        },
+        "response-params": {
+          "kms-response-size": "Größe der KMS-Antwort",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "Client-Maschinen-ID",
+          "client-request-timestamp-utc": "Zeitstempel der Client-Anfrage (UTC)",
+          "kms-host-current-active-clients": "Aktuell aktive Clients auf dem KMS-Host",
+          "renewal-interval-policy": "Erneuerungsintervall-Richtlinie",
+          "activation-interval-policy": "Aktivierungsintervall-Richtlinie"
+        }
+      }
+    },
+    "monitor": {
+      "title": "KMS-Server überwachen"
+    }
+  },
+  "label": {
+    "author": "ikxin",
+    "activate": "Aktivieren",
+    "check": "Prüfen",
+    "monitor": "Überwachen",
+    "auto": "Automatisch",
+    "dark": "Dunkler Modus",
+    "light": "Heller Modus",
+    "system": "System",
+    "software": "Software",
+    "edition": "Edition",
+    "host": "Server",
+    "port": "Port",
+    "arch": "Systemarchitektur",
+    "x64": "64 Bit",
+    "x86": "32 Bit",
+    "license": "Lizenz",
+    "script": "CMD-Skript",
+    "menu": "Menü",
+    "copy": "Kopieren",
+    "copy-success": "Kopieren erfolgreich",
+    "download": "Herunterladen",
+    "protocol": "Protokoll",
+    "submit": "Senden",
+    "delay": "Latenz"
+  },
+  "footer": {
+    "description": "Leichte Online-Dienstprogramme für Aktivierungsabläufe, KMS-Diagnosen und Serviceüberwachung."
+  },
+  "title": {
+    "kms-check": "KMS-Serverprüfung",
+    "tips": "Hinweise"
+  }
+}

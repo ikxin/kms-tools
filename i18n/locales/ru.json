@@ -1,0 +1,124 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "Универсальный набор KMS-инструментов"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Универсальный набор KMS-инструментов",
+      "description": "Простой и мощный инструмент управления KMS для активации Windows, Office и других продуктов, с проверкой сервера и мониторингом в реальном времени.",
+      "get-started": "Начать",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "Основные возможности",
+      "subtitle": "Мощный и простой набор KMS-инструментов",
+      "activate": {
+        "title": "Активация продуктов",
+        "description": "Активация Windows, Windows Server и Office в один клик с автоматически сгенерированными скриптами."
+      },
+      "check": {
+        "title": "Проверка сервера",
+        "description": "Быстро проверяйте доступность KMS-сервера, состояние подключения и задержку ответа."
+      },
+      "monitor": {
+        "title": "Мониторинг в реальном времени",
+        "description": "Непрерывно отслеживайте состояние KMS-сервера и визуализируйте успешность и задержку."
+      }
+    },
+    "sponsors": {
+      "title": "Спонсоры",
+      "subtitle": "Спасибо нашим партнёрам за поддержку KMS Tools.",
+      "visit": "Посетить сайт"
+    }
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "Активировать Windows",
+        "windows-server": "Активировать Windows Server",
+        "office": "Активировать Office"
+      }
+    },
+    "check": {
+      "title": "Проверить KMS-сервер",
+      "result": {
+        "passed-title": "Проверка KMS успешна",
+        "passed-desc": "Сервер вернул корректную полезную нагрузку активации.",
+        "failed-title": "Проверка KMS не удалась",
+        "failed-desc": "Сервер не вернул корректный ответ активации.",
+        "default-title": "Результат проверки KMS",
+        "default-desc": "Запрос завершён.",
+        "errors-title": "Ошибки соединения / выполнения",
+        "connection-title": "Состояние соединения",
+        "request-title": "Параметры запроса",
+        "response-title": "Ответ KMS-сервера",
+        "rpc-title": "Временная шкала RPC",
+        "raw-title": "Сырый вывод",
+        "request-empty": "Структурированные параметры запроса не обнаружены.",
+        "response-empty": "Полезная нагрузка ответа не найдена. Обычно это означает тайм-аут соединения или сбой привязки.",
+        "unknown-request-error": "Неизвестная ошибка запроса",
+        "request-params": {
+          "protocol-version": "Версия протокола",
+          "client-is-vm": "Клиент является виртуальной машиной",
+          "licensing-status": "Состояние лицензирования",
+          "remaining-time": "Оставшееся время (0 = навсегда)",
+          "application-id": "ID приложения",
+          "sku-id": "SKU ID (также Activation ID)",
+          "kms-id": "KMS ID (также KMS Counted ID)",
+          "client-machine-id": "ID машины клиента",
+          "previous-client-machine-id": "Предыдущий ID машины клиента",
+          "client-request-timestamp-utc": "Временная метка запроса клиента (UTC)",
+          "workstation-name": "Имя рабочей станции",
+          "n-count-policy": "Политика N Count (минимум клиентов)"
+        },
+        "response-params": {
+          "kms-response-size": "Размер ответа KMS",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "ID машины клиента",
+          "client-request-timestamp-utc": "Временная метка запроса клиента (UTC)",
+          "kms-host-current-active-clients": "Текущее число активных клиентов хоста KMS",
+          "renewal-interval-policy": "Политика интервала продления",
+          "activation-interval-policy": "Политика интервала активации"
+        }
+      }
+    },
+    "monitor": {
+      "title": "Мониторинг KMS-сервера"
+    }
+  },
+  "label": {
+    "author": "ikxin",
+    "activate": "Активировать",
+    "check": "Проверить",
+    "monitor": "Мониторинг",
+    "auto": "Авто",
+    "dark": "Тёмная тема",
+    "light": "Светлая тема",
+    "system": "Система",
+    "software": "ПО",
+    "edition": "Редакция",
+    "host": "Сервер",
+    "port": "Порт",
+    "arch": "Архитектура системы",
+    "x64": "64 бита",
+    "x86": "32 бита",
+    "license": "Лицензия",
+    "script": "CMD-скрипт",
+    "menu": "Меню",
+    "copy": "Копировать",
+    "copy-success": "Копирование выполнено",
+    "download": "Скачать",
+    "protocol": "Протокол",
+    "submit": "Отправить",
+    "delay": "Задержка"
+  },
+  "footer": {
+    "description": "Лёгкие онлайн-утилиты для процессов активации, диагностики KMS и мониторинга сервисов."
+  },
+  "title": {
+    "kms-check": "Проверка KMS-сервера",
+    "tips": "Подсказки"
+  }
+}

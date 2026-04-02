@@ -1,0 +1,124 @@
+{
+  "app": {
+    "title": "KMS Tools",
+    "titleTemplate": "올인원 KMS 툴박스"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "올인원 KMS 툴박스",
+      "description": "Windows, Office 등 다양한 제품 활성화, 서버 점검, 실시간 모니터링을 한곳에서 제공하는 간단하고 강력한 KMS 관리 도구입니다.",
+      "get-started": "시작하기",
+      "view-on-github": "GitHub"
+    },
+    "features": {
+      "title": "핵심 기능",
+      "subtitle": "강력하고 간단한 KMS 도구 모음",
+      "activate": {
+        "title": "제품 활성화",
+        "description": "Windows, Windows Server, Office를 한 번의 클릭으로 활성화하고 자동 생성된 스크립트를 사용할 수 있습니다."
+      },
+      "check": {
+        "title": "서버 점검",
+        "description": "KMS 서버의 가용성을 빠르게 확인하고 연결 상태와 응답 지연을 검사합니다."
+      },
+      "monitor": {
+        "title": "실시간 모니터링",
+        "description": "KMS 서버 상태를 지속적으로 모니터링하고 성공률과 지연 시간을 시각화합니다."
+      }
+    },
+    "sponsors": {
+      "title": "후원사",
+      "subtitle": "KMS Tools를 지원해 주는 파트너에게 감사드립니다.",
+      "visit": "웹사이트 방문"
+    }
+  },
+  "pages": {
+    "activate": {
+      "title": {
+        "windows": "Windows 활성화",
+        "windows-server": "Windows Server 활성화",
+        "office": "Office 활성화"
+      }
+    },
+    "check": {
+      "title": "KMS 서버 확인",
+      "result": {
+        "passed-title": "KMS 검사 통과",
+        "passed-desc": "서버가 유효한 활성화 페이로드를 반환했습니다.",
+        "failed-title": "KMS 검사 실패",
+        "failed-desc": "서버가 유효한 활성화 응답을 반환하지 않았습니다.",
+        "default-title": "KMS 검사 결과",
+        "default-desc": "요청이 완료되었습니다.",
+        "errors-title": "연결 / 런타임 오류",
+        "connection-title": "연결 상태",
+        "request-title": "요청 매개변수",
+        "response-title": "KMS 서버 응답",
+        "rpc-title": "RPC 타임라인",
+        "raw-title": "원시 출력",
+        "request-empty": "구조화된 요청 매개변수가 감지되지 않았습니다.",
+        "response-empty": "응답 페이로드를 찾을 수 없습니다. 보통 연결 시간 초과 또는 바인드 실패를 의미합니다.",
+        "unknown-request-error": "알 수 없는 요청 오류",
+        "request-params": {
+          "protocol-version": "프로토콜 버전",
+          "client-is-vm": "클라이언트가 가상 머신인지 여부",
+          "licensing-status": "라이선스 상태",
+          "remaining-time": "남은 시간(0 = 영구)",
+          "application-id": "응용 프로그램 ID",
+          "sku-id": "SKU ID(활성화 ID라고도 함)",
+          "kms-id": "KMS ID(KMS Counted ID라고도 함)",
+          "client-machine-id": "클라이언트 머신 ID",
+          "previous-client-machine-id": "이전 클라이언트 머신 ID",
+          "client-request-timestamp-utc": "클라이언트 요청 타임스탬프(UTC)",
+          "workstation-name": "워크스테이션 이름",
+          "n-count-policy": "N 카운트 정책(최소 클라이언트 수)"
+        },
+        "response-params": {
+          "kms-response-size": "KMS 응답 크기",
+          "kms-epid": "KMS ePID",
+          "kms-hwid": "KMS HwId",
+          "client-machine-id": "클라이언트 머신 ID",
+          "client-request-timestamp-utc": "클라이언트 요청 타임스탬프(UTC)",
+          "kms-host-current-active-clients": "KMS 호스트 현재 활성 클라이언트 수",
+          "renewal-interval-policy": "갱신 간격 정책",
+          "activation-interval-policy": "활성화 간격 정책"
+        }
+      }
+    },
+    "monitor": {
+      "title": "KMS 서버 모니터링"
+    }
+  },
+  "label": {
+    "author": "ikxin",
+    "activate": "활성화",
+    "check": "확인",
+    "monitor": "모니터링",
+    "auto": "자동",
+    "dark": "다크 모드",
+    "light": "라이트 모드",
+    "system": "시스템",
+    "software": "소프트웨어",
+    "edition": "에디션",
+    "host": "서버",
+    "port": "포트",
+    "arch": "시스템 아키텍처",
+    "x64": "64비트",
+    "x86": "32비트",
+    "license": "라이선스",
+    "script": "CMD 스크립트",
+    "menu": "메뉴",
+    "copy": "복사",
+    "copy-success": "복사 성공",
+    "download": "다운로드",
+    "protocol": "프로토콜",
+    "submit": "제출",
+    "delay": "지연"
+  },
+  "footer": {
+    "description": "활성화 워크플로, KMS 진단, 서비스 모니터링을 위한 가벼운 온라인 유틸리티입니다."
+  },
+  "title": {
+    "kms-check": "KMS 서버 확인",
+    "tips": "팁"
+  }
+}

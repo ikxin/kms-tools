@@ -25,7 +25,7 @@
     "node-vlmcs": "workspace:*",
     "nuxt": "^4.4.2",
     "nuxt-echarts": "^1.0.1",
-    "oxfmt": "^0.41.0",
-    "vue": "^3.5.30"
+    "oxfmt": "^0.43.0",
+    "vue": "3.5.31"
   }
 }
