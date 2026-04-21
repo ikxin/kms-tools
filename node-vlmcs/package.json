@@ -15,8 +15,12 @@
   "bin": {
     "vlmcs": "dist/cli.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "start": "node dist/cli.js"
   },
   "license": "MIT",
