@@ -55,11 +55,9 @@ const content = computed(() => {
   return generateScript(formData.value)
 })
 
-const file = computed(() => {
-  return new File([content.value], 'kms.bat', { type: 'application/txt' })
+const fileUrl = computed(() => {
+  return `data:text/plain;charset=utf-8,${encodeURIComponent(content.value)}`
 })
-
-const fileUrl = useObjectUrl(file)
 
 const { copy, copied } = useClipboard({
   legacy: true,
@@ -140,7 +138,7 @@ const { copy, copied } = useClipboard({
         <AFormItem>
           <ASpace size="small">
             <ClientOnly fallback-tag="a">
-              <a :href="fileUrl" :download="file.name">
+              <a :href="fileUrl" download="kms.bat">
                 <AButton type="primary">
                   {{ t('label.download') }}
                 </AButton>
