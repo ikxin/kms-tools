@@ -1,17 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-const getMonitorCron = () => {
-  const raw = parseInt(
-    process.env.NUXT_MONITOR_INTERVAL || process.env.MONITOR_INTERVAL || '30',
-    60
-  )
-  const seconds = isNaN(raw) || raw <= 0 ? 10 : raw
-  if (seconds < 60) {
-    return `*/${seconds} * * * * *`
-  }
-  const minutes = Math.floor(seconds / 60)
-  return `0 */${minutes} * * * *`
-}
+const nitroPreset = process.env.NITRO_PRESET
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -24,7 +13,24 @@ export default defineNuxtConfig({
       tasks: true
     },
     scheduledTasks: {
-      [getMonitorCron()]: ['monitor']
+      '*/10 * * * *': ['monitor']
+    },
+    storage:
+      nitroPreset === 'cloudflare_module'
+        ? {
+            data: {
+              driver: 'cloudflare-kv-binding',
+              binding: 'MONITOR_KV'
+            }
+          }
+        : undefined,
+    cloudflare: {
+      deployConfig: true,
+      wrangler: {
+        triggers: {
+          crons: ['*/10 * * * *']
+        }
+      }
     }
   },
   app: {

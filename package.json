@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.32.1",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --host 0.0.0.0",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "format": "oxfmt",
