@@ -1,9 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-const nitroPreset = process.env.NITRO_PRESET
-
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: '2026-05-31',
   devtools: { enabled: true },
   future: {
     compatibilityVersion: 4
@@ -15,18 +13,27 @@ export default defineNuxtConfig({
     scheduledTasks: {
       '*/10 * * * *': ['monitor']
     },
-    storage:
-      nitroPreset === 'cloudflare_module'
-        ? {
-            data: {
-              driver: 'cloudflare-kv-binding',
-              binding: 'MONITOR_KV'
-            }
-          }
-        : undefined,
+    storage: {
+      data: {
+        driver: 'cloudflare-kv-binding',
+        binding: 'KV'
+      }
+    },
     cloudflare: {
       deployConfig: true,
       wrangler: {
+        kv_namespaces: [
+          {
+            binding: 'KV',
+            id: 'bddb55671f0d4ebcaddf268c1134d27e'
+          }
+        ],
+        observability: {
+          logs: {
+            enabled: true,
+            invocation_logs: true
+          }
+        },
         triggers: {
           crons: ['*/10 * * * *']
         }
