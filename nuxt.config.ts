@@ -1,5 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+const nitroPreset =
+  process.env.NITRO_PRESET || process.env.NUXT_NITRO_PRESET || ''
+const isCloudflarePreset =
+  nitroPreset.startsWith('cloudflare') ||
+  process.env.CF_PAGES === '1' ||
+  Boolean(process.env.CLOUDFLARE_ACCOUNT_ID)
+const isVercelPreset =
+  nitroPreset.startsWith('vercel') || process.env.VERCEL === '1'
+
+const storage = isCloudflarePreset
+  ? {
+      data: {
+        driver: 'cloudflare-kv-binding',
+        binding: 'KV'
+      }
+    }
+  : isVercelPreset
+    ? {
+        data: {
+          driver: 'upstash'
+        }
+      }
+    : {}
+
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-31',
   devtools: { enabled: true },
@@ -13,18 +37,7 @@ export default defineNuxtConfig({
     scheduledTasks: {
       '*/10 * * * *': ['monitor']
     },
-    storage: {
-      data: {
-        driver: 'cloudflare-kv-binding',
-        binding: 'KV'
-      }
-    },
-    devStorage: {
-      data: {
-        driver: 'fs',
-        base: './.data/kv'
-      }
-    },
+    storage,
     cloudflare: {
       deployConfig: true,
       wrangler: {
