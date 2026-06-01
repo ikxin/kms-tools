@@ -5,17 +5,17 @@ const localePath = useLocalePath()
 const features = computed(() => [
   {
     key: 'activate',
-    icon: 'icons:activate',
+    icon: 'local:activate',
     link: '/activate/windows'
   },
   {
     key: 'check',
-    icon: 'icons:tools',
+    icon: 'local:tools',
     link: '/check'
   },
   {
     key: 'monitor',
-    icon: 'icons:monitor',
+    icon: 'local:monitor',
     link: '/monitor'
   }
 ])

@@ -73,25 +73,25 @@ function handleRainyunAdClick() {
         class="select-none !border-none [&_.arco-menu-icon>i]:inline-block"
       >
         <ASubMenu key="system">
-          <template #icon><Icon name="icons:system" /></template>
+          <template #icon><Icon name="local:system" /></template>
           <template #title>{{ t('label.system') }}</template>
           <AMenuItem key="windows" @click="handleMenuClick('windows')">
-            <template #icon><Icon name="icons:windows" /></template>
+            <template #icon><Icon name="local:windows" /></template>
             Windows
           </AMenuItem>
           <AMenuItem
             key="windows-server"
             @click="handleMenuClick('windows-server')"
           >
-            <template #icon><Icon name="icons:windows-server" /></template>
+            <template #icon><Icon name="local:windows-server" /></template>
             Windows Server
           </AMenuItem>
         </ASubMenu>
         <ASubMenu key="software">
-          <template #icon><Icon name="icons:software" /></template>
+          <template #icon><Icon name="local:software" /></template>
           <template #title>{{ t('label.software') }}</template>
           <AMenuItem key="office" @click="handleMenuClick('office')">
-            <template #icon><Icon name="icons:office" /></template>
+            <template #icon><Icon name="local:office" /></template>
             Office
           </AMenuItem>
         </ASubMenu>
@@ -131,12 +131,12 @@ function handleRainyunAdClick() {
       >
         <ASubMenu key="system">
           <template #icon>
-            <Icon name="icons:system" />
+            <Icon name="local:system" />
           </template>
           <template #title>{{ t('label.system') }}</template>
           <AMenuItem key="windows" @click="handleMenuClick('windows')">
             <template #icon>
-              <Icon name="icons:windows" />
+              <Icon name="local:windows" />
             </template>
             <span>Windows</span>
           </AMenuItem>
@@ -145,19 +145,19 @@ function handleRainyunAdClick() {
             @click="handleMenuClick('windows-server')"
           >
             <template #icon>
-              <Icon name="icons:windows-server" />
+              <Icon name="local:windows-server" />
             </template>
             <span>Windows Server</span>
           </AMenuItem>
         </ASubMenu>
         <ASubMenu key="software">
           <template #icon>
-            <Icon name="icons:software" />
+            <Icon name="local:software" />
           </template>
           <template #title>{{ t('label.software') }}</template>
           <AMenuItem key="office" @click="handleMenuClick('office')">
             <template #icon>
-              <Icon name="icons:office" />
+              <Icon name="local:office" />
             </template>
             <span>Office</span>
           </AMenuItem>

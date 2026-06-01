@@ -301,7 +301,7 @@ const handleSubmit = async (data: {
   <ACard class="h-full w-full">
     <template #title>
       <div class="flex items-center gap-2">
-        <Icon name="icons:check" />
+        <Icon name="local:check" />
         <span>{{ t('title.kms-check') }}</span>
       </div>
     </template>

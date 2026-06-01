@@ -70,7 +70,7 @@ const tips = computed(() => {
   <ACard>
     <template #title>
       <div class="flex items-center gap-2">
-        <i :class="`i-icons:tips`" />
+        <i :class="`i-local:tips`" />
         <span>{{ t('title.tips') }}</span>
       </div>
     </template>

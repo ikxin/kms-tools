@@ -70,7 +70,7 @@ const { copy, copied } = useClipboard({
     <ACard>
       <template #title>
         <div class="flex items-center gap-2">
-          <i :class="`i-icons:${title.toLowerCase().replace(/ /g, '-')}`" />
+          <i :class="`i-local:${title.toLowerCase().replace(/ /g, '-')}`" />
           <span>{{ title }}</span>
         </div>
       </template>

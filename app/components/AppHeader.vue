@@ -13,17 +13,17 @@ const navItems = computed(() => [
   {
     name: 'activate',
     label: t('label.activate'),
-    icon: 'icons:activate'
+    icon: 'local:activate'
   },
   {
     name: 'check',
     label: t('label.check'),
-    icon: 'icons:tools'
+    icon: 'local:tools'
   },
   {
     name: 'monitor',
     label: t('label.monitor'),
-    icon: 'icons:monitor'
+    icon: 'local:monitor'
   }
 ])
 
@@ -82,9 +82,9 @@ function handleNavClick(name: string) {
           <AButton size="small" type="secondary">
             <template #icon>
               <ClientOnly>
-                <Icon :name="`icons:${$colorMode.preference}-mode`" />
+                <Icon :name="`local:${$colorMode.preference}-mode`" />
                 <template #fallback>
-                  <Icon :name="`icons:system-mode`" />
+                  <Icon :name="`local:system-mode`" />
                 </template>
               </ClientOnly>
             </template>
@@ -96,7 +96,7 @@ function handleNavClick(name: string) {
               @click="$colorMode.preference = item.value"
             >
               <template #icon>
-                <Icon :name="`icons:${item.value}-mode`" />
+                <Icon :name="`local:${item.value}-mode`" />
               </template>
               <template #default>{{ item.lable }}</template>
             </ADoption>
@@ -104,7 +104,7 @@ function handleNavClick(name: string) {
         </ADropdown>
         <ADropdown>
           <AButton size="small" type="secondary">
-            <template #icon><Icon name="icons:languages" /></template>
+            <template #icon><Icon name="local:languages" /></template>
           </AButton>
           <template #content>
             <ADoption
@@ -121,7 +121,7 @@ function handleNavClick(name: string) {
         </ADropdown>
         <a target="_blank" href="https://github.com/ikxin/kms-tools">
           <AButton size="small" type="secondary">
-            <template #icon><Icon name="icons:github" /></template>
+            <template #icon><Icon name="local:github" /></template>
           </AButton>
         </a>
 

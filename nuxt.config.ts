@@ -19,6 +19,12 @@ export default defineNuxtConfig({
         binding: 'KV'
       }
     },
+    devStorage: {
+      data: {
+        driver: 'fs',
+        base: './.data/kv'
+      }
+    },
     cloudflare: {
       deployConfig: true,
       wrangler: {
@@ -71,9 +77,8 @@ export default defineNuxtConfig({
       cors: true
     }
   },
-  css: ['~/assets/css/main.css'],
+  css: ['@arco-design/web-vue/dist/arco.css', '~/assets/css/main.css'],
   modules: [
-    'arco-design-nuxt-module',
     '@nuxt/icon',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
@@ -172,7 +177,7 @@ export default defineNuxtConfig({
   icon: {
     customCollections: [
       {
-        prefix: 'icons',
+        prefix: 'local',
         dir: './app/assets/icons'
       }
     ]
