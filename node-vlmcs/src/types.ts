@@ -29,9 +29,9 @@ export const WORKSTATION_NAME_BUFFER = 64
 // Unix 时间戳: 从 1970-01-01 起的秒数
 
 /** FILETIME 纪元 (1601-01-01) 与 Unix 纪元 (1970-01-01) 的差值，单位为 100 纳秒 */
-const FILETIME_UNIX_EPOCH_DIFF = 116444736000000000n
+const FILETIME_UNIX_EPOCH_DIFF = BigInt('116444736000000000')
 /** 每毫秒的 100 纳秒数 */
-const HUNDRED_NS_PER_MS = 10000n
+const HUNDRED_NS_PER_MS = BigInt(10000)
 
 // ─── GUID 序列化 ────────────────────────────────────────────────────────────
 

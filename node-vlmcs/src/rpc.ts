@@ -595,7 +595,7 @@ export async function rpcSendRequest(
   }
 
   // 如果 dataSizeMax 为 0，说明 RPC 调用返回了错误状态
-  if (dataSizeMax === 0 || dataSizeMax === 0n) {
+  if (dataSizeMax === 0 || dataSizeMax === BigInt(0)) {
     const errorStatus = Number(dataSizeIs)
     return { status: errorStatus || 1, kmsResponse: null, responseSize: 0 }
   }

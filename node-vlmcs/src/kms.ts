@@ -71,10 +71,10 @@ const SIZEOF_RESPONSE_V6 = 280
 
 // V6 时间槽常量（每个时间槽约 4.11 小时）
 // 用于 HMAC 计算，参考 src/kms.c 中的 CreateV6Hmac()
-const TIME_C1 = 0x00000022816889bdn
-const TIME_C2 = 0x000000208cbab5edn
-const TIME_C3 = 0x3156cd5ac628477an
-const UINT64_MASK = 0xffffffffffffffffn
+const TIME_C1 = BigInt('0x00000022816889bd')
+const TIME_C2 = BigInt('0x000000208cbab5ed')
+const TIME_C3 = BigInt('0x3156cd5ac628477a')
+const UINT64_MASK = BigInt('0xffffffffffffffff')
 
 // ─── 导出类型 ───────────────────────────────────────────────────────────────
 
