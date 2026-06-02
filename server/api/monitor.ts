@@ -26,13 +26,13 @@ export default defineEventHandler(async () => {
     })
   )
 
-  // Sort by success rate and delay
-  // const sortedData = results.sort((a, b) => {
-  //   const successRateA = a.success / a.total
-  //   const successRateB = b.success / b.total
+  const getSuccessRate = (item: (typeof results)[number]) => {
+    return item.total ? item.success / item.total : 0
+  }
 
-  //   return successRateB - successRateA || a.delay - b.delay
-  // })
+  const sortedData = results.sort((a, b) => {
+    return getSuccessRate(b) - getSuccessRate(a) || a.delay - b.delay
+  })
 
-  return results
+  return sortedData
 })
