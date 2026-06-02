@@ -14,20 +14,20 @@
     "postinstall": "pnpm -C node-vlmcs build && nuxt prepare"
   },
   "dependencies": {
-    "@arco-design/web-vue": "2.56.3",
+    "@arco-design/web-vue": "^2.58.0",
     "@iconify-json/flag": "^1.2.11",
     "@nuxt/icon": "^2.2.1",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/i18n": "^10.2.4",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@upstash/redis": "^1.38.0",
-    "@vueuse/nuxt": "14.2.1",
+    "@vueuse/nuxt": "^14.2.1",
     "echarts": "^6.0.0",
     "node-vlmcs": "workspace:*",
     "nuxt": "^4.4.2",
     "nuxt-echarts": "^1.0.1",
-    "oxfmt": "^0.43.0",
-    "vue": "3.5.31",
+    "oxfmt": "^0.53.0",
+    "vue": "^3.5.35",
     "wrangler": "^4.95.0"
   }
 }

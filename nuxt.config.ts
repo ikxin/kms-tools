@@ -1,25 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-const nitroPreset =
-  process.env.NITRO_PRESET || process.env.NUXT_NITRO_PRESET || ''
-const isCloudflarePreset =
-  nitroPreset.startsWith('cloudflare') ||
-  process.env.CF_PAGES === '1' ||
-  Boolean(process.env.CLOUDFLARE_ACCOUNT_ID)
-const isVercelPreset =
-  nitroPreset.startsWith('vercel') || process.env.VERCEL === '1'
-
-const storage = isCloudflarePreset
-  ? {
-      data: {
-        driver: 'cloudflare-kv-binding',
-        binding: 'KV'
-      }
-    }
-  : isVercelPreset
+const storage =
+  process.env.CLOUDFLARE_ACCOUNT_ID &&
+  process.env.CLOUDFLARE_KV_NAMESPACE_ID &&
+  process.env.CLOUDFLARE_API_TOKEN
     ? {
         data: {
-          driver: 'upstash'
+          driver: 'cloudflare-kv-http',
+          accountId: process.env.CLOUDFLARE_ACCOUNT_ID,
+          namespaceId: process.env.CLOUDFLARE_KV_NAMESPACE_ID,
+          apiToken: process.env.CLOUDFLARE_API_TOKEN
         }
       }
     : {}
@@ -35,26 +25,17 @@ export default defineNuxtConfig({
       tasks: true
     },
     scheduledTasks: {
-      '*/10 * * * *': ['monitor']
+      '* * * * *': ['monitor']
     },
     storage,
     cloudflare: {
       deployConfig: true,
       wrangler: {
-        kv_namespaces: [
-          {
-            binding: 'KV',
-            id: 'bddb55671f0d4ebcaddf268c1134d27e'
-          }
-        ],
         observability: {
           logs: {
             enabled: true,
             invocation_logs: true
           }
-        },
-        triggers: {
-          crons: ['*/10 * * * *']
         }
       }
     }
