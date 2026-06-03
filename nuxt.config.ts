@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       tasks: true
     },
     scheduledTasks: {
-      '* * * * *': ['monitor']
+      '*/10 * * * *': ['monitor']
     },
     storage,
     cloudflare: {

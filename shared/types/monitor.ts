@@ -12,3 +12,5 @@ export interface MonitorInfo {
   total: number
   data: MonitorData[]
 }
+
+export type MonitorStorage = Record<string, MonitorData[]>

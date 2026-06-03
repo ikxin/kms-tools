@@ -4,8 +4,14 @@ export default defineTask({
     description: 'Run KMS server monitoring.'
   },
   async run() {
-    for (const host of getMonitorList()) {
-      let monitorData = await storage.getItem<MonitorData[]>(`${host}.json`)
+    const monitorList = getMonitorList()
+    const monitorStorage =
+      (await storage.getItem<MonitorStorage>('monitor.json')) || {}
+    const nextMonitorStorage: MonitorStorage = {}
+    const now = Date.now()
+
+    for (const host of monitorList) {
+      let monitorData = monitorStorage[host]
 
       if (!Array.isArray(monitorData)) {
         monitorData = []
@@ -19,12 +25,14 @@ export default defineTask({
 
       monitorData.push({
         status,
-        time: Date.now(),
+        time: now,
         delay
       })
 
-      await storage.setItem<MonitorData[]>(`${host}.json`, monitorData)
+      nextMonitorStorage[host] = monitorData
     }
+
+    await storage.setItem<MonitorStorage>('monitor.json', nextMonitorStorage)
 
     return { result: 'Done' }
   }

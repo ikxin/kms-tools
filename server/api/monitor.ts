@@ -1,30 +1,27 @@
 export default defineEventHandler(async () => {
-  const results = await Promise.all(
-    getMonitorList().map(async host => {
-      let data = await storage.getItem<MonitorData[]>(`${host}.json`)
+  const monitorStorage =
+    (await storage.getItem<MonitorStorage>('monitor.json')) || {}
 
-      if (!Array.isArray(data)) {
-        data = []
-      }
+  const results = getMonitorList().map(host => {
+    const data = Array.isArray(monitorStorage[host]) ? monitorStorage[host] : []
 
-      const total = data.length
+    const total = data.length
 
-      const success = data.filter(({ status }) => status).length
+    const success = data.filter(({ status }) => status).length
 
-      const fail = total - success
+    const fail = total - success
 
-      const delay = data.reduce((acc, { delay }) => acc + delay, 0) / total
+    const delay = data.reduce((acc, { delay }) => acc + delay, 0) / total
 
-      return {
-        host,
-        total,
-        success,
-        fail,
-        delay: delay ? Number(delay.toFixed(2)) : 0,
-        data
-      }
-    })
-  )
+    return {
+      host,
+      total,
+      success,
+      fail,
+      delay: delay ? Number(delay.toFixed(2)) : 0,
+      data
+    }
+  })
 
   const getSuccessRate = (item: (typeof results)[number]) => {
     return item.total ? item.success / item.total : 0
