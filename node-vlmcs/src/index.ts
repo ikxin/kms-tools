@@ -61,6 +61,7 @@ function connectSocket(
     socket.once('connect', () => {
       cleanup()
       socket.pause()
+      socket.setTimeout(timeout)
       resolve(socket)
     })
 

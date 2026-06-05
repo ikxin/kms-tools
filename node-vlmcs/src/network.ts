@@ -49,6 +49,7 @@ function connectWithTimeout(
         clearTimeout(timer)
         // 暂停 socket，防止在附加数据监听器之前丢失数据
         sock.pause()
+        sock.setTimeout(CONNECT_TIMEOUT_MS)
         resolve(sock)
       }
     })
@@ -187,6 +188,7 @@ export function recvData(sock: net.Socket, size: number): Promise<Buffer> {
       sock.removeListener('error', onError)
       sock.removeListener('close', onClose)
       sock.removeListener('end', onEnd)
+      sock.removeListener('timeout', onTimeout)
     }
 
     const onData = (chunk: Buffer) => {
@@ -224,10 +226,17 @@ export function recvData(sock: net.Socket, size: number): Promise<Buffer> {
       )
     }
 
+    const onTimeout = () => {
+      cleanup()
+      sock.destroy()
+      reject(new Error(`Socket timeout after ${sock.timeout}ms`))
+    }
+
     sock.on('data', onData)
     sock.once('error', onError)
     sock.once('close', onClose)
     sock.once('end', onEnd)
+    sock.once('timeout', onTimeout)
 
     // 恢复 socket 以开始接收数据
     sock.resume()
