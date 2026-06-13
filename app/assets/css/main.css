@@ -13,3 +13,35 @@ body {
 .arco-drawer-body {
   padding: 0;
 }
+
+.arco-layout-sider > .arco-layout-sider-children {
+  border-radius: inherit;
+}
+
+.arco-menu:not(.arco-menu-horizontal) > .arco-menu-inner {
+  padding: 8px;
+}
+
+.arco-menu-icon > i {
+  display: inline-block;
+}
+
+.arco-card-bordered {
+  border: none;
+}
+
+.arco-card-header {
+  border-bottom-color: var(--color-border-1);
+}
+
+.arco-collapse {
+  border-color: var(--color-border-1);
+}
+
+.arco-collapse-item {
+  border-bottom-color: var(--color-border-1);
+}
+
+.arco-collapse-item-active > .arco-collapse-item-header {
+  border-color: var(--color-border-1);
+}

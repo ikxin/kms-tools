@@ -38,13 +38,6 @@ function handleMenuClick(key: string) {
   navigateTo(localePath(`/activate/${key}`))
   drawerVisible.value = false
 }
-
-const rainyunAdUrlBase64 =
-  'aHR0cHM6Ly93d3cucmFpbnl1bi5jb20vbW1fP3M9a21zLXRvb2xz'
-
-function handleRainyunAdClick() {
-  window.open(atob(rainyunAdUrlBase64), '_blank', 'noopener,noreferrer')
-}
 </script>
 
 <template>
@@ -70,7 +63,7 @@ function handleRainyunAdClick() {
       <AMenu
         :selected-keys="path"
         :default-open-keys="['system', 'software']"
-        class="select-none !border-none [&_.arco-menu-icon>i]:inline-block"
+        class="select-none !border-none"
       >
         <ASubMenu key="system">
           <template #icon><Icon name="local:system" /></template>
@@ -96,20 +89,6 @@ function handleRainyunAdClick() {
           </AMenuItem>
         </ASubMenu>
       </AMenu>
-
-      <div class="group relative flex rounded-md transition">
-        <button
-          type="button"
-          class="flex w-full flex-col items-start gap-y-2 text-left"
-          @click="handleRainyunAdClick"
-        >
-          <img
-            src="/images/rainyun_1.png"
-            alt="RainYun"
-            class="h-auto w-full rounded-md object-cover"
-          />
-        </button>
-      </div>
     </ADrawer>
   </template>
 
@@ -121,13 +100,13 @@ function handleRainyunAdClick() {
   <!-- Desktop: Sidebar layout -->
   <ALayoutSider
     :width="240"
-    class="hidden rounded md:block [&>.arco-layout-sider-children]:rounded"
+    class="hidden rounded md:block"
   >
     <div class="flex h-full flex-col">
       <AMenu
         :selected-keys="path"
         :default-open-keys="['system', 'software']"
-        class="flex-1 select-none [&>.arco-menu-inner]:p-2 [&_.arco-menu-icon>i]:inline-block"
+        class="flex-1 select-none"
       >
         <ASubMenu key="system">
           <template #icon>
@@ -163,22 +142,6 @@ function handleRainyunAdClick() {
           </AMenuItem>
         </ASubMenu>
       </AMenu>
-
-      <div class="p-2 pt-0">
-        <div class="group relative flex rounded-md transition">
-          <button
-            type="button"
-            class="flex w-full flex-col items-start gap-y-2 text-left"
-            @click="handleRainyunAdClick"
-          >
-            <img
-              src="/images/rainyun_1.png"
-              alt="RainYun"
-              class="h-auto w-full rounded-md object-cover"
-            />
-          </button>
-        </div>
-      </div>
     </div>
   </ALayoutSider>
   <ALayoutContent class="hidden flex-col gap-4 md:flex">
