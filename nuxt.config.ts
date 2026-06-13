@@ -77,7 +77,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
-    '@vueuse/nuxt',
     'nuxt-echarts'
   ],
   colorMode: {

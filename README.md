@@ -65,7 +65,6 @@ https://kms.ikxin.com
 | [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)       | 实用性优先的 CSS 框架                |
 | [Arco Design Vue](https://github.com/arco-design/arco-design-vue) | 字节跳动开发的企业级产品设计系统     |
 | [ECharts](https://github.com/apache/echarts)                      | 功能丰富的交互式图表库               |
-| [VueUse](https://github.com/vueuse/vueuse)                        | 基于 Composition API 的实用函数集合  |
 | [Nuxt I18n](https://github.com/nuxt-modules/i18n)                 | 适用于 Nuxt 的国际化支持插件         |
 
 ## 📦 部署

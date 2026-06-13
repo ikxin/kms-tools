@@ -2,5 +2,4 @@ packages:
   - node-vlmcs
 allowBuilds:
   esbuild: true
-  sharp: true
   workerd: true

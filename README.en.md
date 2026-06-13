@@ -65,7 +65,6 @@ The static version uses https://kms.ikxin.com API by default. You can deploy you
 | [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)       | Utility-first CSS framework                            |
 | [Arco Design Vue](https://github.com/arco-design/arco-design-vue) | Enterprise-level design system by ByteDance            |
 | [ECharts](https://github.com/apache/echarts)                      | Feature-rich interactive charting library              |
-| [VueUse](https://github.com/vueuse/vueuse)                        | Collection of essential Composition API utilities      |
 | [Nuxt I18n](https://github.com/nuxt-modules/i18n)                 | Internationalization plugin for Nuxt                   |
 
 ## 📦 Deployment

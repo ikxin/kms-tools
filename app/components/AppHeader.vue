@@ -8,6 +8,20 @@ const localePath = useLocalePath()
 const path = computed(() => route.path.slice(1).split('/'))
 
 const drawerVisible = ref(false)
+const isDesktop = useMediaQuery('(min-width: 768px)')
+
+watch(
+  isDesktop,
+  value => {
+    if (value) {
+      drawerVisible.value = false
+    }
+  },
+  {
+    immediate: true,
+    flush: 'post'
+  }
+)
 
 const navItems = computed(() => [
   {
@@ -128,7 +142,7 @@ function handleNavClick(name: string) {
         <!-- Mobile Hamburger -->
         <div class="md:hidden">
           <AButton size="small" type="secondary" @click="drawerVisible = true">
-            <template #icon><Icon name="material-symbols:menu" /></template>
+            <template #icon><IconMenu /></template>
           </AButton>
         </div>
       </ASpace>

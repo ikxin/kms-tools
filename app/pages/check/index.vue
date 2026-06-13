@@ -354,16 +354,15 @@ const handleSubmit = async (data: {
           >
             <div class="flex min-w-0 flex-col gap-1">
               <div class="flex items-center gap-2">
-                <Icon
-                  :name="
-                    resultInfo.type === 'success'
-                      ? 'material-symbols:check-circle'
-                      : resultInfo.type === 'error'
-                        ? 'material-symbols:error'
-                        : 'material-symbols:info'
-                  "
+                <IconCheckCircleFill
+                  v-if="resultInfo.type === 'success'"
                   class="text-lg"
                 />
+                <IconCloseCircleFill
+                  v-else-if="resultInfo.type === 'error'"
+                  class="text-lg"
+                />
+                <IconInfoCircleFill v-else class="text-lg" />
                 <span
                   class="text-base font-semibold text-[var(--color-text-1)]"
                 >

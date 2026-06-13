@@ -60,7 +60,6 @@ const fileUrl = computed(() => {
 })
 
 const { copy, copied } = useClipboard({
-  legacy: true,
   source: content
 })
 </script>
