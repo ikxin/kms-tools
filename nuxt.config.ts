@@ -44,6 +44,19 @@ export default defineNuxtConfig({
     head: {
       script: [
         {
+          tagPosition: 'bodyOpen',
+          innerHTML: `(() => {
+            const body = document.body
+            const colorMode = window.__NUXT_COLOR_MODE__?.value
+
+            if (colorMode === 'dark') {
+              body.setAttribute('arco-theme', 'dark')
+            } else {
+              body.removeAttribute('arco-theme')
+            }
+          })()`
+        },
+        {
           defer: '',
           src: 'https://umami.ikxin.com/script.js',
           'data-website-id': '6c719cb2-4a72-46e6-a4fa-2ee357a38467'
