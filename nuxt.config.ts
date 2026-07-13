@@ -17,6 +17,12 @@ const storage =
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-31',
   devtools: { enabled: true },
+  site: {
+    url: 'https://kms.ikxin.com',
+    name: 'KMS Tools',
+    description:
+      '简洁稳定的 KMS 在线工具，覆盖激活、检测与监控场景，提供一致、可靠的操作体验。'
+  },
   future: {
     compatibilityVersion: 4
   },
@@ -42,6 +48,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      titleTemplate: '%s',
       script: [
         {
           tagPosition: 'bodyOpen',
@@ -89,6 +96,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
+    '@nuxtjs/seo',
     '@nuxtjs/color-mode',
     'nuxt-echarts'
   ],

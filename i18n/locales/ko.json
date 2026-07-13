@@ -3,6 +3,10 @@
     "title": "KMS Tools",
     "titleTemplate": "올인원 KMS 툴박스"
   },
+  "nuxtSiteConfig": {
+    "name": "@:app.title",
+    "description": "@:footer.description"
+  },
   "home": {
     "hero": {
       "subtitle": "올인원 KMS 툴박스",

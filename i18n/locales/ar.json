@@ -3,6 +3,10 @@
     "title": "KMS Tools",
     "titleTemplate": "صندوق أدوات KMS الشامل"
   },
+  "nuxtSiteConfig": {
+    "name": "@:app.title",
+    "description": "@:footer.description"
+  },
   "home": {
     "hero": {
       "subtitle": "صندوق أدوات KMS الشامل",

@@ -3,6 +3,10 @@
     "title": "KMS Tools",
     "titleTemplate": "Caja de herramientas KMS todo en uno"
   },
+  "nuxtSiteConfig": {
+    "name": "@:app.title",
+    "description": "@:footer.description"
+  },
   "home": {
     "hero": {
       "subtitle": "Caja de herramientas KMS todo en uno",

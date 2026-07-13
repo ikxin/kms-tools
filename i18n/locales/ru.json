@@ -3,6 +3,10 @@
     "title": "KMS Tools",
     "titleTemplate": "Универсальный набор KMS-инструментов"
   },
+  "nuxtSiteConfig": {
+    "name": "@:app.title",
+    "description": "@:footer.description"
+  },
   "home": {
     "hero": {
       "subtitle": "Универсальный набор KMS-инструментов",

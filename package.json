@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@11.12.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -16,16 +16,20 @@
   "dependencies": {
     "@arco-design/web-vue": "^2.58.0",
     "@iconify-json/flag": "^1.2.12",
-    "@nuxt/icon": "^2.2.3",
+    "@nuxt/icon": "^2.3.1",
     "@nuxtjs/color-mode": "^4.0.1",
-    "@nuxtjs/i18n": "^10.4.0",
+    "@nuxtjs/i18n": "^10.4.1",
+    "@nuxtjs/seo": "^5.3.2",
     "@nuxtjs/tailwindcss": "^6.14.0",
+    "@takumi-rs/core": "2.0.0-rc.16",
+    "@takumi-rs/wasm": "2.0.0-rc.16",
     "echarts": "^6.1.0",
     "node-vlmcs": "workspace:*",
     "nuxt": "^4.4.8",
     "nuxt-echarts": "^1.0.1",
-    "oxfmt": "^0.53.0",
-    "vue": "^3.5.38",
-    "wrangler": "^4.100.0"
+    "oxfmt": "^0.58.0",
+    "tailwindcss": "^3.4.19",
+    "vue": "^3.5.39",
+    "wrangler": "^4.110.0"
   }
 }

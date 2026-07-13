@@ -10,6 +10,17 @@ const title = computed(() => {
     ? `${t(route.meta.title)} - ${t('app.title')} - ${t('app.titleTemplate')}`
     : `${t('app.title')} - ${t('app.titleTemplate')}`
 })
+
+const description = computed(() => t('footer.description'))
+
+useSeoMeta({
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  twitterCard: 'summary',
+  twitterTitle: title,
+  twitterDescription: description
+})
 </script>
 
 <template>
