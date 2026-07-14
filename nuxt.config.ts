@@ -1,4 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 
 const storage =
   process.env.CLOUDFLARE_ACCOUNT_ID &&
@@ -72,9 +74,18 @@ export default defineNuxtConfig({
     }
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      Components({
+        resolvers: [
+          ArcoResolver({
+            importStyle: 'css'
+          })
+        ]
+      })
+    ],
     optimizeDeps: {
-      include: ['@vue/devtools-core', '@vue/devtools-kit', 'vue-echarts']
+      include: []
     }
   },
   runtimeConfig: {
@@ -92,7 +103,7 @@ export default defineNuxtConfig({
       cors: true
     }
   },
-  css: ['@arco-design/web-vue/dist/arco.css', '~/assets/css/main.css'],
+  css: ['~/assets/css/main.css'],
   modules: [
     '@nuxt/icon',
     '@nuxtjs/i18n',
