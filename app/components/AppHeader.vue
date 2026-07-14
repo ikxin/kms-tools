@@ -64,9 +64,9 @@ function handleNavClick(name: string) {
 
 <template>
   <ALayoutHeader
-    class="sticky top-0 z-[100] flex h-20 select-none items-center bg-[--color-bg-2] px-4 shadow-md"
+    class="sticky top-0 z-100 flex h-20 items-center bg-(--color-bg-2) px-4 shadow-md select-none"
   >
-    <div class="mx-auto flex w-[72rem] max-w-full items-center justify-between">
+    <div class="mx-auto flex w-6xl max-w-full items-center justify-between">
       <img
         src="/assets/icons/kms-tools.svg"
         alt="KMS Tools"
@@ -83,7 +83,7 @@ function handleNavClick(name: string) {
         <AMenuItem
           v-for="item in navItems"
           :key="item.name"
-          class="!inline-flex items-center gap-1"
+          class="inline-flex! items-center gap-1"
           @click="handleNavClick(item.name)"
         >
           <Icon :name="item.icon" />
@@ -157,7 +157,7 @@ function handleNavClick(name: string) {
     :title="t('label.menu')"
     :footer="false"
   >
-    <AMenu :selected-keys="path" class="!border-none">
+    <AMenu :selected-keys="path" class="border-none!">
       <AMenuItem
         v-for="item in navItems"
         :key="item.name"

@@ -45,9 +45,7 @@ useSeoMeta({
     </Head>
     <Body>
       <AppHeader />
-      <section
-        class="mx-auto flex w-[72rem] max-w-full flex-1 gap-4 px-3 md:px-0"
-      >
+      <section class="mx-auto flex w-6xl max-w-full flex-1 gap-4 px-3 md:px-0">
         <slot></slot>
       </section>
       <AppFooter />

@@ -28,24 +28,22 @@ function openBase64Url(urlBase64: string) {
 <template>
   <div class="flex w-full flex-col gap-6">
     <!-- Hero Section -->
-    <div class="w-full rounded bg-[var(--color-bg-2)] p-6 shadow-lg md:p-10">
+    <div class="w-full rounded bg-(--color-bg-2) p-6 shadow-lg md:p-10">
       <div
         class="flex flex-col items-center gap-8 py-4 md:flex-row md:gap-10 md:py-8"
       >
         <div class="w-full text-center md:w-3/5 md:pl-8 md:text-left lg:pl-16">
           <h2
-            class="mx-auto mb-4 w-fit bg-gradient-to-r from-[#e85349] to-[#f3bb4b] bg-clip-text text-4xl font-bold text-transparent md:mx-0 md:mb-6 md:text-7xl"
+            class="mx-auto mb-4 w-fit bg-linear-to-r from-[#e85349] to-[#f3bb4b] bg-clip-text text-4xl font-bold text-transparent md:mx-0 md:mb-6 md:text-7xl"
           >
             KMS Tools
           </h2>
           <p
-            class="mb-3 text-2xl font-bold text-[var(--color-text-2)] md:mb-4 md:text-4xl"
+            class="mb-3 text-2xl font-bold text-(--color-text-2) md:mb-4 md:text-4xl"
           >
             {{ t('home.hero.subtitle') }}
           </p>
-          <p
-            class="mb-6 text-base text-[var(--color-text-3)] md:mb-8 md:text-xl"
-          >
+          <p class="mb-6 text-base text-(--color-text-3) md:mb-8 md:text-xl">
             {{ t('home.hero.description') }}
           </p>
           <div class="flex justify-center gap-3 md:justify-start md:gap-4">
@@ -72,14 +70,12 @@ function openBase64Url(urlBase64: string) {
     </div>
 
     <!-- Features Section -->
-    <div class="w-full rounded bg-[var(--color-bg-2)] p-6 shadow-lg md:p-10">
+    <div class="w-full rounded bg-(--color-bg-2) p-6 shadow-lg md:p-10">
       <div class="mb-6 text-center md:mb-8">
-        <h3
-          class="mb-2 text-2xl font-bold text-[var(--color-text-1)] md:text-3xl"
-        >
+        <h3 class="mb-2 text-2xl font-bold text-(--color-text-1) md:text-3xl">
           {{ t('home.features.title') }}
         </h3>
-        <p class="text-sm text-[var(--color-text-3)] md:text-base">
+        <p class="text-sm text-(--color-text-3) md:text-base">
           {{ t('home.features.subtitle') }}
         </p>
       </div>
@@ -88,7 +84,7 @@ function openBase64Url(urlBase64: string) {
           v-for="feature in features"
           :key="feature.key"
           :to="localePath(feature.link)"
-          class="group rounded-lg border border-[var(--color-border)] p-5 transition-all hover:border-[rgb(var(--primary-6))] hover:shadow-md md:p-6"
+          class="group rounded-lg border border-(--color-border) p-5 transition-all hover:border-[rgb(var(--primary-6))] hover:shadow-md md:p-6"
         >
           <div
             class="mb-3 inline-flex rounded-lg bg-[rgb(var(--primary-6))]/10 p-3 md:mb-4"
@@ -99,11 +95,11 @@ function openBase64Url(urlBase64: string) {
             />
           </div>
           <h4
-            class="mb-2 text-lg font-semibold text-[var(--color-text-1)] group-hover:text-[rgb(var(--primary-6))]"
+            class="mb-2 text-lg font-semibold text-(--color-text-1) group-hover:text-[rgb(var(--primary-6))]"
           >
             {{ t(`home.features.${feature.key}.title`) }}
           </h4>
-          <p class="text-sm leading-relaxed text-[var(--color-text-3)]">
+          <p class="text-sm leading-relaxed text-(--color-text-3)">
             {{ t(`home.features.${feature.key}.description`) }}
           </p>
         </NuxtLink>
@@ -111,41 +107,39 @@ function openBase64Url(urlBase64: string) {
     </div>
 
     <!-- Sponsors Section -->
-    <div class="w-full rounded bg-[var(--color-bg-2)] p-6 shadow-lg md:p-10">
+    <div class="w-full rounded bg-(--color-bg-2) p-6 shadow-lg md:p-10">
       <div class="mb-6 text-center md:mb-8">
-        <h3
-          class="mb-2 text-2xl font-bold text-[var(--color-text-1)] md:text-3xl"
-        >
+        <h3 class="mb-2 text-2xl font-bold text-(--color-text-1) md:text-3xl">
           {{ t('home.sponsors.title') }}
         </h3>
-        <p class="text-sm text-[var(--color-text-3)] md:text-base">
+        <p class="text-sm text-(--color-text-3) md:text-base">
           {{ t('home.sponsors.subtitle') }}
         </p>
       </div>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
         <button
           type="button"
-          class="group flex items-center justify-between rounded-lg border border-[var(--color-border)] p-5 text-left transition-all hover:border-[rgb(var(--primary-6))] hover:shadow-md md:p-6"
+          class="group flex items-center justify-between rounded-lg border border-(--color-border) p-5 text-left transition-all hover:border-[rgb(var(--primary-6))] hover:shadow-md md:p-6"
           @click="openBase64Url('aHR0cHM6Ly9jaGF0Lm1hcmtodWIudG9wLw==')"
         >
           <div>
             <h4
-              class="mb-1 text-lg font-semibold text-[var(--color-text-1)] group-hover:text-[rgb(var(--primary-6))]"
+              class="mb-1 text-lg font-semibold text-(--color-text-1) group-hover:text-[rgb(var(--primary-6))]"
             >
               MarkHub AI
             </h4>
-            <p class="text-sm text-[var(--color-text-3)]">
+            <p class="text-sm text-(--color-text-3)">
               {{ t('home.sponsors.visit') }}
             </p>
           </div>
           <Icon
             name="tabler:external-link"
-            class="text-xl text-[var(--color-text-3)] transition-colors group-hover:text-[rgb(var(--primary-6))]"
+            class="text-xl text-(--color-text-3) transition-colors group-hover:text-[rgb(var(--primary-6))]"
           />
         </button>
         <button
           type="button"
-          class="group flex items-center justify-between rounded-lg border border-[var(--color-border)] p-5 text-left transition-all hover:border-[rgb(var(--primary-6))] hover:shadow-md md:p-6"
+          class="group flex items-center justify-between rounded-lg border border-(--color-border) p-5 text-left transition-all hover:border-[rgb(var(--primary-6))] hover:shadow-md md:p-6"
           @click="
             openBase64Url(
               'aHR0cHM6Ly93d3cucmFpbnl1bi5jb20vbW1fP3M9a21zLXRvb2xz'
@@ -154,17 +148,17 @@ function openBase64Url(urlBase64: string) {
         >
           <div>
             <h4
-              class="mb-1 text-lg font-semibold text-[var(--color-text-1)] group-hover:text-[rgb(var(--primary-6))]"
+              class="mb-1 text-lg font-semibold text-(--color-text-1) group-hover:text-[rgb(var(--primary-6))]"
             >
               RainYun
             </h4>
-            <p class="text-sm text-[var(--color-text-3)]">
+            <p class="text-sm text-(--color-text-3)">
               {{ t('home.sponsors.visit') }}
             </p>
           </div>
           <Icon
             name="tabler:external-link"
-            class="text-xl text-[var(--color-text-3)] transition-colors group-hover:text-[rgb(var(--primary-6))]"
+            class="text-xl text-(--color-text-3) transition-colors group-hover:text-[rgb(var(--primary-6))]"
           />
         </button>
       </div>

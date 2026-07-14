@@ -42,7 +42,7 @@ watch(
     } else {
       rankVal.value = 1
     }
-    formData.value.edition = gvlksData?.[0]?.edition?.[0]?.[rankVal.value]!
+    formData.value.edition = gvlksData[0]?.edition[0]?.[rankVal.value] ?? ''
   },
   { immediate: true }
 )
@@ -102,11 +102,7 @@ const { copy, copied } = useClipboard({
         <AFormItem :label="t('label.host')" field="host" required>
           <ASelect v-model="formData.host">
             <template v-for="item in monitorData" :key="item.host">
-              <AOption
-                :value="item.host"
-                :label="item.host"
-                class="[&>*]:w-full"
-              >
+              <AOption :value="item.host" :label="item.host" class="*:w-full">
                 <div class="flex items-center gap-2">
                   <div class="flex-1">{{ item.host }}</div>
                   <ATag

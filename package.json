@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.12.0",
+  "packageManager": "pnpm@11.11.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -20,7 +20,7 @@
     "@nuxtjs/color-mode": "^4.0.1",
     "@nuxtjs/i18n": "^10.4.1",
     "@nuxtjs/seo": "^5.3.2",
-    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@tailwindcss/vite": "^4.3.2",
     "@takumi-rs/core": "2.0.0-rc.16",
     "@takumi-rs/wasm": "2.0.0-rc.16",
     "echarts": "^6.1.0",
@@ -28,7 +28,7 @@
     "nuxt": "^4.4.8",
     "nuxt-echarts": "^1.0.1",
     "oxfmt": "^0.58.0",
-    "tailwindcss": "^3.4.19",
+    "tailwindcss": "^4.3.2",
     "vue": "^3.5.39",
     "wrangler": "^4.110.0"
   }

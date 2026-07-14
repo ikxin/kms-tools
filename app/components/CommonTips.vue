@@ -76,7 +76,7 @@ const tips = computed(() => {
     </template>
     <ACollapse>
       <ACollapseItem v-for="{ key, header, content } in tips" :key :header>
-        <span class="select-text leading-relaxed" v-html="content"></span>
+        <span class="leading-relaxed select-text" v-html="content"></span>
       </ACollapseItem>
     </ACollapse>
   </ACard>

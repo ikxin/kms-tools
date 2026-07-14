@@ -98,7 +98,7 @@ function getChartOption(item: MonitorInfo): ECOption {
     <template v-for="item in monitorData" :key="item.host">
       <ACard
         :title="item.host"
-        class="[&_.arco-card-body]:!p-0 [&_.arco-card-header]:items-center"
+        class="[&_.arco-card-body]:p-0! [&_.arco-card-header]:items-center"
       >
         <template #extra>
           <div
@@ -112,11 +112,9 @@ function getChartOption(item: MonitorInfo): ECOption {
             >
           </div>
         </template>
-        <VChart
-          :autoresize="true"
-          :option="getChartOption(item)"
-          class="h-32 w-full"
-        />
+        <div class="h-32 w-full">
+          <VChart :autoresize="true" :option="getChartOption(item)" />
+        </div>
       </ACard>
     </template>
   </div>

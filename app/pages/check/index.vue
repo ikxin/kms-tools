@@ -363,13 +363,11 @@ const handleSubmit = async (data: {
                   class="text-lg"
                 />
                 <IconInfoCircleFill v-else class="text-lg" />
-                <span
-                  class="text-base font-semibold text-[var(--color-text-1)]"
-                >
+                <span class="text-base font-semibold text-(--color-text-1)">
                   {{ statusMeta.title }}
                 </span>
               </div>
-              <span class="text-sm text-[var(--color-text-2)]">{{
+              <span class="text-sm text-(--color-text-2)">{{
                 statusMeta.desc
               }}</span>
             </div>
@@ -380,9 +378,9 @@ const handleSubmit = async (data: {
 
           <div
             v-if="parsedOutput.connectionLine"
-            class="mt-3 rounded bg-[var(--color-fill-2)] px-3 py-2 font-mono text-xs text-[var(--color-text-2)]"
+            class="mt-3 rounded bg-(--color-fill-2) px-3 py-2 font-mono text-xs text-(--color-text-2)"
           >
-            <span class="mr-1 text-[var(--color-text-3)]"
+            <span class="mr-1 text-(--color-text-3)"
               >{{ t('pages.check.result.connection-title') }}:</span
             >
             {{ parsedOutput.connectionLine }}
@@ -398,7 +396,7 @@ const handleSubmit = async (data: {
             <div
               v-for="(line, index) in parsedOutput.errors"
               :key="`error-${index}`"
-              class="break-all font-mono text-xs"
+              class="font-mono text-xs break-all"
             >
               {{ line }}
             </div>
@@ -411,18 +409,18 @@ const handleSubmit = async (data: {
               <div
                 v-for="item in parsedOutput.requestItems"
                 :key="`request-${item.label}`"
-                class="min-w-0 rounded bg-[var(--color-fill-1)] p-2"
+                class="min-w-0 rounded bg-(--color-fill-1) p-2"
               >
-                <div class="mb-1 text-xs text-[var(--color-text-3)]">
+                <div class="mb-1 text-xs text-(--color-text-3)">
                   {{ getRequestLabelI18n(item.label) }}
                 </div>
-                <div class="font-mono text-xs text-[var(--color-text-1)]">
+                <div class="font-mono text-xs text-(--color-text-1)">
                   {{ item.value }}
                 </div>
               </div>
               <div
                 v-if="!parsedOutput.requestItems.length"
-                class="text-xs text-[var(--color-text-3)]"
+                class="text-xs text-(--color-text-3)"
               >
                 {{ t('pages.check.result.request-empty') }}
               </div>
@@ -434,18 +432,18 @@ const handleSubmit = async (data: {
               <div
                 v-for="item in parsedOutput.responseItems"
                 :key="`response-${item.label}`"
-                class="min-w-0 rounded bg-[var(--color-fill-1)] p-2"
+                class="min-w-0 rounded bg-(--color-fill-1) p-2"
               >
-                <div class="mb-1 text-xs text-[var(--color-text-3)]">
+                <div class="mb-1 text-xs text-(--color-text-3)">
                   {{ getResponseLabelI18n(item.label) }}
                 </div>
-                <div class="font-mono text-xs text-[var(--color-text-1)]">
+                <div class="font-mono text-xs text-(--color-text-1)">
                   {{ item.value }}
                 </div>
               </div>
               <div
                 v-if="!parsedOutput.responseItems.length"
-                class="text-xs text-[var(--color-text-3)]"
+                class="text-xs text-(--color-text-3)"
               >
                 {{ t('pages.check.result.response-empty') }}
               </div>
@@ -459,21 +457,19 @@ const handleSubmit = async (data: {
           size="small"
         >
           <pre
-            class="max-h-72 overflow-auto whitespace-pre rounded bg-[var(--color-fill-1)] p-3 font-mono text-xs leading-5 text-[var(--color-text-2)]"
-            >{{ rpcText }}</pre
-          >
+            class="max-h-72 overflow-auto rounded bg-(--color-fill-1) p-3 font-mono text-xs leading-5 whitespace-pre text-(--color-text-2)"
+            >{{ rpcText }}</pre>
         </ACard>
 
         <ACollapse>
           <ACollapseItem
             key="raw-output"
             :header="t('pages.check.result.raw-title')"
-            class="overflow-hidden [&_.arco-collapse-item-content]:bg-[var(--color-bg-2)] [&_.arco-collapse-item-content]:px-4 [&_.arco-collapse-item-content]:py-3"
+            class="overflow-hidden [&_.arco-collapse-item-content]:bg-(--color-bg-2) [&_.arco-collapse-item-content]:px-4 [&_.arco-collapse-item-content]:py-3"
           >
             <pre
-              class="max-h-72 overflow-auto whitespace-pre rounded bg-[var(--color-fill-1)] p-3 font-mono text-xs leading-5 text-[var(--color-text-2)]"
-              >{{ rawOutputText }}</pre
-            >
+              class="max-h-72 overflow-auto rounded bg-(--color-fill-1) p-3 font-mono text-xs leading-5 whitespace-pre text-(--color-text-2)"
+              >{{ rawOutputText }}</pre>
           </ACollapseItem>
         </ACollapse>
       </div>

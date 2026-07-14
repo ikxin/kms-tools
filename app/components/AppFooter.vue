@@ -5,15 +5,15 @@ const currentYear = new Date().getFullYear()
 </script>
 
 <template>
-  <ALayoutFooter class="mt-8 bg-[--color-bg-2] px-4 py-6">
-    <div class="mx-auto w-[72rem] max-w-full p-2">
+  <ALayoutFooter class="mt-8 bg-(--color-bg-2) px-4 py-6">
+    <div class="mx-auto w-6xl max-w-full p-2">
       <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_1fr]">
         <div class="space-y-4">
           <div class="space-y-2">
-            <h3 class="text-xl font-semibold text-[--color-text-1] md:text-2xl">
+            <h3 class="text-xl font-semibold text-(--color-text-1) md:text-2xl">
               KMS Tools
             </h3>
-            <p class="max-w-2xl text-sm leading-6 text-[--color-text-3]">
+            <p class="max-w-2xl text-sm leading-6 text-(--color-text-3)">
               {{ t('footer.description') }}
             </p>
           </div>
@@ -21,7 +21,7 @@ const currentYear = new Date().getFullYear()
       </div>
 
       <div
-        class="mt-6 flex flex-col gap-2 pt-4 text-xs text-[--color-text-3] sm:flex-row sm:items-center sm:justify-between"
+        class="mt-6 flex flex-col gap-2 pt-4 text-xs text-(--color-text-3) sm:flex-row sm:items-center sm:justify-between"
       >
         <p>
           Copyright &copy; {{ currentYear }}

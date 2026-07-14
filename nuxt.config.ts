@@ -1,4 +1,4 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite'
 
 const storage =
   process.env.CLOUDFLARE_ACCOUNT_ID &&
@@ -72,6 +72,7 @@ export default defineNuxtConfig({
     }
   },
   vite: {
+    plugins: [tailwindcss()],
     optimizeDeps: {
       include: ['@vue/devtools-core', '@vue/devtools-kit', 'vue-echarts']
     }
@@ -94,12 +95,14 @@ export default defineNuxtConfig({
   css: ['@arco-design/web-vue/dist/arco.css', '~/assets/css/main.css'],
   modules: [
     '@nuxt/icon',
-    '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxtjs/color-mode',
     'nuxt-echarts'
   ],
+  ogImage: {
+    enabled: false
+  },
   colorMode: {
     classSuffix: '-mode'
   },
