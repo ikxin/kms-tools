@@ -1,6 +1,7 @@
 {
   "name": "kms-tools",
   "version": "2.0.0",
+  "repository": "ikxin/kms-tools",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.11.0",
@@ -11,7 +12,9 @@
     "preview": "nuxt preview",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "postinstall": "pnpm -C node-vlmcs build && nuxt prepare"
+    "postinstall": "pnpm -C node-vlmcs build && nuxt prepare",
+    "release:preview": "changelogen --no-output",
+    "release": "changelogen --clean --release --push"
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.58.0",
@@ -23,6 +26,7 @@
     "@tailwindcss/vite": "^4.3.2",
     "@takumi-rs/core": "2.0.0-rc.16",
     "@takumi-rs/wasm": "2.0.0-rc.16",
+    "changelogen": "^0.6.2",
     "echarts": "^6.1.0",
     "node-vlmcs": "workspace:*",
     "nuxt": "^4.4.8",
