@@ -2,33 +2,30 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20]
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: pnpm
+          node-version: lts/*
 
-      - name: Install dependencies
-        run: pnpm install
+      - uses: pnpm/action-setup@v6
+        with:
+          cache: true
+          run_install: |
+            - args: [--frozen-lockfile]
 
-      - name: Build
-        run: pnpm run build
+      - run: pnpm build

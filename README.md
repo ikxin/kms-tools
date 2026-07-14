@@ -94,7 +94,6 @@ services:
     container_name: kms-tools
     ports:
       - 3000:3000
-      - 1688:1688
     volumes:
       - kms-data:/app/.data
     environment:
@@ -111,7 +110,6 @@ volumes:
 docker run -d \
   --name kms-tools \
   -p 3000:3000 \
-  -p 1688:1688 \
   -v kms-data:/app/.data \
   ikxin/kms-tools:latest
 ```
