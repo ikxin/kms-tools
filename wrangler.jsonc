@@ -2,10 +2,24 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "kms-tools",
   "compatibility_date": "2026-08-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "placement": {
+    "region": "aws:ap-east-1"
+  },
+  "triggers": {
+    "crons": ["*/10 * * * *"]
+  },
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "kms-tools",
+      // 生产部署前填入 wrangler d1 create 返回的 database_id。
       "migrations_dir": "server/database/migrations"
     }
   ]

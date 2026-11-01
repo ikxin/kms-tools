@@ -15,7 +15,7 @@ provide(
 )
 
 onMounted(async () => {
-  const data = await request()('/api/monitor')
+  const data = await $fetch('/api/monitor')
   monitorData.value = data
 })
 </script>

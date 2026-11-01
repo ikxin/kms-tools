@@ -5,7 +5,6 @@
 <p align="center">
   <a href="https://github.com/ikxin/kms-tools/releases"><img src="https://img.shields.io/github/v/release/ikxin/kms-tools?style=flat-square" /></a>
   <a href="https://github.com/ikxin/kms-tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/ikxin/kms-tools/ci.yml?style=flat-square&label=CI" /></a>
-  <a href="https://hub.docker.com/r/ikxin/kms-tools"><img src="https://img.shields.io/docker/pulls/ikxin/kms-tools?style=flat-square" /></a>
   <a href="https://github.com/ikxin/kms-tools/stargazers"><img src="https://img.shields.io/github/stars/ikxin/kms-tools?style=flat-square" /></a>
   <a href="https://github.com/ikxin/kms-tools/network/members"><img src="https://img.shields.io/github/forks/ikxin/kms-tools?style=flat-square" /></a>
   <a href="https://github.com/ikxin/kms-tools/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ikxin/kms-tools?style=flat-square" /></a>
@@ -20,7 +19,7 @@
 KMS Tools is an all-in-one KMS toolbox built with the Nuxt 4 full-stack framework. It integrates KMS activation script generation, KMS server detection, and KMS server status monitoring.
 
 > [!NOTE]
-> This project relies on Node.js `child_process` module to invoke `vlmcs` binaries for KMS detection. It cannot run on pure static hosting platforms like GitHub Pages, so it provides both a full-stack version and a static version.
+> The application runs on Cloudflare Workers and requires Cloudflare D1 to store monitored servers and check records. Local development uses a local D1 database provided by Wrangler.
 
 ## ✨ Features
 
@@ -29,7 +28,7 @@ KMS Tools is an all-in-one KMS toolbox built with the Nuxt 4 full-stack framewor
 - 📊 **KMS Server Monitoring** - Continuous monitoring of multiple KMS servers with visual charts
 - 🌍 **Internationalization** - Support for Simplified Chinese and English
 - 🌗 **Dark Mode** - Light / Dark / System theme modes
-- 🐳 **Docker Deployment** - Ready-to-use Docker images for AMD64 and ARM64 architectures
+- ☁️ **Cloudflare Workers Deployment** - Persist monitoring data in D1 and schedule checks with Cron Triggers
 
 ## 🌈 Preview
 
@@ -39,19 +38,7 @@ KMS Tools is an all-in-one KMS toolbox built with the Nuxt 4 full-stack framewor
 
 ## 📦 Demo
 
-### Full-Stack Version
-
 https://kms.ikxin.com
-
-### Static Version
-
-The static version uses https://kms.ikxin.com API by default. You can deploy your own full-stack version and set the `NUXT_PUBLIC_API_URL` environment variable.
-
-| Platform   | Demo URL                      |
-| ---------- | ----------------------------- |
-| Vercel     | https://kms-tools.vercel.app  |
-| Cloudflare | https://kmstools.pages.dev    |
-| Netlify    | https://kms-tools.netlify.app |
 
 ## 🛠️ Tech Stack
 
@@ -65,126 +52,76 @@ The static version uses https://kms.ikxin.com API by default. You can deploy you
 | [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)       | Utility-first CSS framework                            |
 | [Arco Design Vue](https://github.com/arco-design/arco-design-vue) | Enterprise-level design system by ByteDance            |
 | [ECharts](https://github.com/apache/echarts)                      | Feature-rich interactive charting library              |
+| [Cloudflare Workers](https://developers.cloudflare.com/workers/)  | Application runtime and scheduled tasks                |
+| [Drizzle ORM](https://github.com/drizzle-team/drizzle-orm)        | Type-safe database access and migrations               |
+| [Cloudflare D1](https://developers.cloudflare.com/d1/)            | Cloudflare SQLite database                             |
 | [Nuxt I18n](https://github.com/nuxt-modules/i18n)                 | Internationalization plugin for Nuxt                   |
 
 ## 📦 Deployment
 
-### Environment Variables
+The application runs on Cloudflare Workers and requires a Cloudflare D1 database bound as `DB`. Worker, D1, Cron Trigger, and logging settings are maintained in `wrangler.jsonc`.
 
-| Name                    | Example                     | Description                                         |
-| ----------------------- | --------------------------- | --------------------------------------------------- |
-| `NUXT_PUBLIC_API_URL`   | `https://kms.ikxin.com`     | API URL for the static version                      |
-| `NUXT_MONITOR_LIST`     | `kms.org.cn,win.freekms.cn` | Custom KMS server monitoring list, separated by `,` |
-| `NUXT_MONITOR_INTERVAL` | `10`                        | Monitoring interval in seconds, default is 10       |
-| `PORT`                  | `3000`                      | Server listening port (also accepts `NITRO_PORT`)   |
+The base URL for the site and localized links is fixed to `https://kms.ikxin.com`. Frontend API requests use same-origin relative paths, so no URL environment variables are required. Bind this domain to the Worker after deployment.
 
-> [!NOTE]
-> The production server (`node .output/server/index.mjs`) does **not** automatically load `.env` files. Environment variables must be set in the system environment or your deployment platform before starting the server. The `.env` file is only used during development and the build phase.
+### Create and bind a D1 database
 
-### Full-Stack Version
-
-#### Docker (Recommended)
-
-Using Docker Compose:
-
-```yaml
-services:
-  kms-tools:
-    image: ikxin/kms-tools:latest
-    container_name: kms-tools
-    ports:
-      - 3000:3000
-    volumes:
-      - kms-data:/app/.data
-    environment:
-      - NUXT_MONITOR_LIST=kms.org.cn,win.freekms.cn
-    restart: unless-stopped
-
-volumes:
-  kms-data:
-```
-
-Or using Docker CLI:
+After installing dependencies, log in to Cloudflare and create the database:
 
 ```bash
-docker run -d \
-  --name kms-tools \
-  -p 3000:3000 \
-  -v kms-data:/app/.data \
-  ikxin/kms-tools:latest
+pnpm exec wrangler login
+pnpm exec wrangler d1 create kms-tools
 ```
 
-The image is also available from GitHub Container Registry:
+Add the returned `database_id` to the `d1_databases` entry in `wrangler.jsonc`, keeping the binding name `DB`. If a database already exists, use its ID. Local development does not require a remote database ID.
+
+### Initialize the database and deploy
 
 ```bash
-docker pull ghcr.io/ikxin/kms-tools:latest
-```
+# Apply remote database migrations
+pnpm run db:migrate:remote
 
-#### Zeabur
-
-[![Deployed on Zeabur](https://zeabur.com/deployed-on-zeabur-dark.svg)](https://zeabur.com/templates/TXR0D9)
-
-#### Manual Deployment
-
-1. Clone the repository and install dependencies
-
-```bash
-git clone https://github.com/ikxin/kms-tools.git
-cd kms-tools && pnpm install
-```
-
-2. Build the project
-
-```bash
+# Build and deploy the Worker
 pnpm run build
+pnpm run deploy
 ```
 
-3. Start the service (default port: `3000`), configurable via the `PORT` environment variable
+Nitro merges `wrangler.jsonc` into the generated Worker deployment configuration during the build. `pnpm run deploy` uses that configuration to publish the application. Apply any new remote migrations before subsequent deployments as well.
+
+### Configure monitored servers
+
+Migrations create empty `servers` and `monitor_records` tables. Manage monitored servers through the `host`, `port`, and `enabled` fields in `servers`, for example:
 
 ```bash
-node .output/server/index.mjs
+pnpm exec wrangler d1 execute DB --remote --config wrangler.jsonc --command "INSERT OR IGNORE INTO servers (host, port) VALUES ('kms.org.cn', 1688)"
 ```
 
-To set a custom port and monitor list, pass environment variables at startup:
-
-```bash
-PORT=3512 NUXT_MONITOR_LIST=kms.example.com node .output/server/index.mjs
-```
-
-### Static Version
-
-Most SaaS platforms support static website hosting. Here's the general approach:
-
-> [!WARNING]
-> If using Cloudflare Pages, set `NODE_VERSION` to `22` to avoid build errors.
-
-1. Fork this repository to your GitHub account
-2. Create a project on the SaaS platform and select the forked repository
-3. Set the build command to `pnpm run generate`
-4. Set the environment variable `NUXT_PUBLIC_API_URL=https://kms.ikxin.com`
-5. Deploy the project
-
-> [!NOTE]
-> If you encounter issues deploying on other SaaS platforms, please submit an [Issue](https://github.com/ikxin/kms-tools/issues).
+Monitoring runs every 10 minutes by default. To change the schedule, update both `triggers.crons` in `wrangler.jsonc` and `nitro.scheduledTasks` in `nuxt.config.ts`.
 
 ## 🔧 Local Development
 
 ```bash
-# Clone the project
+# Clone the repository and install dependencies
 git clone https://github.com/ikxin/kms-tools.git
 cd kms-tools
-
-# Install dependencies
 pnpm install
 
-# Start development server
+# Apply local D1 migrations and start the development server
 pnpm run dev
+```
 
-# Build for production
-pnpm run build
+The development server accesses local D1 through Wrangler's bindings proxy. Data persists in `.wrangler/state/v3` without requiring a Cloudflare login. Local API requests use the development server, and local data is separate from remote D1.
 
-# Generate static version
-pnpm run generate
+Add a local monitored server:
+
+```bash
+pnpm exec wrangler d1 execute DB --local --config wrangler.jsonc --command "INSERT OR IGNORE INTO servers (host, port) VALUES ('kms.org.cn', 1688)"
+```
+
+After changing `server/database/schema.ts`, generate and apply migrations:
+
+```bash
+pnpm run db:generate
+pnpm run db:migrate:local
 ```
 
 ## 🤝 Contributing

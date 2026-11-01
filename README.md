@@ -5,7 +5,6 @@
 <p align="center">
   <a href="https://github.com/ikxin/kms-tools/releases"><img src="https://img.shields.io/github/v/release/ikxin/kms-tools?style=flat-square" /></a>
   <a href="https://github.com/ikxin/kms-tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/ikxin/kms-tools/ci.yml?style=flat-square&label=CI" /></a>
-  <a href="https://hub.docker.com/r/ikxin/kms-tools"><img src="https://img.shields.io/docker/pulls/ikxin/kms-tools?style=flat-square" /></a>
   <a href="https://github.com/ikxin/kms-tools/stargazers"><img src="https://img.shields.io/github/stars/ikxin/kms-tools?style=flat-square" /></a>
   <a href="https://github.com/ikxin/kms-tools/network/members"><img src="https://img.shields.io/github/forks/ikxin/kms-tools?style=flat-square" /></a>
   <a href="https://github.com/ikxin/kms-tools/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ikxin/kms-tools?style=flat-square" /></a>
@@ -20,7 +19,7 @@
 KMS Tools 是一个一站式 KMS 工具箱，基于 Nuxt 4 全栈框架构建，集成了 KMS 激活脚本生成、KMS 服务器检测、KMS 服务器状态监控等功能。
 
 > [!NOTE]
-> 项目依赖于 Node.js 的 `child_process` 模块来调用 `vlmcs` 二进制文件执行 KMS 检测服务，无法在 GitHub Pages 等纯静态网站托管平台上运行，因此区分了全栈版本和静态版本两种部署方式。
+> 项目统一部署到 Cloudflare Workers，使用 Cloudflare D1 保存监控服务器配置和检测记录。本地开发通过 Wrangler 运行本地 D1。
 
 ## ✨ 功能特性
 
@@ -29,7 +28,7 @@ KMS Tools 是一个一站式 KMS 工具箱，基于 Nuxt 4 全栈框架构建，
 - 📊 **KMS 服务器监控** - 持续监控多个 KMS 服务器的运行状态，提供可视化图表
 - 🌍 **国际化支持** - 支持简体中文和英文界面切换
 - 🌗 **暗色模式** - 支持亮色 / 暗色 / 跟随系统三种主题模式
-- 🐳 **Docker 部署** - 提供开箱即用的 Docker 镜像，支持 AMD64 和 ARM64 架构
+- ☁️ **Cloudflare Workers 部署** - 使用 D1 持久化监控数据，通过 Cron Triggers 定时检测
 
 ## 🌈 界面预览
 
@@ -39,19 +38,7 @@ KMS Tools 是一个一站式 KMS 工具箱，基于 Nuxt 4 全栈框架构建，
 
 ## 📦 演示
 
-### 全栈版本
-
 https://kms.ikxin.com
-
-### 静态版本
-
-静态版本默认调用 https://kms.ikxin.com 的 API 接口，也可以自行部署全栈版本，然后通过环境变量 `NUXT_PUBLIC_API_URL` 设置。
-
-| 平台       | 演示链接                      |
-| ---------- | ----------------------------- |
-| Vercel     | https://kms-tools.vercel.app  |
-| Cloudflare | https://kmstools.pages.dev    |
-| Netlify    | https://kms-tools.netlify.app |
 
 ## 🛠️ 技术栈
 
@@ -67,151 +54,74 @@ https://kms.ikxin.com
 | [ECharts](https://github.com/apache/echarts)                      | 功能丰富的交互式图表库               |
 | [Drizzle ORM](https://github.com/drizzle-team/drizzle-orm)        | 类型安全的数据库访问与迁移工具       |
 | [Cloudflare D1](https://developers.cloudflare.com/d1/)            | Cloudflare 原生 SQLite 数据库        |
+| [Cloudflare Workers](https://developers.cloudflare.com/workers/)  | 应用运行与定时任务                   |
 | [Nuxt I18n](https://github.com/nuxt-modules/i18n)                 | 适用于 Nuxt 的国际化支持插件         |
 
 ## 📦 部署
 
-### 环境变量
+项目使用 Cloudflare Workers 运行应用，并且必须绑定名为 `DB` 的 Cloudflare D1 数据库。Workers、D1、Cron Triggers 和日志配置统一维护在 `wrangler.jsonc` 中。
 
-| 名称                    | 示例值                      | 描述                                     |
-| ----------------------- | --------------------------- | ---------------------------------------- |
-| `NUXT_PUBLIC_API_URL`   | `https://kms.ikxin.com`     | 静态版本 API 接口地址                    |
-| `NUXT_MONITOR_LIST`     | `kms.org.cn,win.freekms.cn` | 自定义监控 KMS 服务器列表，使用 `,` 分隔 |
-| `NUXT_MONITOR_INTERVAL` | `10`                        | 监控频率，单位为秒，默认 10 秒           |
-| `PORT`                  | `3000`                      | 服务监听端口（也可使用 `NITRO_PORT`）    |
+站点和多语言链接基础地址固定为 `https://kms.ikxin.com`，前端 API 请求使用同源相对路径，无需配置地址相关环境变量。部署后需要将该域名绑定到 Worker。
 
-> [!NOTE]
-> 生产环境（`node .output/server/index.mjs`）不会自动读取 `.env` 文件，环境变量需要在运行前通过系统环境或部署平台进行配置。`.env` 文件仅在开发和构建阶段有效。
+### 创建并绑定 D1 数据库
 
-### 全栈版本
-
-#### Cloudflare Workers 与 D1
-
-项目在 Cloudflare 运行时会优先使用 `DB` D1 绑定保存监控配置和记录。首次部署时，Wrangler 会根据项目配置自动创建并绑定数据库：
+安装依赖后，登录 Cloudflare 并创建数据库：
 
 ```bash
-NITRO_PRESET=cloudflare_module pnpm run build
-pnpm exec wrangler deploy
+pnpm exec wrangler login
+pnpm exec wrangler d1 create kms-tools
+```
+
+将命令返回的 `database_id` 添加到 `wrangler.jsonc` 的 `d1_databases` 配置中，保留绑定名称 `DB`。如果已有数据库，填入现有数据库的 ID 即可。本地开发不需要远程数据库 ID。
+
+### 初始化数据库并部署
+
+```bash
+# 应用远程数据库迁移
 pnpm run db:migrate:remote
-```
 
-迁移会创建 `servers` 和 `monitor_records` 两张空表。修改 `server/database/schema.ts` 后，可以生成新的迁移：
-
-```bash
-pnpm run db:generate
-```
-
-本地开发默认使用 Cloudflare 预设和 Wrangler 提供的本地 D1。首次开发或新增迁移后，先应用尚未执行的迁移：
-
-```bash
-pnpm run db:migrate:local
-pnpm run dev
-```
-
-之后直接运行 `pnpm run dev` 即可。本地数据持久化在 `.wrangler/state`，无需登录 Cloudflare。Docker 和 Node.js 部署没有 D1 绑定时，会继续使用原有的 Nitro Storage 与 `NUXT_MONITOR_LIST` 配置。
-
-#### Docker（推荐）
-
-使用 Docker Compose：
-
-```yaml
-services:
-  kms-tools:
-    image: ikxin/kms-tools:latest
-    container_name: kms-tools
-    ports:
-      - 3000:3000
-    volumes:
-      - kms-data:/app/.data
-    environment:
-      - NUXT_MONITOR_LIST=kms.org.cn,win.freekms.cn
-    restart: unless-stopped
-
-volumes:
-  kms-data:
-```
-
-或者使用 Docker CLI：
-
-```bash
-docker run -d \
-  --name kms-tools \
-  -p 3000:3000 \
-  -v kms-data:/app/.data \
-  ikxin/kms-tools:latest
-```
-
-镜像也可以从 GitHub Container Registry 拉取：
-
-```bash
-docker pull ghcr.io/ikxin/kms-tools:latest
-```
-
-#### Zeabur
-
-[![Deployed on Zeabur](https://zeabur.com/deployed-on-zeabur-dark.svg)](https://zeabur.com/templates/TXR0D9)
-
-#### 手动部署
-
-1. 克隆项目仓库到本地，安装依赖
-
-```bash
-git clone https://github.com/ikxin/kms-tools.git
-cd kms-tools && pnpm install
-```
-
-2. 构建项目
-
-```bash
+# 构建 Workers 应用并部署
 pnpm run build
+pnpm run deploy
 ```
 
-3. 启动服务，项目默认监听 `3000` 端口，可通过 `PORT` 环境变量修改
+构建时 Nitro 会合并 `wrangler.jsonc` 并生成 Workers 部署配置，`pnpm run deploy` 使用该配置发布应用。后续部署前，也需要先应用新增的远程数据库迁移。
+
+### 配置监控服务器
+
+迁移会创建 `servers` 和 `monitor_records` 两张空表。监控列表通过 `servers` 表中的 `host`、`port` 和 `enabled` 字段管理，例如：
 
 ```bash
-node .output/server/index.mjs
+pnpm exec wrangler d1 execute DB --remote --config wrangler.jsonc --command "INSERT OR IGNORE INTO servers (host, port) VALUES ('kms.org.cn', 1688)"
 ```
 
-如需自定义端口和监控列表，可在启动时设置环境变量：
-
-```bash
-PORT=3512 NUXT_MONITOR_LIST=kms.example.com node .output/server/index.mjs
-```
-
-### 静态版本
-
-几乎所有 SaaS 平台都支持静态网站托管服务，以下是通用的部署方式：
-
-> [!WARNING]
-> 注意：如果你使用的是 Cloudflare Pages，部署时需要将 `NODE_VERSION` 设置为 `22`，否则构建时会出现报错。
-
-1. Fork 本项目仓库到自己的 GitHub 账户
-2. 在 SaaS 平台创建项目，选择刚才 Fork 的仓库
-3. 设置项目的构建命令为 `pnpm run generate`
-4. 设置环境变量 `NUXT_PUBLIC_API_URL=https://kms.ikxin.com`
-5. 点击部署项目即可
-
-> [!NOTE]
-> 如果在其他 SaaS 平台部署时遇到问题，欢迎提交 [Issue](https://github.com/ikxin/kms-tools/issues) 来获得支持。
+监控任务默认每 10 分钟执行一次。修改频率时，请同时更新 `wrangler.jsonc` 的 `triggers.crons` 和 `nuxt.config.ts` 的 `nitro.scheduledTasks`。
 
 ## 🔧 本地开发
 
 ```bash
-# 克隆项目
+# 克隆项目并安装依赖
 git clone https://github.com/ikxin/kms-tools.git
 cd kms-tools
-
-# 安装依赖
 pnpm install
 
-# 启动开发服务器
+# 自动应用本地 D1 迁移并启动开发服务器
 pnpm run dev
+```
 
-# 构建生产版本
-pnpm run build
+开发服务器通过 Wrangler 提供的绑定代理访问本地 D1，数据库持久化在 `.wrangler/state/v3`，无需登录 Cloudflare。本地 API 请求使用当前开发服务器，数据与远程 D1 相互独立。
 
-# 生成静态版本
-pnpm run generate
+添加本地监控服务器：
+
+```bash
+pnpm exec wrangler d1 execute DB --local --config wrangler.jsonc --command "INSERT OR IGNORE INTO servers (host, port) VALUES ('kms.org.cn', 1688)"
+```
+
+修改 `server/database/schema.ts` 后，生成并应用迁移：
+
+```bash
+pnpm run db:generate
+pnpm run db:migrate:local
 ```
 
 ## 🤝 参与贡献

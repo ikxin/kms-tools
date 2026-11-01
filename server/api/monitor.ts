@@ -1,6 +1,6 @@
 import { asc, eq, inArray } from 'drizzle-orm'
 import { monitorRecords, servers } from '../database/schema'
-import { getD1Database } from '../utils/database'
+import { getD1Database, type KmsDatabase } from '../utils/database'
 
 interface MonitorEntry {
   host: string
@@ -37,9 +37,7 @@ const summarizeMonitorEntries = (entries: MonitorEntry[]) => {
   return sortedData
 }
 
-const getD1MonitorEntries = async (
-  database: NonNullable<ReturnType<typeof getD1Database>>
-) => {
+const getD1MonitorEntries = async (database: KmsDatabase) => {
   const monitoredServers = await database
     .select({
       id: servers.id,
@@ -87,21 +85,8 @@ const getD1MonitorEntries = async (
   }))
 }
 
-const getStorageMonitorEntries = async () => {
-  const monitorStorage =
-    (await storage.getItem<MonitorStorage>('monitor.json')) || {}
-
-  return getMonitorList().map(host => ({
-    host,
-    data: Array.isArray(monitorStorage[host]) ? monitorStorage[host] : []
-  }))
-}
-
-export default defineEventHandler(async event => {
-  const database = getD1Database(event.context)
-  const entries = database
-    ? await getD1MonitorEntries(database)
-    : await getStorageMonitorEntries()
+export default defineEventHandler(async () => {
+  const entries = await getD1MonitorEntries(getD1Database())
 
   return summarizeMonitorEntries(entries)
 })

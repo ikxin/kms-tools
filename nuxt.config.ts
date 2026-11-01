@@ -2,26 +2,7 @@ import tailwindcss from '@tailwindcss/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 
-const storage =
-  process.env.CLOUDFLARE_ACCOUNT_ID &&
-  process.env.CLOUDFLARE_KV_NAMESPACE_ID &&
-  process.env.CLOUDFLARE_API_TOKEN
-    ? {
-        data: {
-          driver: 'cloudflare-kv-http',
-          accountId: process.env.CLOUDFLARE_ACCOUNT_ID,
-          namespaceId: process.env.CLOUDFLARE_KV_NAMESPACE_ID,
-          apiToken: process.env.CLOUDFLARE_API_TOKEN
-        }
-      }
-    : {}
-
 export default defineNuxtConfig({
-  $development: {
-    nitro: {
-      preset: 'cloudflare_module'
-    }
-  },
   compatibilityDate: '2026-05-31',
   devtools: { enabled: true },
   site: {
@@ -34,30 +15,16 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
   nitro: {
+    preset: 'cloudflare_module',
     experimental: {
       tasks: true
     },
     scheduledTasks: {
       '*/10 * * * *': ['monitor']
     },
-    storage,
     cloudflare: {
       deployConfig: true,
-      wrangler: {
-        placement: {
-          // @ts-expect-error Nitro's bundled Wrangler types do not include Placement Hints yet.
-          region: 'aws:ap-east-1'
-        },
-        triggers: {
-          crons: ['*/10 * * * *']
-        },
-        observability: {
-          logs: {
-            enabled: true,
-            invocation_logs: true
-          }
-        }
-      }
+      nodeCompat: true
     }
   },
   app: {
@@ -100,16 +67,6 @@ export default defineNuxtConfig({
       include: ['@arco-design/web-vue']
     }
   },
-  runtimeConfig: {
-    monitorList: '',
-    monitorInterval: '5',
-    public: {
-      apiUrl: '',
-      i18n: {
-        baseUrl: 'https://kms.ikxin.com'
-      }
-    }
-  },
   routeRules: {
     '/api/*': {
       cors: true
@@ -130,6 +87,7 @@ export default defineNuxtConfig({
     classSuffix: '-mode'
   },
   i18n: {
+    baseUrl: 'https://kms.ikxin.com',
     defaultLocale: 'zh-cn',
     langDir: 'locales',
     strategy: 'prefix_and_default',

@@ -48,5 +48,3 @@ To override the inferred SemVer change, pass `--major`, `--minor`, `--patch`, or
 pnpm run release --patch
 pnpm run release -r 2.1.0
 ```
-
-Pushing the `vX.Y.Z` tag also starts the Docker image release workflow.

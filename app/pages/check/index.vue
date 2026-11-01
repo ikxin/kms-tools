@@ -278,7 +278,7 @@ const handleSubmit = async (data: {
   if (data.errors === undefined) {
     resultInfo.loading = true
     try {
-      const response = await request()('/api/check', {
+      const response = await $fetch('/api/check', {
         query: formData.value
       })
       resultInfo.message = response.content
